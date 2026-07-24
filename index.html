@@ -1034,9 +1034,9 @@ class Component extends DCLogic {
     // Three depth planes: far ones are small and faint, the nearest is oversized and
     // defocused, so the field reads as depth instead of scattered clip art.
     const LAYERS = [
-      { size: 0.42, alpha: 0.5, line: 1.0, blur: 0,   drift: 0.6, parallax: 8,  lag: 0.03 },
-      { size: 0.68, alpha: 0.9, line: 1.4, blur: 0,   drift: 1,   parallax: 20, lag: 0.08 },
-      { size: 1.05, alpha: 0.5, line: 2.2, blur: 1.7, drift: 1.6, parallax: 40, lag: 0.16 }
+      { size: 0.42, alpha: 0.62, line: 1.2, blur: 0,   drift: 0.6, lag: 0.03 },
+      { size: 0.68, alpha: 1,    line: 1.6, blur: 0,   drift: 1,   lag: 0.08 },
+      { size: 1.05, alpha: 0.62, line: 2.4, blur: 1.5, drift: 1.6, lag: 0.16 }
     ];
 
     let w = 0, h = 0, dpr = 1;
@@ -1048,7 +1048,7 @@ class Component extends DCLogic {
       const accent = css.getPropertyValue("--accent").trim();
       if (bond) bondColor = bond;
       if (accent) accentColor = accent;
-      baseAlpha = document.documentElement.getAttribute("data-theme") === "dark" ? 0.34 : 0.24;
+      baseAlpha = document.documentElement.getAttribute("data-theme") === "dark" ? 0.62 : 0.44;
     };
 
     const molecules = [];
@@ -1179,21 +1179,31 @@ class Component extends DCLogic {
       ctx.globalCompositeOperation = "source-over";
     };
 
-    const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+    // The cursor is a lens, not a magnet: nothing is pushed around, whatever falls under
+    // it simply comes into focus, which is the same gesture the product is named after.
+    const lens = { x: 0, y: 0, tx: 0, ty: 0, power: 0, target: 0 };
 
     const render = () => {
       ctx.clearRect(0, 0, w, h);
       const radius = Math.max(96, Math.min(190, w * 0.12));
       const scrolled = window.scrollY || 0;
+      const reach = Math.max(210, w * 0.17);
       for (const m of molecules) {
         const layer = m.layer;
         const size = radius * layer.size * m.scale;
         const margin = size * 1.5;
-        const x = m.fx * w + pointer.x * layer.parallax;
-        const y = m.fy * h + pointer.y * layer.parallax + scrolled * layer.lag;
+        const x = m.fx * w;
+        const y = m.fy * h + scrolled * layer.lag;
         if (x < -margin || x > w + margin || y < -margin || y > h + margin) continue;
-        ctx.filter = layer.blur ? "blur(" + layer.blur + "px)" : "none";
-        drawMolecule(m, size, baseAlpha * layer.alpha, layer.line, x, y);
+        let focus = 0;
+        if (lens.power > 0.01) {
+          const reached = 1 - Math.hypot(x - lens.x, y - lens.y) / reach;
+          if (reached > 0) focus = reached * reached * (3 - 2 * reached) * lens.power;
+        }
+        const blur = layer.blur * (1 - 0.85 * focus);
+        ctx.filter = blur > 0.05 ? "blur(" + blur.toFixed(2) + "px)" : "none";
+        const alpha = Math.min(1, baseAlpha * layer.alpha * (1 + 1.2 * focus));
+        drawMolecule(m, size, alpha, layer.line * (1 + 0.12 * focus), x, y);
       }
       ctx.filter = "none";
       carveOutCopy();
@@ -1214,9 +1224,11 @@ class Component extends DCLogic {
     const tick = (now) => {
       const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
       last = now;
-      const ease = Math.min(1, dt * 4);
-      pointer.x += (pointer.tx - pointer.x) * ease;
-      pointer.y += (pointer.ty - pointer.y) * ease;
+      const ease = Math.min(1, dt * 9);
+      if (lens.power < 0.01) { lens.x = lens.tx; lens.y = lens.ty; } // no sweep on entry
+      lens.x += (lens.tx - lens.x) * ease;
+      lens.y += (lens.ty - lens.y) * ease;
+      lens.power += (lens.target - lens.power) * Math.min(1, dt * 3.5);
       for (const m of molecules) {
         m.fx += m.vx * dt;
         m.fy += m.vy * dt;
@@ -1241,11 +1253,13 @@ class Component extends DCLogic {
     if (this.reduced) return; // the static frame drawn by resize() is the whole show
 
     host.addEventListener("pointermove", (e) => {
+      if (e.pointerType === "touch") return; // no hover to speak of, so no lens
       const rect = host.getBoundingClientRect();
-      pointer.tx = (e.clientX - rect.left) / rect.width - 0.5;
-      pointer.ty = (e.clientY - rect.top) / rect.height - 0.5;
+      lens.tx = e.clientX - rect.left;
+      lens.ty = e.clientY - rect.top;
+      lens.target = 1;
     });
-    host.addEventListener("pointerleave", () => { pointer.tx = 0; pointer.ty = 0; });
+    host.addEventListener("pointerleave", () => { lens.target = 0; });
 
     if ("IntersectionObserver" in window) {
       this._particleIO = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) start(); else stop(); });
