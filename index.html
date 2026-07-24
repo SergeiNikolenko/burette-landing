@@ -4,8 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<script src="/rdkit/RDKit_minimal.js"></script>
-<script>window.initRDKitModule = typeof initRDKitModule === "function" ? initRDKitModule : window.initRDKitModule;</script>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -118,6 +116,7 @@
     --invert-bg: #0a0a0a; --invert-fg: #ffffff;
     --particle: rgba(15,143,114,.4); --particle-line: rgba(0,0,0,.05);
     --cloud-a: rgba(124,131,246,.34); --cloud-b: rgba(74,164,236,.28); --cloud-c: color-mix(in srgb, var(--accent) 22%, transparent); --cloud-op: .95; --mol-bond: #14161c;
+    --hero-a: color-mix(in srgb, var(--accent) 18%, transparent); --hero-b: rgba(96,140,205,.16); --hero-c: rgba(124,131,246,.1); --hero-op: .85;
   }
   html[data-theme="dark"] {
     --bg: #09090b; --surface: #0d0d10; --surface-2: #0b0b0e;
@@ -129,6 +128,7 @@
     --invert-bg: #fafafa; --invert-fg: #0a0a0a;
     --particle: rgba(22,185,138,.55); --particle-line: rgba(255,255,255,.06);
     --cloud-a: rgba(99,102,241,.42); --cloud-b: rgba(46,120,230,.34); --cloud-c: color-mix(in srgb, var(--accent) 32%, transparent); --cloud-op: .8; --mol-bond: #e8e8ea;
+    --hero-a: color-mix(in srgb, var(--accent) 46%, transparent); --hero-b: rgba(56,96,168,.3); --hero-c: rgba(112,104,224,.18); --hero-op: .74;
   }
   html, body { margin: 0; }
   body { background: var(--bg); color: var(--text); transition: background .5s ease, color .5s ease; }
@@ -139,12 +139,11 @@
   ::selection { background: var(--accent); color: #fff; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 
-  @keyframes gridpan { to { background-position: 40px 40px; } }
-  .hero-clouds { position: absolute; inset: -20% -10%; pointer-events: none; z-index: 0; opacity: var(--cloud-op); filter: blur(52px) saturate(1.15); }
+  .hero-clouds { position: absolute; inset: -20% -10%; pointer-events: none; z-index: 0; opacity: var(--hero-op); filter: blur(58px) saturate(1.05); }
   .hero-clouds .blob { position: absolute; border-radius: 50%; mix-blend-mode: normal; will-change: transform; }
-  .hero-clouds .b1 { width: 46%; height: 60%; left: 4%;  top: -8%;  background: radial-gradient(circle at 40% 40%, var(--cloud-a), transparent 68%); animation: cloudDrift 26s ease-in-out infinite; }
-  .hero-clouds .b2 { width: 52%; height: 66%; right: -2%; top: 2%;   background: radial-gradient(circle at 55% 45%, var(--cloud-b), transparent 68%); animation: cloudDrift 32s ease-in-out infinite reverse; }
-  .hero-clouds .b3 { width: 40%; height: 52%; left: 30%; top: 24%;  background: radial-gradient(circle at 50% 50%, var(--cloud-c), transparent 66%); animation: cloudDrift2 38s ease-in-out infinite; }
+  .hero-clouds .b1 { width: 46%; height: 60%; left: 4%;  top: -8%;  background: radial-gradient(circle at 40% 40%, var(--hero-a), transparent 68%); animation: cloudDrift 26s ease-in-out infinite; }
+  .hero-clouds .b2 { width: 52%; height: 66%; right: -2%; top: 2%;   background: radial-gradient(circle at 55% 45%, var(--hero-b), transparent 68%); animation: cloudDrift 32s ease-in-out infinite reverse; }
+  .hero-clouds .b3 { width: 40%; height: 52%; left: 30%; top: 24%;  background: radial-gradient(circle at 50% 50%, var(--hero-c), transparent 66%); animation: cloudDrift2 38s ease-in-out infinite; }
   @keyframes cloudDrift  { 0%,100% { transform: translate3d(0,0,0) scale(1); } 33% { transform: translate3d(6%,4%,0) scale(1.08); } 66% { transform: translate3d(-5%,-3%,0) scale(.96); } }
   @keyframes cloudDrift2 { 0%,100% { transform: translate3d(0,0,0) scale(1.05); } 50% { transform: translate3d(4%,-5%,0) scale(.95); } }
   @media (prefers-reduced-motion: reduce) { .hero-clouds .blob { animation: none !important; } }
@@ -317,8 +316,8 @@
   <!-- ============ HERO ============ -->
   <div id="top" style="position: relative; overflow: hidden; background: var(--hero-grad); border-bottom: 1px solid var(--border);">
     <div class="hero-clouds" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
-    <div style="position: absolute; inset: 0; opacity: var(--grid-op); background-image: linear-gradient(#ffffff08 1px, transparent 1px), linear-gradient(90deg, #ffffff08 1px, transparent 1px); background-size: 40px 40px; animation: gridpan 6s linear infinite; -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, #000 40%, transparent 78%); mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, #000 40%, transparent 78%); pointer-events: none;"></div>
-    <canvas id="particles" data-depiction-source="loading" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: .78;"></canvas>
+    <div style="position: absolute; inset: 0; opacity: var(--grid-op); background-image: linear-gradient(#ffffff08 1px, transparent 1px), linear-gradient(90deg, #ffffff08 1px, transparent 1px); background-size: 40px 40px; -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, #000 40%, transparent 78%); mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, #000 40%, transparent 78%); pointer-events: none;"></div>
+    <canvas id="particles" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;"></canvas>
 
     <div class="hero-pad" style="position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; padding: 92px 32px 56px; text-align: center;">
       <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mono); margin-bottom: 26px; display: inline-flex; align-items: center; gap: 8px;">
@@ -998,165 +997,269 @@ class Component extends DCLogic {
 
   initParticles() {
     const cv = document.getElementById("particles");
-    if (!cv || this.reduced) return;
+    if (!cv) return;
     const host = cv.parentElement;
     const ctx = cv.getContext("2d");
-    let w, h, dpr, dark = false;
 
-    const readColors = () => {
-      dark = document.documentElement.getAttribute("data-theme") === "dark";
+    // Skeletal geometry baked from RDKit once, so the hero needs no WASM at runtime:
+    // atoms are [x, y] on a unit radius (y up) plus a symbol for heteroatoms only,
+    // bonds are [atomA, atomB, order?] with order omitted for single bonds.
+    const SHAPES = [
+      { a: [[0.869,0.494],[0.457,0.494,"N"],[0.214,0.828],[-0.178,0.7,"N"],[-0.178,0.288],[0.214,0.16],[0.3,-0.243],[0.693,-0.371,"O"],[-0.006,-0.519,"N"],[0.079,-0.923],[-0.399,-0.392],[-0.705,-0.668,"O"],[-0.484,0.012,"N"],[-0.877,0.139]],
+        b: [[0,1],[1,2],[2,3,2],[3,4],[4,5,2],[5,6],[6,7,2],[6,8],[8,9],[8,10],[10,11,2],[10,12],[12,13],[5,1],[12,4]] }, // caffeine
+      { a: [[0.918,-0.397],[0.545,-0.397],[0.358,-0.72,"O"],[0.358,-0.075,"O"],[-0.014,-0.075],[-0.201,-0.397],[-0.574,-0.397],[-0.76,-0.075],[-0.574,0.248],[-0.201,0.248],[-0.014,0.571],[-0.201,0.894,"O"],[0.358,0.571,"O"]],
+        b: [[0,1],[1,2,2],[1,3],[3,4],[4,5,2],[5,6],[6,7,2],[7,8],[8,9,2],[9,10],[10,11,2],[10,12],[9,4]] }, // aspirin
+      { a: [[0.992,-0.125],[0.722,-0.125],[0.586,-0.359],[0.586,0.109],[0.316,0.109],[0.18,-0.125],[-0.09,-0.125],[-0.225,0.109],[-0.09,0.344],[0.18,0.344],[-0.496,0.109],[-0.631,0.344],[-0.631,-0.125],[-0.496,-0.359,"O"],[-0.902,-0.125,"O"]],
+        b: [[0,1],[1,2],[1,3],[3,4],[4,5,2],[5,6],[6,7,2],[7,8],[8,9,2],[7,10],[10,11],[10,12],[12,13,2],[12,14],[9,4]] }, // ibuprofen
+      { a: [[0.93,-0.367,"O"],[0.734,-0.028],[0.343,-0.028],[0.147,-0.367,"O"],[-0.245,-0.367],[-0.441,-0.707,"O"],[-0.441,-0.028],[-0.832,-0.028,"O"],[-0.245,0.311],[-0.441,0.65,"O"],[0.147,0.311],[0.343,0.65,"O"]],
+        b: [[0,1],[2,1],[2,3],[3,4],[4,5],[4,6],[6,7],[6,8],[8,9],[8,10],[10,11],[10,2]] }, // glucose
+      { a: [[0.962,-0.274,"N"],[0.646,-0.274],[0.488,0],[0.172,0],[0.014,-0.274],[-0.301,-0.274],[-0.459,0],[-0.775,0,"O"],[-0.301,0.274],[-0.459,0.547,"O"],[0.014,0.274]],
+        b: [[0,1],[1,2],[2,3],[3,4,2],[4,5],[5,6,2],[6,7],[6,8],[8,9],[8,10,2],[10,3]] }, // dopamine
+      { a: [[0.981,-0.195],[0.627,-0.195],[0.45,-0.501,"O"],[0.45,0.111,"N"],[0.096,0.111],[-0.08,-0.195],[-0.434,-0.195],[-0.611,0.111],[-0.965,0.111,"O"],[-0.434,0.418],[-0.08,0.418]],
+        b: [[0,1],[1,2,2],[1,3],[3,4],[4,5,2],[5,6],[6,7,2],[7,8],[7,9],[9,10,2],[10,4]] }, // paracetamol
+      { a: [[-0.397,-0.666],[0.013,-0.579,"N"],[0.325,-0.86],[0.689,-0.65],[0.601,-0.239],[0.184,-0.195],[-0.026,0.168],[0.184,0.532],[-0.026,0.895],[-0.446,0.895],[-0.656,0.532,"N"],[-0.446,0.168]],
+        b: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7,2],[7,8],[8,9,2],[9,10],[10,11,2],[5,1],[11,6]] }, // nicotine
+      { a: [[-0.694,-0.72,"N"],[-0.411,-0.628],[-0.349,-0.336],[-0.066,-0.244],[0.175,-0.42],[0.416,-0.244,"N"],[0.324,0.039],[0.473,0.297],[0.324,0.555],[0.026,0.555],[-0.123,0.813,"O"],[-0.123,0.297],[0.026,0.039]],
+        b: [[0,1],[1,2],[2,3],[3,4,2],[4,5],[5,6],[6,7,2],[7,8],[8,9,2],[9,10],[9,11],[11,12,2],[12,3],[12,6]] }, // serotonin
+      { a: [[-1,0.01,"N"],[-0.499,0.172],[-0.39,0.687,"N"],[0.111,0.85],[0.503,0.498,"N"],[0.393,-0.017],[0.703,-0.443,"N"],[0.393,-0.87],[-0.108,-0.707,"N"],[-0.108,-0.18]],
+        b: [[0,1],[1,2,2],[2,3],[3,4,2],[4,5],[5,6],[6,7],[7,8,2],[8,9],[9,1],[9,5,2]] }, // adenine
+      { a: [[0.949,0.154],[0.459,0.154,"N"],[0.369,0],[0.191,0],[-0.054,0.154],[-0.388,0.154],[-0.492,-0.164,"O"],[-0.221,-0.361],[-0.186,-0.693],[-0.457,-0.89,"O"],[0.119,-0.829],[0.39,-0.633],[0.355,-0.3],[0.246,0.177],[0.447,0.444],[0.113,0.444],[-0.054,0.733],[-0.388,0.733],[-0.556,0.444],[-0.89,0.444,"O"],[0.049,-0.164]],
+        b: [[0,1],[1,2],[2,3],[4,3],[4,5],[5,6],[6,7],[7,8,2],[8,9],[8,10],[10,11,2],[11,12],[12,13],[14,13],[14,15],[15,16],[16,17,2],[17,18],[18,19],[12,20,2],[14,1],[15,4],[20,4],[18,5],[20,7]] }, // morphine
+      { a: [[0.777,0.167],[0.624,0.029],[0.503,0.195],[0.306,0.132,"N"],[0.306,-0.075],[0.503,-0.138,"S"],[0.1,-0.075],[0.1,0.132],[-0.046,0.277,"O"],[-0.046,-0.22,"N"],[-0.245,-0.167],[-0.298,0.032,"O"],[-0.391,-0.313],[-0.59,-0.259],[-0.643,-0.06],[-0.842,-0.007],[-0.988,-0.153],[-0.935,-0.352],[-0.736,-0.405],[0.566,0.392],[0.428,0.545,"O"],[0.768,0.434,"O"],[0.777,-0.109]],
+        b: [[0,1],[1,2],[2,3],[3,4],[4,5],[4,6],[6,7],[7,8,2],[6,9],[9,10],[10,11,2],[10,12],[12,13],[13,14,2],[14,15],[15,16,2],[16,17],[17,18,2],[2,19],[19,20,2],[19,21],[1,22],[5,1],[7,3],[18,13]] }, // penicillin G
+      { a: [[-0.989,-0.146],[-0.851,-0.27],[-0.89,-0.452],[-0.675,-0.213],[-0.537,-0.337],[-0.36,-0.28],[-0.222,-0.404],[-0.261,-0.586],[-0.046,-0.347],[0.105,-0.456],[0.255,-0.347],[0.197,-0.17],[0.29,-0.009],[0.476,-0.009],[0.569,0.151],[0.476,0.312],[0.569,0.473],[0.476,0.634],[0.569,0.794,"O"],[0.29,0.634],[0.197,0.473],[0.29,0.312],[0.105,0.312],[0.197,0.151],[0.012,0.151],[-0.081,-0.009],[0.012,-0.17],[-0.173,-0.19]],
+        b: [[0,1],[1,2],[1,3],[3,4],[4,5],[5,6],[6,7],[6,8],[8,9],[9,10],[11,10],[11,12],[12,13],[13,14],[14,15,2],[15,16],[16,17],[17,18],[17,19],[19,20],[20,21],[21,22],[21,23],[23,24],[24,25],[25,26],[26,27],[26,8],[26,11],[23,12],[21,15]] } // cholesterol
+    ];
+
+    // Three depth planes: far ones are small and faint, the nearest is oversized and
+    // defocused, so the field reads as depth instead of scattered clip art.
+    const LAYERS = [
+      { size: 0.42, alpha: 0.5, line: 1.0, blur: 0,   drift: 0.6, parallax: 8,  lag: 0.03 },
+      { size: 0.68, alpha: 0.9, line: 1.4, blur: 0,   drift: 1,   parallax: 20, lag: 0.08 },
+      { size: 1.05, alpha: 0.5, line: 2.2, blur: 1.7, drift: 1.6, parallax: 40, lag: 0.16 }
+    ];
+
+    let w = 0, h = 0, dpr = 1;
+    let bondColor = "#14161c", accentColor = "#0f8f72", baseAlpha = 0.26;
+
+    const readTheme = () => {
+      const css = getComputedStyle(document.documentElement);
+      const bond = css.getPropertyValue("--mol-bond").trim();
+      const accent = css.getPropertyValue("--accent").trim();
+      if (bond) bondColor = bond;
+      if (accent) accentColor = accent;
+      baseAlpha = document.documentElement.getAttribute("data-theme") === "dark" ? 0.34 : 0.24;
     };
-    this._particleColors = readColors;
+
+    const molecules = [];
+    const seed = () => {
+      molecules.length = 0;
+      const perLayer = w < 700 ? 2 : w < 1100 ? 3 : 4;
+      // rejection sampling: molecules from different planes must not pile into a tangle
+      const place = (fx, fy) => {
+        for (const other of molecules) {
+          if (Math.hypot(other.fx - fx, (other.fy - fy) * 0.8) < 0.22) return false;
+        }
+        return true;
+      };
+      for (const layer of LAYERS) {
+        for (let i = 0; i < perLayer; i++) {
+          const side = i % 2 ? 1 : -1; // alternate sides so neither gutter ends up empty
+          let fx = 0, fy = 0;
+          for (let attempt = 0; attempt < 12; attempt++) {
+            // pushed out of the middle: the headline column is masked out anyway,
+            // and stratified vertically so no layer leaves a big empty band
+            fx = 0.5 + side * (0.16 + Math.random() * 0.38);
+            fy = (i + Math.random()) / perLayer * 1.1 - 0.05;
+            if (place(fx, fy)) break;
+          }
+          molecules.push({
+            layer,
+            shape: SHAPES[(Math.random() * SHAPES.length) | 0],
+            fx,
+            fy,
+            vx: (Math.random() - 0.5) * 0.007 * layer.drift,
+            vy: (Math.random() - 0.5) * 0.005 * layer.drift,
+            rot: Math.random() * Math.PI * 2,
+            vr: (Math.random() - 0.5) * 0.022 * layer.drift,
+            scale: 0.85 + Math.random() * 0.3
+          });
+        }
+      }
+    };
+
+    const drawMolecule = (m, radius, alpha, lineWidth, x, y) => {
+      const shape = m.shape;
+      const labelSize = radius * 0.17;
+      const withLabels = labelSize >= 8;
+      const gap = withLabels ? labelSize * 0.72 : 0;
+      const ax = (i) => shape.a[i][0] * radius;
+      const ay = (i) => -shape.a[i][1] * radius;
+
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(m.rot);
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.lineWidth = lineWidth;
+      ctx.strokeStyle = bondColor;
+      ctx.globalAlpha = alpha;
+      ctx.beginPath();
+      for (const bond of shape.b) {
+        const x1 = ax(bond[0]), y1 = ay(bond[0]);
+        const x2 = ax(bond[1]), y2 = ay(bond[1]);
+        let dx = x2 - x1, dy = y2 - y1;
+        const len = Math.hypot(dx, dy) || 1;
+        dx /= len; dy /= len;
+        const startGap = shape.a[bond[0]][2] ? gap : 0;
+        const endGap = shape.a[bond[1]][2] ? gap : 0;
+        const sx = x1 + dx * startGap, sy = y1 + dy * startGap;
+        const ex = x2 - dx * endGap, ey = y2 - dy * endGap;
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(ex, ey);
+        const order = bond[2] || 1;
+        if (order > 1) {
+          // offset the extra line towards the centre of the molecule, which lands ring
+          // double bonds on the inside and keeps carbonyls looking hand-drawn
+          let ox = -dy, oy = dx;
+          const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+          if (ox * -mx + oy * -my < 0) { ox = -ox; oy = -oy; }
+          const off = len * 0.17, trim = len * 0.15;
+          ctx.moveTo(sx + ox * off + dx * trim, sy + oy * off + dy * trim);
+          ctx.lineTo(ex + ox * off - dx * trim, ey + oy * off - dy * trim);
+          if (order === 3) {
+            ctx.moveTo(sx - ox * off + dx * trim, sy - oy * off + dy * trim);
+            ctx.lineTo(ex - ox * off - dx * trim, ey - oy * off - dy * trim);
+          }
+        }
+      }
+      ctx.stroke();
+
+      if (withLabels) {
+        ctx.font = '500 ' + labelSize.toFixed(1) + 'px "Geist Mono", ui-monospace, monospace';
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        for (let i = 0; i < shape.a.length; i++) {
+          const element = shape.a[i][2];
+          if (!element) continue;
+          ctx.save();
+          ctx.translate(ax(i), ay(i));
+          ctx.rotate(-m.rot); // heteroatom labels stay upright while the molecule turns
+          ctx.globalAlpha = Math.min(1, alpha * 1.3);
+          ctx.fillStyle = accentColor;
+          ctx.fillText(element, 0, 0);
+          ctx.restore();
+        }
+      }
+      ctx.restore();
+    };
+
+    // Punch the hero copy back out of the field so the headline never sits on a bond,
+    // then fade everything before the product screenshot takes over.
+    const carveOutCopy = () => {
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.globalAlpha = 1;
+      ctx.filter = "none";
+      const r = Math.max(w * 0.24, 300);
+      ctx.save();
+      ctx.translate(w / 2, Math.min(h * 0.34, 360));
+      ctx.scale(1.35, 1);
+      const clear = ctx.createRadialGradient(0, 0, r * 0.2, 0, 0, r);
+      clear.addColorStop(0, "rgba(0,0,0,1)");
+      clear.addColorStop(0.45, "rgba(0,0,0,0.88)");
+      clear.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = clear;
+      ctx.fillRect(-w, -h, w * 2, h * 2);
+      ctx.restore();
+      const fade = ctx.createLinearGradient(0, h * 0.62, 0, h * 0.9);
+      fade.addColorStop(0, "rgba(0,0,0,0)");
+      fade.addColorStop(1, "rgba(0,0,0,1)");
+      ctx.fillStyle = fade;
+      ctx.fillRect(0, h * 0.62, w, h * 0.38);
+      ctx.globalCompositeOperation = "source-over";
+    };
+
+    const pointer = { x: 0, y: 0, tx: 0, ty: 0 };
+
+    const render = () => {
+      ctx.clearRect(0, 0, w, h);
+      const radius = Math.max(96, Math.min(190, w * 0.12));
+      const scrolled = window.scrollY || 0;
+      for (const m of molecules) {
+        const layer = m.layer;
+        const size = radius * layer.size * m.scale;
+        const margin = size * 1.5;
+        const x = m.fx * w + pointer.x * layer.parallax;
+        const y = m.fy * h + pointer.y * layer.parallax + scrolled * layer.lag;
+        if (x < -margin || x > w + margin || y < -margin || y > h + margin) continue;
+        ctx.filter = layer.blur ? "blur(" + layer.blur + "px)" : "none";
+        drawMolecule(m, size, baseAlpha * layer.alpha, layer.line, x, y);
+      }
+      ctx.filter = "none";
+      carveOutCopy();
+    };
 
     const resize = () => {
-      const p = host.getBoundingClientRect();
-      if (!p.width || !p.height) { this._resizeRetry = setTimeout(resize, 120); return; } // layout not ready yet
+      const rect = host.getBoundingClientRect();
+      if (!rect.width || !rect.height) { this._resizeRetry = setTimeout(resize, 120); return; } // layout not ready yet
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = p.width; h = p.height;
-      cv.width = w * dpr; cv.height = h * dpr;
+      w = rect.width; h = rect.height;
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (!molecules.length) seed();
+      render();
     };
-    resize(); readColors();
-    // re-size whenever the hero lays out or changes size
+
+    let running = false, last = 0;
+    const tick = (now) => {
+      const dt = last ? Math.min(0.05, (now - last) / 1000) : 0.016;
+      last = now;
+      const ease = Math.min(1, dt * 4);
+      pointer.x += (pointer.tx - pointer.x) * ease;
+      pointer.y += (pointer.ty - pointer.y) * ease;
+      for (const m of molecules) {
+        m.fx += m.vx * dt;
+        m.fy += m.vy * dt;
+        m.rot += m.vr * dt;
+        if (m.fx < -0.35) m.fx = 1.35; else if (m.fx > 1.35) m.fx = -0.35;
+        if (m.fy < -0.35) m.fy = 1.35; else if (m.fy > 1.35) m.fy = -0.35;
+      }
+      render();
+      this._raf = requestAnimationFrame(tick);
+    };
+    const start = () => { if (running) return; running = true; last = 0; this._raf = requestAnimationFrame(tick); };
+    const stop = () => { running = false; cancelAnimationFrame(this._raf); };
+
+    readTheme();
+    resize();
+    this._particleColors = () => { readTheme(); if (!running) render(); };
     if ("ResizeObserver" in window) {
       this._ro = new ResizeObserver(() => resize());
       this._ro.observe(host);
     }
-
-    // spawn molecules
-    const SMILES = [
-      "CN1C=NC2=C1C(=O)N(C)C(=O)N2C",        // caffeine
-      "CC(=O)OC1=CC=CC=C1C(=O)O",            // aspirin
-      "CC(C)Cc1ccc(cc1)C(C)C(=O)O",          // ibuprofen
-      "OCC1OC(O)C(O)C(O)C1O",                // glucose
-      "NCCc1ccc(O)c(O)c1",                   // dopamine
-      "CC(=O)NC1=CC=C(O)C=C1",               // paracetamol
-      "CN1CCC[C@H]1c2cccnc2",                // nicotine
-      "NCCc1c[nH]c2ccc(O)cc12",              // serotonin
-      "c1ccc2ccccc2c1",                      // naphthalene
-      "c1ccncc1",                            // pyridine
-      "c1ccccc1"                             // benzene
-    ];
-    const mols = [];
-    const COUNT = Math.max(12, Math.min(22, Math.round((w * h) / 105000)));
-    for (let i = 0; i < COUNT; i++) {
-      mols.push({
-        smi: SMILES[(Math.random() * SMILES.length) | 0], spr: null,
-        x: Math.random() * w, y: Math.random() * h,
-        vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .16,
-        a: (Math.random() - .5) * .35, va: (Math.random() - .5) * .0007,
-        scale: .78 + Math.random() * .5
-      });
-    }
-
-    // RDKit is the only depiction source. The canvas stays empty until WASM is ready.
-    let RDKit = window.__rdkit || null;
-    const spriteCache = new Map();
-    let bondHex = "#14161c";
-    const readBondHex = () => {
-      const v = getComputedStyle(document.documentElement).getPropertyValue("--mol-bond").trim();
-      if (v) bondHex = v;
-    };
-    readBondHex();
-    const buildSprite = (smi) => {
-      if (!RDKit) return null;
-      const key = smi + "|" + bondHex;
-      if (spriteCache.has(key)) return spriteCache.get(key);
-      let mol; try { mol = RDKit.get_mol(smi); } catch (e) { return null; }
-      if (!mol) return null;
-      let svg;
-      try { svg = mol.get_svg(280, 200); } catch (e) { mol.delete(); return null; }
-      mol.delete();
-      svg = svg.replace(/<rect[^>]*\/>/g, "").replace(/<rect[^>]*>\s*<\/rect>/g, "");
-      svg = svg.replace(/#000000/gi, bondHex).replace(/stroke:\s*#000\b/gi, "stroke:" + bondHex);
-      const spr = { img: new Image(), ready: false, width: 280, height: 200 };
-      spr.img.onload = () => { spr.ready = true; };
-      spr.img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
-      spriteCache.set(key, spr);
-      return spr;
-    };
-    const rebuildSprites = () => { spriteCache.clear(); if (RDKit) mols.forEach(m => { m.spr = buildSprite(m.smi); }); };
-    // re-tint override: colors + sprites rebuilt on theme change
-    this._particleColors = () => { readColors(); readBondHex(); rebuildSprites(); };
-    const bootRDKit = () => {
-      if (RDKit) { rebuildSprites(); return; }
-      if (window.initRDKitModule) {
-        try {
-          window.initRDKitModule({ locateFile: () => "/rdkit/RDKit_minimal.wasm" })
-            .then(mod => {
-              RDKit = mod;
-              window.__rdkit = mod;
-              cv.dataset.depictionSource = "rdkit";
-              readBondHex();
-              rebuildSprites();
-            })
-            .catch(error => {
-              cv.dataset.depictionSource = "error";
-              console.warn("RDKit background failed to initialize", error);
-            });
-        } catch (error) {
-          cv.dataset.depictionSource = "error";
-          console.warn("RDKit background failed to initialize", error);
-        }
-      }
-    };
-    bootRDKit();
-    if (!RDKit && window.initRDKitModule) { let tries = 0; this._rdkitPoll = setInterval(() => { bootRDKit(); if (RDKit || ++tries > 40) clearInterval(this._rdkitPoll); }, 250); }
-
-    const mouse = { x: -1e4, y: -1e4, on: false };
-    host.addEventListener("pointermove", (e) => {
-      const r = host.getBoundingClientRect();
-      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.on = true;
-    });
-    host.addEventListener("pointerleave", () => { mouse.on = false; mouse.x = mouse.y = -1e4; });
-
-    const drawMol = (m) => {
-      if (!m.spr || !m.spr.ready) return;
-      const width = m.spr.width * m.scale;
-      const height = m.spr.height * m.scale;
-      const behindHeroCopy = m.x > w * .16 && m.x < w * .84 && m.y > 70 && m.y < Math.min(610, h * .58);
-      ctx.save();
-      ctx.translate(m.x, m.y);
-      ctx.rotate(m.a);
-      ctx.globalAlpha = (dark ? .72 : .62) * (behindHeroCopy ? .24 : 1);
-      ctx.drawImage(m.spr.img, -width / 2, -height / 2, width, height);
-      ctx.restore();
-    };
-
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h);
-
-      // ---- physics (background only: calm, steady drift) ----
-      for (const m of mols) {
-        m.x += m.vx; m.y += m.vy; m.a += m.va;
-        const margin = 170 * m.scale;
-        if (m.x < -margin) m.x = w + margin;
-        if (m.x > w + margin) m.x = -margin;
-        if (m.y < -margin) m.y = h + margin;
-        if (m.y > h + margin) m.y = -margin;
-        if (mouse.on) {
-          const dx = m.x - mouse.x, dy = m.y - mouse.y;
-          const distance = Math.hypot(dx, dy);
-          if (distance > 0 && distance < 180) {
-            m.x += (dx / distance) * 0.28;
-            m.y += (dy / distance) * 0.28;
-          }
-        }
-      }
-
-      // ---- molecules ----
-      for (const m of mols) drawMol(m);
-
-      this._raf = requestAnimationFrame(draw);
-    };
-    draw();
     window.addEventListener("resize", resize);
+    if (this.reduced) return; // the static frame drawn by resize() is the whole show
+
+    host.addEventListener("pointermove", (e) => {
+      const rect = host.getBoundingClientRect();
+      pointer.tx = (e.clientX - rect.left) / rect.width - 0.5;
+      pointer.ty = (e.clientY - rect.top) / rect.height - 0.5;
+    });
+    host.addEventListener("pointerleave", () => { pointer.tx = 0; pointer.ty = 0; });
+
+    if ("IntersectionObserver" in window) {
+      this._particleIO = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) start(); else stop(); });
+      this._particleIO.observe(host);
+    } else {
+      start();
+    }
   }
 
   componentWillUnmount() {
     clearInterval(this._rotTimer); clearTimeout(this._typeTimer); clearTimeout(this._ct);
-    clearInterval(this._rdkitPoll); clearInterval(this._vidTimer); clearInterval(this._tickPoll);
+    clearInterval(this._vidTimer); clearInterval(this._tickPoll);
     clearTimeout(this._resizeRetry); if (this._ro) this._ro.disconnect();
+    if (this._particleIO) this._particleIO.disconnect();
     if (this._colorScheme) this._colorScheme.removeEventListener("change", this._onColorScheme);
     if (this._onVis) { document.removeEventListener("visibilitychange", this._onVis); window.removeEventListener("focus", this._onVis); }
     if (this._lightboxClick) document.removeEventListener("click", this._lightboxClick);
