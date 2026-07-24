@@ -139,6 +139,14 @@
   ::selection { background: var(--accent); color: #fff; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 
+  /* the field is masked by the compositor instead of two full-canvas fills per frame:
+     the headline column is punched out and everything fades before the product shot */
+  .mol-field {
+    -webkit-mask-image: radial-gradient(ellipse 34% 33% at 50% 33%, transparent 0 20%, rgba(0,0,0,.12) 45%, #000 100%), linear-gradient(180deg, #000 62%, transparent 90%);
+    mask-image: radial-gradient(ellipse 34% 33% at 50% 33%, transparent 0 20%, rgba(0,0,0,.12) 45%, #000 100%), linear-gradient(180deg, #000 62%, transparent 90%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
   .hero-clouds { position: absolute; inset: -20% -10%; pointer-events: none; z-index: 0; opacity: var(--hero-op); filter: blur(58px) saturate(1.05); }
   .hero-clouds .blob { position: absolute; border-radius: 50%; mix-blend-mode: normal; will-change: transform; }
   .hero-clouds .b1 { width: 46%; height: 60%; left: 4%;  top: -8%;  background: radial-gradient(circle at 40% 40%, var(--hero-a), transparent 68%); animation: cloudDrift 26s ease-in-out infinite; }
@@ -317,7 +325,7 @@
   <div id="top" style="position: relative; overflow: hidden; background: var(--hero-grad); border-bottom: 1px solid var(--border);">
     <div class="hero-clouds" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
     <div style="position: absolute; inset: 0; opacity: var(--grid-op); background-image: linear-gradient(#ffffff08 1px, transparent 1px), linear-gradient(90deg, #ffffff08 1px, transparent 1px); background-size: 40px 40px; -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, #000 40%, transparent 78%); mask-image: radial-gradient(ellipse 70% 60% at 50% 25%, #000 40%, transparent 78%); pointer-events: none;"></div>
-    <canvas id="particles" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;"></canvas>
+    <canvas id="particles" class="mol-field" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;"></canvas>
 
     <div class="hero-pad" style="position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; padding: 92px 32px 56px; text-align: center;">
       <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mono); margin-bottom: 26px; display: inline-flex; align-items: center; gap: 8px;">
@@ -1031,12 +1039,14 @@ class Component extends DCLogic {
         b: [[0,1],[1,2],[1,3],[3,4],[4,5],[5,6],[6,7],[6,8],[8,9],[9,10],[11,10],[11,12],[12,13],[13,14],[14,15,2],[15,16],[16,17],[17,18],[17,19],[19,20],[20,21],[21,22],[21,23],[23,24],[24,25],[25,26],[26,27],[26,8],[26,11],[23,12],[21,15]] } // cholesterol
     ];
 
-    // Three depth planes: far ones are small and faint, the nearest is oversized and
-    // defocused, so the field reads as depth instead of scattered clip art.
+    // Three depth planes: the far one is small and faint, the near one oversized and
+    // dim, so the field reads as depth instead of scattered clip art. Depth comes from
+    // size, weight and how far the cursor can drag each plane - never from a canvas
+    // blur filter, which costs a full offscreen pass per molecule per frame.
     const LAYERS = [
-      { size: 0.42, alpha: 0.62, line: 1.2, blur: 0,   drift: 0.6, lag: 0.03, pull: 46 },
-      { size: 0.68, alpha: 1,    line: 1.6, blur: 0,   drift: 1,   lag: 0.08, pull: 92 },
-      { size: 1.05, alpha: 0.62, line: 2.4, blur: 1.5, drift: 1.6, lag: 0.16, pull: 150 }
+      { size: 0.42, alpha: 0.62, line: 1.2, drift: 0.6, lag: 0.03, pull: 46 },
+      { size: 0.68, alpha: 1,    line: 1.6, drift: 1,   lag: 0.08, pull: 92 },
+      { size: 1.05, alpha: 0.5,  line: 2.2, drift: 1.6, lag: 0.16, pull: 150 }
     ];
 
     let w = 0, h = 0, dpr = 1;
@@ -1138,7 +1148,9 @@ class Component extends DCLogic {
       ctx.stroke();
 
       if (withLabels) {
-        ctx.font = '500 ' + labelSize.toFixed(1) + 'px "Geist Mono", ui-monospace, monospace';
+        // whole pixels only: the browser caches parsed font strings, fractional sizes
+        // would hand it a fresh string per molecule per frame
+        ctx.font = '500 ' + Math.round(labelSize) + 'px "Geist Mono", ui-monospace, monospace';
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         for (let i = 0; i < shape.a.length; i++) {
@@ -1154,31 +1166,6 @@ class Component extends DCLogic {
         }
       }
       ctx.restore();
-    };
-
-    // Punch the hero copy back out of the field so the headline never sits on a bond,
-    // then fade everything before the product screenshot takes over.
-    const carveOutCopy = () => {
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.globalAlpha = 1;
-      ctx.filter = "none";
-      const r = Math.max(w * 0.24, 300);
-      ctx.save();
-      ctx.translate(w / 2, Math.min(h * 0.34, 360));
-      ctx.scale(1.35, 1);
-      const clear = ctx.createRadialGradient(0, 0, r * 0.2, 0, 0, r);
-      clear.addColorStop(0, "rgba(0,0,0,1)");
-      clear.addColorStop(0.45, "rgba(0,0,0,0.88)");
-      clear.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = clear;
-      ctx.fillRect(-w, -h, w * 2, h * 2);
-      ctx.restore();
-      const fade = ctx.createLinearGradient(0, h * 0.62, 0, h * 0.9);
-      fade.addColorStop(0, "rgba(0,0,0,0)");
-      fade.addColorStop(1, "rgba(0,0,0,1)");
-      ctx.fillStyle = fade;
-      ctx.fillRect(0, h * 0.62, w, h * 0.38);
-      ctx.globalCompositeOperation = "source-over";
     };
 
     // The cursor gathers molecules towards itself and brings them into focus as they
@@ -1202,20 +1189,18 @@ class Component extends DCLogic {
           const reached = 1 - Math.hypot(x - lens.x, y - lens.y) / reach;
           if (reached > 0) focus = reached * reached * (3 - 2 * reached) * lens.power;
         }
-        const blur = layer.blur * (1 - 0.85 * focus);
-        ctx.filter = blur > 0.05 ? "blur(" + blur.toFixed(2) + "px)" : "none";
         const alpha = Math.min(1, baseAlpha * layer.alpha * (1 + 1.2 * focus));
-        drawMolecule(m, size, alpha, layer.line * (1 + 0.12 * focus), x, y);
+        drawMolecule(m, size, alpha, layer.line * (1 + 0.18 * focus), x, y);
       }
-      ctx.filter = "none";
-      carveOutCopy();
     };
 
     const resize = () => {
       const rect = host.getBoundingClientRect();
       if (!rect.width || !rect.height) { this._resizeRetry = setTimeout(resize, 120); return; } // layout not ready yet
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = rect.width; h = rect.height;
+      // line art, not type, so 2x is wasted fill rate - and on a big display even 1.5x
+      // is, hence a hard budget on how many pixels this canvas may repaint per frame
+      dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 1.5, Math.sqrt(3.6e6 / (w * h))));
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       if (!molecules.length) seed();
