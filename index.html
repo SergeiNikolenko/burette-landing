@@ -114,8 +114,7 @@
     --grid-op: 0; --shadow-card: 0 30px 60px -30px rgba(0,0,0,.32);
     --nav-bg: rgba(255,255,255,.72); --nav-border: #ededeb;
     --invert-bg: #0a0a0a; --invert-fg: #ffffff;
-    --particle: rgba(15,143,114,.4); --particle-line: rgba(0,0,0,.05);
-    --cloud-a: rgba(124,131,246,.34); --cloud-b: rgba(74,164,236,.28); --cloud-c: color-mix(in srgb, var(--accent) 22%, transparent); --cloud-op: .95; --mol-bond: #14161c;
+    --cloud-a: rgba(124,131,246,.34); --cloud-b: rgba(74,164,236,.28); --mol-bond: #14161c;
     --hero-a: color-mix(in srgb, var(--accent) 18%, transparent); --hero-b: rgba(96,140,205,.16); --hero-c: rgba(124,131,246,.1); --hero-op: .85;
   }
   html[data-theme="dark"] {
@@ -126,8 +125,7 @@
     --grid-op: 1; --shadow-card: 0 30px 60px -30px rgba(0,0,0,.7);
     --nav-bg: rgba(10,10,12,.72); --nav-border: #1a1a1e;
     --invert-bg: #fafafa; --invert-fg: #0a0a0a;
-    --particle: rgba(22,185,138,.55); --particle-line: rgba(255,255,255,.06);
-    --cloud-a: rgba(99,102,241,.42); --cloud-b: rgba(46,120,230,.34); --cloud-c: color-mix(in srgb, var(--accent) 32%, transparent); --cloud-op: .8; --mol-bond: #e8e8ea;
+    --cloud-a: rgba(99,102,241,.42); --cloud-b: rgba(46,120,230,.34); --mol-bond: #e8e8ea;
     --hero-a: color-mix(in srgb, var(--accent) 46%, transparent); --hero-b: rgba(56,96,168,.3); --hero-c: rgba(112,104,224,.18); --hero-op: .74;
   }
   html, body { margin: 0; }
@@ -1170,7 +1168,10 @@ class Component extends DCLogic {
 
     // The cursor gathers molecules towards itself and brings them into focus as they
     // arrive; each plane is pulled by a different amount, so the depth stays readable.
+    // Both falloffs are smoothstepped, which is what keeps the reach from reading as
+    // a hard circle around the pointer.
     const lens = { x: 0, y: 0, tx: 0, ty: 0, power: 0, target: 0 };
+    const falloff = (t) => t * t * (3 - 2 * t);
 
     const render = () => {
       ctx.clearRect(0, 0, w, h);
@@ -1187,7 +1188,7 @@ class Component extends DCLogic {
         let focus = 0;
         if (lens.power > 0.01) {
           const reached = 1 - Math.hypot(x - lens.x, y - lens.y) / reach;
-          if (reached > 0) focus = reached * reached * (3 - 2 * reached) * lens.power;
+          if (reached > 0) focus = falloff(reached) * lens.power;
         }
         const alpha = Math.min(1, baseAlpha * layer.alpha * (1 + 1.2 * focus));
         drawMolecule(m, size, alpha, layer.line * (1 + 0.18 * focus), x, y);
@@ -1231,8 +1232,7 @@ class Component extends DCLogic {
           const dx = lens.x - (m.fx * w), dy = lens.y - (m.fy * h + scrolled * m.layer.lag);
           const distance = Math.hypot(dx, dy);
           if (distance > 1 && distance < grip) {
-            const reached = 1 - distance / grip;
-            const pull = Math.min(m.layer.pull * reached * reached * (3 - 2 * reached) * lens.power, distance * 0.55);
+            const pull = Math.min(m.layer.pull * falloff(1 - distance / grip) * lens.power, distance * 0.55);
             towardsX = dx / distance * pull;
             towardsY = dy / distance * pull;
           }
