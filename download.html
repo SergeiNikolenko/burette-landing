@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Downloading Burette</title>
+<title>Install Burette for macOS</title>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -12,57 +12,124 @@
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
 <script>
-  window.addEventListener("load", () => {
+  const formatBytes = (bytes) => {
+    if (!Number.isFinite(bytes) || bytes <= 0) return null;
+    return `${(bytes / 1024 / 1024).toFixed(bytes > 10 * 1024 * 1024 ? 0 : 1)} MB`;
+  };
+
+  window.addEventListener("load", async () => {
     const target = `/api/download${window.location.search || ""}`;
-    const manual = document.querySelector("a[href='/api/download']");
+    const manual = document.querySelector("a[data-download-again]");
     if (manual) manual.href = target;
+
+    try {
+      const response = await fetch("/api/release", { cache: "no-store" });
+      if (response.ok) {
+        const release = await response.json();
+        const details = [release.tag, formatBytes(release.sizeBytes), release.assetName].filter(Boolean);
+        const metadata = document.getElementById("release-metadata");
+        if (metadata && details.length > 0) metadata.textContent = details.join(" · ");
+      }
+    } catch (_) {}
+
+    try {
+      window.va("event", "Download Started", {
+        location: "download-page",
+        source: new URLSearchParams(window.location.search).get("source") || "unknown",
+      });
+    } catch (_) {}
+
     setTimeout(() => {
       window.location.replace(target);
-    }, 800);
+    }, 900);
   });
 </script>
 <style>
   * { box-sizing: border-box; }
+  :root {
+    color-scheme: light dark;
+    --bg: #f7f8f7;
+    --surface: #ffffff;
+    --text: #0a0a0a;
+    --body: #565753;
+    --muted: #777974;
+    --border: #e5e7e4;
+    --accent: #0f8f72;
+    --primary: #0a0a0a;
+    --primary-text: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #090a0a;
+      --surface: #111312;
+      --text: #f2f3f2;
+      --body: #b0b3af;
+      --muted: #858984;
+      --border: #292c2a;
+      --primary: #f2f3f2;
+      --primary-text: #0a0a0a;
+    }
+  }
   html, body { margin: 0; min-height: 100%; }
   body {
-    display: grid;
-    place-items: center;
     min-height: 100vh;
-    padding: 24px;
-    background: #ffffff;
-    color: #0a0a0a;
+    padding: 28px;
+    background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 34%), var(--bg);
+    color: var(--text);
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
-  main {
-    width: min(100%, 420px);
-    text-align: center;
-  }
-  h1 {
-    margin: 0;
-    font-size: clamp(28px, 7vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-  }
-  p {
-    margin: 16px 0 0;
-    color: #52524e;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-  a {
-    display: inline-flex;
-    margin-top: 24px;
-    color: #0f8f72;
-    font-weight: 600;
-    text-decoration: none;
+  main { width: min(100%, 920px); margin: 7vh auto 0; }
+  .brand { display: inline-flex; color: var(--text); font-size: 18px; font-weight: 750; text-decoration: none; }
+  .hero { margin: 54px 0 30px; text-align: center; }
+  h1 { margin: 0; font-size: clamp(36px, 7vw, 62px); line-height: 1.02; letter-spacing: -0.045em; }
+  .lede { max-width: 620px; margin: 18px auto 0; color: var(--body); font-size: 17px; line-height: 1.55; }
+  #release-metadata { min-height: 20px; margin: 12px 0 0; color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); overflow: hidden; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); box-shadow: 0 28px 70px -52px #000; }
+  .step { min-height: 190px; padding: 24px; border-right: 1px solid var(--border); }
+  .step:last-child { border-right: 0; }
+  .number { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); font-size: 13px; font-weight: 750; }
+  h2 { margin: 30px 0 8px; font-size: 17px; letter-spacing: -0.015em; }
+  .step p { margin: 0; color: var(--body); font-size: 14px; line-height: 1.5; }
+  .actions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .button { display: inline-flex; min-height: 42px; align-items: center; justify-content: center; padding: 0 17px; border: 1px solid var(--border); border-radius: 9px; color: var(--text); font-size: 14px; font-weight: 650; text-decoration: none; }
+  .button-primary { border-color: var(--primary); background: var(--primary); color: var(--primary-text); }
+  .proof { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 22px; color: var(--muted); font-size: 12px; }
+  .proof span { padding: 6px 10px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); }
+  @media (max-width: 760px) {
+    body { padding: 20px; }
+    main { margin-top: 2vh; }
+    .hero { margin-top: 40px; }
+    .steps { grid-template-columns: 1fr; }
+    .step { min-height: auto; border-right: 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: 0; }
+    h2 { margin-top: 18px; }
   }
 </style>
 </head>
 <body>
 <main>
-  <h1>Downloading Burette</h1>
-  <p>Your download should start automatically.</p>
-  <a href="/api/download">Start download manually</a>
+  <a class="brand" href="/">Burette</a>
+  <section class="hero">
+    <h1>Burette is downloading.</h1>
+    <p class="lede">The download starts automatically. Four short steps take you from the DMG to your first molecular Quick Look.</p>
+    <p id="release-metadata" aria-live="polite">Latest notarized release · Apple Silicon &amp; Intel</p>
+  </section>
+
+  <section class="steps" aria-label="Installation steps">
+    <article class="step"><span class="number">1</span><h2>Open the DMG</h2><p>Double-click the downloaded Burette disk image.</p></article>
+    <article class="step"><span class="number">2</span><h2>Install Burette</h2><p>Drag Burette into Applications, then launch it once.</p></article>
+    <article class="step"><span class="number">3</span><h2>Register Quick Look</h2><p>The first launch registers Burette’s Finder preview extension with macOS.</p></article>
+    <article class="step"><span class="number">4</span><h2>Press Space</h2><p>Select a PDB, CIF, SDF, XYZ, trajectory, or chemistry table in Finder.</p></article>
+  </section>
+
+  <div class="actions">
+    <a class="button button-primary" href="/docs/get-started/install">Open installation guide</a>
+    <a class="button" data-download-again href="/api/download">Download again</a>
+    <a class="button" href="/docs/troubleshooting">Quick Look troubleshooting</a>
+  </div>
+  <div class="proof" aria-label="Platform details">
+    <span>Free &amp; open source</span><span>Notarized</span><span>macOS 12+</span><span>Apple Silicon &amp; Intel</span><span>No account required</span>
+  </div>
 </main>
 </body>
 </html>

@@ -80,6 +80,29 @@ if (!(await exists(path.join(root, "app", "demo", "route.js")))) {
   failures.push("demo.html: missing /demo route");
 }
 
+const downloadSource = await readFile(path.join(root, "download.html"), "utf8");
+for (const requiredCopy of [
+  "Burette is downloading.",
+  "Open the DMG",
+  "Register Quick Look",
+  "Press Space",
+  "Apple Silicon &amp; Intel",
+]) {
+  if (!downloadSource.includes(requiredCopy)) failures.push(`download.html: missing ${requiredCopy}`);
+}
+if (!(await exists(path.join(root, "app", "api", "release", "route.js")))) {
+  failures.push("download.html: missing /api/release metadata route");
+}
+
+for (const requiredLandingCopy of [
+  "Free &amp; open source · No account",
+  "Native Metal on Apple Silicon",
+  "Chemical Space · Apple Silicon Metal",
+  "10,000-molecule benchmark",
+]) {
+  if (!landingSource.includes(requiredLandingCopy)) failures.push(`index.html: missing ${requiredLandingCopy}`);
+}
+
 if (failures.length > 0) {
   console.error("Site checks failed:\n" + failures.map((failure) => `- ${failure}`).join("\n"));
   process.exitCode = 1;

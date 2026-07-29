@@ -80,17 +80,17 @@
 <body>
 <x-dc>
 <helmet>
-<title>Burette | Molecular workspace, Quick Look, xTB and CREST</title>
-<meta name="description" content="Preview molecular files in Finder, manage SDF collections with target-aware drag and drop, and run local xTB or CREST workflows in the Burette macOS workspace.">
-<meta property="og:title" content="Burette | Molecular workspace, Quick Look, xTB and CREST">
-<meta property="og:description" content="Preview PDB, CIF, SDF, XYZ, trajectories, and chemistry tables; manage collections; run local calculations; and connect Codex through typed MCP tools.">
+<title>Burette | Molecular workspace, Quick Look and Metal Chemical Space</title>
+<meta name="description" content="Preview molecular files in Finder, explore Chemical Space with native Metal acceleration on Apple Silicon, and manage structures in the Burette macOS workspace.">
+<meta property="og:title" content="Burette | Molecular workspace, Quick Look and Metal Chemical Space">
+<meta property="og:description" content="Preview PDB, CIF, SDF, XYZ, trajectories, and chemistry tables; explore Metal-accelerated Chemical Space; and connect Codex through typed MCP tools.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://burette-landing.vercel.app/">
 <meta property="og:image" content="https://burette-landing.vercel.app/assets/burette-quicklook.png">
 <meta property="og:image:alt" content="Burette showing a molecular structure in macOS Finder Quick Look">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Burette | Molecular workspace, Quick Look, xTB and CREST">
-<meta name="twitter:description" content="Preview PDB, CIF, SDF, XYZ, trajectories, and chemistry tables; manage collections; run local calculations; and connect Codex through typed MCP tools.">
+<meta name="twitter:title" content="Burette | Molecular workspace, Quick Look and Metal Chemical Space">
+<meta name="twitter:description" content="Preview PDB, CIF, SDF, XYZ, trajectories, and chemistry tables; explore Metal-accelerated Chemical Space; and connect Codex through typed MCP tools.">
 <meta name="twitter:image" content="https://burette-landing.vercel.app/assets/burette-quicklook.png">
 <link rel="canonical" href="https://burette-landing.vercel.app/">
 <meta name="theme-color" content="#0a0a0a">
@@ -223,6 +223,15 @@
   /* pill badge */
   .pill { display: inline-flex; align-items: center; gap: 8px; font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: .02em; color: var(--nav); border: 1px solid var(--border-2); border-radius: 999px; padding: 7px 14px; background: var(--surface); }
   .pill .pdot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
+  .hero-proof { display: flex; justify-content: center; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+  .chemical-space-preview { min-height: 310px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: radial-gradient(circle at 70% 18%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 42%), var(--surface-2); }
+  .chemical-space-preview svg { display: block; width: 100%; height: 100%; min-height: 310px; }
+  .chemical-space-preview .space-edge { stroke: color-mix(in srgb, var(--accent) 45%, var(--border-2)); stroke-width: 1.15; opacity: .72; }
+  .chemical-space-preview .space-cliff { stroke: #d95050; stroke-width: 2; opacity: .9; }
+  .chemical-space-preview .space-node { fill: var(--surface); stroke: var(--accent); stroke-width: 2; }
+  .chemical-space-preview .space-node-hot { fill: #e57b55; stroke: #ffffff; stroke-width: 2; }
+  .chemical-space-preview .space-node-cool { fill: #4267d5; stroke: #ffffff; stroke-width: 2; }
+  .chemical-space-preview text { fill: var(--nav); font-family: 'Geist Mono', monospace; font-size: 11px; }
   /* docs cards */
   .doc-card { text-decoration: none; transition: transform .35s cubic-bezier(.22,.61,.36,1), border-color .3s ease; }
   .doc-card:hover { transform: translateY(-4px); border-color: var(--accent) !important; }
@@ -364,8 +373,14 @@
         <a class="btn-ghost" href="#install" style="display: inline-flex; align-items: center; gap: 12px; border: 1px solid var(--border-2); background: color-mix(in srgb, var(--surface) 82%, transparent); padding: 14px 20px; border-radius: 10px; font-family: 'Geist Mono', monospace; font-size: 14px; color: var(--nav);"><span style="color: var(--mono);">$</span> brew install --cask burette</a>
         <a class="btn-ghost" href="/demo" data-analytics-event="Online Demo" data-analytics-location="hero" data-analytics-target="demo" style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border-2); background: var(--surface); padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; color: var(--text);">Demo</a>
       </div>
+      <div class="hero-proof" aria-label="Platform and license">
+        <span class="pill"><span class="pdot"></span>Free &amp; open source · No account</span>
+        <span class="pill">Apple Silicon &amp; Intel</span>
+        <span class="pill">Native Metal on Apple Silicon</span>
+        <span class="pill">Notarized · macOS 12+</span>
+      </div>
 
-      <div class="reveal hero-crop" style="margin: 56px auto 0; max-width: 1000px; overflow: hidden; aspect-ratio: 1.9; -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%); mask-image: linear-gradient(180deg, #000 82%, transparent 100%);">
+      <div class="reveal hero-crop" style="margin: 30px auto 0; max-width: 1000px; overflow: hidden; aspect-ratio: 1.9; -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%); mask-image: linear-gradient(180deg, #000 82%, transparent 100%);">
         <img class="hero-shot zoomable img-light" src="assets/main-light.png" alt="Burette previewing 3HTB.pdb in the Mol* illustrative renderer" loading="eager" decoding="async" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center;">
         <img class="hero-shot zoomable img-dark" src="assets/main-dark.png" alt="Burette previewing 3HTB.pdb in the Mol* illustrative renderer" loading="eager" decoding="async" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center;">
       </div>
@@ -460,6 +475,49 @@
     </div>
 
     <!-- showcase block 3 -->
+    <div class="showcase reveal" style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 44px; align-items: center; margin-bottom: 40px;">
+      <div>
+        <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">Chemical Space · Apple Silicon Metal</div>
+        <h3 style="font-size: clamp(24px, 3vw, 32px); font-weight: 700; letter-spacing: -0.025em; margin: 0 0 14px; color: var(--text);">Map molecular libraries, then act on what you find.</h3>
+        <p style="font-size: 15.5px; line-height: 1.65; color: var(--body); margin: 0 0 18px;">Build an exact Metal Tanimoto neighbour graph, explore UMAP or TMAP views, cluster with Butina, colour by activity, and surface activity cliffs. Selections stay linked to the molecule grid for review and export.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span class="pill">10,000-molecule benchmark</span>
+          <span class="pill">2D + 3D</span>
+          <span class="pill">CPU-checked Metal results</span>
+        </div>
+      </div>
+      <div class="chemical-space-preview" role="img" aria-label="Illustration of Burette Chemical Space with linked molecular clusters and activity cliffs">
+        <svg viewBox="0 0 620 340" aria-hidden="true">
+          <g>
+            <line class="space-edge" x1="92" y1="85" x2="148" y2="58"/><line class="space-edge" x1="92" y1="85" x2="132" y2="135"/>
+            <line class="space-edge" x1="148" y1="58" x2="202" y2="92"/><line class="space-edge" x1="132" y1="135" x2="202" y2="92"/>
+            <line class="space-edge" x1="132" y1="135" x2="176" y2="180"/><line class="space-edge" x1="202" y1="92" x2="244" y2="142"/>
+            <line class="space-edge" x1="176" y1="180" x2="244" y2="142"/><line class="space-edge" x1="176" y1="180" x2="226" y2="230"/>
+            <line class="space-edge" x1="244" y1="142" x2="310" y2="118"/><line class="space-edge" x1="244" y1="142" x2="290" y2="204"/>
+            <line class="space-edge" x1="226" y1="230" x2="290" y2="204"/><line class="space-edge" x1="290" y1="204" x2="354" y2="236"/>
+            <line class="space-edge" x1="310" y1="118" x2="374" y2="88"/><line class="space-edge" x1="310" y1="118" x2="386" y2="154"/>
+            <line class="space-cliff" x1="354" y1="236" x2="386" y2="154"/><line class="space-edge" x1="374" y1="88" x2="442" y2="112"/>
+            <line class="space-edge" x1="386" y1="154" x2="442" y2="112"/><line class="space-edge" x1="386" y1="154" x2="450" y2="202"/>
+            <line class="space-edge" x1="450" y1="202" x2="514" y2="166"/><line class="space-edge" x1="450" y1="202" x2="510" y2="248"/>
+            <line class="space-edge" x1="514" y1="166" x2="558" y2="210"/><line class="space-edge" x1="510" y1="248" x2="558" y2="210"/>
+          </g>
+          <g>
+            <circle class="space-node-cool" cx="92" cy="85" r="8"/><circle class="space-node" cx="148" cy="58" r="7"/>
+            <circle class="space-node-cool" cx="132" cy="135" r="9"/><circle class="space-node" cx="202" cy="92" r="7"/>
+            <circle class="space-node" cx="176" cy="180" r="8"/><circle class="space-node" cx="244" cy="142" r="9"/>
+            <circle class="space-node" cx="226" cy="230" r="7"/><circle class="space-node" cx="290" cy="204" r="8"/>
+            <circle class="space-node" cx="310" cy="118" r="8"/><circle class="space-node-hot" cx="354" cy="236" r="10"/>
+            <circle class="space-node" cx="374" cy="88" r="7"/><circle class="space-node-cool" cx="386" cy="154" r="10"/>
+            <circle class="space-node" cx="442" cy="112" r="8"/><circle class="space-node-hot" cx="450" cy="202" r="9"/>
+            <circle class="space-node" cx="514" cy="166" r="8"/><circle class="space-node-hot" cx="510" cy="248" r="8"/>
+            <circle class="space-node" cx="558" cy="210" r="7"/>
+          </g>
+          <text x="32" y="314">Metal kNN · UMAP / TMAP · Butina · activity cliffs</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- showcase block 4 -->
     <div class="showcase reveal" style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 44px; align-items: center; margin-bottom: 56px;">
       <div>
         <div style="font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">Mol* trajectories</div>
