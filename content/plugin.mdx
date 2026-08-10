@@ -68,6 +68,8 @@ This is the preferred path for local-first work on the same Mac: the plugin can 
 - Open molecular structures, SDF collections, trajectories, and result bundles.
 - Observe the active document, tabs, panels, viewer readiness, and Mol* scene state.
 - Run allowlisted viewer actions such as focusing ligands, hiding waters, changing representations, and resetting the camera.
+- Author, validate, and play multi-state MolViewSpec Stories through typed story tools (schema help, templates, create, validate, observe, and control).
+- Sketch and edit small molecules through the typed Ketcher facade.
 - Render bounded markdown, tables, charts, and molecular reports beside the workspace.
 - Keep local-file provenance explicit without exposing an arbitrary shell or unrestricted file-access tool.
 
@@ -76,8 +78,17 @@ The short MCP facade is:
 ```text
 burette.get_context
 burette.open_workspace
+burette.open_ketcher
 burette.observe_workspace
 burette.control_viewer
+burette.control_ketcher
+burette.get_mvs_authoring_reference
+burette.list_story_templates
+burette.create_story_from_template
+burette.create_story
+burette.validate_story
+burette.observe_story
+burette.control_story
 burette.render_panel
 ```
 

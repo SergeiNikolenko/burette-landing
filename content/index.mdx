@@ -5,7 +5,7 @@ description: Start here for Burette installation, desktop workflows, drag and dr
 
 # Burette Documentation
 
-Burette is a macOS desktop app, Finder Quick Look extension, source-built iPhone preview app, and local Codex plugin for molecular structure files.
+Burette is a macOS desktop app, Finder Quick Look extension, source-built iPhone preview app, local Codex plugin, and hosted public plugin for molecular structure files.
 
 It is built for the small daily loop of computational chemistry, structural biology, and cheminformatics work: open a structure, confirm what it is, switch renderer when needed, compare files in tabs, and recover quickly when Quick Look or renderer caches need maintenance.
 
@@ -14,23 +14,27 @@ Burette is intentionally a compact utility, not a full molecular modeling enviro
 ## What you can do
 
 - Press Space in Finder to preview supported molecular files.
-- Open the desktop workspace to inspect files in tabs, browse folders, search commands and structures, sketch molecules, and route files or molecule records with target-aware drag and drop.
-- Use Mol* for interactive 3D structures.
-- Search, select, edit, append, merge, and export SDF, SMILES, CSV, and TSV collections in RDKit-powered grids.
+- Open the desktop workspace to inspect files in tabs, browse folders, search commands and structures, sketch molecules, edit text and structure sources in place, and route files or molecule records with target-aware drag and drop.
+- Use Mol* for interactive 3D structures, trajectories with smoothed playback, structure superposition, Maestro/PyMOL-style structure operations, and multi-state MolViewSpec Stories.
+- Open cell-scale crowded scenes (`molj`, `molx`, `.mesozip`) in the dedicated Mesoscale viewer.
+- Search, select, edit, append, merge, and export SDF, SMILES, CSV, TSV, and DataWarrior collections in RDKit-powered grids.
+- Run native Apple Silicon compute without external installs: clustering, similarity search, conformers, MMFF optimization, semiempirical energies, and the Chemical Space map with Metal-accelerated embeddings.
+- Inspect mass spectra (MGF, MSP, mzML, and more) in a dedicated spectrum viewer.
 - Use external `xyzrender` for formats that need artwork-style SVG rendering.
-- Run local xTB calculations for a small structure or selected molecular object.
+- Run local xTB calculations (with an app-managed Conda install) for a small structure or selected molecular object.
 - Generate conformer ensembles with local CREST and optionally prune existing XYZ/SDF ensembles with PRISM.
 - Build the iPhone preview app from source when you need iOS document handoff.
-- Connect Codex to the local molecular workspace through focused skills and typed MCP tools.
+- Connect Codex to the local molecular workspace through focused skills and typed MCP tools, or preview attachments and public PDB entries through the hosted ChatGPT plugin.
 
 ## Platform scope
 
 | Surface | Best for | Important boundary |
 | --- | --- | --- |
-| macOS desktop | Tabs, projects, drag and drop, grids, Ketcher, docking/FEP workspaces, xTB, CREST/PRISM, exports, and diagnostics | Full workflow surface; external engines must be installed locally. |
+| macOS desktop | Tabs, projects, drag and drop, grids, Ketcher, docking/FEP workspaces, native compute and Chemical Space, xTB, CREST/PRISM, exports, and diagnostics | Full workflow surface; external engines must be installed locally (managed install available for xTB). |
 | Finder Quick Look | A fast preview from Finder with Space | Preview surface, not the full desktop workflow. |
 | iPhone source target | Opening supported documents from Files and inspecting mobile previews | Built from source; not included in the macOS Homebrew release. |
 | Codex plugin and MCP | Typed local workspace observation, opening, viewer control, and bounded report panels | Purpose-built tools, not arbitrary shell or unrestricted file access. |
+| Hosted ChatGPT plugin | Previewing one authorized molecular attachment or a public PDB entry in a sandboxed Burette workspace | Read-only, bounded payloads; not a persistent web workspace. |
 
 ## Recommended reading path
 
@@ -39,11 +43,12 @@ Burette is intentionally a compact utility, not a full molecular modeling enviro
 3. [Choose the right surface](/docs/surfaces/desktop)
 4. [Learn target-aware drag and drop](/docs/workflows/drag-and-drop)
 5. [Work with SDF and molecule collections](/docs/workflows/collections)
-6. [Run xTB calculations](/docs/workflows/xtb)
-7. [Generate conformers with CREST](/docs/workflows/crest-prism)
-8. [Check supported formats](/docs/formats)
-9. [Install the Codex plugin and MCP integration](/docs/plugin)
-10. [Fix Quick Look registration](/docs/troubleshooting/quick-look)
+6. [Use native compute and Chemical Space](/docs/workflows/native-compute)
+7. [Run xTB calculations](/docs/workflows/xtb)
+8. [Generate conformers with CREST](/docs/workflows/crest-prism)
+9. [Check supported formats](/docs/formats)
+10. [Install the Codex plugin and MCP integration](/docs/plugin)
+11. [Fix Quick Look registration](/docs/troubleshooting/quick-look)
 
 ## Project links
 

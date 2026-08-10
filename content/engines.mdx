@@ -9,15 +9,23 @@ Burette uses several preview paths. The route depends on the file type and the r
 
 ## Mol*
 
-Mol* is the default interactive 3D path for most structure files, including PDB, CIF, BinaryCIF, MMTF, SDF, MOL, MOL2, XYZ, and GRO where supported by the runtime.
+Mol* is the default interactive 3D path for most structure files, including PDB, CIF, BinaryCIF, MMTF, SDF, MOL, MOL2, XYZ, and GRO where supported by the runtime. It also renders CCP4/MRC/MAP density volumes, MTZ reflection maps, and MolViewSpec scenes and Stories.
 
-Use Mol* when you need interactive structure inspection and trajectory-aware controls.
+Use Mol* when you need interactive structure inspection, trajectory-aware controls (including smoothed playback), structure superposition, or Maestro/PyMOL-style structure operations such as chain splitting, selection tooling, measurements, and colour presets.
+
+## Mesoscale viewer
+
+Cell-scale crowded scenes (`molj`, `molx`, `.mesozip` packages, and CellPack/Petworld-style CIF files) open in a dedicated Mol* Mesoscale Explorer runtime with its own hierarchy panel, selection, and export surface. It is a separate runtime from the standard Mol* viewer, tuned for large numbers of repeated molecular instances.
 
 ## RDKit grids
 
-RDKit powers collection views for SDF, SMILES, CSV, and TSV files.
+RDKit powers collection views for SDF, SMILES, CSV, TSV, and DataWarrior (`.dwar`) files; DataWarrior structures decode locally through the bundled OpenChemLib runtime, and CSV/TSV without molecule columns still open as data tables.
 
-Use the grid when you need search, sorting, SMARTS filtering and highlighting, row selection, append and merge workflows, or export.
+Use the grid when you need search, sorting, SMARTS filtering and highlighting, row selection, append and merge workflows, export, or the native compute actions (clustering, similarity search, conformers, and Chemical Space).
+
+## Spectrum viewer
+
+Mass-spectrometry formats (MS, MAGMA, MGF, MSP, MZML, MZXML) open in a dedicated spectrum viewer instead of a structure renderer.
 
 ## External xyzrender
 
@@ -33,7 +41,10 @@ CUBE, CIF, MMCIF, MCIF, XYZ, and external-renderer input previews expose an opti
 
 ## Calculation engines are separate
 
-xTB, CREST, and PRISM are local calculation executables, not preview renderers. Burette prepares bounded inputs, runs cancellable jobs, and opens reports and artifacts, while Mol*, RDKit, or the text viewer display their outputs.
+xTB, CREST, and PRISM are local calculation executables, not preview renderers. Burette prepares bounded inputs, runs cancellable jobs, and opens reports and artifacts, while Mol*, RDKit, or the text viewer display their outputs. xTB can also be installed as a managed Conda environment directly from Settings, so it no longer requires a manual install.
 
+Separately from these external executables, Burette ships a native Apple Silicon compute layer (CPU with Metal GPU acceleration) for clustering, similarity search, conformer generation, MMFF optimization, alignment and scoring, semiempirical energies, and Chemical Space embeddings. It runs inside the app with no external installation.
+
+- [Native compute and Chemical Space](/docs/workflows/native-compute)
 - [xTB calculations](/docs/workflows/xtb)
 - [CREST and PRISM](/docs/workflows/crest-prism)

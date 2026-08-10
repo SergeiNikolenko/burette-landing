@@ -15,14 +15,22 @@ The desktop app is the full Burette workspace. Use it when a one-off Finder prev
 
 - Keep previews alive in tabs while you switch files.
 - Browse project folders, nested structures, recent files, and search results from the sidebar.
-- Use the command palette for opening files, switching renderers, maintenance actions, exports, project navigation, Ketcher, and FEP network previews.
-- Compare structures, text files, Ketcher, grids, and workflow panels in right and bottom docks.
+- Use the command palette (`Cmd+P` or `/`) for opening files, switching renderers, maintenance actions, exports, project navigation, Ketcher, and FEP network previews; type a PDB ID, SMILES, or URL for query-driven commands.
+- Compare structures, text files, Ketcher, grids, and workflow panels in right and bottom docks; the Inspector presents document details as one scrollable section list.
 - Open files in Finder, the default app, or discovered chemistry editors.
+- Edit text and molecular source files in place and save them back.
 - Drag files, tabs, grid rows, sketches, or recognized structure text into target-aware workspace actions.
+
+## Structure work
+
+- Superpose structures with auto, residue-number, sequence, chain, and TM-align flows.
+- Use Maestro/PyMOL-style operations: chain splitting, subset extraction, a selection toolkit, typed interactions, colour presets, and angle/dihedral measurements.
+- Play trajectories with smoothed playback; topology+trajectory pairs pair automatically, and trajectories without a topology get a synthetic one.
+- Build and play multi-state MolViewSpec Stories with step controls in the viewer and the Story dock.
 
 ## Collection work
 
-Burette includes an RDKit-powered collection grid for SDF, SMILES, CSV, and TSV files. The grid supports search, sorting, SMARTS filtering and highlighting, selection, incremental loading, append and merge workflows, editing, and export.
+Burette includes an RDKit-powered collection grid for SDF, SMILES, CSV, TSV, and DataWarrior files. The grid supports search, sorting, SMARTS filtering and highlighting, selection, incremental loading, append and merge workflows, editing, export, and the native compute actions (clustering, similarity search, diverse export).
 
 Read [SDF and molecule collections](/docs/workflows/collections) for exact merge rules and [Drag and drop](/docs/workflows/drag-and-drop) for target behavior.
 
@@ -34,7 +42,10 @@ Macromolecule editing is not enabled in the current Ketcher integration.
 
 ## Local calculations
 
-The structure inspector exposes local xTB calculations and CREST/PRISM conformer workflows. They require separately installed executables, keep job status and artifacts visible, and reject direct chemistry jobs above the 300-atom guard unless you select a smaller molecular object.
+Native compute runs inside the app on Apple Silicon with no external installs: clustering, similarity search, conformer generation, MMFF optimization, semiempirical energies, and the Chemical Space map with Metal-accelerated embeddings, clustering, activity colouring, and cliffs.
 
+The structure inspector also exposes local xTB calculations (installable as a managed Conda environment from Settings) and CREST/PRISM conformer workflows. External engines keep job status and artifacts visible and reject direct chemistry jobs above the 300-atom guard unless you select a smaller molecular object.
+
+- [Native compute and Chemical Space](/docs/workflows/native-compute)
 - [xTB calculations](/docs/workflows/xtb)
 - [CREST and PRISM](/docs/workflows/crest-prism)
