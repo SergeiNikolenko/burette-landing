@@ -11,8 +11,10 @@ The checked-in source of truth for format routing is `config/preview-formats.jso
 
 | Path | Formats | Notes |
 | --- | --- | --- |
-| Mol* interactive 3D | PDB, ENT, PDBQT, PQR, XPDB, CIF, MMCIF, MCIF, BCIF, MMTF, SDF, SD, MOL, MOL2, XYZ, GRO, MVSJ, MVSX | Main interactive path for directly supported structures and MolViewSpec scenes. SDF can also use a collection grid; several text structures can switch or fall back to `xyzrender`. |
-| RDKit molecule grids | SDF, SD, SMILES, SMI, CSV, TSV | Collection view with search, sorting, SMARTS filtering and highlighting, selection, append and merge, and export. |
+| Mol* interactive 3D | PDB, ENT, PDBQT, PQR, XPDB, CIF, MMCIF, MCIF, BCIF, MMTF, SDF, SD, MOL, MDL, MOL2, XYZ, GRO, MVSJ, MVSX | Main interactive path for directly supported structures and MolViewSpec scenes (including multi-state Stories). SDF can also use a collection grid; several text structures can switch or fall back to `xyzrender`. |
+| Mesoscale viewer | MOLJ, MOLX, MESOZIP | Cell-scale crowded scenes open in a dedicated Mol* Mesoscale Explorer runtime; CellPack/Petworld-style CIF paths route there too. |
+| Volume and reflection data | CCP4, MRC, MAP, MTZ | CCP4-family density maps use the native Mol* volume provider; MTZ amplitude/phase pairs produce 2Fo-Fc and signed Fo-Fc maps. |
+| RDKit molecule grids | SDF, SD, SMILES, SMI, CSV, TSV, DWAR | Collection view with search, sorting, SMARTS filtering and highlighting, selection, append and merge, export, and native compute actions. DataWarrior structures decode locally through the bundled OpenChemLib runtime; CSV/TSV without molecule columns open as data tables. |
 | Coordinate conversion and xyzrender | ABI, COM, CUB, CUBE, FDF, FHIAIMS, GMS, IN, INP, LOG, NW, OUT, PSI4, QCIN, VASP, XYZR | Burette tries its coordinate conversion path for an interactive preview and can use the optional local `xyzrender` executable as a fallback or artwork renderer. |
 | Molecular dynamics and topology | XTC, TRR, DCD, NCTRAJ, TNG, H5MD, GSD, TRZ, LAMMPSTRJ, MDCRD, NC/NetCDF, TOP, PSF, PRMTOP, TPR, and related registered extensions | Trajectories often require compatible coordinate/topology partners. Registration does not imply that every artifact is meaningful as a standalone structure. |
 | Schrodinger structures | MAE, MAE.GZ, MAEGZ, CMS | Uses the Maestro conversion path for Mol* where possible, with explicit staged entries and an external-renderer fallback. |

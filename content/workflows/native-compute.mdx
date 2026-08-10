@@ -1,0 +1,64 @@
+---
+title: Native Compute & Chemical Space
+description: Run clustering, similarity search, conformers, MMFF optimization, semiempirical energies, and Chemical Space embeddings natively on Apple Silicon.
+---
+
+# Native Compute and Chemical Space
+
+Burette ships a native Apple Silicon compute layer: a CPU reference backend
+with Metal GPU acceleration, running in a separate verified compute service
+next to the app. Unlike xTB or CREST, it needs no external installation.
+
+Clustering runs are cancellable mid-job. Every job records its provenance and
+reports which backend actually executed it: `Metal GPU` only when the GPU path
+really ran, otherwise `reference CPU`.
+
+## Clustering and similarity
+
+The collection grid exposes compute actions over the current scope:
+
+- **Cluster selected / Cluster filtered / Cluster all** — Tanimoto-cutoff
+  clustering over the selected rows, the active filter result, or the whole
+  collection. Scope is frozen before the job starts, so edits during a run
+  cannot corrupt the result.
+- **Find similar** — exact top-ranked similarity search that reuses the
+  verified fingerprints from a previous clustering run.
+- **Export diverse** — an immutable diverse-subset export with structures, a
+  table, and provenance.
+
+## Conformers and optimization
+
+The collection grid's **Generate 3D** action (for selected molecules) and the
+Ketcher **Compute** menu generate conformer ensembles natively (distance
+geometry, ETKDG-style optimization, MMFF94/MMFF94s refinement, and
+stereochemistry validation). The 3D engine, candidate count, and RMSD
+threshold are configurable in Settings.
+
+Alignment and scoring compare poses with RMSD, shape, and electrostatic
+terms.
+
+## Semiempirical energies
+
+Single-point semiempirical energies (including RM1, AM1, and PM6) run through
+the same native service and produce readable reports with method and
+provenance details.
+
+## Chemical Space
+
+The Chemical Space panel projects a collection into an interactive 2D/3D map:
+
+- Metal-accelerated embeddings (UMAP) over molecular representations
+- clustering directly in the projected space
+- activity colouring from a numeric column
+- activity-cliff highlighting for similar molecules with divergent activity
+
+Selections in the map stay linked to the grid, so you can lasso a region and
+continue working with those rows.
+
+## Boundaries
+
+- Native compute runs in the desktop app; Finder Quick Look and the iPhone
+  app stay preview-only surfaces.
+- External engines remain separate: [xTB](/docs/workflows/xtb) and
+  [CREST/PRISM](/docs/workflows/crest-prism) are still local executables with
+  their own pages.
