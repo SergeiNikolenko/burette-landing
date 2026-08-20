@@ -158,15 +158,21 @@
   @keyframes rise { from { opacity: 0; transform: translateY(22px); filter: blur(8px); } to { opacity: 1; transform: none; filter: blur(0); } }
   @keyframes wordrise { from { opacity: 0; transform: translateY(24px); filter: blur(10px); } to { opacity: 1; transform: none; filter: blur(0); } }
   @keyframes blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
-  @keyframes rotword { 0%,8% { opacity: 0; transform: translateY(8px); } 16%,84% { opacity: 1; transform: none; } 92%,100% { opacity: 0; transform: translateY(-8px); } }
+  @keyframes text-marquee-vertical { to { translate: 0 var(--destination); } }
 
   .word { display: inline-block; animation: wordrise .7s cubic-bezier(.22,.61,.36,1) both; }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .text-marquee { display: inline-flex; min-width: 58px; height: 20px; overflow: hidden; color: var(--accent); text-align: left; vertical-align: middle; -webkit-mask-image: linear-gradient(transparent 0%, #000 18%, #000 82%, transparent 100%); mask-image: linear-gradient(transparent 0%, #000 18%, #000 82%, transparent 100%); }
+  .text-marquee__track { position: relative; height: 100%; }
+  .text-marquee__item { display: flex; align-items: center; height: 20px; --origin: calc((var(--count) - var(--index)) * 100%); --destination: calc((var(--index) + 1) * -100%); --duration: calc(var(--speed) * var(--count) * 1s); --delay: calc((var(--duration) / var(--count)) * var(--index) - var(--duration)); translate: 0 var(--origin); animation: text-marquee-vertical var(--duration) var(--delay) infinite linear; }
 
   /* reveal on scroll */
   .reveal { opacity: 0; }
   .reveal.in { animation: rise .8s cubic-bezier(.22,.61,.36,1) both; }
   @media (prefers-reduced-motion: reduce) {
     .word, .reveal, .reveal.in { animation: none !important; opacity: 1 !important; filter: none !important; transform: none !important; }
+    .text-marquee__item { animation: none !important; translate: none !important; }
+    .text-marquee__item:not(:first-child) { display: none; }
   }
 
   /* nav */
@@ -364,7 +370,18 @@
     <div class="hero-pad" style="position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; padding: 92px 32px 56px; text-align: center;">
       <div style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mono); margin-bottom: 26px; display: inline-flex; align-items: center; gap: 8px;">
         Open · Press Space · See
-        <span style="display: inline-block; min-width: 58px; text-align: left; color: var(--accent);"><span id="rot-word">PDB</span></span>
+        <span class="text-marquee">
+          <span class="visually-hidden">PDB, CIF, SDF, XYZ, CUBE, MOL2, and GRO</span>
+          <span class="text-marquee__track" aria-hidden="true" style="--count: 7; --speed: 1.15;">
+            <span class="text-marquee__item" style="--index: 0;">PDB</span>
+            <span class="text-marquee__item" style="--index: 1;">CIF</span>
+            <span class="text-marquee__item" style="--index: 2;">SDF</span>
+            <span class="text-marquee__item" style="--index: 3;">XYZ</span>
+            <span class="text-marquee__item" style="--index: 4;">CUBE</span>
+            <span class="text-marquee__item" style="--index: 5;">MOL2</span>
+            <span class="text-marquee__item" style="--index: 6;">GRO</span>
+          </span>
+        </span>
       </div>
       <h1 class="hero-title" style="font-size: clamp(38px, 6vw, 66px); line-height: 1.03; letter-spacing: -0.038em; font-weight: 700; margin: 0 auto; max-width: 840px; color: var(--text);"><span class="word" style="animation-delay:.02s">Quick</span> <span class="word" style="animation-delay:.09s">Look</span> <span class="word" style="animation-delay:.16s">for</span> <span class="word" style="animation-delay:.23s">molecular</span> <span class="word" style="animation-delay:.3s">files</span> <span class="word" style="animation-delay:.37s">on macOS.</span></h1>
       <p style="font-size: clamp(16px, 2vw, 19px); line-height: 1.55; color: var(--body); max-width: 630px; margin: 26px auto 0;">Press Space on PDB, CIF, SDF, XYZ, trajectories, or chemistry tables. Open Burette when you need tabs, 3D inspection, RDKit grids, sketching, or export.</p>
@@ -822,7 +839,6 @@ class Component extends DCLogic {
     this.reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const safe = (fn) => { try { fn.call(this); } catch (e) { console.warn("init failed:", fn.name, e); } };
     safe(this.initReveal);
-    safe(this.initRotating);
     safe(this.initTyping);
     safe(this.initGithubStars);
     safe(this.initTilt);
@@ -958,23 +974,6 @@ class Component extends DCLogic {
       ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     els.forEach(e => io.observe(e));
-  }
-
-  initRotating() {
-    const el = document.getElementById("rot-word");
-    if (!el) return;
-    const words = ["PDB", "CIF", "SDF", "XYZ", "CUBE", "MOL2", "GRO"];
-    if (this.reduced) { el.textContent = words[0]; return; }
-    let i = 0;
-    el.style.display = "inline-block";
-    const tick = () => {
-      el.style.animation = "none"; void el.offsetWidth;
-      el.textContent = words[i];
-      el.style.animation = "rotword 2.6s ease both";
-      i = (i + 1) % words.length;
-    };
-    tick();
-    this._rotTimer = setInterval(tick, 2600);
   }
 
   initTyping() {
@@ -1377,7 +1376,7 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() {
-    clearInterval(this._rotTimer); clearTimeout(this._typeTimer); clearTimeout(this._ct);
+    clearTimeout(this._typeTimer); clearTimeout(this._ct);
     clearInterval(this._vidTimer); clearInterval(this._tickPoll);
     clearTimeout(this._resizeRetry); if (this._ro) this._ro.disconnect();
     if (this._particleIO) this._particleIO.disconnect();
