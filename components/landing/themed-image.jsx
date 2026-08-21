@@ -39,7 +39,9 @@ export default function ThemedImage({
         img.removeAttribute("data-forced");
         return;
       }
-      const wanted = wantsDark ? dark : light;
+      // Override with the AVIF too, otherwise flipping the theme by hand would
+      // quietly downgrade to the PNG that is 8x larger.
+      const wanted = (wantsDark ? dark : light).replace(/\.png$/, ".avif");
       if (img.getAttribute("src") !== wanted) {
         img.setAttribute("src", wanted);
         img.setAttribute("data-forced", "");
@@ -55,9 +57,21 @@ export default function ThemedImage({
     return () => observer.disconnect();
   }, [light, dark]);
 
+  // Source order is significant: the browser takes the FIRST source whose type
+  // and media both match, and it does not fall back on a failed load. So every
+  // .png here must have a sibling .avif on disk - scripts/check-site.mjs enforces
+  // that, because a missing one is a broken image rather than a slow one.
+  const avif = (src) => src.replace(/\.png$/, ".avif");
+
   return (
     <picture>
+      <source
+        srcSet={avif(dark)}
+        type="image/avif"
+        media="(prefers-color-scheme: dark)"
+      />
       <source srcSet={dark} media="(prefers-color-scheme: dark)" />
+      <source srcSet={avif(light)} type="image/avif" />
       <img
         ref={ref}
         src={light}

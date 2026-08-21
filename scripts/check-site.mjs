@@ -1,4 +1,4 @@
-import { access, readFile, readdir } from "node:fs/promises";
+import { access, readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 
 const root = process.cwd();
@@ -101,6 +101,40 @@ for (const requiredLandingCopy of [
   "10,000-molecule benchmark",
 ]) {
   if (!landingSource.includes(requiredLandingCopy)) failures.push(`index.html: missing ${requiredLandingCopy}`);
+}
+
+// Inside a <picture>, the browser commits to the first source whose type and
+// media match and does NOT fall back when that file 404s. So an AVIF variant
+// missing next to a PNG is a broken image, not a slower one - cheap to check,
+// expensive to discover in production.
+{
+  const assetsDir = path.join(root, "public", "assets");
+  const entries = await readdir(assetsDir);
+  const pngs = entries.filter((name) => name.endsWith(".png"));
+  const present = new Set(entries);
+  for (const png of pngs) {
+    const avif = `${png.slice(0, -4)}.avif`;
+    if (!present.has(avif)) {
+      failures.push(`public/assets: ${png} has no ${avif} sibling for the <picture> AVIF source`);
+    }
+  }
+
+  // The hero image sits in the LCP path; the old build shipped a 411 KB PNG there.
+  for (const [name, budget] of [["main-dark.avif", 200_000], ["main-light.avif", 200_000]]) {
+    if (!present.has(name)) continue;
+    const { size } = await stat(path.join(assetsDir, name));
+    if (size > budget) {
+      failures.push(`public/assets/${name} is ${Math.round(size / 1024)} KB, over the ${budget / 1024} KB LCP budget`);
+    }
+  }
+
+  // 120fps screen recordings are how a landing page ends up shipping 19 MB of video.
+  for (const name of entries.filter((entry) => entry.endsWith(".mp4"))) {
+    const { size } = await stat(path.join(assetsDir, name));
+    if (size > 8_000_000) {
+      failures.push(`public/assets/${name} is ${Math.round(size / 1048576)} MB, over the 8 MB video budget`);
+    }
+  }
 }
 
 if (failures.length > 0) {

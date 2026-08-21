@@ -161,7 +161,7 @@ export default function CodexMcp() {
                 data-analytics-event="Outbound Link"
                 data-analytics-location="codex"
                 data-analytics-target="agent-platform"
-                className="text-brand inline-flex items-center gap-1 font-mono text-xs hover:underline hover:underline-offset-4"
+                className="text-brand inline-flex items-center gap-1 font-mono text-xs underline-offset-4 hover:underline"
               >
                 Read the MCP contract in the main repository
                 <ArrowUpRight aria-hidden="true" className="size-3.5" />
