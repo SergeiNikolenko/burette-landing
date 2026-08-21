@@ -1,0 +1,189 @@
+/* Tailwind WITHOUT preflight.
+   This app also serves nextra-theme-docs, which ships its own compiled stylesheet.
+   Tailwind's preflight is a global reset - it would land on the docs too and
+   restyle headings, lists and links that nextra has already styled. So the layers
+   are imported by hand and the reset is re-created below, scoped to the landing.
+
+   The catch this creates: Tailwind's `border` utility only sets border-WIDTH and
+   relies on preflight for `border-style: solid`. Without it every `border` class
+   is silently invisible. The scoped reset restores that, and box-sizing, and the
+   form-control font inheritance shadcn's Button depends on. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* The site already switches themes with html[data-theme="dark"]; teach Tailwind
+   that instead of introducing a second, conflicting `.dark` convention. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--text);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--text);
+  --color-primary: var(--invert-bg);
+  --color-primary-foreground: var(--invert-fg);
+  --color-secondary: var(--surface-2);
+  --color-secondary-foreground: var(--text);
+  --color-muted: var(--surface-2);
+  --color-muted-foreground: var(--body);
+  --color-accent: var(--surface-2);
+  --color-accent-foreground: var(--text);
+  --color-destructive: #b4341f;
+  --color-border: var(--border);
+  --color-input: var(--border-2);
+  --color-ring: var(--brand);
+  --color-brand: var(--brand);
+  --color-subtle: var(--muted);
+  --color-mono: var(--mono);
+
+  --radius-xs: 5px;
+  --radius-sm: 8px;
+  --radius-md: 11px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+
+  /* Literal names, never var(--font-*): @theme inline resolves at parse time, so
+     a runtime variable injected by next/font would resolve to nothing here. */
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+}
+
+:root {
+  --brand: #0f8f72;
+  --bg: #ffffff;
+  --surface: #fbfbfa;
+  --surface-2: #f4f4f2;
+  --border: #ededeb;
+  --border-2: #c9c9c6;
+  --text: #0a0a0a;
+  --body: #52524e;
+  --muted: #6f6f6b;
+  --mono: #6f6f6b;
+  --nav: #3a3a38;
+  --invert-bg: #0a0a0a;
+  --invert-fg: #ffffff;
+  --shadow-card: 0 30px 60px -30px rgb(0 0 0 / 0.32);
+  --wordmark-fill: color-mix(in srgb, var(--text) 10%, transparent);
+  /* a pale overcast morning: cool enough to read as sky without turning the
+     otherwise achromatic light theme into a travel poster */
+  --sky-top: #e9ecf1;
+  --sky-bottom: #fbfbfa;
+  --sky-cloud: #ffffff;
+  --sky-op: 0.92;
+  --mol-bond: #14161c;
+}
+
+[data-theme="dark"] {
+  --bg: #09090b;
+  --surface: #0d0d10;
+  --surface-2: #0b0b0e;
+  --border: #1e1e22;
+  --border-2: #4a4a50;
+  --text: #ededed;
+  --body: #9a9a97;
+  --muted: #8a8a8e;
+  --mono: #8a8a8e;
+  --nav: #b4b4b0;
+  --invert-bg: #fafafa;
+  --invert-fg: #0a0a0a;
+  --shadow-card: 0 30px 60px -30px rgb(0 0 0 / 0.7);
+  --wordmark-fill: color-mix(in srgb, var(--text) 72%, transparent);
+  /* near-black so the headline keeps its contrast; the clouds only just lift off
+     the background */
+  --sky-top: #0a0a0c;
+  --sky-bottom: #1c1c20;
+  --sky-cloud: #6e6e76;
+  --sky-op: 0.8;
+  --mol-bond: #e8e8ea;
+}
+
+@layer base {
+  /* the preflight we opted out of, scoped to the landing tree only */
+  .landing,
+  .landing *,
+  .landing *::before,
+  .landing *::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: var(--border);
+  }
+  .landing h1,
+  .landing h2,
+  .landing h3,
+  .landing h4,
+  .landing p,
+  .landing figure,
+  .landing blockquote,
+  .landing dl,
+  .landing dd {
+    margin: 0;
+  }
+  .landing h1,
+  .landing h2,
+  .landing h3,
+  .landing h4 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  .landing ul,
+  .landing ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .landing a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  .landing img,
+  .landing svg,
+  .landing video,
+  .landing canvas {
+    display: block;
+    vertical-align: middle;
+  }
+  .landing img,
+  .landing video {
+    max-width: 100%;
+    height: auto;
+  }
+  .landing button,
+  .landing input,
+  .landing select,
+  .landing textarea {
+    font: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+  .landing button {
+    cursor: pointer;
+    background-image: none;
+  }
+  .landing :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+  .landing ::selection {
+    background: var(--brand);
+    color: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing *,
+  .landing *::before,
+  .landing *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
