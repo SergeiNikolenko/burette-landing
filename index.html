@@ -99,6 +99,10 @@
     "data-theme",
     window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
   );
+  // scroll-reveal hides content until it is observed, which leaves the page blank for
+  // anything that never scrolls: crawlers, unfurlers, print, full-page screenshots.
+  // Only claim the hidden state once we know a script is running to undo it.
+  document.documentElement.classList.add("js");
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -188,7 +192,7 @@
   .text-marquee__item { display: flex; align-items: center; height: 20px; --origin: calc((var(--count) - var(--index)) * 100%); --destination: calc((var(--index) + 1) * -100%); --duration: calc(var(--speed) * var(--count) * 1s); --delay: calc((var(--duration) / var(--count)) * var(--index) - var(--duration)); translate: 0 var(--origin); animation: text-marquee-vertical var(--duration) var(--delay) infinite linear; }
 
   /* reveal on scroll */
-  .reveal { opacity: 0; }
+  html.js .reveal { opacity: 0; }
   .reveal.in { animation: rise .8s cubic-bezier(.22,.61,.36,1) both; }
   @media (prefers-reduced-motion: reduce) {
     .word, .reveal, .reveal.in { animation: none !important; opacity: 1 !important; filter: none !important; transform: none !important; }
@@ -996,6 +1000,11 @@ class Component extends DCLogic {
       ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     els.forEach(e => io.observe(e));
+    // last resort: whatever has not been revealed within 3s is shown anyway, so a
+    // failed observer degrades to a plain page rather than an empty one
+    this._revealDeadline = setTimeout(() => {
+      els.forEach(e => { if (!e.classList.contains("in")) { io.unobserve(e); e.classList.add("in"); } });
+    }, 3000);
   }
 
   initTyping() {
@@ -1642,7 +1651,7 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() {
-    clearTimeout(this._typeTimer); clearTimeout(this._ct);
+    clearTimeout(this._typeTimer); clearTimeout(this._ct); clearTimeout(this._revealDeadline);
     clearInterval(this._vidTimer); clearInterval(this._tickPoll);
     clearTimeout(this._resizeRetry); if (this._ro) this._ro.disconnect();
     clearTimeout(this._skyRetry); if (this._skyRo) this._skyRo.disconnect();
