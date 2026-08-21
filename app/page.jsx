@@ -2,6 +2,9 @@ import "./landing.css";
 import { SITE_URL } from "./site-url.js";
 import SiteNav from "@/components/landing/site-nav";
 import Hero from "@/components/landing/hero";
+import Faq from "@/components/landing/faq";
+import ClosingCta from "@/components/landing/closing-cta";
+import SiteFooter from "@/components/landing/site-footer";
 
 export const metadata = {
   title: "Burette | Molecular Quick Look and workspace for macOS",
@@ -30,7 +33,10 @@ export default function Page() {
       <SiteNav />
       <main>
         <Hero />
+        <Faq />
+        <ClosingCta />
       </main>
+      <SiteFooter />
     </div>
   );
 }
