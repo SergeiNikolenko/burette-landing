@@ -15,8 +15,9 @@ import LazyVideo from "./lazy-video";
 
 // Lasso selection and trajectory playback used to be showcase chapters of their
 // own, with the same weight as "here is the workspace". They are neither: both
-// are things you do to a structure that is already on screen, so they read as
-// evidence under the 3D block instead of as two more headlines.
+// are things you do to a structure that is already on screen. So they keep their
+// screenshots - claims about what you can see should be shown - but as a pair of
+// evidence tiles under the 3D block rather than as two more headlines.
 const INSPECTION_DETAILS = [
   {
     label: "Viewport selection",
@@ -184,13 +185,16 @@ export default function Features() {
           eyebrow="Finder Quick Look · Mol* 3D"
           title="Inspect a structure before opening an app."
           media={
-            <LazyVideo
-              src="/assets/lasso.mp4"
-              poster="/assets/lasso-poster.jpg"
-              label="Demonstration of lasso selection in the molecular viewport"
-              width={1280}
-              height={978}
-              className="border-input bg-muted rounded-lg border shadow-[var(--shadow-card)]"
+            <ProductShot
+              light="/assets/prev-light.png"
+              dark="/assets/prev-dark.png"
+              alt="A Burette Quick Look preview floating over the macOS desktop with no app window open"
+              title="Finder · Quick Look"
+              meta="Space, no app window"
+              width={1742}
+              height={1356}
+              ratio="1.28 / 1"
+              sizes="(min-width: 1024px) 620px, 100vw"
             />
           }
         >
@@ -199,13 +203,34 @@ export default function Features() {
             and surfaces are visible before you decide what to do with the file.
           </p>
 
-          <dl className="border-border mt-6 grid gap-4 border-l pl-5">
-            {INSPECTION_DETAILS.map(({ label, body }) => (
+          <dl className="mt-7 grid gap-6 sm:grid-cols-2">
+            {INSPECTION_DETAILS.map(({ label, body }, index) => (
               <div key={label}>
+                {index === 0 ? (
+                  <LazyVideo
+                    src="/assets/lasso.mp4"
+                    poster="/assets/lasso-poster.jpg"
+                    label="Demonstration of lasso selection in the molecular viewport"
+                    width={1280}
+                    height={978}
+                    className="border-input bg-muted mb-3.5 rounded-md border"
+                  />
+                ) : (
+                  <ProductShot
+                    light="/assets/second-light.png"
+                    dark="/assets/second-dark.png"
+                    alt="Mol* trajectory playback with frame controls and a frame counter"
+                    width={1804}
+                    height={1262}
+                    ratio="1.43 / 1"
+                    sizes="(min-width: 640px) 300px, 100vw"
+                    className="mb-3.5 rounded-md"
+                  />
+                )}
                 <dt className="text-mono font-mono text-[11px] tracking-[0.13em] uppercase">
                   {label}
                 </dt>
-                <dd className="text-muted-foreground mt-1.5 max-w-[52ch] text-sm leading-relaxed">
+                <dd className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
                   {body}
                 </dd>
               </div>
