@@ -114,8 +114,8 @@
 
     --accent: #0f8f72;
     --bg: #ffffff; --surface: #fbfbfa; --surface-2: #f4f4f2;
-    --border: #ededeb; --border-2: #e4e4e2;
-    --text: #0a0a0a; --body: #52524e; --muted: #7a7a76; --mono: #8a8a86; --nav: #3a3a38;
+    --border: #ededeb; --border-2: #c9c9c6;
+    --text: #0a0a0a; --body: #52524e; --muted: #6f6f6b; --mono: #6f6f6b; --nav: #3a3a38;
     --hero-grad: linear-gradient(180deg, #ffffff, #fbfbfa);
     --grid-op: 0; --shadow-card: 0 30px 60px -30px rgba(0,0,0,.32);
     --nav-bg: rgba(255,255,255,.72); --nav-border: #ededeb;
@@ -130,8 +130,8 @@
     --wordmark-fill: color-mix(in srgb, var(--text) 72%, transparent);
 
     --bg: #09090b; --surface: #0d0d10; --surface-2: #0b0b0e;
-    --border: #1e1e22; --border-2: #26262b;
-    --text: #ededed; --body: #9a9a97; --muted: #8a8a8e; --mono: #6a6a6e; --nav: #b4b4b0;
+    --border: #1e1e22; --border-2: #4a4a50;
+    --text: #ededed; --body: #9a9a97; --muted: #8a8a8e; --mono: #8a8a8e; --nav: #b4b4b0;
     --hero-grad: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255,255,255,0.06), transparent 70%), linear-gradient(#0a0a0c, #09090b);
     --grid-op: 1; --shadow-card: 0 30px 60px -30px rgba(0,0,0,.7);
     --nav-bg: rgba(10,10,12,.72); --nav-border: #1a1a1e;
@@ -352,6 +352,19 @@
   @media (max-width: 1080px) { .footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 32px; } .footer-brand { grid-column: 1 / -1; text-align: left; align-items: flex-start; padding-top: 28px; border-top: 1px solid var(--border); } .footer-brand__line { max-width: 42ch; } }
   @media (max-width: 720px) { .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; } }
   @media (max-width: 430px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } .footer-col { gap: 10px; } }
+
+  /* every animation and hover transform on the page, not just the four that had
+     their own rules - the partial blocks missed .shine, the lightbox and all
+     translateY hovers, which are exactly what triggers vestibular symptoms */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .word, .reveal, .reveal.in { opacity: 1 !important; filter: none !important; transform: none !important; }
+  }
 
   /* zoomable */
   .zoomable { cursor: zoom-in; }
@@ -1034,7 +1047,10 @@ class Component extends DCLogic {
     if (this._colorScheme) this._colorScheme.addEventListener("change", this._onColorScheme);
     try { localStorage.removeItem("burette-theme"); } catch (e) {}
     this.applyTweaks();
-    this.reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    this._motionQuery = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+    this.reduced = !!(this._motionQuery && this._motionQuery.matches);
+    this._onMotion = (event) => { this.reduced = event.matches; if (event.matches && this._skyStop) this._skyStop(); };
+    if (this._motionQuery) this._motionQuery.addEventListener("change", this._onMotion);
     const safe = (fn) => { try { fn.call(this); } catch (e) { console.warn("init failed:", fn.name, e); } };
     safe(this.initReveal);
     safe(this.initTyping);
@@ -1045,7 +1061,9 @@ class Component extends DCLogic {
     safe(this.initSpotlight);
     safe(this.initVideos);
     safe(this.initFaq);
-    safe(this.initSky);
+    // shader compile+link is synchronous main-thread work, so it waits for idle
+    const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 200));
+    this._skyIdle = idle(() => safe(this.initSky));
     safe(this.initParticles);
   }
 
@@ -1445,7 +1463,7 @@ class Component extends DCLogic {
       w = rect.width; h = rect.height;
       // five octaves of billow noise per cloud pass is the most expensive thing on the
       // page, so the shader gets a fixed pixel budget rather than the display's full DPR
-      const dpr = Math.max(0.75, Math.min(window.devicePixelRatio || 1, 1.5, Math.sqrt(1.6e6 / (w * h))));
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5, Math.sqrt(1.6e6 / (w * h)));
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
       gl.viewport(0, 0, cv.width, cv.height);
       gl.useProgram(prog);
@@ -1483,8 +1501,13 @@ class Component extends DCLogic {
     this._skyColors = () => { readPalette(); if (!running) draw((performance.now() - t0) / 1000 * SPEED); };
     this._skyStop = stop;
 
-    cv.addEventListener("webglcontextlost", (e) => { e.preventDefault(); stop(); });
-    cv.addEventListener("webglcontextrestored", () => { host.removeAttribute("data-sky"); });
+    // the program, buffers and uniforms die with the context and this does not
+    // rebuild them, so a lost context degrades to the blurred blobs for good
+    cv.addEventListener("webglcontextlost", (e) => {
+      e.preventDefault();
+      stop();
+      host.removeAttribute("data-sky");
+    });
 
     if ("ResizeObserver" in window) {
       this._skyRo = new ResizeObserver(() => resize());
@@ -1841,6 +1864,8 @@ class Component extends DCLogic {
     if (this._onSkyVis) document.removeEventListener("visibilitychange", this._onSkyVis);
     if (this._particleIO) this._particleIO.disconnect();
     if (this._colorScheme) this._colorScheme.removeEventListener("change", this._onColorScheme);
+    if (this._motionQuery) this._motionQuery.removeEventListener("change", this._onMotion);
+    if (this._skyIdle && window.cancelIdleCallback) cancelIdleCallback(this._skyIdle);
     if (this._onVis) { document.removeEventListener("visibilitychange", this._onVis); window.removeEventListener("focus", this._onVis); }
     if (this._lightboxClick) document.removeEventListener("click", this._lightboxClick);
     if (this._lightboxKey) document.removeEventListener("keydown", this._lightboxKey);
