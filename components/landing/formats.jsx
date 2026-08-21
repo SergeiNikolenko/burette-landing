@@ -46,7 +46,7 @@ export default function Formats() {
             arrived looking like a marketing odometer rather than a fact. */}
         <Badge
           variant="outline"
-          className="border-input text-nav gap-2 rounded-full px-3.5 py-1.5 font-mono text-xs font-normal"
+          className="border-input text-muted-foreground gap-2 rounded-full px-3.5 py-1.5 font-mono text-xs font-normal"
         >
           <span
             className="bg-brand size-[7px] shrink-0 rounded-full shadow-[0_0_0_4px_color-mix(in_srgb,var(--brand)_22%,transparent)]"
@@ -76,7 +76,7 @@ export default function Formats() {
                   <li key={extension}>
                     <Badge
                       variant="outline"
-                      className="border-input text-nav rounded-xs px-2.5 py-1 font-mono text-xs font-normal"
+                      className="border-input text-muted-foreground rounded-xs px-2.5 py-1 font-mono text-xs font-normal"
                     >
                       {extension}
                     </Badge>

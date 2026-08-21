@@ -2,6 +2,10 @@ import "./landing.css";
 import { SITE_URL } from "./site-url.js";
 import SiteNav from "@/components/landing/site-nav";
 import Hero from "@/components/landing/hero";
+import Formats from "@/components/landing/formats";
+import CodexMcp from "@/components/landing/codex-mcp";
+import Install from "@/components/landing/install";
+import Docs from "@/components/landing/docs";
 import Faq from "@/components/landing/faq";
 import ClosingCta from "@/components/landing/closing-cta";
 import SiteFooter from "@/components/landing/site-footer";
@@ -33,6 +37,10 @@ export default function Page() {
       <SiteNav />
       <main>
         <Hero />
+        <Formats />
+        <CodexMcp />
+        <Install />
+        <Docs />
         <Faq />
         <ClosingCta />
       </main>
