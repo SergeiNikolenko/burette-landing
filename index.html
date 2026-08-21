@@ -39,7 +39,7 @@
     };
 
     const currentSection = () => {
-      const sections = ["docs", "install", "codex", "features", "formats", "top"];
+      const sections = ["faq", "docs", "install", "codex", "features", "formats", "top"];
       for (const id of sections) {
         const el = document.getElementById(id);
         if (!el) continue;
@@ -110,6 +110,8 @@
 <style>
   * { box-sizing: border-box; }
   :root {
+    --wordmark-fill: color-mix(in srgb, var(--text) 10%, transparent);
+
     --accent: #0f8f72;
     --bg: #ffffff; --surface: #fbfbfa; --surface-2: #f4f4f2;
     --border: #ededeb; --border-2: #e4e4e2;
@@ -125,6 +127,8 @@
     --sky-top: #e9ecf1; --sky-bottom: #fbfbfa; --sky-cloud: #ffffff; --sky-op: .92;
   }
   html[data-theme="dark"] {
+    --wordmark-fill: color-mix(in srgb, var(--text) 72%, transparent);
+
     --bg: #09090b; --surface: #0d0d10; --surface-2: #0b0b0e;
     --border: #1e1e22; --border-2: #26262b;
     --text: #ededed; --body: #9a9a97; --muted: #8a8a8e; --mono: #6a6a6e; --nav: #b4b4b0;
@@ -279,6 +283,76 @@
   .tilt:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
   .quicklook-media img { width: 100%; max-width: 100%; }
 
+  /* product shot frame: a real window with a title bar, not a picture fading into
+     the page - the hard crop reads as "there is more of this", a gradient dissolve
+     reads as "the image failed to load" */
+  .shot-frame { border: 1px solid var(--border-2); border-radius: 14px; background: var(--surface-2); overflow: hidden; box-shadow: var(--shadow-card); }
+  .shot-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 44px; padding: 0 16px; border-bottom: 1px solid var(--border-2); background: var(--surface); font-size: 11px; line-height: 1; color: var(--muted); }
+  .shot-bar__left { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; color: var(--nav); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .shot-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent); }
+  .shot-bar__doc { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: .01em; color: var(--mono); white-space: nowrap; flex: none; }
+  .shot-crop { aspect-ratio: 1.9 / 1; overflow: hidden; }
+  .shot-crop img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; }
+  @media (max-width: 560px) { .shot-bar__doc { display: none; } .shot-crop { aspect-ratio: 1.55 / 1; } }
+
+  /* FAQ: native details/summary, so focus, Enter/Space and aria-expanded come for
+     free, and closed answers stay findable with the browser's own Ctrl+F */
+  .faq-grid { display: grid; grid-template-columns: 0.72fr 1.28fr; gap: 48px; align-items: start; }
+  .faq-list > details { border-top: 1px solid var(--border); }
+  .faq-list > details:last-of-type { border-bottom: 1px solid var(--border); }
+  .faq-list summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 19px 2px; cursor: pointer; list-style: none; border-radius: 4px; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary > h3 { margin: 0; flex: 1; font-size: 15.5px; font-weight: 500; line-height: 1.4; letter-spacing: -0.005em; color: var(--text); transition: color .2s ease; }
+  .faq-list summary:hover > h3 { color: var(--accent); }
+  .faq-chevron { flex: none; color: var(--mono); transition: transform .28s cubic-bezier(.22,.61,.36,1), color .2s ease; }
+  .faq-list details[open] > summary .faq-chevron { transform: rotate(180deg); color: var(--accent); }
+  .faq-answer { padding: 0 44px 22px 2px; }
+  .faq-answer p { margin: 0; max-width: 64ch; font-size: 14.5px; line-height: 1.62; color: var(--body); }
+  .faq-answer code { font-family: 'Geist Mono', monospace; font-size: 13px; color: var(--text); background: var(--surface-2); border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; }
+  @supports selector(details::details-content) {
+    .faq-list details::details-content { block-size: 0; overflow: hidden; opacity: 0; transition: block-size .3s cubic-bezier(.22,.61,.36,1), content-visibility .3s allow-discrete, opacity .22s ease; }
+    .faq-list details[open]::details-content { block-size: auto; opacity: 1; }
+  }
+  @media (max-width: 1080px) { .faq-grid { grid-template-columns: 1fr; gap: 28px; } .faq-intro h2 { max-width: 22ch; } }
+  @media (max-width: 720px) { .faq-list summary { padding: 17px 0; gap: 14px; } .faq-list summary > h3 { font-size: 15px; } .faq-answer { padding: 0 0 20px; } }
+  @media (prefers-reduced-motion: reduce) { .faq-list details::details-content, .faq-chevron { transition: none !important; } }
+
+  /* closing CTA: inverted against the page, which the existing --invert-* pair
+     already handles correctly in both themes */
+  .cta-card { position: relative; overflow: hidden; border-radius: 22px; background: var(--invert-bg); color: var(--invert-fg); box-shadow: var(--shadow-card); padding: clamp(34px, 4.4vw, 56px) clamp(26px, 3.6vw, 52px); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px; }
+  html[data-theme="dark"] .cta-card { box-shadow: 0 0 0 1px color-mix(in srgb, var(--invert-fg) 10%, transparent), 0 40px 90px -50px rgba(0,0,0,.9); }
+  .cta-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 86% 0%, color-mix(in srgb, var(--invert-fg) 14%, transparent), transparent 44%); pointer-events: none; }
+  .cta-copy { position: relative; max-width: 62ch; }
+  .cta-pill { display: inline-flex; align-items: center; gap: 8px; font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: .02em; border: 1px solid color-mix(in srgb, var(--invert-fg) 22%, transparent); background: color-mix(in srgb, var(--invert-fg) 9%, transparent); color: color-mix(in srgb, var(--invert-fg) 84%, transparent); border-radius: 999px; padding: 7px 14px; }
+  .cta-pdot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 26%, transparent); }
+  .cta-title { margin: 22px 0 0; font-size: clamp(28px, 4vw, 46px); line-height: 1.06; letter-spacing: -0.035em; font-weight: 700; color: var(--invert-fg); text-wrap: balance; }
+  .cta-sub { margin: 16px 0 0; max-width: 52ch; font-size: clamp(15px, 1.5vw, 17.5px); line-height: 1.6; color: color-mix(in srgb, var(--invert-fg) 68%, transparent); }
+  .cta-actions { position: relative; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; flex: none; }
+  .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--invert-fg); color: var(--invert-bg); padding: 15px 26px; border-radius: 11px; font-size: 15px; font-weight: 600; white-space: nowrap; }
+  .cta-btn .shine { background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--invert-bg) 24%, transparent), transparent); }
+  .cta-brew { font-family: 'Geist Mono', monospace; font-size: 12.5px; color: color-mix(in srgb, var(--invert-fg) 52%, transparent); }
+  @media (max-width: 900px) { .cta-card { flex-direction: column; align-items: stretch; gap: 28px; } .cta-actions { align-items: flex-start; } }
+  @media (max-width: 560px) { .cta-card { border-radius: 18px; padding: 30px 22px; } .cta-btn { width: 100%; justify-content: center; } .cta-sub { font-size: 15px; } }
+
+  /* footer */
+  .site-footer { overflow: hidden; }
+  .footer-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.15fr); gap: 40px; align-items: start; }
+  .footer-col { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .footer-head { margin: 0 0 4px; font-size: 13px; font-weight: 600; letter-spacing: -0.005em; color: var(--text); }
+  .footer-link { font-size: 13.5px; line-height: 1.3; color: var(--muted); text-decoration: none; transition: color .2s ease; }
+  .footer-link:hover { color: var(--text); }
+  .footer-brand { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+  .footer-brand__name { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+  .footer-brand__line { margin: 0; max-width: 26ch; font-size: 13px; line-height: 1.5; color: var(--body); }
+  .footer-brand__meta { margin: 0; font-family: 'Geist Mono', monospace; font-size: 11.5px; line-height: 1.7; letter-spacing: .01em; color: var(--mono); }
+  /* the wordmark overflows on purpose: only .site-footer clips it, never body or the
+     sticky nav's ancestor, and the vw cap leaves room for the fallback font */
+  .footer-wordmark { --wm: min(19.8vw, 248px); margin-top: clamp(28px, 4vw, 56px); overflow: hidden; line-height: 0; user-select: none; -webkit-user-select: none; pointer-events: none; }
+  .footer-wordmark span { display: block; text-align: center; white-space: nowrap; font-weight: 700; font-size: var(--wm); line-height: 1; letter-spacing: -0.05em; color: var(--wordmark-fill); margin-bottom: calc(var(--wm) * -0.24); }
+  @media (max-width: 1080px) { .footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 32px; } .footer-brand { grid-column: 1 / -1; text-align: left; align-items: flex-start; padding-top: 28px; border-top: 1px solid var(--border); } .footer-brand__line { max-width: 42ch; } }
+  @media (max-width: 720px) { .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; } }
+  @media (max-width: 430px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } .footer-col { gap: 10px; } }
+
   /* zoomable */
   .zoomable { cursor: zoom-in; }
   .hero-shot { transition: transform .6s cubic-bezier(.22,.61,.36,1), box-shadow .6s ease; }
@@ -422,10 +496,16 @@
         <span class="pill">Notarized · macOS 12+</span>
       </div>
 
-      <div class="reveal hero-crop" style="margin: 30px auto 0; max-width: 1000px; overflow: hidden; aspect-ratio: 1.9; -webkit-mask-image: linear-gradient(180deg, #000 68%, transparent 100%); mask-image: linear-gradient(180deg, #000 68%, transparent 100%);">
-        <img class="hero-shot zoomable img-light" src="assets/main-light.png" alt="Burette previewing 3HTB.pdb in the Mol* illustrative renderer" loading="eager" decoding="async" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center;">
-        <img class="hero-shot zoomable img-dark" src="assets/main-dark.png" alt="Burette previewing 3HTB.pdb in the Mol* illustrative renderer" loading="eager" decoding="async" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center;">
-      </div>
+      <figure class="shot-frame" style="margin: 34px auto 0; max-width: 1080px;">
+        <div class="shot-bar">
+          <span class="shot-bar__left"><span class="shot-dot"></span>Burette · Quick Look</span>
+          <span class="shot-bar__doc">3HTB.pdb · Mol* illustrative</span>
+        </div>
+        <div class="shot-crop">
+          <img class="zoomable img-light" src="assets/main-light.png" width="1804" height="1262" alt="Burette previewing 3HTB.pdb in the Mol* illustrative renderer" loading="eager" decoding="async" fetchpriority="high">
+          <img class="zoomable img-dark" src="assets/main-dark.png" width="1804" height="1263" alt="Burette previewing 3HTB.pdb in the Mol* illustrative renderer" loading="eager" decoding="async" fetchpriority="high">
+        </div>
+      </figure>
     </div>
   </div>
 
@@ -797,6 +877,61 @@
     </div>
   </div>
 
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="sec-pad" aria-labelledby="faq-title" style="max-width: 1200px; margin: 0 auto; padding: 84px 32px; border-bottom: 1px solid var(--border);">
+    <div class="faq-grid">
+      <div class="faq-intro">
+        <div class="reveal" style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 14px;">
+          <span style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mono);">Questions</span>
+          <span class="pill"><span class="pdot"></span>Free · local-first · MIT</span>
+        </div>
+        <h2 id="faq-title" class="reveal" style="font-size: clamp(26px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.03em; font-weight: 700; margin: 0; color: var(--text);">What Burette does on your Mac &mdash; and what it never does.</h2>
+      </div>
+
+      <div class="faq-list reveal">
+        <details name="burette-faq">
+          <summary><h3>Is Burette really free?</h3><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+          <div class="faq-answer"><p>Yes. Burette is free and open source under the MIT license. There is no account, no sign-in, no trial and no paid tier. Download the .dmg or run <code>brew install --cask burette</code> and it works.</p></div>
+        </details>
+
+        <details name="burette-faq">
+          <summary><h3>Which files can I preview with Space?</h3><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+          <div class="faq-answer"><p>Structures (PDB, CIF, mmCIF, SDF, MOL, MOL2, XYZ, GRO, BCIF), multi-frame XYZ and MD trajectories, chemistry tables (SMILES, SMI, CSV, TSV) and QM outputs (CUBE, LOG, OUT, PSI4, VASP) - around twenty extensions, all from Finder with a single keystroke.</p></div>
+        </details>
+
+        <details name="burette-faq">
+          <summary><h3>Do I have to open the app for Quick Look to work?</h3><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+          <div class="faq-answer"><p>Once. macOS only registers a Quick Look extension after its host app has been launched at least one time. Open Burette, then close it - previews keep working from Finder afterwards.</p></div>
+        </details>
+
+        <details name="burette-faq">
+          <summary><h3>What is the difference between the preview and the workspace?</h3><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+          <div class="faq-answer"><p>Quick Look is for looking: interactive Mol* 3D, trajectory scrubbing, molecule grids, no window management. The workspace is for working: a tab per file, side-by-side comparison, RDKit grid filtering and export, Ketcher sketching, and local xTB or CREST jobs. Same renderers, more room.</p></div>
+        </details>
+
+        <details name="burette-faq">
+          <summary><h3>Does anything leave my Mac?</h3><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+          <div class="faq-answer"><p>No. Files are parsed and rendered locally and nothing is uploaded. Structures, collections, calculations and exports stay on disk. Burette does not need network access to open a file.</p></div>
+        </details>
+
+        <details name="burette-faq">
+          <summary><h3>Do I need Python, RDKit or Mol* installed first?</h3><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+          <div class="faq-answer"><p>No. Mol*, RDKit and Ketcher ship inside the app. Only two things are optional external executables: <code>xyzrender</code> for publication-style artwork, and <code>xtb</code> / <code>crest</code> for local calculations. Burette detects them on your PATH and hides those features when they are absent.</p></div>
+        </details>
+
+        <details name="burette-faq">
+          <summary><h3>Can Codex or another agent drive Burette?</h3><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+          <div class="faq-answer"><p>Yes. The Burette plugin exposes a local MCP server with typed tools for structures, Mol* scenes, Ketcher edits, molecule collections, trajectories and workflow artifacts. It runs on your machine and talks to the running app - no cloud round-trip.</p></div>
+        </details>
+
+        <details name="burette-faq">
+          <summary><h3>Which macOS versions and chips are supported?</h3><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></summary>
+          <div class="faq-answer"><p>macOS 12 Monterey and later, on both Apple Silicon and Intel. Builds are signed and notarized. The Metal-accelerated Chemical Space path runs on Apple Silicon; on Intel the same analyses fall back to the CPU implementation.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ SOURCES & THANKS ============ -->
   <div class="sec-pad" style="max-width: 1200px; margin: 0 auto; padding: 72px 32px;">
     <div class="reveal" style="font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mono); margin-bottom: 14px;">Sources &amp; thanks</div>
@@ -830,23 +965,61 @@
     </div>
   </div>
 
-  <!-- ============ FOOTER ============ -->
-  <div class="sec-pad" style="border-top: 1px solid var(--border); background: var(--surface);">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 40px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; font-family: 'Geist Mono', monospace; font-size: 13px; color: var(--mono);">
-      <span style="font-family: 'Geist', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: -0.02em;">Burette</span>
-      <div style="display: flex; gap: 22px; flex-wrap: wrap;">
-        <a class="nav-link" href="/out/github-repo?surface=footer" target="_blank" rel="noopener" data-analytics-event="Outbound Link" data-analytics-location="footer" data-analytics-target="github-repo">GitHub</a>
-        <a class="nav-link" href="/out/github-releases?surface=footer" target="_blank" rel="noopener" data-analytics-event="Outbound Link" data-analytics-location="footer" data-analytics-target="github-releases">Releases</a>
-        <a class="nav-link" href="/docs" data-analytics-event="Docs Link" data-analytics-location="footer" data-analytics-target="docs-home">Docs</a>
-        <a class="nav-link" href="/docs/plugin" data-analytics-event="Docs Link" data-analytics-location="footer" data-analytics-target="plugin-guide">Codex + MCP</a>
-        <a class="nav-link" href="/privacy">Privacy</a>
-        <a class="nav-link" href="/terms">Terms</a>
-        <span>Published by Sergei A. Nikolenko</span>
-        <span>MIT License</span>
-        <span>macOS 12+</span>
+  <!-- ============ CLOSING CTA ============ -->
+  <div class="sec-pad" style="max-width: 1200px; margin: 0 auto; padding: 24px 32px 96px;">
+    <div class="cta-card reveal">
+      <div class="cta-copy">
+        <span class="cta-pill"><span class="cta-pdot"></span>Free · MIT · No account</span>
+        <h2 class="cta-title">Press Space. See the molecule.</h2>
+        <p class="cta-sub">Install once, and every PDB, CIF, SDF, XYZ, trajectory and chemistry table in Finder opens in interactive 3D. Open the workspace when you need tabs, grids, sketching or local xTB.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary cta-btn" href="/download?source=closing" data-analytics-event="Download" data-analytics-location="closing-cta" data-analytics-target="dmg"><span class="shine"></span>Download for macOS<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+        <span class="cta-brew">$ brew install --cask burette</span>
       </div>
     </div>
   </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer sec-pad" style="border-top: 1px solid var(--border); background: var(--surface);">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 60px 32px 0;">
+      <div class="footer-grid">
+        <nav class="footer-col" aria-label="Product">
+          <h2 class="footer-head">Product</h2>
+          <a class="footer-link" href="#features">Features</a>
+          <a class="footer-link" href="#formats">Formats &amp; engines</a>
+          <a class="footer-link" href="#codex">Codex + MCP</a>
+          <a class="footer-link" href="/demo" data-analytics-event="Online Demo" data-analytics-location="footer" data-analytics-target="demo">Live demo</a>
+          <a class="footer-link" href="/download?source=footer" data-analytics-event="Download" data-analytics-location="footer" data-analytics-target="dmg">Download</a>
+        </nav>
+
+        <nav class="footer-col" aria-label="Documentation">
+          <h2 class="footer-head">Docs</h2>
+          <a class="footer-link" href="/docs" data-analytics-event="Docs Link" data-analytics-location="footer" data-analytics-target="docs-home">Documentation</a>
+          <a class="footer-link" href="/docs/plugin" data-analytics-event="Docs Link" data-analytics-location="footer" data-analytics-target="plugin-guide">Plugin &amp; MCP</a>
+          <a class="footer-link" href="#faq">FAQ</a>
+          <a class="footer-link" href="#install">Install</a>
+        </nav>
+
+        <nav class="footer-col" aria-label="Project">
+          <h2 class="footer-head">Project</h2>
+          <a class="footer-link" href="/out/github-repo?surface=footer" target="_blank" rel="noopener" data-analytics-event="Outbound Link" data-analytics-location="footer" data-analytics-target="github-repo">GitHub</a>
+          <a class="footer-link" href="/out/github-releases?surface=footer" target="_blank" rel="noopener" data-analytics-event="Outbound Link" data-analytics-location="footer" data-analytics-target="github-releases">Releases</a>
+          <a class="footer-link" href="/privacy">Privacy</a>
+          <a class="footer-link" href="/terms">Terms</a>
+        </nav>
+
+        <div class="footer-brand">
+          <span class="footer-brand__name">Burette</span>
+          <p class="footer-brand__line">Molecular Quick Look and workspace for macOS.</p>
+          <p class="footer-brand__meta">MIT License · macOS 12+<br>Apple Silicon &amp; Intel</p>
+          <p class="footer-brand__meta">Published by Sergei A. Nikolenko</p>
+        </div>
+      </div>
+
+      <div class="footer-wordmark" aria-hidden="true"><span>BURETTE</span></div>
+    </div>
+  </footer>
 
 </div>
 </x-dc>
@@ -871,6 +1044,7 @@ class Component extends DCLogic {
     safe(this.initTickers);
     safe(this.initSpotlight);
     safe(this.initVideos);
+    safe(this.initFaq);
     safe(this.initSky);
     safe(this.initParticles);
   }
@@ -1118,6 +1292,13 @@ class Component extends DCLogic {
     };
     document.addEventListener("click", this._lightboxClick);
     document.addEventListener("keydown", this._lightboxKey);
+  }
+
+  initFaq() {
+    // the x-dc runtime re-renders this markup and drops valueless boolean
+    // attributes, so the first answer is opened here rather than in the HTML
+    const first = document.querySelector(".faq-list details");
+    if (first) first.open = true;
   }
 
   initSky() {
