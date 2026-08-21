@@ -101,7 +101,16 @@
 }
 
 @layer base {
-  /* the preflight we opted out of, scoped to the landing tree only */
+  /* Preflight also sets the document font. Without it the landing fell back to
+     the browser default, which is a serif - so the whole page rendered in Times
+     while Tailwind's font-sans token sat unused. */
+  .landing {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* the rest of the preflight we opted out of, scoped to the landing tree only */
   .landing,
   .landing *,
   .landing *::before,
