@@ -1,4 +1,4 @@
-const SITE_URL = "https://burette-landing.vercel.app";
+import { SITE_URL } from "./site-url.js";
 
 export function legalPage({ path, title, description, body }) {
   return `<!DOCTYPE html>
