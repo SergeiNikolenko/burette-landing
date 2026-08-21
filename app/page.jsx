@@ -3,6 +3,7 @@ import { SITE_URL } from "./site-url.js";
 import SiteNav from "@/components/landing/site-nav";
 import Hero from "@/components/landing/hero";
 import Formats from "@/components/landing/formats";
+import Features from "@/components/landing/features";
 import CodexMcp from "@/components/landing/codex-mcp";
 import Install from "@/components/landing/install";
 import Docs from "@/components/landing/docs";
@@ -38,6 +39,7 @@ export default function Page() {
       <main>
         <Hero />
         <Formats />
+        <Features />
         <CodexMcp />
         <Install />
         <Docs />

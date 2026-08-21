@@ -6,8 +6,22 @@ const contentRoot = path.join(root, "content");
 const failures = [];
 
 const contentFiles = await walk(contentRoot, (file) => file.endsWith(".mdx"));
-const staticPages = [path.join(root, "index.html")];
-const sourceFiles = [...staticPages, ...contentFiles];
+// The landing is React now, so the checks read its component sources. JSX keeps
+// href/src/alt as plain quoted attributes, which is all these regexes need.
+const landingRoot = path.join(root, "components", "landing");
+const landingFiles = [
+  path.join(root, "app", "page.jsx"),
+  ...(await walk(landingRoot, (file) => file.endsWith(".jsx"))),
+];
+const staticPages = [path.join(root, "download.html")];
+const sourceFiles = [...staticPages, ...landingFiles, ...contentFiles];
+
+const isLanding = (file) => landingFiles.includes(file);
+// Fragment links resolve across the whole page, not within one component, so
+// anchors are validated against every landing source concatenated.
+const landingSource = (
+  await Promise.all(landingFiles.map((file) => readFile(file, "utf8")))
+).join("\n");
 
 for (const file of sourceFiles) {
   const source = await readFile(file, "utf8");
@@ -15,9 +29,9 @@ for (const file of sourceFiles) {
 
   for (const href of attributeValues(source, "href")) {
     if (href.startsWith("#")) {
-      if (file !== path.join(root, "index.html")) continue;
+      if (!isLanding(file)) continue;
       const id = decodeURIComponent(href.slice(1));
-      if (id && !hasHtmlId(source, id)) failures.push(`${label}: missing fragment target ${href}`);
+      if (id && !hasHtmlId(landingSource, id)) failures.push(`${label}: missing fragment target ${href}`);
       continue;
     }
     if (!href.startsWith("/docs")) continue;
@@ -30,7 +44,7 @@ for (const file of sourceFiles) {
     if (src.includes("${") || /^(?:data:|https?:|\/\/)/u.test(src)) continue;
     const clean = src.split(/[?#]/u)[0];
     if (clean.startsWith("/_vercel/")) continue;
-    const target = staticPages.includes(file)
+    const target = staticPages.includes(file) || isLanding(file)
       ? path.join(root, "public", clean.replace(/^\.\//u, "").replace(/^\//u, ""))
       : clean.startsWith("/assets/")
       ? path.join(root, "public", clean)
@@ -40,40 +54,31 @@ for (const file of sourceFiles) {
     if (!(await exists(target))) failures.push(`${label}: missing local asset ${src}`);
   }
 
-  if (file === path.join(root, "index.html")) {
-    const ids = attributeValues(source, "id");
-    for (const id of new Set(ids.filter((value, index) => ids.indexOf(value) !== index))) {
-      failures.push(`${label}: duplicate id #${id}`);
-    }
-    for (const tag of source.matchAll(/<img\b[^>]*>/giu)) {
-      if (!/\balt\s*=\s*["'][^"']*["']/iu.test(tag[0])) {
+  if (isLanding(file)) {
+    for (const tag of source.matchAll(/<img\b[^>]*?\/?>/gsu)) {
+      if (!/\balt\s*=\s*[{"']/u.test(tag[0])) {
         failures.push(`${label}: image is missing alt text: ${tag[0].slice(0, 100)}`);
       }
     }
   }
 }
 
-const landingSource = await readFile(path.join(root, "index.html"), "utf8");
+{
+  const ids = attributeValues(landingSource, "id");
+  for (const id of new Set(ids.filter((value, index) => ids.indexOf(value) !== index))) {
+    failures.push(`landing: duplicate id #${id}`);
+  }
+}
+
 const outboundLinks = attributeValues(landingSource, "href").filter((href) => href.startsWith("/out/"));
 const outboundRoute = path.join(root, "app", "out", "[target]", "route.js");
 if (outboundLinks.length > 0 && !(await exists(outboundRoute))) {
-  failures.push("index.html: outbound links have no /out/[target] route");
+  failures.push("landing: outbound links have no /out/[target] route");
 }
 
-const navSource = landingSource.slice(
-  landingSource.indexOf("<!-- ============ NAV ============ -->"),
-  landingSource.indexOf("<!-- ============ HERO ============ -->"),
-);
-if (!navSource.includes('href="/demo"')) {
-  failures.push("index.html: primary navigation is missing the online demo link");
-}
-
-const heroSource = landingSource.slice(
-  landingSource.indexOf("<!-- ============ HERO ============ -->"),
-  landingSource.indexOf("<!-- ============ FORMATS ============ -->"),
-);
+const heroSource = await readFile(path.join(landingRoot, "hero.jsx"), "utf8");
 if (!heroSource.includes('href="/demo"')) {
-  failures.push("index.html: hero is missing the online demo link");
+  failures.push("hero.jsx: hero is missing the online demo link");
 }
 
 if (!(await exists(path.join(root, "app", "demo", "route.js")))) {
@@ -94,13 +99,23 @@ if (!(await exists(path.join(root, "app", "api", "release", "route.js")))) {
   failures.push("download.html: missing /api/release metadata route");
 }
 
+// Claims a visitor decides on. They have moved between components before and
+// would be easy to lose in a refactor without anyone noticing.
 for (const requiredLandingCopy of [
-  "Free &amp; open source · No account",
-  "Native Metal on Apple Silicon",
-  "Chemical Space · Apple Silicon Metal",
-  "10,000-molecule benchmark",
+  "Free and open source, no account",
+  "Nothing leaves your Mac",
+  "Apple Silicon and Intel",
+  "Notarized, macOS 12+",
 ]) {
-  if (!landingSource.includes(requiredLandingCopy)) failures.push(`index.html: missing ${requiredLandingCopy}`);
+  if (!landingSource.includes(requiredLandingCopy)) failures.push(`landing: missing ${requiredLandingCopy}`);
+}
+
+// The hero animation guards are the load-bearing part of the WebGL background.
+{
+  const sky = await readFile(path.join(landingRoot, "sky-canvas.jsx"), "utf8");
+  for (const guard of ["visibilitychange", "IntersectionObserver", "webglcontextlost", "prefers-reduced-motion"]) {
+    if (!sky.includes(guard)) failures.push(`sky-canvas.jsx: hero animation is missing its ${guard} guard`);
+  }
 }
 
 // Inside a <picture>, the browser commits to the first source whose type and

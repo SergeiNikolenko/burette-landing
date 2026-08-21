@@ -186,10 +186,10 @@ export default function Features() {
           media={
             <LazyVideo
               src="/assets/lasso.mp4"
-              poster="/assets/burette-app.png"
+              poster="/assets/lasso-poster.jpg"
               label="Demonstration of lasso selection in the molecular viewport"
-              width={1706}
-              height={1304}
+              width={1280}
+              height={978}
               className="border-input bg-muted rounded-lg border shadow-[var(--shadow-card)]"
             />
           }

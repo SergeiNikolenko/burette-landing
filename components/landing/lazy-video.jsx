@@ -3,10 +3,11 @@
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-// lasso.mp4 is 19 MB. The old page attached `autoplay preload="metadata"` and
-// then called play() at mount plus ten more times on a 500 ms interval, so the
-// clip was fetched in full on every visit - including the visits that never
-// scrolled this far, and including the ones on a phone tethered to a hotspot.
+// The old page attached `autoplay preload="metadata"` to a 19 MB clip and then
+// called play() at mount plus ten more times on a 500 ms interval, so it was
+// fetched in full on every visit - including the visits that never scrolled
+// this far, and the ones on a phone tethered to a hotspot. The file is under a
+// megabyte now, but "small" is not a reason to spend it before it is wanted.
 //
 // preload="none" means the poster is the only byte cost until the block is
 // actually on screen; the observer then starts the download and the playback in
