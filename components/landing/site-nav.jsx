@@ -27,7 +27,7 @@ export default function SiteNav() {
 
         <nav
           aria-label="Sections"
-          className="text-muted-foreground hidden items-center gap-7 text-sm lg:flex"
+          className="text-muted-foreground hidden items-center gap-4 text-sm min-[721px]:flex min-[1001px]:gap-7"
         >
           {LINKS.map(({ href, label, analytics }) => (
             <a
@@ -51,7 +51,7 @@ export default function SiteNav() {
           <GithubStars />
           <Link
             href="/docs"
-            className="text-muted-foreground hover:text-foreground text-sm transition-colors lg:hidden"
+            className="text-muted-foreground hover:text-foreground text-sm transition-colors max-[720px]:inline min-[721px]:hidden"
           >
             Docs
           </Link>
