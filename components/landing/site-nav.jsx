@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./theme-toggle";
-import ReleaseBadge from "./release-badge";
+import GithubStars from "./github-stars";
 
 const LINKS = [
   { href: "#features", label: "Features" },
@@ -48,7 +48,7 @@ export default function SiteNav() {
         </nav>
 
         <div className="flex items-center gap-2.5">
-          <ReleaseBadge />
+          <GithubStars />
           <Link
             href="/docs"
             className="text-muted-foreground hover:text-foreground text-sm transition-colors lg:hidden"
