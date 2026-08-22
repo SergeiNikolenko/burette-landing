@@ -110,7 +110,7 @@ if (!(await exists(path.join(root, "app", "api", "release", "route.js")))) {
 // Claims a visitor decides on. They have moved between components before and
 // would be easy to lose in a refactor without anyone noticing.
 for (const requiredLandingCopy of [
-  "Free and open source, no account",
+  "Free and open source",
   "Nothing leaves your Mac",
   "Apple Silicon and Intel",
   "Notarized, macOS 12+",
