@@ -63,13 +63,13 @@ const landingSource = await readFile(path.join(root, "index.html"), "utf8");
 if (landingSource.includes('class="pill">Notarized</span>')) {
   failures.push("index.html: claims notarization without release evidence");
 }
-if (!landingSource.includes("brew tap SergeiNikolenko/burette")) {
-  failures.push("index.html: Homebrew install copy is missing the custom tap");
-}
-
 const pluginSource = await readFile(path.join(contentRoot, "plugin.mdx"), "utf8");
+const hostedPluginSource = pluginSource.slice(
+  pluginSource.indexOf("## Public hosted plugin"),
+  pluginSource.indexOf("## Local Codex workspace plugin"),
+);
 for (const toolName of ["preview_molecular_file", "preview_pdb_structure", "render_molecular_scene", "open_ketcher", "control_ketcher"]) {
-  if (!pluginSource.includes(toolName)) failures.push(`content/plugin.mdx: missing hosted tool ${toolName}`);
+  if (!hostedPluginSource.includes(toolName)) failures.push(`content/plugin.mdx: missing hosted tool ${toolName}`);
 }
 
 if (!(await exists(path.join(contentRoot, "workflows", "native-compute.mdx")))) {
@@ -95,6 +95,9 @@ const heroSource = landingSource.slice(
 );
 if (!heroSource.includes('href="/demo"')) {
   failures.push("index.html: hero is missing the online demo link");
+}
+if (!heroSource.includes("brew tap SergeiNikolenko/burette") || !heroSource.includes("brew install --cask burette")) {
+  failures.push("index.html: hero Homebrew command is missing the custom tap or install step");
 }
 
 if (!(await exists(path.join(root, "app", "demo", "route.js")))) {
