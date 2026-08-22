@@ -28,6 +28,8 @@ Open Burette directly when you need a persistent workspace:
 - Open a PDB, CIF, SDF, MOL2, XYZ, or GRO file.
 - Switch between available renderers when the preview exposes that option.
 - Open an SDF, SMILES, CSV, or TSV collection to use the RDKit grid.
+- Open a DataWarrior, RXN, or RDF file to inspect its table or reaction records.
+- Use **Analyze** for descriptors, clustering, similarity, Chemical Space, and activity-cliff review.
 - Drop compatible records onto the open grid to append them, or merge complete collections from one format family.
 - Open the inspector for a small molecule or selected Mol* object to find the optional local xTB and CREST workflows.
 - Use Settings or the command palette for Quick Look reset, preview cache cleanup, logs, diagnostics, and maintenance.
@@ -36,15 +38,13 @@ Open Burette directly when you need a persistent workspace:
 
 - [Drag and drop](/docs/workflows/drag-and-drop)
 - [SDF and molecule collections](/docs/workflows/collections)
+- [Native compute and Chemical Space](/docs/workflows/native-compute)
 - [xTB calculations](/docs/workflows/xtb)
 - [CREST and PRISM](/docs/workflows/crest-prism)
 
 ## When previews fail
 
-Start with:
-
-```bash
-bunx burette doctor
-```
+Open the command palette and run **Reset Quick Look**. Use **Open Logs Folder**
+or **Export Diagnostics** if the reset does not restore the preview.
 
 Then see [Quick Look troubleshooting](/docs/troubleshooting/quick-look).

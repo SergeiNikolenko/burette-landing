@@ -9,9 +9,15 @@ const contentFiles = await walk(contentRoot, (file) => file.endsWith(".mdx"));
 const staticPages = [path.join(root, "index.html")];
 const sourceFiles = [...staticPages, ...contentFiles];
 
+const forbiddenPublicGuidance = /bunx\s+burette\b/u;
+
 for (const file of sourceFiles) {
   const source = await readFile(file, "utf8");
   const label = path.relative(root, file);
+
+  if (forbiddenPublicGuidance.test(source)) {
+    failures.push(`${label}: directs users to an unrelated npm package`);
+  }
 
   for (const href of attributeValues(source, "href")) {
     if (href.startsWith("#")) {
@@ -54,6 +60,21 @@ for (const file of sourceFiles) {
 }
 
 const landingSource = await readFile(path.join(root, "index.html"), "utf8");
+if (landingSource.includes('class="pill">Notarized</span>')) {
+  failures.push("index.html: claims notarization without release evidence");
+}
+if (!landingSource.includes("brew tap SergeiNikolenko/burette")) {
+  failures.push("index.html: Homebrew install copy is missing the custom tap");
+}
+
+const pluginSource = await readFile(path.join(contentRoot, "plugin.mdx"), "utf8");
+for (const toolName of ["preview_molecular_file", "preview_pdb_structure", "render_molecular_scene", "open_ketcher", "control_ketcher"]) {
+  if (!pluginSource.includes(toolName)) failures.push(`content/plugin.mdx: missing hosted tool ${toolName}`);
+}
+
+if (!(await exists(path.join(contentRoot, "workflows", "native-compute.mdx")))) {
+  failures.push("content/workflows/native-compute.mdx: missing native compute guide");
+}
 const outboundLinks = attributeValues(landingSource, "href").filter((href) => href.startsWith("/out/"));
 const outboundRoute = path.join(root, "app", "out", "[target]", "route.js");
 if (outboundLinks.length > 0 && !(await exists(outboundRoute))) {

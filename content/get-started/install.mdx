@@ -1,6 +1,6 @@
 ---
 title: Install Burette
-description: Install Burette with Homebrew, the Bun CLI, or GitHub Releases, and optionally connect it to Codex through the local MCP plugin.
+description: Install Burette with Homebrew or GitHub Releases, and optionally connect it to Codex through the local MCP plugin.
 ---
 
 # Install Burette
@@ -22,25 +22,13 @@ Check the installed cask version:
 brew info --cask SergeiNikolenko/burette/burette
 ```
 
-## Bun CLI
-
-Use the CLI when you want the latest stable GitHub release or a quick health check:
-
-```bash
-bunx burette latest
-bunx burette install
-bunx burette doctor
-```
-
-The Bun installer places Burette in `~/Applications` by default. Use `bunx burette install --system` only when you intentionally want the app in `/Applications` for all users.
-
 ## GitHub Releases
 
 You can also install manually:
 
 1. Open the [latest release](https://github.com/SergeiNikolenko/Burette/releases/latest).
-2. Download the `Burette-<version>.zip` file.
-3. Unzip it.
+2. Download the `Burette-<version>.dmg` or `Burette-<version>.zip` file.
+3. Open the DMG or unzip the archive.
 4. Move `Burette.app` to your `Applications` folder.
 5. Open Burette once from `Applications`.
 
@@ -48,11 +36,13 @@ You can also install manually:
 
 Open `Burette.app` once after installation. This gives macOS a chance to register the app bundle and Finder Quick Look extension.
 
-If Finder previews do not appear after install, run:
+The current 2.3.8 public release is ad-hoc signed and is not Apple-notarized. macOS
+Gatekeeper may require you to approve the first launch manually in System
+Settings > Privacy & Security.
 
-```bash
-bunx burette doctor
-```
+If Finder previews do not appear after install, open Burette's command palette
+and run **Reset Quick Look**. **Open Logs Folder** and **Export Diagnostics**
+are available there as well.
 
 ## Codex plugin and local MCP
 
