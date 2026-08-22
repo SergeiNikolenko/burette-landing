@@ -1,7 +1,4 @@
-const OWNER = "SergeiNikolenko";
-const REPO = "Burette";
-const RELEASES_URL = `https://github.com/${OWNER}/${REPO}/releases`;
-const LATEST_RELEASE_URL = `https://api.github.com/repos/${OWNER}/${REPO}/releases/latest`;
+import { BURETTE_RELEASES_URL, fetchLatestBuretteRelease } from "../burette-release.js";
 
 export const dynamic = "force-dynamic";
 
@@ -25,38 +22,11 @@ function redirect(location, extraHeaders = {}) {
 }
 
 async function redirectToLatestDmg() {
-  try {
-    const response = await fetch(LATEST_RELEASE_URL, {
-      headers: {
-        Accept: "application/vnd.github+json",
-        "User-Agent": "burette-landing-download-redirect",
-      },
-      cache: "no-store",
-    });
+  const release = await fetchLatestBuretteRelease();
+  if (!release) return redirect(BURETTE_RELEASES_URL);
 
-    if (!response.ok) {
-      return redirect(RELEASES_URL);
-    }
-
-    const release = await response.json();
-    const assets = Array.isArray(release.assets) ? release.assets : [];
-    const dmg = assets.find((asset) => {
-      return (
-        typeof asset.name === "string" &&
-        asset.name.toLowerCase().endsWith(".dmg") &&
-        typeof asset.browser_download_url === "string"
-      );
-    });
-
-    if (!dmg) {
-      return redirect(release.html_url || RELEASES_URL);
-    }
-
-    return redirect(dmg.browser_download_url, {
-      ...(release.tag_name ? { "X-Burette-Release": release.tag_name } : {}),
-      "X-Burette-Asset": dmg.name,
-    });
-  } catch {
-    return redirect(RELEASES_URL);
-  }
+  return redirect(release.downloadUrl, {
+    ...(release.tag ? { "X-Burette-Release": release.tag } : {}),
+    "X-Burette-Asset": release.assetName,
+  });
 }
