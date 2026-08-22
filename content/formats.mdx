@@ -5,7 +5,7 @@ description: File formats supported by Burette and the preview path used for eac
 
 # Supported Formats
 
-The checked-in source of truth for format routing is `config/preview-formats.json` in the Burette repository.
+The checked-in source of truth for format routing is `config/preview-formats.json` in the Burette repository. Burette 2.3.8 registers 31 format families and 118 unique extensions. Registration identifies the intended route; some paired or workflow artifacts are not meaningful as standalone structures.
 
 ## Format families
 
@@ -15,6 +15,7 @@ The checked-in source of truth for format routing is `config/preview-formats.jso
 | Mesoscale viewer | MOLJ, MOLX, MESOZIP | Cell-scale crowded scenes open in a dedicated Mol* Mesoscale Explorer runtime; CellPack/Petworld-style CIF paths route there too. |
 | Volume and reflection data | CCP4, MRC, MAP, MTZ | CCP4-family density maps use the native Mol* volume provider; MTZ amplitude/phase pairs produce 2Fo-Fc and signed Fo-Fc maps. |
 | RDKit molecule grids | SDF, SD, SMILES, SMI, CSV, TSV, DWAR | Collection view with search, sorting, SMARTS filtering and highlighting, selection, append and merge, export, and native compute actions. DataWarrior structures decode locally through the bundled OpenChemLib runtime; CSV/TSV without molecule columns open as data tables. |
+| Reactions and reaction data | RXN, RDF | Opens reaction-aware grid records with reactant/product depictions and database fields where present. |
 | Coordinate conversion and xyzrender | ABI, COM, CUB, CUBE, FDF, FHIAIMS, GMS, IN, INP, LOG, NW, OUT, PSI4, QCIN, VASP, XYZR | Burette tries its coordinate conversion path for an interactive preview and can use the optional local `xyzrender` executable as a fallback or artwork renderer. |
 | Molecular dynamics and topology | XTC, TRR, DCD, NCTRAJ, TNG, H5MD, GSD, TRZ, LAMMPSTRJ, MDCRD, NC/NetCDF, TOP, PSF, PRMTOP, TPR, and related registered extensions | Trajectories often require compatible coordinate/topology partners. Registration does not imply that every artifact is meaningful as a standalone structure. |
 | Schrodinger structures | MAE, MAE.GZ, MAEGZ, CMS | Uses the Maestro conversion path for Mol* where possible, with explicit staged entries and an external-renderer fallback. |
