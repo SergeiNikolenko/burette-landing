@@ -11,16 +11,11 @@ Disallow: /out/
 Disallow: /download
 Disallow: /api/
 
-# Nothing here is behind an account, so the AI crawlers are welcome to the
-# documentation. llms.txt below is a curated entry point for them.
-User-agent: GPTBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
+# No named AI-crawler groups here on purpose. Under RFC 9309 a crawler obeys
+# only its most specific matching group, so a "User-agent: GPTBot / Allow: /"
+# block would have exempted that bot from the three Disallow rules above - the
+# opposite of what naming it was meant to express. The wildcard group already
+# welcomes them, and llms.txt is the curated entry point.
 
 Sitemap: ${SITE_URL}/sitemap.xml
 `;

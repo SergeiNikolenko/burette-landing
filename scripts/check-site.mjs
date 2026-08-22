@@ -40,7 +40,14 @@ for (const file of sourceFiles) {
     if (targets.length === 0 || !(await anyExists(targets))) failures.push(`${label}: missing docs route ${route}`);
   }
 
-  for (const src of [...attributeValues(source, "src"), ...markdownImageSources(source)]) {
+  const assetRefs = [
+    ...attributeValues(source, "src"),
+    ...attributeValues(source, "light"),
+    ...attributeValues(source, "dark"),
+    ...attributeValues(source, "poster"),
+    ...markdownImageSources(source),
+  ];
+  for (const src of assetRefs) {
     if (src.includes("${") || /^(?:data:|https?:|\/\/)/u.test(src)) continue;
     const clean = src.split(/[?#]/u)[0];
     if (clean.startsWith("/_vercel/")) continue;
@@ -69,7 +76,7 @@ for (const file of sourceFiles) {
 }
 
 {
-  const ids = attributeValues(landingSource, "id");
+  const ids = attributeOnlyValues(landingSource, "id");
   for (const id of new Set(ids.filter((value, index) => ids.indexOf(value) !== index))) {
     failures.push(`landing: duplicate id #${id}`);
   }
@@ -109,13 +116,25 @@ if (!(await exists(path.join(root, "app", "api", "release", "route.js")))) {
 
 // Claims a visitor decides on. They have moved between components before and
 // would be easy to lose in a refactor without anyone noticing.
+const landingText = landingSource.replace(/\s+/gu, " ");
 for (const requiredLandingCopy of [
   "Free and open source",
   "Nothing leaves your Mac",
   "Apple Silicon and Intel",
   "Notarized, macOS 12+",
 ]) {
-  if (!landingSource.includes(requiredLandingCopy)) failures.push(`landing: missing ${requiredLandingCopy}`);
+  if (!landingText.includes(requiredLandingCopy)) failures.push(`landing: missing ${requiredLandingCopy}`);
+}
+
+// nextra's Head is the only definer of --nextra-bg, --nextra-content-width and
+// the --nextra-primary-* triple that its own stylesheet reads in a dozen places.
+// Dropping it left the docs with an unbounded content width, a transparent
+// navbar and links the colour of body text, and nothing here noticed.
+{
+  const rootLayout = await readFile(path.join(root, "app", "layout.jsx"), "utf8");
+  if (!/<Head[\s>]/u.test(rootLayout)) {
+    failures.push("app/layout.jsx: nextra <Head> is missing, so the docs CSS variables are undefined");
+  }
 }
 
 // The hero animation guards are the load-bearing part of the WebGL background.
@@ -177,8 +196,17 @@ async function walk(directory, accept) {
   return output;
 }
 
+// DOM ids only ever appear as JSX attributes; the object-literal form belongs to
+// data keys (an Accordion item value, say), which are not ids at all.
+function attributeOnlyValues(source, name) {
+  return Array.from(
+    source.matchAll(new RegExp(`\\b${name}\\s*=\\s*["']([^"']+)["']`, "giu")),
+    (match) => match[1],
+  );
+}
+
 function attributeValues(source, name) {
-  return Array.from(source.matchAll(new RegExp(`\\b${name}\\s*=\\s*["']([^"']+)["']`, "giu")), (match) => match[1]);
+  return Array.from(source.matchAll(new RegExp(`\\b${name}\\s*[:=]\\s*["']([^"']+)["']`, "giu")), (match) => match[1]);
 }
 
 function markdownImageSources(source) {

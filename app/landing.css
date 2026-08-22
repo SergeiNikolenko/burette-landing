@@ -11,6 +11,11 @@
 @layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
+/* shadcn's Dialog and Accordion are written against animate-in / animate-out /
+   fade-in-0 / zoom-in-95 / animate-accordion-*, which live here. Without it
+   those classes emit nothing and the dialog and the FAQ snap open with no
+   transition - the same silent-no-op class of bug as an unregistered --color-* */
+@import "tw-animate-css";
 
 /* The site already switches themes with html[data-theme="dark"]; teach Tailwind
    that instead of introducing a second, conflicting `.dark` convention. */
@@ -75,7 +80,6 @@
   --sky-top: #e9ecf1;
   --sky-bottom: #fbfbfa;
   --sky-cloud: #ffffff;
-  --sky-op: 0.92;
   --mol-bond: #14161c;
 }
 
@@ -100,7 +104,6 @@
   --sky-top: #0a0a0c;
   --sky-bottom: #1c1c20;
   --sky-cloud: #6e6e76;
-  --sky-op: 0.8;
   --mol-bond: #e8e8ea;
 }
 

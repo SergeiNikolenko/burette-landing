@@ -12,11 +12,17 @@ export default function Hero() {
           built around, so the copy sits centred on top of them rather than in a
           column beside a screenshot. Two scrims: one over the whole field to
           hold the type, one at the foot so the section does not end on an edge. */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <SkyCanvas className="absolute inset-0 size-full" />
-        <MolecularField className="absolute inset-0 size-full" />
-        <div className="from-background/80 via-background/30 absolute inset-0 bg-gradient-to-b to-transparent" />
-        <div className="from-background absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t to-transparent" />
+      {/* This wrapper must stay hit-testable: MolecularField listens for
+          pointermove on its parent to drive the cursor lens, and
+          pointer-events-none here meant elementFromPoint never returned it, so
+          the lens was dead on every desktop visit. The layers inside are opted
+          out individually instead, and the copy above sits at z-10, so nothing
+          here can steal a click from a button. */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <SkyCanvas className="pointer-events-none absolute inset-0 size-full" />
+        <MolecularField className="pointer-events-none absolute inset-0 size-full" />
+        <div className="from-background/80 via-background/30 pointer-events-none absolute inset-0 bg-gradient-to-b to-transparent" />
+        <div className="from-background pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t to-transparent" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1200px] px-5 pt-24 text-center sm:px-8 lg:pt-32">

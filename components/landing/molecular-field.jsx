@@ -10,6 +10,11 @@ export default function MolecularField({ className }) {
     if (!cv) return;
     const host = cv.parentElement;
     if (!host) return;
+    // Measurement and visibility stay on the canvas's own wrapper, but the
+    // cursor lens listens on the whole section: the wrapper sits behind the
+    // copy, so pointer events over the headline and buttons never reach it.
+    // pointermove bubbles, so the section sees every move across the hero.
+    const pointerHost = cv.closest("section") ?? host;
     const ctx = cv.getContext("2d");
 
     // Skeletal geometry baked from RDKit once, so the hero needs no WASM at runtime:
@@ -60,7 +65,7 @@ export default function MolecularField({ className }) {
     const LAYER = { size: 0.6, alpha: 0.9, line: 1.6, drift: 1, lag: 0.08, pull: 60 };
 
     let w = 0, h = 0, dpr = 1;
-    let bondColor = "#14161c", accentColor = "#0f8f72", baseAlpha = 0.26;
+    let bondColor = "#14161c", baseAlpha = 0.26;
 
     // CPK element hues, tuned per theme: darkened for the light background,
     // lifted for the dark one, so labels stay legible instead of neon
@@ -73,9 +78,7 @@ export default function MolecularField({ className }) {
     const readTheme = () => {
       const css = getComputedStyle(document.documentElement);
       const bond = css.getPropertyValue("--mol-bond").trim();
-      const accent = css.getPropertyValue("--accent").trim();
       if (bond) bondColor = bond;
-      if (accent) accentColor = accent;
       const dark = document.documentElement.getAttribute("data-theme") === "dark";
       palette = dark ? CPK.dark : CPK.light;
       baseAlpha = dark ? 0.34 : 0.26;
@@ -195,7 +198,7 @@ export default function MolecularField({ className }) {
           ctx.translate(ax(i), ay(i));
           ctx.rotate(-m.rot); // heteroatom labels stay upright while the molecule turns
           ctx.globalAlpha = Math.min(1, alpha * 1.3);
-          ctx.fillStyle = palette[element] || accentColor;
+          ctx.fillStyle = palette[element] || bondColor;
           ctx.fillText(element, 0, 0);
           ctx.restore();
         }
@@ -234,6 +237,9 @@ export default function MolecularField({ className }) {
 
     let resizeRetry = 0;
     const resize = () => {
+      // One retry slot, three callers: without this an earlier zero-rect chain is
+      // orphaned and keeps re-arming forever, even after unmount.
+      clearTimeout(resizeRetry);
       const rect = host.getBoundingClientRect();
       if (!rect.width || !rect.height) { resizeRetry = setTimeout(resize, 120); return; } // layout not ready yet
       w = rect.width; h = rect.height;
@@ -316,8 +322,11 @@ export default function MolecularField({ className }) {
     if ("ResizeObserver" in window) {
       ro = new ResizeObserver(() => resize());
       ro.observe(host);
+    } else {
+      // else, not both: the observer already covers every resize, and running
+      // them together reallocated the backing store twice per frame.
+      window.addEventListener("resize", resize);
     }
-    window.addEventListener("resize", resize);
 
     const onPointerMove = (e) => {
       if (e.pointerType === "touch") return; // no hover to speak of, so no lens
@@ -336,8 +345,8 @@ export default function MolecularField({ className }) {
     const enableMotion = () => {
       if (wired) return;
       wired = true;
-      host.addEventListener("pointermove", onPointerMove);
-      host.addEventListener("pointerleave", onPointerLeave);
+      pointerHost.addEventListener("pointermove", onPointerMove);
+      pointerHost.addEventListener("pointerleave", onPointerLeave);
 
       if ("IntersectionObserver" in window) {
         io = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) start(); else stop(); });
@@ -349,8 +358,8 @@ export default function MolecularField({ className }) {
     const disableMotion = () => {
       wired = false;
       stop();
-      host.removeEventListener("pointermove", onPointerMove);
-      host.removeEventListener("pointerleave", onPointerLeave);
+      pointerHost.removeEventListener("pointermove", onPointerMove);
+      pointerHost.removeEventListener("pointerleave", onPointerLeave);
       if (io) { io.disconnect(); io = null; }
     };
     const onMotion = () => { if (motionQuery.matches) disableMotion(); else enableMotion(); };

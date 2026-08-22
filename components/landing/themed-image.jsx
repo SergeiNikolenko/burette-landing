@@ -27,25 +27,52 @@ export default function ThemedImage({
     const img = ref.current;
     if (!img) return;
 
+    const picture = img.parentElement;
+    const sources = picture ? [...picture.querySelectorAll("source")] : [];
+
     const sync = () => {
       const wantsDark =
         document.documentElement.getAttribute("data-theme") === "dark";
       const systemDark = window.matchMedia(
         "(prefers-color-scheme: dark)",
       ).matches;
-      // Leave the <picture> alone whenever it already resolves correctly, so the
-      // common path stays at one request.
+
       if (wantsDark === systemDark) {
-        img.removeAttribute("data-forced");
+        // The picture already resolves correctly, so put back anything we
+        // rewrote and leave the common path at a single request.
+        for (const source of sources) {
+          const original = source.dataset.srcset;
+          if (original === undefined) continue;
+          source.setAttribute("srcset", original);
+          delete source.dataset.srcset;
+        }
+        if (img.hasAttribute("data-forced")) {
+          img.setAttribute("src", light);
+          img.removeAttribute("data-forced");
+        }
         return;
       }
-      // Override with the AVIF too, otherwise flipping the theme by hand would
-      // quietly downgrade to the PNG that is 8x larger.
-      const wanted = (wantsDark ? dark : light).replace(/\.png$/, ".avif");
-      if (img.getAttribute("src") !== wanted) {
-        img.setAttribute("src", wanted);
-        img.setAttribute("data-forced", "");
+
+      // Setting img.src alone does nothing here: source selection happens before
+      // the img is consulted, so a still-matching <source> keeps winning and the
+      // picture stays on the system theme. Rewriting each source's srcSet moves
+      // the whole picture instead - and the img keeps a PNG, so a browser
+      // without AVIF still has something it can decode.
+      const wantedPng = wantsDark ? dark : light;
+      const wantedAvif = wantedPng.replace(/\.png$/, ".avif");
+      for (const source of sources) {
+        if (source.dataset.srcset === undefined) {
+          source.dataset.srcset = source.getAttribute("srcset") ?? "";
+        }
+        source.setAttribute(
+          "srcset",
+          source.getAttribute("type") === "image/avif" ? wantedAvif : wantedPng,
+        );
       }
+      if (img.getAttribute("src") !== wantedPng) {
+        img.setAttribute("src", wantedPng);
+      }
+      img.setAttribute("data-forced", "");
     };
 
     sync();
@@ -54,7 +81,14 @@ export default function ThemedImage({
       attributes: true,
       attributeFilter: ["data-theme"],
     });
-    return () => observer.disconnect();
+    // The system theme can change while a manual choice is stored, and that
+    // fires no data-theme mutation, so the override would silently go stale.
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    media.addEventListener("change", sync);
+    return () => {
+      observer.disconnect();
+      media.removeEventListener("change", sync);
+    };
   }, [light, dark]);
 
   // Source order is significant: the browser takes the FIRST source whose type

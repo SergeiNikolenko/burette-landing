@@ -9,12 +9,20 @@
 const FALLBACK_SITE_URL = "https://burrete-landing.vercel.app";
 
 function normalise(value) {
-  if (!value) return null;
-  const withScheme = /^https?:\/\//.test(value) ? value : `https://${value}`;
-  return withScheme.replace(/\/+$/, "");
+  // Untrimmed input used to throw at module load (crashing the build with an
+  // opaque error) and an uppercase scheme slipped through the test, producing
+  // "https://HTTPS://host" in every canonical, OG and sitemap URL.
+  const trimmed = String(value ?? "").trim();
+  if (!trimmed) return null;
+  const withScheme = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+  try {
+    const url = new URL(withScheme);
+    return `${url.protocol}//${url.host}`;
+  } catch {
+    return null;
+  }
 }
 
 export const SITE_URL =
   normalise(process.env.NEXT_PUBLIC_SITE_URL) ?? FALLBACK_SITE_URL;
 
-export const SITE_HOST = SITE_URL.replace(/^https?:\/\//, "");

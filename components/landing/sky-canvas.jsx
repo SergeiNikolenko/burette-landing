@@ -146,6 +146,9 @@ export default function SkyCanvas({ className }) {
     let skyRetry = 0;
     let w = 0, h = 0;
     const resize = () => {
+      // One retry slot, three callers: without this an earlier zero-rect chain is
+      // orphaned and keeps re-arming forever, even after unmount.
+      clearTimeout(skyRetry);
       const rect = host.getBoundingClientRect();
       if (!rect.width || !rect.height) { skyRetry = setTimeout(resize, 120); return; }
       w = rect.width; h = rect.height;

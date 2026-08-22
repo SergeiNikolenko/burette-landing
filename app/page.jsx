@@ -1,5 +1,6 @@
 import "./landing.css";
 import { SITE_URL } from "./site-url.js";
+import Analytics from "@/components/landing/analytics";
 import SiteNav from "@/components/landing/site-nav";
 import Hero from "@/components/landing/hero";
 import Formats from "@/components/landing/formats";
@@ -35,6 +36,7 @@ export const metadata = {
 export default function Page() {
   return (
     <div className="landing bg-background text-foreground min-w-0">
+      <Analytics />
       <SiteNav />
       <main>
         <Hero />
