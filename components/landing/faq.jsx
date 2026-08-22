@@ -64,7 +64,7 @@ const QUESTIONS = [
   {
     id: "requirements",
     q: "Which macOS versions and chips are supported?",
-    a: "macOS 12 Monterey and later, on both Apple Silicon and Intel. Builds are signed and notarized. The Metal-accelerated Chemical Space path runs on Apple Silicon; on Intel the same analyses fall back to the CPU implementation.",
+    a: "macOS 12 Monterey and later, on both Apple Silicon and Intel. Public downloads are ad-hoc signed rather than Apple-notarized, so macOS may ask you to approve the first launch. The Metal-accelerated Chemical Space path runs on Apple Silicon; on Intel the same analyses fall back to the CPU implementation.",
   },
 ];
 

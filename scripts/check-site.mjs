@@ -23,9 +23,15 @@ const landingSource = (
   await Promise.all(landingFiles.map((file) => readFile(file, "utf8")))
 ).join("\n");
 
+const forbiddenPublicGuidance = /bunx\s+burette\b/u;
+
 for (const file of sourceFiles) {
   const source = await readFile(file, "utf8");
   const label = path.relative(root, file);
+
+  if (forbiddenPublicGuidance.test(source)) {
+    failures.push(`${label}: directs users to an unrelated npm package`);
+  }
 
   for (const href of attributeValues(source, "href")) {
     if (href.startsWith("#")) {
@@ -82,6 +88,25 @@ for (const file of sourceFiles) {
   }
 }
 
+// main added this guard after the public builds stopped being notarized. It read
+// index.html, which no longer exists, so it is retargeted at the landing sources
+// - the claim itself moved into the hero's claims line and the FAQ.
+if (/\bNotarized\b/u.test(landingSource)) {
+  failures.push("landing: claims notarization without release evidence");
+}
+
+const pluginSource = await readFile(path.join(contentRoot, "plugin.mdx"), "utf8");
+const hostedPluginSource = pluginSource.slice(
+  pluginSource.indexOf("## Public hosted plugin"),
+  pluginSource.indexOf("## Local Codex workspace plugin"),
+);
+for (const toolName of ["preview_molecular_file", "preview_pdb_structure", "render_molecular_scene", "open_ketcher", "control_ketcher"]) {
+  if (!hostedPluginSource.includes(toolName)) failures.push(`content/plugin.mdx: missing hosted tool ${toolName}`);
+}
+
+if (!(await exists(path.join(contentRoot, "workflows", "native-compute.mdx")))) {
+  failures.push("content/workflows/native-compute.mdx: missing native compute guide");
+}
 const outboundLinks = attributeValues(landingSource, "href").filter((href) => href.startsWith("/out/"));
 const outboundRoute = path.join(root, "app", "out", "[target]", "route.js");
 if (outboundLinks.length > 0 && !(await exists(outboundRoute))) {
@@ -94,6 +119,13 @@ if (outboundLinks.length > 0 && !(await exists(outboundRoute))) {
 const navSource = await readFile(path.join(landingRoot, "site-nav.jsx"), "utf8");
 if (!navSource.includes('href: "/demo"')) {
   failures.push("site-nav.jsx: primary navigation is missing the online demo link");
+}
+// main added this after the cask moved into a tap: the copyable command has to
+// carry both steps or it fails on exactly the machines the button is for. The
+// command now lives in its own component rather than in the hero markup.
+const brewSource = await readFile(path.join(landingRoot, "brew-command.jsx"), "utf8");
+if (!brewSource.includes("brew tap SergeiNikolenko/burette") || !brewSource.includes("brew install --cask burette")) {
+  failures.push("brew-command.jsx: Homebrew command is missing the custom tap or install step");
 }
 
 if (!(await exists(path.join(root, "app", "demo", "route.js")))) {
@@ -121,7 +153,7 @@ for (const requiredLandingCopy of [
   "Free and open source",
   "Nothing leaves your Mac",
   "Apple Silicon and Intel",
-  "Notarized, macOS 12+",
+  "macOS 12+",
 ]) {
   if (!landingText.includes(requiredLandingCopy)) failures.push(`landing: missing ${requiredLandingCopy}`);
 }

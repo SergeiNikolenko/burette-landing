@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import BrewCommand from "./brew-command";
 
-const PILLS = ["Homebrew cask", "MIT License", "Notarized", "Local-first"];
+const PILLS = ["Homebrew cask", "MIT License", "macOS 12+", "Local-first"];
 
 export default function Install() {
   return (
@@ -34,10 +34,10 @@ export default function Install() {
           <p className="text-muted-foreground mt-4 max-w-[440px] text-[15px] leading-7 text-pretty">
             Install the cask, then open Burette once so macOS registers the
             Quick Look extension. If previews don&apos;t appear, run{" "}
-            <span className="text-foreground font-mono text-[13px]">
-              bunx burette doctor
-            </span>
-            .
+            <span className="text-foreground font-medium">Reset Quick Look</span>{" "}
+            from the command palette. Public downloads are ad-hoc signed rather
+            than Apple-notarized, so macOS may ask you to approve the first
+            launch.
           </p>
 
           <ul className="mt-6 flex flex-wrap gap-2.5">

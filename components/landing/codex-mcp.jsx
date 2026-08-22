@@ -7,6 +7,8 @@ const CAPABILITIES = [
   "Open structures",
   "Inspect scene state",
   "Control Mol*",
+  "Author Stories",
+  "Control Ketcher",
   "Render reports",
 ];
 
@@ -51,9 +53,9 @@ export default function CodexMcp() {
 
           <p className="text-muted-foreground mt-4 max-w-[520px] text-[15px] leading-7 text-pretty">
             The Burette plugin combines focused workflow skills with a local
-            stdio MCP server. Codex can open a structure, observe the active
-            workspace, run allowlisted Mol* actions, and render bounded review
-            panels while keeping local-file provenance explicit.
+            stdio MCP server. Codex can open a structure, observe the
+            workspace, run allowlisted Mol* actions, author MolViewSpec Stories,
+            control Ketcher, and render bounded review panels.
           </p>
 
           <ul className="mt-6 flex flex-wrap gap-2.5">

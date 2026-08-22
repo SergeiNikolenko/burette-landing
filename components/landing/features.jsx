@@ -48,9 +48,9 @@ const CARDS = [
     alt: "Burette workspace with one file per tab",
   },
   {
-    eyebrow: "Text + preview",
-    title: "Logs and inputs beside the structure",
-    body: "Read scripts, configs, and solver logs next to the molecule they describe.",
+    eyebrow: "Documents + preview",
+    title: "Office files, code, and logs beside structures",
+    body: "Use Retab-based viewers for PDF, DOCX, XLSX, PPTX, CSV, images, markdown, code, text, and email artifacts.",
     light: "/assets/text-pic-light.png",
     dark: "/assets/text-pic-dark.png",
     alt: "A text file open beside the structure it describes",
@@ -188,7 +188,7 @@ export default function Features() {
             the eye stopped registering the boundary between them. Alternating
             the media gives the second block a start of its own. */}
         <Showcase
-          eyebrow="RDKit collections"
+          eyebrow="Collections · DataWarrior · reactions"
           title="Triage whole libraries as a grid."
           mediaFirst
           media={
@@ -204,10 +204,9 @@ export default function Features() {
           }
         >
           <p className="text-muted-foreground mt-3.5 max-w-[52ch] text-[15.5px] leading-[1.65] text-pretty">
-            Open SDF, SMILES, CSV or TSV as a searchable grid: sort,
-            SMARTS-filter and highlight, select, merge and export. When the
-            optional local executable supports the records, switch from RDKit to
-            xyzrender cards.
+            Open SDF, SMILES, CSV, TSV, DataWarrior, RXN, or RDF as a searchable
+            grid: filter, edit, analyze, compare reactions, map Chemical Space,
+            review activity cliffs, and export.
           </p>
         </Showcase>
 
@@ -313,28 +312,28 @@ export default function Features() {
         {/* The xTB card used to sit alone in a full-width strip below the grid,
             which made the one card that is also a link the easiest to miss. */}
         <Link
-          href="/docs/workflows/xtb"
+          href="/docs/workflows/native-compute"
           data-analytics-event="Docs Link"
           data-analytics-location="features"
-          data-analytics-target="xtb-crest"
+          data-analytics-target="native-compute"
           className="group"
         >
           <Card className="hover:border-input h-full justify-center gap-0 py-6 transition-colors">
             <CardHeader className="gap-2">
               <span className="text-mono font-mono text-[11px] tracking-[0.13em] uppercase">
-                Local calculations
+                Native compute · Chemical Space
               </span>
               <CardTitle className="text-[17px]">
-                xTB properties and CREST ensembles
+                Cluster, search, embed, and review activity cliffs
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-2">
               <CardDescription className="text-[13.5px] leading-[1.55]">
-                Run installed executables as cancellable jobs with explicit
-                settings, reports, logs, and reviewable artifacts.
+                Run provenance-aware Apple Silicon jobs, then explore linked
+                2D/3D maps without installing an external engine.
               </CardDescription>
               <span className="text-brand mt-3.5 inline-flex items-center gap-1.5 font-mono text-xs">
-                Calculation guide
+                Native compute guide
                 <ArrowRight
                   aria-hidden="true"
                   className="size-3.5 transition-transform group-hover:translate-x-0.5"

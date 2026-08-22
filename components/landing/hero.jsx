@@ -71,7 +71,7 @@ export default function Hero() {
             from everything above it. */}
         <p className="text-mono mx-auto mt-9 font-mono text-[11px] tracking-[0.1em] uppercase">
           Free and open source · Nothing leaves your Mac · Apple Silicon and
-          Intel · Notarized, macOS 12+
+          Intel · macOS 12+
         </p>
 
         <ProductShot

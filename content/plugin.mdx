@@ -20,16 +20,21 @@ The production MCP endpoint is:
 https://burette-plugin.vercel.app/mcp
 ```
 
-It exposes two read-only tools:
+It exposes five tools:
 
 ```text
 preview_molecular_file
 preview_pdb_structure
+render_molecular_scene
+open_ketcher
+control_ketcher
 ```
 
-`preview_molecular_file` accepts one ChatGPT-authorized PDB, ENT, PDBQT, CIF, mmCIF, SDF, SD, XYZ, or extended XYZ attachment. `preview_pdb_structure` retrieves one public RCSB Protein Data Bank entry by its four-character PDB ID.
+`preview_molecular_file` accepts one ChatGPT-authorized PDB, ENT, PDBQT, CIF, mmCIF, SDF, SD, XYZ, or extended XYZ attachment. `preview_pdb_structure` retrieves one public RCSB Protein Data Bank entry by its four-character PDB ID. `render_molecular_scene` applies up to eight bounded selection, focus, camera, or component-visibility actions to one of those sources. These three structure tools are read-only.
 
-Each result returns bounded composition data and opens directly in the real Burette workspace with its document tab, viewer toolbar, sequence and selection controls, measurements, representations, camera controls, and molecular inspector. The deployment root redirects back to this documentation; it is not a separate viewer product.
+`open_ketcher` creates an isolated editor and can seed one bounded KET, MOL, RXN, or SMILES structure. `control_ketcher` applies revision-checked edit or export actions. Hosted Ketcher state is process-local and ephemeral; it does not write a local file or a shared public workspace.
+
+The three structure tools return bounded composition data and open the real Burette viewer with its toolbar, sequence and selection controls, measurements, representations, camera controls, and molecular inspector. The Ketcher tools return a bounded editor snapshot and editor widget. The deployment root redirects back to this documentation; it is not a separate viewer product.
 
 The public domain is only the HTTPS host for `/mcp` and the widget's JavaScript and CSS. After the MCP server returns a tool result and UI template, ChatGPT renders the Burette component inside an isolated iframe on the user's device, where WebGL and Mol* use that device's CPU and GPU. State belongs to that chat widget; there is no shared protein or shared Burette workspace between users.
 

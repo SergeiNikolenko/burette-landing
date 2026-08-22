@@ -8,8 +8,8 @@ import { Check, Copy } from "lucide-react";
 // The fully qualified name is one line that works from a cold Homebrew, so the
 // chip shows and copies exactly the same string rather than copying a second,
 // hidden `brew tap` line the way the old page did.
-const COMMAND = "brew install --cask SergeiNikolenko/burette/burette";
-const SHORT = "brew install --cask …/burette";
+const COMMAND = "brew tap SergeiNikolenko/burette && brew install --cask burette";
+const SHORT = "brew tap … && brew install --cask burette";
 
 // The old hero styled this as a copy chip but wired it to href="#install", so
 // the click scrolled instead of copying and the gesture quietly lied. It copies

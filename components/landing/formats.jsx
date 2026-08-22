@@ -19,9 +19,9 @@ const ROUTES = [
     extensions: ["PDB", "CIF", "MMCIF", "SDF", "MOL2", "XYZ", "GRO"],
   },
   {
-    engine: "RDKit molecule grids",
-    note: "Search, sort, SMARTS, export.",
-    extensions: ["SMILES", "SMI", "CSV", "TSV", "SD"],
+    engine: "Molecule and reaction grids",
+    note: "Search, analyze, compare, export.",
+    extensions: ["SMILES", "SMI", "CSV", "TSV", "SD", "DWAR", "RXN", "RDF"],
   },
   {
     engine: "External xyzrender",
@@ -52,7 +52,7 @@ export default function Formats() {
             className="bg-brand size-[7px] shrink-0 rounded-full shadow-[0_0_0_4px_color-mix(in_srgb,var(--brand)_22%,transparent)]"
             aria-hidden="true"
           />
-          20+ formats, one keystroke
+          100+ registered extensions
         </Badge>
       </div>
 
@@ -60,7 +60,7 @@ export default function Formats() {
         id="formats-title"
         className="text-foreground max-w-[620px] text-[clamp(28px,4vw,40px)] leading-[1.1] font-semibold tracking-[-0.03em] text-balance"
       >
-        Each file goes to the renderer that suits it.
+        Structures, reactions, trajectories, spectra, and tables.
       </h2>
 
       <div className="mt-9 grid gap-5 md:grid-cols-3">

@@ -149,10 +149,10 @@ export default function Docs() {
             <h3 className="text-mono mb-2.5 font-mono text-[11px] tracking-[0.12em] uppercase">
               Fix previews
             </h3>
-            <code className="text-foreground border-border bg-muted block rounded-xs border px-3.5 py-2.5 font-mono text-[13px]">
-              <span className="text-mono select-none">$ </span>
-              bunx burette doctor
-            </code>
+            <p className="text-foreground border-border bg-muted block rounded-xs border px-3.5 py-2.5 text-[13px]">
+              Command palette →{" "}
+              <span className="font-medium">Reset Quick Look</span>
+            </p>
           </div>
         </div>
       </div>
