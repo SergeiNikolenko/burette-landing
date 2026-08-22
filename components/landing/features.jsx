@@ -73,60 +73,6 @@ const CARDS = [
   },
 ];
 
-// One accent, not three: the original preview drew activity cliffs in #d95050
-// and split the nodes between an orange and a blue that appear nowhere else on
-// the page. Brand for the graph, destructive for the cliffs and the hot nodes -
-// the reading (low activity, high activity, the edge between them) survives.
-const SPACE_EDGES = [
-  [92, 85, 148, 58],
-  [92, 85, 132, 135],
-  [148, 58, 202, 92],
-  [132, 135, 202, 92],
-  [132, 135, 176, 180],
-  [202, 92, 244, 142],
-  [176, 180, 244, 142],
-  [176, 180, 226, 230],
-  [244, 142, 310, 118],
-  [244, 142, 290, 204],
-  [226, 230, 290, 204],
-  [290, 204, 354, 236],
-  [310, 118, 374, 88],
-  [310, 118, 386, 154],
-  [374, 88, 442, 112],
-  [386, 154, 442, 112],
-  [386, 154, 450, 202],
-  [450, 202, 514, 166],
-  [450, 202, 510, 248],
-  [514, 166, 558, 210],
-  [510, 248, 558, 210],
-];
-
-const SPACE_NODES = [
-  [92, 85, 8, "cool"],
-  [148, 58, 7, "base"],
-  [132, 135, 9, "cool"],
-  [202, 92, 7, "base"],
-  [176, 180, 8, "base"],
-  [244, 142, 9, "base"],
-  [226, 230, 7, "base"],
-  [290, 204, 8, "base"],
-  [310, 118, 8, "base"],
-  [354, 236, 10, "hot"],
-  [374, 88, 7, "base"],
-  [386, 154, 10, "cool"],
-  [442, 112, 8, "base"],
-  [450, 202, 9, "hot"],
-  [514, 166, 8, "base"],
-  [510, 248, 8, "hot"],
-  [558, 210, 7, "base"],
-];
-
-const NODE_TONE = {
-  base: "fill-card stroke-brand",
-  cool: "fill-brand stroke-card",
-  hot: "fill-destructive stroke-card",
-};
-
 // Text stays first in the DOM in every block - the media is the illustration of
 // a claim, so it should be read second no matter which side it is painted on.
 function Showcase({ eyebrow, title, mediaFirst = false, media, children }) {
@@ -269,61 +215,22 @@ export default function Features() {
           eyebrow="Chemical Space · Apple Silicon Metal"
           title="Map molecular libraries, then act on what you find."
           media={
-            <div
-              role="img"
-              aria-label="Illustration of Burette Chemical Space with linked molecular clusters and activity cliffs"
-              className="border-border bg-muted overflow-hidden rounded-xl border"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle at 70% 18%, color-mix(in srgb, var(--brand) 16%, transparent), transparent 42%)",
-              }}
-            >
-              <svg
-                viewBox="0 0 620 340"
-                aria-hidden="true"
-                className="w-full"
-              >
-                <g fill="none">
-                  {SPACE_EDGES.map(([x1, y1, x2, y2]) => (
-                    <line
-                      key={`${x1}-${y1}-${x2}-${y2}`}
-                      x1={x1}
-                      y1={y1}
-                      x2={x2}
-                      y2={y2}
-                      strokeWidth={1.15}
-                      className="stroke-brand/45"
-                    />
-                  ))}
-                  <line
-                    x1={354}
-                    y1={236}
-                    x2={386}
-                    y2={154}
-                    strokeWidth={2}
-                    className="stroke-destructive"
-                  />
-                </g>
-                <g strokeWidth={2}>
-                  {SPACE_NODES.map(([cx, cy, r, tone]) => (
-                    <circle
-                      key={`${cx}-${cy}`}
-                      cx={cx}
-                      cy={cy}
-                      r={r}
-                      className={NODE_TONE[tone]}
-                    />
-                  ))}
-                </g>
-                <text
-                  x={32}
-                  y={314}
-                  className="fill-muted-foreground font-mono text-[11px]"
-                >
-                  Metal kNN · UMAP / TMAP · Butina · activity cliffs
-                </text>
-              </svg>
-            </div>
+            /* This block used to be a hand-drawn SVG of invented nodes and
+               edges sitting directly under the claims "1,513 molecules · Metal"
+               and "10,000-molecule benchmark". Backing a specific number with a
+               drawing is the one thing this audience will not forgive, so it is
+               the real window instead. */
+            <ProductShot
+              light="/assets/chemical-space-light.png"
+              dark="/assets/chemical-space-dark.png"
+              alt="Burette on the desktop with a molecule card grid, the Chemical Space panel showing a 3D UMAP of 1,513 molecules computed with Metal, and the molecular inspector open on one hit"
+              title="Burette · Chemical Space"
+              meta="bace1_sar.csv · 1,513 molecules · Metal"
+              width={2258}
+              height={1522}
+              ratio="1.48 / 1"
+              sizes="(min-width: 1024px) 620px, 100vw"
+            />
           }
         >
           <p className="text-muted-foreground mt-3.5 max-w-[52ch] text-[15.5px] leading-[1.65] text-pretty">

@@ -55,7 +55,12 @@ for (const file of sourceFiles) {
   }
 
   if (isLanding(file)) {
-    for (const tag of source.matchAll(/<img\b[^>]*?\/?>/gsu)) {
+    // Comments routinely mention tags in prose ("bolted onto an <img> from JS"),
+    // and matching those reports a missing alt on a tag that does not exist.
+    const code = source
+      .replace(/\/\*[\s\S]*?\*\//gu, "")
+      .replace(/(^|[^:])\/\/[^\n]*/gu, "$1");
+    for (const tag of code.matchAll(/<img\b[^>]*?\/?>/gsu)) {
       if (!/\balt\s*=\s*[{"']/u.test(tag[0])) {
         failures.push(`${label}: image is missing alt text: ${tag[0].slice(0, 100)}`);
       }
