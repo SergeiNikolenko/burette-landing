@@ -81,9 +81,12 @@ if (outboundLinks.length > 0 && !(await exists(outboundRoute))) {
   failures.push("landing: outbound links have no /out/[target] route");
 }
 
-const heroSource = await readFile(path.join(landingRoot, "hero.jsx"), "utf8");
-if (!heroSource.includes('href="/demo"')) {
-  failures.push("hero.jsx: hero is missing the online demo link");
+// The browser demo has to stay reachable from the primary navigation. It used to
+// be pinned to the hero, but the hero now leads with one download button and the
+// demo sits in the nav, so the check follows it there.
+const navSource = await readFile(path.join(landingRoot, "site-nav.jsx"), "utf8");
+if (!navSource.includes('href: "/demo"')) {
+  failures.push("site-nav.jsx: primary navigation is missing the online demo link");
 }
 
 if (!(await exists(path.join(root, "app", "demo", "route.js")))) {

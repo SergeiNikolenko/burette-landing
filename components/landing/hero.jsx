@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import SkyCanvas from "./sky-canvas";
@@ -74,27 +74,15 @@ export default function Hero() {
             <BrewCommand />
           </div>
 
-          <p className="text-mono mt-4 font-mono text-xs">
-            Free · MIT · macOS 12+ ·{" "}
-            <Link
-              href="/demo"
-              data-analytics-event="Online Demo"
-              data-analytics-location="hero"
-              data-analytics-target="demo"
-              className="hover:text-foreground underline underline-offset-4 transition-colors"
-            >
-              try the browser build
-            </Link>{" "}
-            (no Quick Look there)
-          </p>
-
-          {/* Checked claims rather than bordered pills: four verifiable
-              statements read as arguments, a row of chips reads as legalese. */}
-          <ul className="text-muted-foreground mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <ul className="mt-8 flex flex-wrap gap-2.5">
             {PROOF.map((item) => (
-              <li key={item} className="flex items-center gap-2">
-                <Check aria-hidden="true" className="text-brand size-4" />
-                {item}
+              <li key={item}>
+                <Badge
+                  variant="outline"
+                  className="border-input text-muted-foreground rounded-full px-3.5 py-1.5 font-normal"
+                >
+                  {item}
+                </Badge>
               </li>
             ))}
           </ul>

@@ -34,7 +34,7 @@ export default function BrewCommand() {
       data-analytics-event="Brew Copy"
       data-analytics-location="hero"
       data-analytics-target="brew"
-      className="border-input text-muted-foreground hover:text-foreground hover:border-brand/50 inline-flex h-12 shrink-0 items-center gap-2.5 rounded-md border px-4 font-mono text-[13px] whitespace-nowrap transition-colors"
+      className="border-input text-muted-foreground hover:text-foreground hover:border-foreground/25 inline-flex h-12 shrink-0 items-center gap-2.5 rounded-md border px-4 font-mono text-[13px] whitespace-nowrap transition-colors"
     >
       <span className="text-mono select-none">$</span>
       {COMMAND}

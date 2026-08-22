@@ -89,7 +89,6 @@ export default function Faq() {
               variant="outline"
               className="border-input text-muted-foreground gap-2 rounded-full px-3 py-1"
             >
-              <span className="bg-brand size-1.5 rounded-full" aria-hidden="true" />
               Free · local-first · MIT
             </Badge>
           </div>

@@ -22,10 +22,6 @@ export default function ClosingCta() {
 
         <div className="relative max-w-[62ch]">
           <span className="inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-primary-foreground)_22%,transparent)] bg-[color-mix(in_srgb,var(--color-primary-foreground)_9%,transparent)] px-3.5 py-1.5 font-mono text-xs text-[color-mix(in_srgb,var(--color-primary-foreground)_84%,transparent)]">
-            <span
-              className="bg-brand size-1.5 rounded-full shadow-[0_0_0_4px_color-mix(in_srgb,var(--brand)_26%,transparent)]"
-              aria-hidden="true"
-            />
             Free · MIT · No account
           </span>
 

@@ -40,28 +40,6 @@ export default function ExpandableShot({
         className,
       )}
     >
-      {title ? (
-        <div className="border-input bg-card flex h-11 items-center justify-between gap-4 border-b px-4 text-[11px] leading-none">
-          <span className="text-nav inline-flex min-w-0 items-center gap-2 font-medium">
-            <span
-              className="bg-brand size-2 shrink-0 rounded-full shadow-[0_0_0_3px_color-mix(in_srgb,var(--brand)_20%,transparent)]"
-              aria-hidden="true"
-            />
-            <span className="truncate">{title}</span>
-          </span>
-          <span className="flex shrink-0 items-center gap-3">
-            {meta ? (
-              <span className="text-mono hidden font-mono text-[11px] tracking-[0.01em] sm:block">
-                {meta}
-              </span>
-            ) : null}
-            <Maximize2
-              aria-hidden="true"
-              className="text-mono group-hover:text-brand size-3.5 transition-colors"
-            />
-          </span>
-        </div>
-      ) : null}
       <div className="relative overflow-hidden" style={{ aspectRatio: ratio }}>
         <ThemedImage
           light={light}
@@ -76,7 +54,7 @@ export default function ExpandableShot({
         {/* Cards without a title bar have nowhere to put the affordance, so it
             floats over the image instead - otherwise nothing tells you the
             screenshot opens. */}
-        {title ? null : (
+        {(
           <span
             aria-hidden="true"
             className="bg-card/85 text-nav border-input pointer-events-none absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] opacity-0 backdrop-blur transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"

@@ -55,7 +55,7 @@
 }
 
 :root {
-  --brand: #0f8f72;
+  --brand: #5a5bd6;
   --bg: #ffffff;
   --surface: #fbfbfa;
   --surface-2: #f4f4f2;
@@ -80,6 +80,7 @@
 }
 
 [data-theme="dark"] {
+  --brand: #8b8cf0;
   --bg: #09090b;
   --surface: #0d0d10;
   --surface-2: #0b0b0e;

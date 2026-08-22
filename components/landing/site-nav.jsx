@@ -9,6 +9,11 @@ const LINKS = [
   { href: "#codex", label: "Codex + MCP" },
   { href: "#install", label: "Install" },
   { href: "#faq", label: "FAQ" },
+  {
+    href: "/demo",
+    label: "Demo",
+    analytics: { event: "Online Demo", location: "nav", target: "demo" },
+  },
   { href: "/docs", label: "Docs" },
 ];
 
@@ -24,10 +29,17 @@ export default function SiteNav() {
           aria-label="Sections"
           className="text-muted-foreground hidden items-center gap-7 text-sm lg:flex"
         >
-          {LINKS.map(({ href, label }) => (
+          {LINKS.map(({ href, label, analytics }) => (
             <a
               key={href}
               href={href}
+              {...(analytics
+                ? {
+                    "data-analytics-event": analytics.event,
+                    "data-analytics-location": analytics.location,
+                    "data-analytics-target": analytics.target,
+                  }
+                : {})}
               className="hover:text-foreground transition-colors"
             >
               {label}

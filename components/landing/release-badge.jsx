@@ -59,9 +59,8 @@ export default async function ReleaseBadge() {
       data-analytics-event="Outbound Link"
       data-analytics-location="nav"
       data-analytics-target="github-releases"
-      className="border-input text-muted-foreground hover:text-foreground hover:border-brand/60 hidden items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-xs transition-colors sm:inline-flex"
+      className="border-input text-muted-foreground hover:text-foreground hover:border-foreground/25 hidden items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-xs transition-colors sm:inline-flex"
     >
-      <span className="bg-brand size-1.5 rounded-full" aria-hidden="true" />
       {release.tag}
       {month ? <span className="text-mono">· {month}</span> : null}
     </a>
