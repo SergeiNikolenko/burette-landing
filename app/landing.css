@@ -107,6 +107,16 @@
   --mol-bond: #e8e8ea;
 }
 
+.hero-ascii-fluid {
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+}
+
+[data-theme="dark"] .hero-ascii-fluid {
+  opacity: 0.36;
+  mix-blend-mode: screen;
+}
+
 @layer base {
   /* Preflight also sets the document font. Without it the landing fell back to
      the browser default, which is a serif - so the whole page rendered in Times

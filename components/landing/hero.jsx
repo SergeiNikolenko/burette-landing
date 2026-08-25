@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AsciiFluid } from "@/components/ui/ascii-fluid";
 import { Button } from "@/components/ui/button";
 import SkyCanvas from "./sky-canvas";
 import MolecularField from "./molecular-field";
@@ -20,6 +21,13 @@ export default function Hero() {
           here can steal a click from a button. */}
       <div className="absolute inset-0" aria-hidden="true">
         <SkyCanvas className="pointer-events-none absolute inset-0 size-full" />
+        <AsciiFluid
+          className="hero-ascii-fluid"
+          cellSize={14}
+          force={0.75}
+          dissipation={0.04}
+          brush={0.72}
+        />
         <MolecularField className="pointer-events-none absolute inset-0 size-full" />
         <div className="from-background/80 via-background/30 pointer-events-none absolute inset-0 bg-gradient-to-b to-transparent" />
         <div className="from-background pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t to-transparent" />
