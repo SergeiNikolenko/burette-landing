@@ -23,13 +23,13 @@ export default function Hero() {
         <SkyCanvas className="pointer-events-none absolute inset-0 size-full" />
         <AsciiFluid
           className="hero-ascii-fluid"
-          cellSize={14}
-          force={0.75}
-          dissipation={0.04}
-          brush={0.72}
+          cellSize={12}
+          force={1}
+          dissipation={0.05}
+          brush={0.55}
         />
         <MolecularField className="pointer-events-none absolute inset-0 size-full" />
-        <div className="from-background/80 via-background/30 pointer-events-none absolute inset-0 bg-gradient-to-b to-transparent" />
+        <div className="from-background/25 via-background/5 pointer-events-none absolute inset-0 bg-gradient-to-b to-transparent" />
         <div className="from-background pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t to-transparent" />
       </div>
 

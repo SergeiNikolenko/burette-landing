@@ -79,7 +79,7 @@
      otherwise achromatic light theme into a travel poster */
   --sky-top: #e9ecf1;
   --sky-bottom: #fbfbfa;
-  --sky-cloud: #ffffff;
+  --sky-cloud: #e9edf2;
   --mol-bond: #14161c;
 }
 
@@ -108,12 +108,12 @@
 }
 
 .hero-ascii-fluid {
-  opacity: 0.28;
+  opacity: 0.88;
   mix-blend-mode: multiply;
 }
 
 [data-theme="dark"] .hero-ascii-fluid {
-  opacity: 0.36;
+  opacity: 0.82;
   mix-blend-mode: screen;
 }
 
