@@ -75,12 +75,11 @@
   --invert-fg: #ffffff;
   --shadow-card: 0 30px 60px -30px rgb(0 0 0 / 0.32);
   --wordmark-fill: color-mix(in srgb, var(--text) 10%, transparent);
-  /* a pale overcast morning: cool enough to read as sky without turning the
-     otherwise achromatic light theme into a travel poster */
-  --sky-top: #e9ecf1;
-  --sky-bottom: #fbfbfa;
-  --sky-cloud: #e9edf2;
-  --mol-bond: #14161c;
+  /* The original MAKI / Aceternity cloud palette. The saturated sky is what
+     gives the warm-white clouds their volume instead of flattening to white. */
+  --sky-top: #3876ba;
+  --sky-bottom: #8cbfe8;
+  --sky-cloud: #fbf8f2;
 }
 
 [data-theme="dark"] {
@@ -99,12 +98,9 @@
   --invert-fg: #0a0a0a;
   --shadow-card: 0 30px 60px -30px rgb(0 0 0 / 0.7);
   --wordmark-fill: color-mix(in srgb, var(--text) 72%, transparent);
-  /* near-black so the headline keeps its contrast; the clouds only just lift off
-     the background */
-  --sky-top: #0a0a0c;
-  --sky-bottom: #1c1c20;
-  --sky-cloud: #6e6e76;
-  --mol-bond: #e8e8ea;
+  --sky-top: #3876ba;
+  --sky-bottom: #8cbfe8;
+  --sky-cloud: #fbf8f2;
 }
 
 .hero-ascii-fluid {

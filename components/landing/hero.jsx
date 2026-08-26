@@ -2,23 +2,15 @@ import Link from "next/link";
 import { AsciiFluid } from "@/components/ui/ascii-fluid";
 import { Button } from "@/components/ui/button";
 import SkyCanvas from "./sky-canvas";
-import MolecularField from "./molecular-field";
 import ProductShot from "./product-shot";
 import BrewCommand from "./brew-command";
 
 export default function Hero() {
   return (
     <section id="top" className="border-border relative overflow-hidden border-b">
-      {/* The sky and the molecular field are the background image this layout is
-          built around, so the copy sits centred on top of them rather than in a
-          column beside a screenshot. Two scrims: one over the whole field to
-          hold the type, one at the foot so the section does not end on an edge. */}
-      {/* This wrapper must stay hit-testable: MolecularField listens for
-          pointermove on its parent to drive the cursor lens, and
-          pointer-events-none here meant elementFromPoint never returned it, so
-          the lens was dead on every desktop visit. The layers inside are opted
-          out individually instead, and the copy above sits at z-10, so nothing
-          here can steal a click from a button. */}
+      {/* The MAKI cloud field and the ASCII fluid are the hero background. The
+          copy sits above both layers, and the fade at the foot carries the sky
+          into the page background without a hard edge. */}
       <div className="absolute inset-0" aria-hidden="true">
         <SkyCanvas className="pointer-events-none absolute inset-0 size-full" />
         <AsciiFluid
@@ -26,10 +18,9 @@ export default function Hero() {
           cellSize={12}
           force={1}
           dissipation={0.05}
-          brush={0.55}
+          brush={0.22}
         />
-        <MolecularField className="pointer-events-none absolute inset-0 size-full" />
-        <div className="from-background/25 via-background/5 pointer-events-none absolute inset-0 bg-gradient-to-b to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-transparent" />
         <div className="from-background pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t to-transparent" />
       </div>
 
@@ -37,11 +28,11 @@ export default function Hero() {
         {/* No eyebrow, no claim chips, no caveat line under the button. Every one
             of those was a caption competing with the one sentence that has to
             land, and the claims they carried are all made again further down. */}
-        <h1 className="text-foreground mx-auto max-w-[15ch] text-[clamp(40px,6.6vw,74px)] leading-[1.02] font-semibold tracking-[-0.045em] text-balance">
+        <h1 className="mx-auto max-w-[15ch] text-[clamp(40px,6.6vw,74px)] leading-[1.02] font-semibold tracking-[-0.045em] text-balance text-white drop-shadow-[0_2px_18px_rgb(12_44_82_/_0.24)]">
           Press Space. See the molecule.
         </h1>
 
-        <p className="text-muted-foreground mx-auto mt-6 max-w-[58ch] text-lg leading-8 text-pretty">
+        <p className="mx-auto mt-6 max-w-[58ch] text-lg leading-8 text-pretty text-white/82 drop-shadow-[0_1px_8px_rgb(12_44_82_/_0.3)]">
           Preview PDB, CIF, SDF, XYZ, trajectories and chemistry tables straight
           from Finder — then open the same file in a full workspace.
         </p>
@@ -77,7 +68,7 @@ export default function Hero() {
             questions that actually stop an install - is it free, does it phone
             home - are answered in full in the FAQ, but they cannot be absent
             from everything above it. */}
-        <p className="text-mono mx-auto mt-9 font-mono text-[11px] tracking-[0.1em] uppercase">
+        <p className="mx-auto mt-9 font-mono text-[11px] tracking-[0.1em] text-white/72 uppercase">
           Free and open source · Nothing leaves your Mac · Apple Silicon and
           Intel · macOS 12+
         </p>
