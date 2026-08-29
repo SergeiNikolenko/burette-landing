@@ -41,7 +41,6 @@ export default function Hero() {
           <Button
             asChild
             size="lg"
-            className="h-12 rounded-full px-7 text-[15px] font-semibold"
           >
             <Link
               href="/download?source=hero"
@@ -53,7 +52,7 @@ export default function Hero() {
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
-                className="size-4"
+                data-icon="inline-start"
               >
                 <path d="M16.365 1.43c0 1.14-.42 2.2-1.12 3.02-.84.99-2.21 1.76-3.36 1.67-.14-1.11.42-2.28 1.09-3.02.76-.85 2.1-1.55 3.39-1.67zM20.5 17.1c-.34.78-.5 1.13-.94 1.83-.61.97-1.47 2.19-2.53 2.2-.95.01-1.19-.62-2.47-.61-1.28 0-1.55.62-2.5.61-1.07-.01-1.88-1.1-2.49-2.08-1.71-2.72-1.89-5.92-.83-7.62.75-1.2 1.94-1.91 3.06-1.91 1.14 0 1.86.63 2.8.63.92 0 1.48-.63 2.8-.63 1 0 2.05.54 2.8 1.48-2.46 1.35-2.06 4.87.3 6.1z" />
               </svg>

@@ -132,6 +132,18 @@ if (!brewSource.includes("brew tap SergeiNikolenko/burette") || !brewSource.incl
   failures.push("brew-command.jsx: Homebrew command is missing the custom tap or install step");
 }
 
+{
+  const previousSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  process.env.NEXT_PUBLIC_SITE_URL = "https://burrete-landing.vercel.app";
+  const { SITE_URL } = await import("../app/site-url.js?legacy-origin-check");
+  if (previousSiteUrl === undefined) delete process.env.NEXT_PUBLIC_SITE_URL;
+  else process.env.NEXT_PUBLIC_SITE_URL = previousSiteUrl;
+
+  if (SITE_URL !== "https://burette-landing.vercel.app") {
+    failures.push("app/site-url.js: stale legacy environment value restores the misspelled origin");
+  }
+}
+
 if (!(await exists(path.join(root, "app", "demo", "route.js")))) {
   failures.push("demo.html: missing /demo route");
 }
