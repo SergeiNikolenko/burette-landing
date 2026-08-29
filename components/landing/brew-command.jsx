@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 // The cask lives in a tap, so a bare `brew install --cask burette` fails on any
 // machine that has not tapped it - which is every machine this button is for.
@@ -9,13 +10,16 @@ import { Check, Copy } from "lucide-react";
 // chip shows and copies exactly the same string rather than copying a second,
 // hidden `brew tap` line the way the old page did.
 const COMMAND = "brew tap SergeiNikolenko/burette && brew install --cask burette";
-const SHORT = "brew tap … && brew install --cask burette";
 
 // The old hero styled this as a copy chip but wired it to href="#install", so
 // the click scrolled instead of copying and the gesture quietly lied. It copies
 // now, and it sits at secondary weight next to the download button rather than
 // competing with it as a third equal call to action.
-export default function BrewCommand() {
+export default function BrewCommand({
+  command = COMMAND,
+  location = "hero",
+  compact = false,
+}) {
   const [copied, setCopied] = useState(false);
   const timer = useRef(null);
 
@@ -23,7 +27,7 @@ export default function BrewCommand() {
 
   const copy = useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(COMMAND);
+      await navigator.clipboard.writeText(command);
       setCopied(true);
       clearTimeout(timer.current);
       timer.current = setTimeout(() => setCopied(false), 1800);
@@ -31,30 +35,58 @@ export default function BrewCommand() {
       // Clipboard access can be denied; leaving the label alone is the honest
       // outcome, since claiming "Copied" would be worse than saying nothing.
     }
-  }, []);
+  }, [command]);
+
+  const accessibleLabel = copied
+    ? "Copied to clipboard"
+    : `Copy command: ${command}`;
+
+  if (compact) {
+    return (
+      <div className="flex min-w-0 flex-1 items-center gap-3">
+        <code className="text-foreground min-w-0 flex-1 truncate font-mono text-[13px]">
+          <span className="text-mono select-none">$ </span>
+          {command}
+        </code>
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon-sm"
+          onClick={copy}
+          data-analytics-event="Brew Copy"
+          data-analytics-location={location}
+          data-analytics-target="brew"
+          aria-label={accessibleLabel}
+        >
+          {copied ? (
+            <Check aria-hidden="true" data-icon="inline-start" />
+          ) : (
+            <Copy aria-hidden="true" data-icon="inline-start" />
+          )}
+        </Button>
+      </div>
+    );
+  }
 
   return (
-    <button
+    <Button
       type="button"
+      variant="secondary"
+      size="lg"
       onClick={copy}
       data-analytics-event="Brew Copy"
-      data-analytics-location="install"
+      data-analytics-location={location}
       data-analytics-target="brew"
-      className="border-input text-muted-foreground hover:text-foreground hover:border-foreground/25 inline-flex h-12 shrink-0 items-center gap-2.5 rounded-md border px-4 font-mono text-[13px] whitespace-nowrap transition-colors"
+      aria-label={accessibleLabel}
+      className="max-w-full"
     >
-      <span className="text-mono select-none">$</span>
-      {/* Narrow viewports get an elided label; the copied string is always the
-          full one. */}
-      <span className="hidden sm:inline">{COMMAND}</span>
-      <span className="sm:hidden">{SHORT}</span>
+      <span className="text-mono select-none font-mono">$</span>
+      <span className="min-w-0 truncate font-mono text-xs">{command}</span>
       {copied ? (
-        <Check aria-hidden="true" className="text-brand size-3.5" />
+        <Check aria-hidden="true" data-icon="inline-end" />
       ) : (
-        <Copy aria-hidden="true" className="size-3.5 opacity-70" />
+        <Copy aria-hidden="true" data-icon="inline-end" />
       )}
-      <span className="sr-only">
-        {copied ? "Copied to clipboard" : "Copy the Homebrew command"}
-      </span>
-    </button>
+    </Button>
   );
 }

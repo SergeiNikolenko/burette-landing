@@ -1,8 +1,8 @@
 const OWNER = "SergeiNikolenko";
 const REPO = "Burette";
 
-// Fetched on the server and revalidated hourly. The original did this from the
-// browser on every page load, which put a fourth third-party origin in the
+// Fetched on the server and revalidated every five minutes. The original did
+// this from the browser on every page load, which put a fourth third-party origin in the
 // critical path, spent the unauthenticated 60-per-hour-per-IP budget on real
 // visitors, and sat oddly on a page whose pitch is "no account, nothing leaves
 // your Mac". Same button, no request from the visitor.
@@ -13,7 +13,7 @@ async function fetchStars() {
         Accept: "application/vnd.github+json",
         "User-Agent": "burette-landing-star-count",
       },
-      next: { revalidate: 3600 },
+      next: { revalidate: 300 },
     });
     if (!response.ok) return null;
     const repository = await response.json();

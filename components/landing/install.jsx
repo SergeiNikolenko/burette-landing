@@ -1,4 +1,11 @@
 import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import BrewCommand from "./brew-command";
 
 const PILLS = ["Homebrew cask", "MIT License", "macOS 12+", "Local-first"];
@@ -54,36 +61,46 @@ export default function Install() {
           </ul>
         </div>
 
-        {/* The old panel was a fake macOS terminal that typed out, character by
-            character, the same two commands the hero already shows. Nobody can
-            copy from an animation and nobody reads the second performance of a
-            command they scrolled past 30 seconds ago - so the steps are static,
-            and the one line worth taking away is the real copy chip. */}
-        <ol className="border-input bg-muted divide-border divide-y rounded-lg border">
-          <li className="flex items-center gap-4 px-5 py-4">
-            <span className="text-brand shrink-0 font-mono text-[11px] tracking-[0.12em]">
-              01
-            </span>
-            <code className="text-foreground min-w-0 truncate font-mono text-[13px]">
-              <span className="text-mono select-none">$ </span>
-              brew tap SergeiNikolenko/burette
-            </code>
-          </li>
-          <li className="flex items-center gap-4 px-5 py-4">
-            <span className="text-brand shrink-0 font-mono text-[11px] tracking-[0.12em]">
-              02
-            </span>
-            <BrewCommand />
-          </li>
-          <li className="flex items-center gap-4 px-5 py-4">
-            <span className="text-brand shrink-0 font-mono text-[11px] tracking-[0.12em]">
-              03
-            </span>
-            <span className="text-muted-foreground text-[13px] leading-6">
-              Open Burette once to register Quick Look.
-            </span>
-          </li>
-        </ol>
+        <Card className="gap-0 overflow-hidden py-0">
+          <CardHeader className="border-border border-b py-5">
+            <CardTitle>Homebrew</CardTitle>
+            <CardDescription>
+              Run both commands, then open Burette once.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="px-0">
+            <ol className="divide-border divide-y">
+              <li className="flex min-w-0 items-center gap-4 px-5 py-4">
+                <span className="text-brand shrink-0 font-mono text-[11px] tracking-[0.12em]">
+                  01
+                </span>
+                <BrewCommand
+                  command="brew tap SergeiNikolenko/burette"
+                  location="install-tap"
+                  compact
+                />
+              </li>
+              <li className="flex min-w-0 items-center gap-4 px-5 py-4">
+                <span className="text-brand shrink-0 font-mono text-[11px] tracking-[0.12em]">
+                  02
+                </span>
+                <BrewCommand
+                  command="brew install --cask burette"
+                  location="install-cask"
+                  compact
+                />
+              </li>
+              <li className="flex min-w-0 items-center gap-4 px-5 py-4">
+                <span className="text-brand shrink-0 font-mono text-[11px] tracking-[0.12em]">
+                  03
+                </span>
+                <span className="text-muted-foreground text-[13px] leading-6">
+                  Open Burette once to register Quick Look.
+                </span>
+              </li>
+            </ol>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );

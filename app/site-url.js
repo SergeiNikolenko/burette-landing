@@ -1,12 +1,10 @@
 // One place decides the public origin, because it has to agree across canonical
 // links, Open Graph tags, robots.txt, sitemap.xml and llms.txt.
 //
-// The project's default Vercel domain (burette-landing.vercel.app) is behind
-// Vercel SSO and answers 302, so pointing metadata at it makes every unfurl empty
-// and advertises gated URLs to crawlers. The alias below is what actually serves
-// the site. Once the preferred domain is public, set NEXT_PUBLIC_SITE_URL and
-// everything here follows without another code change.
-const FALLBACK_SITE_URL = "https://burrete-landing.vercel.app";
+// The correctly spelled production alias is the canonical public origin. Keep
+// the environment override for previewing the same build under another host.
+const FALLBACK_SITE_URL = "https://burette-landing.vercel.app";
+const LEGACY_SITE_URL = "https://burrete-landing.vercel.app";
 
 function normalise(value) {
   // Untrimmed input used to throw at module load (crashing the build with an
@@ -23,6 +21,11 @@ function normalise(value) {
   }
 }
 
-export const SITE_URL =
-  normalise(process.env.NEXT_PUBLIC_SITE_URL) ?? FALLBACK_SITE_URL;
+const configuredSiteUrl = normalise(process.env.NEXT_PUBLIC_SITE_URL);
 
+// A stale Vercel environment value must not resurrect the misspelled origin
+// after its alias has been removed. Other explicit preview origins still work.
+export const SITE_URL =
+  configuredSiteUrl && configuredSiteUrl !== LEGACY_SITE_URL
+    ? configuredSiteUrl
+    : FALLBACK_SITE_URL;

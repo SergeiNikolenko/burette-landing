@@ -212,11 +212,13 @@ function hexToRgb(hex) {
 function isDarkTheme() {
   if (typeof document === "undefined") return false
   const root = document.documentElement
-  if (root.classList.contains("dark")) return true
-  if (root.classList.contains("light")) return false
   const dataTheme = root.getAttribute("data-theme")
   if (dataTheme === "dark") return true
   if (dataTheme === "light") return false
+  // The landing owns data-theme. Nextra may leave a legacy class on <html>, so
+  // only consult classes when the explicit landing theme is absent.
+  if (root.classList.contains("dark")) return true
+  if (root.classList.contains("light")) return false
   return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 

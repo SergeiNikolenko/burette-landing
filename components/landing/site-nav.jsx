@@ -27,7 +27,7 @@ export default function SiteNav() {
 
         <nav
           aria-label="Sections"
-          className="text-muted-foreground hidden items-center gap-4 text-sm min-[721px]:flex min-[1001px]:gap-7"
+          className="text-muted-foreground hidden items-center gap-7 text-sm min-[1001px]:flex"
         >
           {LINKS.map(({ href, label, analytics }) => (
             <a
@@ -51,12 +51,16 @@ export default function SiteNav() {
           <GithubStars />
           <Link
             href="/docs"
-            className="text-muted-foreground hover:text-foreground text-sm transition-colors max-[720px]:inline min-[721px]:hidden"
+            className="text-muted-foreground hover:text-foreground text-sm transition-colors max-[1000px]:inline min-[1001px]:hidden"
           >
             Docs
           </Link>
           <ThemeToggle />
-          <Button asChild size="sm" className="h-9.5 rounded-sm px-4 font-medium">
+          <Button
+            asChild
+            size="sm"
+            className="h-9.5 rounded-sm px-4 font-medium max-[460px]:hidden"
+          >
             <Link
               href="/download?source=nav"
               data-analytics-event="Download"
