@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 
 const CAPABILITIES = [
   "Open structures",
-  "Inspect scene state",
-  "Control Mol*",
-  "Author Stories",
-  "Control Ketcher",
-  "Render reports",
+  "Inspect the workspace",
+  "Focus a ligand",
+  "Create molecular Stories",
+  "Edit molecules",
+  "Create review panels",
 ];
 
 const TOOLS = [
@@ -25,8 +25,8 @@ export default function CodexMcp() {
       id="codex"
       className="border-border bg-card border-y"
     >
-      <div className="mx-auto grid max-w-[1200px] items-center gap-11 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-24">
-        <div>
+      <div className="mx-auto grid min-w-0 grid-cols-1 max-w-[1200px] items-center gap-11 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-24">
+        <div className="min-w-0">
           <div className="mb-3.5 flex flex-wrap items-center gap-3.5">
             <span className="text-mono font-mono text-xs tracking-[0.16em] uppercase">
               Codex plugin · local MCP
@@ -43,7 +43,7 @@ export default function CodexMcp() {
                 className="bg-brand size-[7px] shrink-0 rounded-full shadow-[0_0_0_4px_color-mix(in_srgb,var(--brand)_22%,transparent)]"
                 aria-hidden="true"
               />
-              Skills + typed tools
+              Local app connection
             </Badge>
           </div>
 
@@ -52,10 +52,9 @@ export default function CodexMcp() {
           </h2>
 
           <p className="text-muted-foreground mt-4 max-w-[520px] text-[15px] leading-7 text-pretty">
-            The Burette plugin combines focused workflow skills with a local
-            stdio MCP server. Codex can open a structure, observe the
-            workspace, run allowlisted Mol* actions, author MolViewSpec Stories,
-            control Ketcher, and render bounded review panels.
+            Ask Codex to open a structure, focus a ligand, or edit a molecule
+            in Burette. The plugin connects to the running app through a local
+            MCP server.
           </p>
 
           <ul className="mt-6 flex flex-wrap gap-2.5">
@@ -106,13 +105,13 @@ export default function CodexMcp() {
             on the page and fought the green accent two paragraphs away. Same
             depth, brand hue: one page, one accent. */}
         <div
-          className="bg-muted border-border flex items-center rounded-xl border p-[clamp(22px,3vw,40px)]"
+          className="bg-muted border-border flex min-w-0 items-center rounded-xl border p-[clamp(22px,3vw,40px)]"
           style={{
             backgroundImage:
               "radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--brand) 16%, transparent), transparent 58%), radial-gradient(circle at 86% 86%, color-mix(in srgb, var(--brand) 9%, transparent), transparent 60%)",
           }}
         >
-          <div className="border-input bg-background/85 w-full overflow-hidden rounded-lg border shadow-[var(--shadow-card)]">
+          <div className="border-input bg-background/85 min-w-0 w-full overflow-hidden rounded-lg border shadow-[var(--shadow-card)]">
             <div className="border-border flex items-center justify-between gap-4 border-b px-4 py-3">
               <span className="text-mono font-mono text-[11px] tracking-[0.12em] uppercase">
                 Burette · local MCP
@@ -129,8 +128,8 @@ export default function CodexMcp() {
               </Badge>
             </div>
 
-            <div className="flex flex-col gap-4 p-5">
-              <div className="border-border bg-muted text-foreground rounded-sm border p-4 font-mono text-[13px] leading-[1.75]">
+            <div className="flex min-w-0 flex-col gap-4 p-3 sm:p-5">
+              <div className="border-border bg-muted text-foreground break-words rounded-sm border p-3 sm:p-4 font-mono text-[13px] leading-[1.75]">
                 <div>
                   <span className="text-mono">$</span> bun run install:plugin
                 </div>
@@ -142,7 +141,7 @@ export default function CodexMcp() {
 
               {/* Numbered because the four tools are a call order, not a menu:
                   context first, then open, observe, control. */}
-              <ol className="text-nav grid gap-2 font-mono text-xs">
+              <ol className="text-nav grid gap-2 break-all font-mono text-xs">
                 {TOOLS.map((tool, index) => (
                   <li
                     key={tool}
@@ -165,7 +164,7 @@ export default function CodexMcp() {
                 data-analytics-target="agent-platform"
                 className="text-brand inline-flex items-center gap-1 font-mono text-xs underline-offset-4 hover:underline"
               >
-                Read the MCP contract in the main repository
+                Read the agent integration guide
                 <ArrowUpRight aria-hidden="true" className="size-3.5" />
               </a>
             </div>

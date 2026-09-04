@@ -1,73 +1,25 @@
 import Link from "next/link";
+import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./theme-toggle";
 import GithubStars from "./github-stars";
 
-const LINKS = [
-  { href: "#features", label: "Features" },
-  { href: "#formats", label: "Formats" },
-  { href: "#codex", label: "Codex + MCP" },
-  { href: "#install", label: "Install" },
-  { href: "#faq", label: "FAQ" },
-  {
-    href: "/demo",
-    label: "Demo",
-    analytics: { event: "Online Demo", location: "nav", target: "demo" },
-  },
-  { href: "/docs", label: "Docs" },
-];
-
 export default function SiteNav() {
   return (
-    <header className="border-border/80 bg-background/70 sticky top-0 z-100 border-b backdrop-blur-xl backdrop-saturate-150">
-      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-6 px-5 py-3.5 sm:px-8">
-        <a href="#top" className="text-foreground text-xl font-bold tracking-[-0.02em]">
-          Burette
-        </a>
-
-        <nav
-          aria-label="Sections"
-          className="text-muted-foreground hidden items-center gap-7 text-sm min-[1001px]:flex"
-        >
-          {LINKS.map(({ href, label, analytics }) => (
-            <a
-              key={href}
-              href={href}
-              {...(analytics
-                ? {
-                    "data-analytics-event": analytics.event,
-                    "data-analytics-location": analytics.location,
-                    "data-analytics-target": analytics.target,
-                  }
-                : {})}
-              className="hover:text-foreground transition-colors"
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2.5">
+    <header className="border-border/70 bg-background/85 sticky top-0 z-100 border-b backdrop-blur-xl">
+      <div className="mx-auto flex h-18 max-w-[1200px] items-center justify-between gap-2 px-4 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:gap-5 sm:px-8">
+        <a href="#top" className="text-foreground w-fit text-xl font-semibold tracking-[-0.035em]">Burette</a>
+        <nav aria-label="Project links" className="flex items-center gap-1 sm:gap-3">
+          <Link href="/docs" className="text-muted-foreground hover:text-foreground inline-flex h-11 items-center text-sm transition-colors">Docs</Link>
+          <span aria-hidden="true" className="text-subtle hidden sm:inline">/</span>
           <GithubStars />
-          <Link
-            href="/docs"
-            className="text-muted-foreground hover:text-foreground text-sm transition-colors max-[1000px]:inline min-[1001px]:hidden"
-          >
-            Docs
-          </Link>
+        </nav>
+        <div className="flex items-center justify-end gap-1 sm:gap-3">
           <ThemeToggle />
-          <Button
-            asChild
-            size="sm"
-            className="h-9.5 rounded-sm px-4 font-medium max-[460px]:hidden"
-          >
-            <Link
-              href="/download?source=nav"
-              data-analytics-event="Download"
-              data-analytics-location="nav"
-              data-analytics-target="dmg"
-            >
-              Download
+          <Button asChild size="sm" className="h-10 rounded-full px-3 sm:px-5">
+            <Link href="/download?source=nav" aria-label="Download for macOS" data-analytics-event="Download" data-analytics-location="nav" data-analytics-target="dmg">
+              <Download aria-hidden="true" data-icon="inline-start" />
+              <span className="hidden min-[375px]:inline">Download</span>
             </Link>
           </Button>
         </div>

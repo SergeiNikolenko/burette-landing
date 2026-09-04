@@ -83,12 +83,12 @@ export default function ThemeToggle() {
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
+      className="size-11 rounded-full"
       onClick={toggle}
       aria-label="Toggle color theme"
       aria-pressed={theme === "dark"}
-      className="border-input size-9.5 rounded-sm"
     >
       {/* Both icons render and CSS picks one, so the button is correct on the
           server too and never flashes the wrong glyph before hydration. */}

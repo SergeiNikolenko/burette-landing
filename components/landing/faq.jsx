@@ -14,14 +14,15 @@ const QUESTIONS = [
       <>
         Yes. Burette is free and open source under the MIT license. There is no
         account, no sign-in, no trial and no paid tier. Download the .dmg or run{" "}
-        <code>brew install --cask burette</code> and it works.
+        <code>brew install --cask SergeiNikolenko/burette/burette</code>, then open
+        Burette once to enable Finder previews.
       </>
     ),
   },
   {
     id: "formats",
     q: "Which files can I preview with Space?",
-    a: "Structures (PDB, CIF, mmCIF, SDF, MOL, MOL2, XYZ, GRO, BCIF), multi-frame XYZ and MD trajectories, chemistry tables (SMILES, SMI, CSV, TSV) and QM outputs (CUBE, LOG, OUT, PSI4, VASP) — around twenty extensions, all from Finder with a single keystroke.",
+    a: "Preview molecular structures, molecule collections, chemistry tables, and supported trajectories in Finder. See Supported files for formats and optional renderer requirements.",
   },
   {
     id: "first-launch",
@@ -31,35 +32,33 @@ const QUESTIONS = [
   {
     id: "preview-vs-workspace",
     q: "What is the difference between the preview and the workspace?",
-    a: "Quick Look is for looking: interactive Mol* 3D, trajectory scrubbing, molecule grids, no window management. The workspace is for working: a tab per file, side-by-side comparison, RDKit grid filtering and export, Ketcher sketching, and local xTB or CREST jobs. Same renderers, more room.",
+    a: "Quick Look lets you inspect structures, browse molecule grids, and play supported trajectories from Finder. Open the workspace for file tabs, collection filtering and export, molecule sketching, Chemical Space, and optional local xTB or CREST calculations.",
   },
   {
     id: "privacy",
-    q: "Does anything leave my Mac?",
-    a: "No. Files are parsed and rendered locally and nothing is uploaded. Structures, collections, calculations and exports stay on disk. Burette does not need network access to open a file.",
+    q: "How does Burette handle my files?",
+    a: "Burette parses and renders local files on your Mac. Connected agents and external services follow their own data settings.",
   },
   {
     id: "dependencies",
     q: "Do I need Python, RDKit or Mol* installed first?",
     a: (
       <>
-        No. Mol*, RDKit and Ketcher ship inside the app. Only two things are
-        optional external executables: <code>xyzrender</code> for
-        publication-style artwork, and <code>xtb</code> / <code>crest</code> for
-        local calculations. Burette detects them on your PATH and hides those
-        features when they are absent.
+        No. Mol*, RDKit and Ketcher ship inside the app. Install the optional{" "}
+        <code>xyzrender</code> tool for vector artwork, or <code>xtb</code> and{" "}
+        <code>crest</code> for local calculations.
       </>
     ),
   },
   {
     id: "not",
     q: "Is this a replacement for PyMOL, ChimeraX or Maestro?",
-    a: "No, and it does not try to be. Those are modelling environments for figures and deep analysis. Burette is for the thirty seconds before you open one: confirm what a file is, look at it, compare a few, move on. It is also not a docking suite and not a cloud service.",
+    a: "Burette complements those tools with quick file inspection and a lightweight molecular workspace: preview structures, compare files, browse collections, and explore Chemical Space.",
   },
   {
     id: "agents",
     q: "Can Codex or another agent drive Burette?",
-    a: "Yes. The Burette plugin exposes a local MCP server with typed tools for structures, Mol* scenes, Ketcher edits, molecule collections, trajectories and workflow artifacts. It runs on your machine and talks to the running app — no cloud round-trip.",
+    a: "Yes. Ask an agent to open a structure, focus a ligand, edit a molecule, or inspect a collection. The Burette plugin connects to the running app through a local MCP server. Your agent provider's data settings still apply.",
   },
   {
     id: "requirements",
@@ -96,7 +95,7 @@ export default function Faq() {
             id="faq-title"
             className="text-foreground max-w-[22ch] text-[clamp(26px,3.4vw,38px)] leading-[1.12] font-bold tracking-[-0.03em]"
           >
-            What Burette does on your Mac — and what it never does.
+            Before you install.
           </h2>
         </div>
 

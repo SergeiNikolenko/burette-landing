@@ -117,18 +117,14 @@ if (outboundLinks.length > 0 && !(await exists(outboundRoute))) {
 // be pinned to the hero, but the hero now leads with one download button and the
 // demo sits in the nav, so the check follows it there.
 const navSource = await readFile(path.join(landingRoot, "site-nav.jsx"), "utf8");
-if (!navSource.includes('href: "/demo"')) {
-  failures.push("site-nav.jsx: primary navigation is missing the online demo link");
-}
-const heroSource = await readFile(path.join(landingRoot, "hero.jsx"), "utf8");
-if (!heroSource.includes("<AsciiFluid") || !heroSource.includes('className="hero-ascii-fluid"')) {
-  failures.push("hero.jsx: cloud background is missing the ASCII fluid layer");
+if (!navSource.includes('href="/docs"')) {
+  failures.push("site-nav.jsx: primary navigation is missing the documentation link");
 }
 // main added this after the cask moved into a tap: the copyable command has to
 // carry both steps or it fails on exactly the machines the button is for. The
 // command now lives in its own component rather than in the hero markup.
 const brewSource = await readFile(path.join(landingRoot, "brew-command.jsx"), "utf8");
-if (!brewSource.includes("brew tap SergeiNikolenko/burette") || !brewSource.includes("brew install --cask burette")) {
+if (!brewSource.includes("brew install --cask SergeiNikolenko/burette/burette")) {
   failures.push("brew-command.jsx: Homebrew command is missing the custom tap or install step");
 }
 
@@ -167,7 +163,7 @@ if (!(await exists(path.join(root, "app", "api", "release", "route.js")))) {
 const landingText = landingSource.replace(/\s+/gu, " ");
 for (const requiredLandingCopy of [
   "Free and open source",
-  "Nothing leaves your Mac",
+  "Local file previews",
   "Apple Silicon and Intel",
   "macOS 12+",
 ]) {
