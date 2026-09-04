@@ -19,7 +19,7 @@ export default function SiteNav() {
           <Button asChild size="sm" className="h-10 rounded-full px-3 sm:px-5">
             <Link href="/download?source=nav" aria-label="Download for macOS" data-analytics-event="Download" data-analytics-location="nav" data-analytics-target="dmg">
               <Download aria-hidden="true" data-icon="inline-start" />
-              <span className="hidden min-[400px]:inline">Download</span>
+              <span className="hidden min-[375px]:inline">Download</span>
             </Link>
           </Button>
         </div>

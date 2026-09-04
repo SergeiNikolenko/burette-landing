@@ -23,7 +23,7 @@ export default function Hero() {
           Molecular previews, straight from Finder. A full workspace for
           structures, molecule collections, and the files around them.
         </p>
-        <div className="hero-install mt-8 flex min-w-0 flex-col items-center justify-center gap-3 min-[760px]:flex-row">
+        <div className="hero-install mt-6 sm:mt-8 flex min-w-0 flex-col items-center justify-center gap-3 min-[760px]:flex-row">
           <Button asChild size="lg" className="h-12 rounded-full px-6">
             <Link href="/download?source=hero" data-analytics-event="Download" data-analytics-location="hero" data-analytics-target="dmg">
               <svg
@@ -40,10 +40,10 @@ export default function Hero() {
           <BrewCommand />
         </div>
         <p className="hero-description mx-auto mt-5 flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs leading-5">
-          <span>Free and open source · Local file previews</span><span aria-hidden="true">·</span>
+          <span>Free and open source · Local file previews</span>
           <span>macOS 12+ · Apple Silicon &amp; Intel</span>
         </p>
-        <div className="mx-auto mt-10 max-w-[1080px] text-left sm:mt-12">
+        <div className="mx-auto mt-7 max-w-[1080px] text-left sm:mt-12">
           <ProductShot
             light="/assets/main-light.png"
             dark="/assets/main-dark.png"

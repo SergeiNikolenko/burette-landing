@@ -239,3 +239,5 @@ body:has(.landing) {
 @media (prefers-reduced-motion: reduce) {
   .hero-install [data-slot="button"] { transition: none; }
 }
+
+.hero-sky .hero-ascii-fluid { opacity: .25; }

@@ -59,7 +59,7 @@ export default function ExpandableShot({
             className="bg-card/85 text-nav border-input pointer-events-none absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] opacity-100 backdrop-blur sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100"
           >
             <Maximize2 className="size-3" />
-            Enlarge
+            <span className="hidden sm:inline">Enlarge</span>
           </span>
         )}
       </div>
