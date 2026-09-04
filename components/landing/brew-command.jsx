@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 // The fully qualified name is one line that works from a cold Homebrew, so the
 // chip shows and copies exactly the same string rather than copying a second,
 // hidden `brew tap` line the way the old page did.
-const COMMAND = "brew tap SergeiNikolenko/burette && brew install --cask burette";
+const COMMAND = "brew install --cask SergeiNikolenko/burette/burette";
 
 // The old hero styled this as a copy chip but wired it to href="#install", so
 // the click scrolled instead of copying and the gesture quietly lied. It copies
@@ -78,10 +78,10 @@ export default function BrewCommand({
       data-analytics-location={location}
       data-analytics-target="brew"
       aria-label={accessibleLabel}
-      className="max-w-full"
+      className="h-auto max-w-full py-3 text-left whitespace-normal"
     >
       <span className="text-mono select-none font-mono">$</span>
-      <span className="min-w-0 truncate font-mono text-xs">{command}</span>
+      <span className="min-w-0 break-words font-mono text-xs">{command}</span>
       {copied ? (
         <Check aria-hidden="true" data-icon="inline-end" />
       ) : (

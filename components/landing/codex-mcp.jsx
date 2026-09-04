@@ -25,7 +25,7 @@ export default function CodexMcp() {
       id="codex"
       className="border-border bg-card border-y"
     >
-      <div className="mx-auto grid max-w-[1200px] items-center gap-11 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-24">
+      <div className="mx-auto grid min-w-0 grid-cols-1 max-w-[1200px] items-center gap-11 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-24">
         <div className="min-w-0">
           <div className="mb-3.5 flex flex-wrap items-center gap-3.5">
             <span className="text-mono font-mono text-xs tracking-[0.16em] uppercase">
@@ -43,7 +43,7 @@ export default function CodexMcp() {
                 className="bg-brand size-[7px] shrink-0 rounded-full shadow-[0_0_0_4px_color-mix(in_srgb,var(--brand)_22%,transparent)]"
                 aria-hidden="true"
               />
-              Works with the running app
+              Local app connection
             </Badge>
           </div>
 

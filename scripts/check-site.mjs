@@ -124,7 +124,7 @@ if (!navSource.includes('href: "/demo"')) {
 // carry both steps or it fails on exactly the machines the button is for. The
 // command now lives in its own component rather than in the hero markup.
 const brewSource = await readFile(path.join(landingRoot, "brew-command.jsx"), "utf8");
-if (!brewSource.includes("brew tap SergeiNikolenko/burette") || !brewSource.includes("brew install --cask burette")) {
+if (!brewSource.includes("brew install --cask SergeiNikolenko/burette/burette")) {
   failures.push("brew-command.jsx: Homebrew command is missing the custom tap or install step");
 }
 
