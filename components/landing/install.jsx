@@ -35,7 +35,7 @@ export default function Install() {
           </div>
 
           <h2 className="text-foreground text-[clamp(26px,3.4vw,36px)] leading-[1.1] font-semibold tracking-[-0.03em]">
-            Two lines with Homebrew.
+            One command. Then open Burette.
           </h2>
 
           <p className="text-muted-foreground mt-4 max-w-[440px] text-[15px] leading-7 text-pretty">
@@ -65,7 +65,7 @@ export default function Install() {
           <CardHeader className="border-border border-b py-5">
             <CardTitle>Homebrew</CardTitle>
             <CardDescription>
-              Run both commands, then open Burette once.
+              Install the cask, then register Quick Look on first launch.
             </CardDescription>
           </CardHeader>
           <CardContent className="px-0">
@@ -74,25 +74,16 @@ export default function Install() {
                 <span className="text-brand shrink-0 font-mono text-[11px] tracking-[0.12em]">
                   01
                 </span>
-                <BrewCommand
-                  command="brew tap SergeiNikolenko/burette"
-                  location="install-tap"
-                  compact
-                />
+                <div className="min-w-0 flex-1">
+                  <BrewCommand
+                    command="brew install --cask SergeiNikolenko/burette/burette"
+                    location="install-cask"
+                  />
+                </div>
               </li>
               <li className="flex min-w-0 items-center gap-4 px-5 py-4">
                 <span className="text-brand shrink-0 font-mono text-[11px] tracking-[0.12em]">
                   02
-                </span>
-                <BrewCommand
-                  command="brew install --cask burette"
-                  location="install-cask"
-                  compact
-                />
-              </li>
-              <li className="flex min-w-0 items-center gap-4 px-5 py-4">
-                <span className="text-brand shrink-0 font-mono text-[11px] tracking-[0.12em]">
-                  03
                 </span>
                 <span className="text-muted-foreground text-[13px] leading-6">
                   Open Burette once to register Quick Look.

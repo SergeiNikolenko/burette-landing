@@ -117,8 +117,8 @@ if (outboundLinks.length > 0 && !(await exists(outboundRoute))) {
 // be pinned to the hero, but the hero now leads with one download button and the
 // demo sits in the nav, so the check follows it there.
 const navSource = await readFile(path.join(landingRoot, "site-nav.jsx"), "utf8");
-if (!navSource.includes('href: "/demo"')) {
-  failures.push("site-nav.jsx: primary navigation is missing the online demo link");
+if (!navSource.includes('href="/docs"')) {
+  failures.push("site-nav.jsx: primary navigation is missing the documentation link");
 }
 // main added this after the cask moved into a tap: the copyable command has to
 // carry both steps or it fails on exactly the machines the button is for. The

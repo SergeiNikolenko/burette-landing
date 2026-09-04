@@ -214,3 +214,28 @@ body:has(.landing) {
     scroll-behavior: auto !important;
   }
 }
+
+/* Preserve the sky identity while keeping the installation controls legible
+   over changing cloud positions in either page theme. */
+.hero-sky { background: var(--sky-top); }
+.hero-scrim { background: linear-gradient(180deg, rgb(12 40 77 / .42), rgb(12 40 77 / .22) 42%, transparent 70%); }
+.hero-title { color: #fff; }
+.hero-description { color: rgb(255 255 255 / .92); }
+.hero-install {
+  --invert-bg: #fff;
+  --invert-fg: #101014;
+  --surface-2: #171b24;
+  --text: #f4f4f5;
+  --mono: #a7abb5;
+  --border: rgb(255 255 255 / .22);
+  --brand: #fff;
+}
+.hero-install .brew-command {
+  background-image: linear-gradient(rgb(255 255 255 / .07), transparent);
+  box-shadow: inset 0 1px rgb(255 255 255 / .08), 0 4px 16px rgb(12 40 77 / .12);
+}
+.hero-install [data-slot="button"] { transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease; }
+.hero-install [data-slot="button"]:active { transform: translateY(1px); }
+@media (prefers-reduced-motion: reduce) {
+  .hero-install [data-slot="button"] { transition: none; }
+}

@@ -24,12 +24,6 @@ const INSPECTION_DETAILS = [
   },
 ];
 
-const CHEMICAL_SPACE_CLAIMS = [
-  "Linked molecule selection",
-  "2D and 3D views",
-  "Colour by property",
-];
-
 const CARDS = [
   {
     eyebrow: "Tabbed workspace",
@@ -67,14 +61,22 @@ const CARDS = [
 
 // Text stays first in the DOM in every block - the media is the illustration of
 // a claim, so it should be read second no matter which side it is painted on.
-function Showcase({ eyebrow, title, mediaFirst = false, media, children }) {
+function Showcase({
+  eyebrow,
+  title,
+  mediaFirst = false,
+  fullWidth = false,
+  media,
+  children,
+}) {
   return (
     <div
       className={cn(
         "grid items-center gap-10 lg:gap-14",
-        mediaFirst
-          ? "lg:grid-cols-[1.5fr_0.8fr]"
-          : "lg:grid-cols-[0.8fr_1.5fr]",
+        !fullWidth &&
+          (mediaFirst
+            ? "lg:grid-cols-[1.5fr_0.8fr]"
+            : "lg:grid-cols-[0.8fr_1.5fr]"),
       )}
     >
       <div className={mediaFirst ? "lg:order-2" : undefined}>
@@ -119,27 +121,26 @@ export default function Features() {
 
       <div className="mt-14 flex flex-col gap-16 lg:gap-20">
         <Showcase
-          eyebrow="Structures · workspace"
-          title="Open the file. Keep the context."
+          eyebrow="Finder · Quick Look"
+          title="A closer look, without opening the app."
           media={
             <ProductShot
-              light="/assets/main-light.png"
-              dark="/assets/main-dark.png"
-              alt="A protein structure displayed in the Burette desktop workspace"
-              title="Burette · Structures"
-              meta="Inspect a protein in the desktop workspace"
-              width={1804}
-              height={1262}
+              light="/assets/prev-light.png"
+              dark="/assets/prev-dark.png"
+              alt="A molecular structure displayed in Finder Quick Look with Burette"
+              title="Burette · Quick Look"
+              meta="Select a file in Finder and press Space"
+              width={1742}
+              height={1356}
               sizes="(min-width: 1024px) 620px, 100vw"
             />
           }
         >
           <p className="text-muted-foreground mt-3.5 max-w-[52ch] text-[15.5px] leading-[1.65] text-pretty">
-            Rotate a protein, inspect a ligand, and keep related files in
-            neighbouring tabs. The Inspector stays beside the structure.
+            Select a molecular file in Finder and press Space to preview it.
+            Open the same file in Burette when you want to inspect it alongside
+            related structures, tables, and notes.
           </p>
-
-
         </Showcase>
 
         {/* Five blocks in a row all put the words left and the picture right, so
@@ -171,8 +172,8 @@ export default function Features() {
         <Showcase
           eyebrow="Chemical Space · Apple Silicon Metal"
           title="Map molecular libraries, then act on what you find."
+          fullWidth
           media={
-
             <ProductShot
               light="/assets/chemical-space-light.png"
               dark="/assets/chemical-space-dark.png"
@@ -181,28 +182,15 @@ export default function Features() {
               meta="BACE1 sample · linked map and molecule grid"
               width={2258}
               height={1522}
-              sizes="(min-width: 1024px) 620px, 100vw"
+              sizes="(min-width: 1200px) 1136px, 100vw"
             />
           }
         >
-          <p className="text-muted-foreground mt-3.5 max-w-[52ch] text-[15.5px] leading-[1.65] text-pretty">
+          <p className="text-muted-foreground mt-3.5 max-w-[72ch] text-[15.5px] leading-[1.65] text-pretty">
             Explore a library in 2D or 3D, colour molecules by activity, and
             select points to inspect the matching structures. Review activity
             cliffs with both molecules and their values in view.
           </p>
-
-          <ul className="mt-5 flex flex-wrap gap-2.5">
-            {CHEMICAL_SPACE_CLAIMS.map((claim) => (
-              <li key={claim}>
-                <Badge
-                  variant="outline"
-                  className="border-input text-muted-foreground rounded-full px-3.5 py-1.5 font-mono text-xs font-normal"
-                >
-                  {claim}
-                </Badge>
-              </li>
-            ))}
-          </ul>
           <Link href="/docs/workflows/native-compute" className="text-brand mt-5 inline-flex items-center gap-2 text-sm">
             Chemical Space guide <ArrowRight className="size-4" aria-hidden="true" />
           </Link>

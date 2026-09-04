@@ -78,10 +78,11 @@ export default function BrewCommand({
       data-analytics-location={location}
       data-analytics-target="brew"
       aria-label={accessibleLabel}
-      className="h-auto max-w-full py-3 text-left whitespace-normal"
+      className="brew-command min-h-12 h-auto max-w-full rounded-full border px-4 py-3 text-left whitespace-normal sm:px-5"
     >
       <span className="text-mono select-none font-mono">$</span>
-      <span className="min-w-0 break-words font-mono text-xs">{command}</span>
+      <span className="min-w-0 break-words font-mono text-[11px] min-[375px]:text-xs">{command}</span>
+      <span className="sr-only" role="status" aria-live="polite">{copied ? "Copied to clipboard" : ""}</span>
       {copied ? (
         <Check aria-hidden="true" data-icon="inline-end" />
       ) : (
