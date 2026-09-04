@@ -218,7 +218,7 @@ body:has(.landing) {
 /* Preserve the sky identity while keeping the installation controls legible
    over changing cloud positions in either page theme. */
 .hero-sky { background: var(--sky-top); }
-.hero-scrim { background: linear-gradient(180deg, rgb(12 40 77 / .42), rgb(12 40 77 / .22) 42%, transparent 70%); }
+.hero-scrim { background: linear-gradient(180deg, rgb(6 23 45 / .65) 0, rgb(6 23 45 / .65) 460px, transparent 850px); }
 .hero-title { color: #fff; }
 .hero-description { color: rgb(255 255 255 / .92); }
 .hero-install {
