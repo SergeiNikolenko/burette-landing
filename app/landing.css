@@ -113,6 +113,11 @@
   mix-blend-mode: screen;
 }
 
+body:has(.landing) {
+  margin: 0;
+  background: var(--bg);
+}
+
 @layer base {
   /* Preflight also sets the document font. Without it the landing fell back to
      the browser default, which is a serif - so the whole page rendered in Times

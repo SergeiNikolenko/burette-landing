@@ -26,7 +26,7 @@ export default function CodexMcp() {
       className="border-border bg-card border-y"
     >
       <div className="mx-auto grid max-w-[1200px] items-center gap-11 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-24">
-        <div>
+        <div className="min-w-0">
           <div className="mb-3.5 flex flex-wrap items-center gap-3.5">
             <span className="text-mono font-mono text-xs tracking-[0.16em] uppercase">
               Codex plugin · local MCP
@@ -105,13 +105,13 @@ export default function CodexMcp() {
             on the page and fought the green accent two paragraphs away. Same
             depth, brand hue: one page, one accent. */}
         <div
-          className="bg-muted border-border flex items-center rounded-xl border p-[clamp(22px,3vw,40px)]"
+          className="bg-muted border-border flex min-w-0 items-center rounded-xl border p-[clamp(22px,3vw,40px)]"
           style={{
             backgroundImage:
               "radial-gradient(circle at 18% 12%, color-mix(in srgb, var(--brand) 16%, transparent), transparent 58%), radial-gradient(circle at 86% 86%, color-mix(in srgb, var(--brand) 9%, transparent), transparent 60%)",
           }}
         >
-          <div className="border-input bg-background/85 w-full overflow-hidden rounded-lg border shadow-[var(--shadow-card)]">
+          <div className="border-input bg-background/85 min-w-0 w-full overflow-hidden rounded-lg border shadow-[var(--shadow-card)]">
             <div className="border-border flex items-center justify-between gap-4 border-b px-4 py-3">
               <span className="text-mono font-mono text-[11px] tracking-[0.12em] uppercase">
                 Burette · local MCP
@@ -128,8 +128,8 @@ export default function CodexMcp() {
               </Badge>
             </div>
 
-            <div className="flex flex-col gap-4 p-5">
-              <div className="border-border bg-muted text-foreground rounded-sm border p-4 font-mono text-[13px] leading-[1.75]">
+            <div className="flex min-w-0 flex-col gap-4 p-3 sm:p-5">
+              <div className="border-border bg-muted text-foreground break-words rounded-sm border p-3 sm:p-4 font-mono text-[13px] leading-[1.75]">
                 <div>
                   <span className="text-mono">$</span> bun run install:plugin
                 </div>
@@ -141,7 +141,7 @@ export default function CodexMcp() {
 
               {/* Numbered because the four tools are a call order, not a menu:
                   context first, then open, observe, control. */}
-              <ol className="text-nav grid gap-2 font-mono text-xs">
+              <ol className="text-nav grid gap-2 break-all font-mono text-xs">
                 {TOOLS.map((tool, index) => (
                   <li
                     key={tool}

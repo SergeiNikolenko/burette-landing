@@ -120,7 +120,6 @@ const navSource = await readFile(path.join(landingRoot, "site-nav.jsx"), "utf8")
 if (!navSource.includes('href: "/demo"')) {
   failures.push("site-nav.jsx: primary navigation is missing the online demo link");
 }
-const heroSource = await readFile(path.join(landingRoot, "hero.jsx"), "utf8");
 // main added this after the cask moved into a tap: the copyable command has to
 // carry both steps or it fails on exactly the machines the button is for. The
 // command now lives in its own component rather than in the hero markup.

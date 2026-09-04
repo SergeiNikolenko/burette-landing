@@ -16,7 +16,7 @@ const LINKS = [
 export default function SiteNav() {
   return (
     <header className="border-border/80 bg-background/70 sticky top-0 z-100 border-b backdrop-blur-xl backdrop-saturate-150">
-      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-6 px-5 py-3.5 sm:px-8">
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-3 px-5 py-3.5 sm:px-8">
         <a href="#top" className="text-foreground text-xl font-bold tracking-[-0.02em]">
           Burette
         </a>
@@ -43,7 +43,7 @@ export default function SiteNav() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           <GithubStars />
           <Link
             href="/docs"

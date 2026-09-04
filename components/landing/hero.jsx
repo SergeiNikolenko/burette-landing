@@ -8,10 +8,10 @@ import BrewCommand from "./brew-command";
 export default function Hero() {
   return (
     <section id="top" className="border-border border-b">
-      <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14 lg:py-24">
+      <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14 lg:py-16">
         <div className="min-w-0">
           <p className="text-muted-foreground mb-5 text-sm">Molecular files, at home on your Mac.</p>
-          <h1 className="text-foreground max-w-[14ch] text-[clamp(40px,5vw,68px)] leading-[1.04] font-semibold tracking-[-0.045em] text-balance">
+          <h1 className="text-foreground max-w-[14ch] text-[clamp(40px,4.2vw,62px)] leading-[1.04] font-semibold tracking-[-0.045em] text-balance">
             Press Space. See the molecule.
           </h1>
           <p className="text-muted-foreground mt-6 max-w-[43ch] text-lg leading-8 text-pretty">
