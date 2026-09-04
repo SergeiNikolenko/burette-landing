@@ -30,13 +30,13 @@ export default function ClosingCta() {
           </h2>
 
           <p className="mt-4 max-w-[52ch] text-[clamp(15px,1.5vw,17.5px)] leading-relaxed text-[color-mix(in_srgb,var(--color-primary-foreground)_68%,transparent)]">
-            Install once, and every PDB, CIF, SDF, XYZ, trajectory and chemistry
-            table in Finder opens in interactive 3D. Open the workspace when you
-            need tabs, grids, sketching or local xTB.
+            Preview structures, browse molecule tables, and inspect supported
+            trajectories from Finder. Open the workspace to compare files,
+            sketch molecules, or run optional local calculations.
           </p>
         </div>
 
-        <div className="relative flex shrink-0 flex-col items-start gap-3 sm:items-end">
+        <div className="relative flex min-w-0 max-w-full flex-col items-start gap-3 sm:items-end">
           <Button
             asChild
             size="lg"
@@ -52,8 +52,8 @@ export default function ClosingCta() {
               <ArrowRight aria-hidden="true" />
             </Link>
           </Button>
-          <span className="font-mono text-[12.5px] text-[color-mix(in_srgb,var(--color-primary-foreground)_52%,transparent)]">
-            $ brew install --cask burette
+          <span className="max-w-full break-all font-mono text-[12.5px] text-[color-mix(in_srgb,var(--color-primary-foreground)_52%,transparent)]">
+            $ brew install --cask SergeiNikolenko/burette/burette
           </span>
         </div>
       </div>

@@ -5,10 +5,6 @@ import GithubStars from "./github-stars";
 
 const LINKS = [
   { href: "#features", label: "Features" },
-  { href: "#formats", label: "Formats" },
-  { href: "#codex", label: "Codex + MCP" },
-  { href: "#install", label: "Install" },
-  { href: "#faq", label: "FAQ" },
   {
     href: "/demo",
     label: "Demo",

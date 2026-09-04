@@ -26,7 +26,6 @@ export default function ExpandableShot({
   meta,
   width,
   height,
-  ratio = "16 / 9",
   priority = false,
   sizes,
   className,
@@ -40,7 +39,7 @@ export default function ExpandableShot({
         className,
       )}
     >
-      <div className="relative overflow-hidden" style={{ aspectRatio: ratio }}>
+      <div className="relative overflow-hidden" >
         <ThemedImage
           light={light}
           dark={dark}
@@ -49,7 +48,7 @@ export default function ExpandableShot({
           height={height}
           priority={priority}
           sizes={sizes}
-          className="size-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+          className="h-auto w-full"
         />
         {/* Cards without a title bar have nowhere to put the affordance, so it
             floats over the image instead - otherwise nothing tells you the
@@ -57,13 +56,19 @@ export default function ExpandableShot({
         {(
           <span
             aria-hidden="true"
-            className="bg-card/85 text-nav border-input pointer-events-none absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] opacity-0 backdrop-blur transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+            className="bg-card/85 text-nav border-input pointer-events-none absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] opacity-100 backdrop-blur sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100"
           >
             <Maximize2 className="size-3" />
             Enlarge
           </span>
         )}
       </div>
+      {title ? (
+        <figcaption className="border-border bg-card flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t px-4 py-3 text-xs">
+          <span className="text-foreground font-medium">{title}</span>
+          {meta ? <span className="text-muted-foreground">{meta}</span> : null}
+        </figcaption>
+      ) : null}
     </figure>
   );
 

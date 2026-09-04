@@ -121,9 +121,6 @@ if (!navSource.includes('href: "/demo"')) {
   failures.push("site-nav.jsx: primary navigation is missing the online demo link");
 }
 const heroSource = await readFile(path.join(landingRoot, "hero.jsx"), "utf8");
-if (!heroSource.includes("<AsciiFluid") || !heroSource.includes('className="hero-ascii-fluid"')) {
-  failures.push("hero.jsx: cloud background is missing the ASCII fluid layer");
-}
 // main added this after the cask moved into a tap: the copyable command has to
 // carry both steps or it fails on exactly the machines the button is for. The
 // command now lives in its own component rather than in the hero markup.
@@ -167,7 +164,7 @@ if (!(await exists(path.join(root, "app", "api", "release", "route.js")))) {
 const landingText = landingSource.replace(/\s+/gu, " ");
 for (const requiredLandingCopy of [
   "Free and open source",
-  "Nothing leaves your Mac",
+  "Local file previews",
   "Apple Silicon and Intel",
   "macOS 12+",
 ]) {

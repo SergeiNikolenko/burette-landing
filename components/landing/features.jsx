@@ -13,31 +13,23 @@ import { cn } from "@/lib/utils";
 import ProductShot from "./product-shot";
 import LazyVideo from "./lazy-video";
 
-// Lasso selection and trajectory playback used to be showcase chapters of their
-// own, with the same weight as "here is the workspace". They are neither: both
-// are things you do to a structure that is already on screen. So they keep their
-// screenshots - claims about what you can see should be shown - but as a pair of
-// evidence tiles under the 3D block rather than as two more headlines.
 const INSPECTION_DETAILS = [
   {
     label: "Viewport selection",
-    body: "Draw a lasso across the viewport to select and isolate residues and ligands directly in 3D. Pick a binding pocket without hunting a sequence list. The selection carries into measurements, isolation, and export.",
+    body: "Select residues and ligands directly in the viewport, then isolate the selection for a closer look.",
   },
   {
     label: "Mol* trajectories",
-    body: "Multi-frame XYZ and MD trajectories play back in place. Prev / Next / All and a frame counter drive the native Mol* trajectory controls, so a run reads like a short clip.",
+    body: "Play supported trajectories, step through frames, and inspect how the structure changes.",
   },
 ];
 
 const CHEMICAL_SPACE_CLAIMS = [
-  "10,000-molecule benchmark",
-  "2D + 3D",
-  "CPU-checked Metal results",
+  "Linked molecule selection",
+  "2D and 3D views",
+  "Colour by property",
 ];
 
-// The old grid asked for three columns and supplied five cards, so the bottom
-// row always ended on a third of visible nothing. Six cards over two columns
-// fill every row and give each screenshot twice the width to be read at.
 const CARDS = [
   {
     eyebrow: "Tabbed workspace",
@@ -50,15 +42,15 @@ const CARDS = [
   {
     eyebrow: "Documents + preview",
     title: "Office files, code, and logs beside structures",
-    body: "Use Retab-based viewers for PDF, DOCX, XLSX, PPTX, CSV, images, markdown, code, text, and email artifacts.",
+    body: "Read documents, tables, images, and logs alongside molecular files.",
     light: "/assets/text-pic-light.png",
     dark: "/assets/text-pic-dark.png",
     alt: "A text file open beside the structure it describes",
   },
   {
     eyebrow: "xyzrender · single",
-    title: "Publication-ready SVG artwork",
-    body: "Render single-frame XYZ and QM outputs (CUBE, LOG, PSI4, VASP…) as clean, depth-cued vector figures for slides and papers.",
+    title: "Export molecular figures as SVG",
+    body: "Create vector artwork from supported molecular files with the optional xyzrender tool.",
     light: "/assets/xyzr-light.png",
     dark: "/assets/xyzr-dark.png",
     alt: "A single molecule drawn by xyzrender as a vector figure",
@@ -81,8 +73,8 @@ function Showcase({ eyebrow, title, mediaFirst = false, media, children }) {
       className={cn(
         "grid items-center gap-10 lg:gap-14",
         mediaFirst
-          ? "lg:grid-cols-[1.15fr_1fr]"
-          : "lg:grid-cols-[1fr_1.15fr]",
+          ? "lg:grid-cols-[1.5fr_0.8fr]"
+          : "lg:grid-cols-[0.8fr_1.5fr]",
       )}
     >
       <div className={mediaFirst ? "lg:order-2" : undefined}>
@@ -121,35 +113,103 @@ export default function Features() {
       </h2>
 
       <p className="text-muted-foreground mt-4 max-w-[62ch] text-[15px] leading-7 text-pretty">
-        Same renderers, more room: a tab per file, molecule grids you can filter
-        and export, a chemical space map built on the Mac's own GPU, and local
-        calculations that never ask for an account.
+        Keep structures, molecule tables, and notes together. Move from a
+        quick preview to a closer look at the files you are working with.
       </p>
 
       <div className="mt-14 flex flex-col gap-16 lg:gap-20">
         <Showcase
-          eyebrow="Finder Quick Look · Mol* 3D"
-          title="Inspect a structure before opening an app."
+          eyebrow="Structures · workspace"
+          title="Open the file. Keep the context."
           media={
             <ProductShot
-              light="/assets/prev-light.png"
-              dark="/assets/prev-dark.png"
-              alt="A Burette Quick Look preview floating over the macOS desktop with no app window open"
-              title="Finder · Quick Look"
-              meta="Space, no app window"
-              width={1742}
-              height={1356}
-              ratio="1.28 / 1"
+              light="/assets/main-light.png"
+              dark="/assets/main-dark.png"
+              alt="A protein structure displayed in the Burette desktop workspace"
+              title="Burette · Structures"
+              meta="Inspect a protein in the desktop workspace"
+              width={1804}
+              height={1262}
               sizes="(min-width: 1024px) 620px, 100vw"
             />
           }
         >
           <p className="text-muted-foreground mt-3.5 max-w-[52ch] text-[15.5px] leading-[1.65] text-pretty">
-            Finder previews open in interactive 3D: chains, residues, ligands,
-            and surfaces are visible before you decide what to do with the file.
+            Rotate a protein, inspect a ligand, and keep related files in
+            neighbouring tabs. The Inspector stays beside the structure.
           </p>
 
-          <dl className="mt-7 grid gap-6 sm:grid-cols-2">
+
+        </Showcase>
+
+        {/* Five blocks in a row all put the words left and the picture right, so
+            the eye stopped registering the boundary between them. Alternating
+            the media gives the second block a start of its own. */}
+        <Showcase
+          eyebrow="Collections · DataWarrior · reactions"
+          title="Triage whole libraries as a grid."
+          mediaFirst
+          media={
+            <ProductShot
+              light="/assets/grid-table-light.png"
+              dark="/assets/grid-table-dark.png"
+              alt="RDKit molecule grid with structure cards and property columns"
+              title="Burette · Collections"
+              meta="Structures and properties in one view"
+              width={1804}
+              height={1262}
+              sizes="(min-width: 1024px) 620px, 100vw"
+            />
+          }
+        >
+          <p className="text-muted-foreground mt-3.5 max-w-[52ch] text-[15.5px] leading-[1.65] text-pretty">
+            Browse structures alongside their properties. Filter the collection,
+            inspect a molecule, and export the rows you want to keep.
+          </p>
+        </Showcase>
+
+        <Showcase
+          eyebrow="Chemical Space · Apple Silicon Metal"
+          title="Map molecular libraries, then act on what you find."
+          media={
+
+            <ProductShot
+              light="/assets/chemical-space-light.png"
+              dark="/assets/chemical-space-dark.png"
+              alt="Burette on the desktop with a molecule card grid, the Chemical Space panel showing a 3D UMAP of 1,513 molecules computed with Metal, and the molecular inspector open on one hit"
+              title="Burette · Chemical Space"
+              meta="BACE1 sample · linked map and molecule grid"
+              width={2258}
+              height={1522}
+              sizes="(min-width: 1024px) 620px, 100vw"
+            />
+          }
+        >
+          <p className="text-muted-foreground mt-3.5 max-w-[52ch] text-[15.5px] leading-[1.65] text-pretty">
+            Explore a library in 2D or 3D, colour molecules by activity, and
+            select points to inspect the matching structures. Review activity
+            cliffs with both molecules and their values in view.
+          </p>
+
+          <ul className="mt-5 flex flex-wrap gap-2.5">
+            {CHEMICAL_SPACE_CLAIMS.map((claim) => (
+              <li key={claim}>
+                <Badge
+                  variant="outline"
+                  className="border-input text-muted-foreground rounded-full px-3.5 py-1.5 font-mono text-xs font-normal"
+                >
+                  {claim}
+                </Badge>
+              </li>
+            ))}
+          </ul>
+          <Link href="/docs/workflows/native-compute" className="text-brand mt-5 inline-flex items-center gap-2 text-sm">
+            Chemical Space guide <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
+        </Showcase>
+      </div>
+
+          <dl className="mt-16 grid gap-8 sm:grid-cols-2">
             {INSPECTION_DETAILS.map(({ label, body }, index) => (
               <div key={label}>
                 {index === 0 ? (
@@ -168,8 +228,7 @@ export default function Features() {
                     alt="Mol* trajectory playback with frame controls and a frame counter"
                     width={1804}
                     height={1262}
-                    ratio="1.43 / 1"
-                    sizes="(min-width: 640px) 300px, 100vw"
+                    sizes="(min-width: 640px) 560px, 100vw"
                     className="mb-3.5 rounded-md"
                   />
                 )}
@@ -182,77 +241,6 @@ export default function Features() {
               </div>
             ))}
           </dl>
-        </Showcase>
-
-        {/* Five blocks in a row all put the words left and the picture right, so
-            the eye stopped registering the boundary between them. Alternating
-            the media gives the second block a start of its own. */}
-        <Showcase
-          eyebrow="Collections · DataWarrior · reactions"
-          title="Triage whole libraries as a grid."
-          mediaFirst
-          media={
-            <ProductShot
-              light="/assets/grid-table-light.png"
-              dark="/assets/grid-table-dark.png"
-              alt="RDKit molecule grid with structure cards and property columns"
-              width={1804}
-              height={1262}
-              ratio="1.43 / 1"
-              sizes="(min-width: 1024px) 620px, 100vw"
-            />
-          }
-        >
-          <p className="text-muted-foreground mt-3.5 max-w-[52ch] text-[15.5px] leading-[1.65] text-pretty">
-            Open SDF, SMILES, CSV, TSV, DataWarrior, RXN, or RDF as a searchable
-            grid: filter, edit, analyze, compare reactions, map Chemical Space,
-            review activity cliffs, and export.
-          </p>
-        </Showcase>
-
-        <Showcase
-          eyebrow="Chemical Space · Apple Silicon Metal"
-          title="Map molecular libraries, then act on what you find."
-          media={
-            /* This block used to be a hand-drawn SVG of invented nodes and
-               edges sitting directly under the claims "1,513 molecules · Metal"
-               and "10,000-molecule benchmark". Backing a specific number with a
-               drawing is the one thing this audience will not forgive, so it is
-               the real window instead. */
-            <ProductShot
-              light="/assets/chemical-space-light.png"
-              dark="/assets/chemical-space-dark.png"
-              alt="Burette on the desktop with a molecule card grid, the Chemical Space panel showing a 3D UMAP of 1,513 molecules computed with Metal, and the molecular inspector open on one hit"
-              title="Burette · Chemical Space"
-              meta="bace1_sar.csv · 1,513 molecules · Metal"
-              width={2258}
-              height={1522}
-              ratio="1.48 / 1"
-              sizes="(min-width: 1024px) 620px, 100vw"
-            />
-          }
-        >
-          <p className="text-muted-foreground mt-3.5 max-w-[52ch] text-[15.5px] leading-[1.65] text-pretty">
-            Build an exact Metal Tanimoto neighbour graph, explore UMAP or TMAP
-            views, cluster with Butina, colour by activity, and surface activity
-            cliffs. Selections stay linked to the molecule grid for review and
-            export.
-          </p>
-
-          <ul className="mt-5 flex flex-wrap gap-2.5">
-            {CHEMICAL_SPACE_CLAIMS.map((claim) => (
-              <li key={claim}>
-                <Badge
-                  variant="outline"
-                  className="border-input text-muted-foreground rounded-full px-3.5 py-1.5 font-mono text-xs font-normal"
-                >
-                  {claim}
-                </Badge>
-              </li>
-            ))}
-          </ul>
-        </Showcase>
-      </div>
 
       <div className="mt-16 grid gap-[18px] sm:grid-cols-2 lg:mt-20">
         {CARDS.map(({ eyebrow, title, body, light, dark, alt }) => (
@@ -263,7 +251,6 @@ export default function Features() {
               alt={alt}
               width={1804}
               height={1262}
-              ratio="16 / 10"
               sizes="(min-width: 1200px) 580px, (min-width: 640px) 50vw, 100vw"
               className="rounded-none border-0"
             />
@@ -291,11 +278,11 @@ export default function Features() {
           </CardHeader>
           <CardContent className="pt-2">
             <CardDescription className="text-[13.5px] leading-[1.55]">
-              Draw a molecule, then send it to Mol*, xyzrender, or a grid from
-              the command palette.
+              Draw or edit a molecule, then open it in a viewer or export the
+              structure for the next step.
             </CardDescription>
             <ul className="mt-3.5 flex flex-wrap gap-2">
-              {["Ketcher", "⌘P", "iPhone app"].map((item) => (
+              {["Ketcher", "⌘P"].map((item) => (
                 <li key={item}>
                   <Badge
                     variant="outline"
@@ -309,31 +296,30 @@ export default function Features() {
           </CardContent>
         </Card>
 
-        {/* The xTB card used to sit alone in a full-width strip below the grid,
-            which made the one card that is also a link the easiest to miss. */}
+
         <Link
-          href="/docs/workflows/native-compute"
+          href="/docs/workflows/xtb"
           data-analytics-event="Docs Link"
           data-analytics-location="features"
-          data-analytics-target="native-compute"
+          data-analytics-target="xtb"
           className="group"
         >
           <Card className="hover:border-input h-full justify-center gap-0 py-6 transition-colors">
             <CardHeader className="gap-2">
               <span className="text-mono font-mono text-[11px] tracking-[0.13em] uppercase">
-                Native compute · Chemical Space
+                Optional local calculations
               </span>
               <CardTitle className="text-[17px]">
-                Cluster, search, embed, and review activity cliffs
+                Run xTB and CREST from the workspace
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-2">
               <CardDescription className="text-[13.5px] leading-[1.55]">
-                Run provenance-aware Apple Silicon jobs, then explore linked
-                2D/3D maps without installing an external engine.
+                Configure a local job and review its reports and output files.
+                Requires the optional xTB or CREST engine.
               </CardDescription>
               <span className="text-brand mt-3.5 inline-flex items-center gap-1.5 font-mono text-xs">
-                Native compute guide
+                Local calculation guide
                 <ArrowRight
                   aria-hidden="true"
                   className="size-3.5 transition-transform group-hover:translate-x-0.5"

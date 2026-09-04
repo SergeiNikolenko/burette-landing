@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 
 const CAPABILITIES = [
   "Open structures",
-  "Inspect scene state",
-  "Control Mol*",
-  "Author Stories",
-  "Control Ketcher",
-  "Render reports",
+  "Inspect the workspace",
+  "Focus a ligand",
+  "Create molecular Stories",
+  "Edit molecules",
+  "Create review panels",
 ];
 
 const TOOLS = [
@@ -43,7 +43,7 @@ export default function CodexMcp() {
                 className="bg-brand size-[7px] shrink-0 rounded-full shadow-[0_0_0_4px_color-mix(in_srgb,var(--brand)_22%,transparent)]"
                 aria-hidden="true"
               />
-              Skills + typed tools
+              Works with the running app
             </Badge>
           </div>
 
@@ -52,10 +52,9 @@ export default function CodexMcp() {
           </h2>
 
           <p className="text-muted-foreground mt-4 max-w-[520px] text-[15px] leading-7 text-pretty">
-            The Burette plugin combines focused workflow skills with a local
-            stdio MCP server. Codex can open a structure, observe the
-            workspace, run allowlisted Mol* actions, author MolViewSpec Stories,
-            control Ketcher, and render bounded review panels.
+            Ask Codex to open a structure, focus a ligand, or edit a molecule
+            in Burette. The plugin connects to the running app through a local
+            MCP server.
           </p>
 
           <ul className="mt-6 flex flex-wrap gap-2.5">
@@ -165,7 +164,7 @@ export default function CodexMcp() {
                 data-analytics-target="agent-platform"
                 className="text-brand inline-flex items-center gap-1 font-mono text-xs underline-offset-4 hover:underline"
               >
-                Read the MCP contract in the main repository
+                Read the agent integration guide
                 <ArrowUpRight aria-hidden="true" className="size-3.5" />
               </a>
             </div>
