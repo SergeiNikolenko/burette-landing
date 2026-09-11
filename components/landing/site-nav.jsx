@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./theme-toggle";
+import MobileNav from "./mobile-nav";
 
 export default function SiteNav() {
   return (
@@ -28,6 +29,7 @@ export default function SiteNav() {
               Download
             </Link>
           </Button>
+          <MobileNav />
         </div>
       </div>
     </header>

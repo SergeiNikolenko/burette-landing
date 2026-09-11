@@ -30,7 +30,7 @@ html[data-theme="dark"]:has(.landing) {
   color-scheme: dark;
 }
 .landing .page-width {
-  width: min(1120px, calc(100% - 80px));
+  width: min(1200px, calc(100% - 96px));
   margin-inline: auto;
 }
 .landing main section[id] {
@@ -83,7 +83,8 @@ html[data-theme="dark"]:has(.landing) {
   border-bottom: 1px solid var(--border);
 }
 .landing .site-nav {
-  min-height: 76px;
+  width: calc(100% - 64px);
+  min-height: 64px;
   display: flex;
   gap: 28px;
   align-items: center;
@@ -130,7 +131,7 @@ html[data-theme="dark"]:has(.landing) {
 .landing .hero-section {
   position: relative;
   isolation: isolate;
-  padding-top: 94px;
+  padding-top: 80px;
 }
 .landing .hero-sky {
   position: absolute;
@@ -153,7 +154,7 @@ html[data-theme="dark"]:has(.landing) {
   padding-inline: 24px;
 }
 .landing .hero-copy h1 {
-  font-size: clamp(50px, 7.1vw, 92px);
+  font-size: clamp(48px, 5.3vw, 72px);
   line-height: 1.03;
   letter-spacing: -0.065em;
   font-weight: 500;
@@ -179,10 +180,11 @@ html[data-theme="dark"]:has(.landing) {
   font-size: 13px;
 }
 .landing .hero-stage {
-  margin-top: 64px;
+  width: min(1260px, calc(100% - 64px));
+  margin-top: 52px;
 }
 .landing .section-intro {
-  padding-block: 132px 56px;
+  padding-block: 112px 40px;
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   align-items: center;
@@ -190,7 +192,7 @@ html[data-theme="dark"]:has(.landing) {
 }
 .landing .section-intro h2,
 .landing .closing-section h2 {
-  font-size: clamp(42px, 5.8vw, 72px);
+  font-size: clamp(36px, 4vw, 54px);
   line-height: 1.06;
   letter-spacing: -0.055em;
   font-weight: 500;
@@ -198,13 +200,42 @@ html[data-theme="dark"]:has(.landing) {
 .landing .intro-copy > p {
   margin: 28px 0 0;
   max-width: 46ch;
-  font-size: 19px;
+  font-size: 18px;
   line-height: 1.65;
   color: var(--body);
   text-wrap: pretty;
 }
 .landing .product-chapter {
-  padding-top: 72px;
+  padding-top: 96px;
+}
+.landing .chapter-split {
+  display: grid;
+  grid-template-columns: 0.8fr 1.4fr;
+  gap: 64px;
+  align-items: center;
+}
+.landing .chapter-split .chapter-heading {
+  display: block;
+  margin: 0;
+}
+.landing .chapter-split .chapter-heading > div + div {
+  margin-top: 24px;
+}
+.landing .chapter-split h3 {
+  font-size: clamp(32px, 3vw, 42px);
+}
+.landing .chapter-reverse {
+  grid-template-columns: 1.4fr 0.8fr;
+}
+.landing .chapter-reverse .media-stage {
+  grid-column: 1;
+  grid-row: 1;
+}
+.landing .chapter-reverse .chapter-heading {
+  grid-column: 2;
+}
+.landing .mobile-nav-trigger {
+  display: none;
 }
 .landing .chapter-heading {
   display: grid;
@@ -393,25 +424,33 @@ html[data-theme="dark"]:has(.landing) {
     display: none;
   }
 }
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .landing .page-width {
     width: calc(100% - 48px);
   }
   .landing .site-nav {
-    flex-wrap: wrap;
-    gap: 0;
-    padding-top: 12px;
-    padding-bottom: 4px;
+    width: calc(100% - 40px);
+    gap: 12px;
   }
   .landing .section-nav {
-    order: 3;
-    width: 100%;
-    justify-content: space-between;
-    gap: 16px;
-    margin-top: 4px;
+    display: none;
+  }
+  .landing .mobile-nav-trigger {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+  }
+  .landing .chapter-split {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .landing .chapter-reverse .media-stage,
+  .landing .chapter-reverse .chapter-heading {
+    grid-column: auto;
+    grid-row: auto;
   }
   .landing .hero-section {
-    padding-top: 64px;
+    padding-top: 52px;
   }
   .landing .hero-stage {
     margin-top: 44px;
@@ -430,7 +469,7 @@ html[data-theme="dark"]:has(.landing) {
     font-size: 17px;
   }
   .landing .product-chapter {
-    padding-top: 48px;
+    padding-top: 72px;
   }
   .landing .detail-studies h3 {
     font-size: 22px;
@@ -452,7 +491,7 @@ html[data-theme="dark"]:has(.landing) {
     width: calc(100% - 40px);
   }
   .landing .hero-copy h1 {
-    font-size: clamp(42px, 11vw, 56px);
+    font-size: clamp(40px, 10.5vw, 52px);
   }
   .landing .hero-actions {
     flex-direction: column;
@@ -474,6 +513,30 @@ html[data-theme="dark"]:has(.landing) {
   }
   .landing .install-commands {
     padding-inline: 16px;
+  }
+}
+
+.landing-menu {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 80px #0002;
+  width: calc(100% - 32px);
+  max-width: 480px;
+  border-radius: 20px;
+}
+.landing-menu nav {
+  display: grid;
+  gap: 4px;
+  padding-top: 12px;
+}
+.landing-menu nav a {
+  padding: 12px 0;
+  font-size: 20px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-menu {
+    animation: none;
   }
 }
 

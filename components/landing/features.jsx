@@ -33,7 +33,7 @@ export default function Features() {
           sizes="(min-width: 900px) 600px, 90vw"
         />
       </div>
-      <article className="product-chapter page-width">
+      <article className="product-chapter chapter-split page-width">
         <div className="chapter-heading">
           <div>
             <p className="section-label">Finder Quick Look</p>
@@ -65,7 +65,7 @@ export default function Features() {
           />
         </div>
       </article>
-      <article className="product-chapter page-width">
+      <article className="product-chapter chapter-wide page-width">
         <div className="chapter-heading">
           <div>
             <p className="section-label">Molecular collections</p>
@@ -98,7 +98,7 @@ export default function Features() {
           />
         </div>
       </article>
-      <article className="product-chapter page-width">
+      <article className="product-chapter chapter-split chapter-reverse page-width">
         <div className="chapter-heading">
           <div>
             <p className="section-label">Chemical Space</p>
