@@ -36,8 +36,9 @@ belongs to large surfaces and scientific imagery rather than decorative badges. 
 control is text-only. Format groups are simple rows rather than nested cards.
 
 At narrow widths, navigation forms a second row, stories stack, and supporting
-gallery cards keep a peek of the next slide. Screenshots retain an accessible enlargement
-dialog with a close button, without a visible title strip or Enlarge badge. The theme button changes colours directly without a reveal animation.
+gallery cards keep a peek of the next slide. Main product screenshots retain an accessible enlargement
+dialog with a close button, without a visible title strip or Enlarge badge. The introductory
+workspace illustration and gallery images are not clickable. The theme button changes colours directly without a reveal animation.
 The existing video controls and reduced-motion behaviour remain available.
 
 The existing cloud renderer stops when hidden and respects reduced motion.
@@ -46,3 +47,20 @@ screenshot provisionally; the owner will supply replacement screenshots.
 Standalone screenshot captions and explanatory modal headers are omitted.
 The footer wordmark uses gentle positive tracking without kerning and stays fully visible.
 Demo, documentation, plugin setup, downloads, and installation remain reachable.
+
+## Interactive demonstration direction
+
+The existing web demo is the source for a future live landing scene. Activate it
+through an explicit control and keep the introductory illustration non-interactive.
+The current public-plugin CSP permits the canonical landing origin and localhost,
+but not arbitrary branch previews. The desktop runtime's existing `embed=hero`
+mode locks clicks in both the app shell and viewer; use a distinct interactive
+mode if a focused live showcase is introduced. Keep the mode and origin changes
+in the owning Burette repository with its contract validation.
+
+Use real bundled structures and trajectories. A small typed parent/frame bridge
+should report readiness and errors, select permitted examples, and pause offscreen
+work while preserving scene state. On mobile, design a focused viewer instead of
+scaling down the complete desktop workspace. A prototype is not acceptance of the
+final integration; validate loading, interaction, scroll ownership, and recovery
+inside the actual permitted deployment origin.
