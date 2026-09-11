@@ -5,10 +5,26 @@ body:has(.landing) {
   background: var(--bg);
 }
 html:has(.landing) {
+  --bg: #faf9f6;
+  --surface: #fffdfa;
+  --surface-2: #f0efea;
+  --border: #e9e7e0;
+  --molecular-wash: #dcece3;
+  --molecular-stage: #ccdfd3;
+  --molecular-panel: #eaf0e9;
+  --molecular-ink: #295b48;
   scroll-padding-top: 0;
   color-scheme: light;
 }
 html[data-theme="dark"]:has(.landing) {
+  --bg: #101613;
+  --surface: #171f1a;
+  --surface-2: #1e2822;
+  --border: #2a352e;
+  --molecular-wash: #233e30;
+  --molecular-stage: #304f3d;
+  --molecular-panel: #1a2920;
+  --molecular-ink: #abd7bd;
   color-scheme: dark;
 }
 .landing .page-width {
@@ -111,6 +127,12 @@ html[data-theme="dark"]:has(.landing) {
 }
 .landing .hero-section {
   padding-top: 94px;
+  background: linear-gradient(
+    155deg,
+    var(--bg) 4%,
+    var(--molecular-wash) 62%,
+    var(--bg) 100%
+  );
 }
 .landing .hero-copy {
   text-align: center;
@@ -145,7 +167,7 @@ html[data-theme="dark"]:has(.landing) {
 .landing .hero-stage {
   margin-top: 64px;
   padding: 28px 28px 0;
-  background: var(--surface-2);
+  background: var(--molecular-stage);
   border-radius: 24px;
   overflow: hidden;
 }
@@ -206,6 +228,7 @@ html[data-theme="dark"]:has(.landing) {
   text-wrap: pretty;
 }
 .landing .text-link {
+  color: var(--molecular-ink);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -219,7 +242,7 @@ html[data-theme="dark"]:has(.landing) {
   text-underline-offset: 4px;
 }
 .landing .media-stage {
-  background: var(--surface-2);
+  background: var(--molecular-panel);
   padding: 40px 40px 0;
   border-radius: 20px;
   overflow: hidden;
@@ -278,7 +301,7 @@ html[data-theme="dark"]:has(.landing) {
 }
 .landing .agent-section {
   padding-block: 96px;
-  background: var(--surface-2);
+  background: var(--molecular-panel);
 }
 .landing .agent-section .chapter-heading {
   margin-bottom: 0;
@@ -443,4 +466,16 @@ html[data-theme="dark"]:has(.landing) {
   .landing .install-commands {
     padding-inline: 16px;
   }
+}
+
+/* The enlarged screenshot has no title strip or overlay label. */
+.screenshot-dialog > [data-slot="dialog-close"] {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text);
 }

@@ -27,12 +27,14 @@ Styles are scoped to `.landing` to preserve the Nextra documentation layout.
 
 Use ordinary sans-serif labels. Reserve monospace for commands and file data.
 Do not put explanatory prose in badges or add status dots to static statements.
-Use colour in molecular imagery, with neutral UI around it. The main download
+Use a warm off-white page and broad, pale sage backgrounds around molecular
+imagery. Dark mode uses deep green surfaces. Keep controls restrained; colour
+belongs to large surfaces and scientific imagery rather than decorative badges. The main download
 control is text-only. Format groups are simple rows rather than nested cards.
 
 At narrow widths, navigation forms a second row, stories stack, and supporting
 media becomes a single column. Screenshots retain an accessible enlargement
-dialog. The theme button changes colours directly without a reveal animation.
+dialog with a close button, without a visible title strip or Enlarge badge. The theme button changes colours directly without a reveal animation.
 The existing video controls and reduced-motion behaviour remain available.
 
 The removed cloud and ASCII components are no longer imported by the landing.
