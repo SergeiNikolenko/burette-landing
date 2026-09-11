@@ -33,9 +33,6 @@ export default function CodexMcp() {
               Set up the plugin <span aria-hidden="true">↗</span>
             </Link>
           </Button>
-          <p className="agent-detail">
-            Local plugin and hosted MCP setup are covered in the guide.
-          </p>
         </div>
       </div>
     </section>

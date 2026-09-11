@@ -1,10 +1,14 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ProductShot from "./product-shot";
+import SkyCanvas from "./sky-canvas";
 
 export default function Hero() {
   return (
     <section id="top" className="hero-section">
+      <div className="hero-sky" aria-hidden="true">
+        <SkyCanvas className="hero-clouds" />
+      </div>
       <div className="hero-copy">
         <p className="section-label">Molecular workspace for Mac</p>
         <h1>
@@ -51,10 +55,6 @@ export default function Hero() {
           sizes="(min-width: 1200px) 1120px, 94vw"
         />
       </div>
-      <p className="hero-caption">
-        From a quick look in Finder to a workspace for structures, collections,
-        and calculations.
-      </p>
     </section>
   );
 }

@@ -5,26 +5,28 @@ body:has(.landing) {
   background: var(--bg);
 }
 html:has(.landing) {
-  --bg: #faf9f6;
-  --surface: #fffdfa;
-  --surface-2: #f0efea;
-  --border: #e9e7e0;
-  --molecular-wash: #dcece3;
-  --molecular-stage: #ccdfd3;
-  --molecular-panel: #eaf0e9;
-  --molecular-ink: #295b48;
+  --bg: #f8fbff;
+  --surface: #ffffff;
+  --surface-2: #edf3fa;
+  --border: #e1e9f3;
+  --molecular-panel: #eaf3fc;
+  --molecular-ink: #265e94;
+  --sky-top: #a8cff4;
+  --sky-bottom: #e4f1fd;
+  --sky-cloud: #ffffff;
   scroll-padding-top: 0;
   color-scheme: light;
 }
 html[data-theme="dark"]:has(.landing) {
-  --bg: #101613;
-  --surface: #171f1a;
-  --surface-2: #1e2822;
-  --border: #2a352e;
-  --molecular-wash: #233e30;
-  --molecular-stage: #304f3d;
-  --molecular-panel: #1a2920;
-  --molecular-ink: #abd7bd;
+  --bg: #101722;
+  --surface: #172232;
+  --surface-2: #1c2a3c;
+  --border: #2b3b50;
+  --molecular-panel: #192c41;
+  --molecular-ink: #a9cff3;
+  --sky-top: #10253c;
+  --sky-bottom: #233e5a;
+  --sky-cloud: #3d5770;
   color-scheme: dark;
 }
 .landing .page-width {
@@ -126,13 +128,25 @@ html[data-theme="dark"]:has(.landing) {
   font-size: 13px;
 }
 .landing .hero-section {
+  position: relative;
+  isolation: isolate;
   padding-top: 94px;
-  background: linear-gradient(
-    155deg,
-    var(--bg) 4%,
-    var(--molecular-wash) 62%,
-    var(--bg) 100%
-  );
+}
+.landing .hero-sky {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: min(900px, 100%);
+  pointer-events: none;
+  overflow: hidden;
+  background: linear-gradient(var(--sky-top), var(--sky-bottom));
+  mask-image: linear-gradient(#000 45%, transparent 100%);
+}
+.landing .hero-clouds {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.72;
 }
 .landing .hero-copy {
   text-align: center;
@@ -166,27 +180,13 @@ html[data-theme="dark"]:has(.landing) {
 }
 .landing .hero-stage {
   margin-top: 64px;
-  padding: 28px 28px 0;
-  background: var(--molecular-stage);
-  border-radius: 24px;
-  overflow: hidden;
-}
-.landing .hero-stage .product-shot {
-  border-radius: 12px 12px 0 0;
-}
-.landing .hero-caption {
-  margin: 20px auto 0;
-  max-width: 60ch;
-  padding-inline: 24px;
-  text-align: center;
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--body);
 }
 .landing .section-intro {
   padding-block: 132px 56px;
-  max-width: 800px;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 56px;
 }
 .landing .section-intro h2,
 .landing .closing-section h2 {
@@ -195,8 +195,8 @@ html[data-theme="dark"]:has(.landing) {
   letter-spacing: -0.055em;
   font-weight: 500;
 }
-.landing .section-intro > p:last-child {
-  margin: 28px auto 0;
+.landing .intro-copy > p {
+  margin: 28px 0 0;
   max-width: 46ch;
   font-size: 19px;
   line-height: 1.65;
@@ -241,27 +241,40 @@ html[data-theme="dark"]:has(.landing) {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.landing .media-stage {
-  background: var(--molecular-panel);
-  padding: 40px 40px 0;
-  border-radius: 20px;
-  overflow: hidden;
-}
-.landing .media-stage .product-shot {
-  border-radius: 10px 10px 0 0;
-}
 .landing .detail-studies {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
   padding-top: 88px;
 }
-.landing .detail-studies article {
+.landing .study-track {
+  margin-left: -28px;
+}
+.landing .study-slide {
+  padding-left: 28px;
+  flex-basis: 62%;
+}
+.landing .study-slide article {
   min-width: 0;
 }
-.landing .detail-studies video,
-.landing .detail-studies .product-shot {
-  border-radius: 14px;
+.landing .study-slide video,
+.landing .study-slide .study-image {
+  border-radius: 16px;
+  width: 100%;
+  aspect-ratio: 1280 / 978;
+  object-fit: cover;
+}
+.landing .study-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+.landing .study-controls button {
+  position: static;
+  transform: none;
+  width: 44px;
+  height: 44px;
+  background: var(--surface-2);
+  border: 0;
 }
 .landing .detail-studies h3 {
   font-size: 24px;
@@ -309,10 +322,6 @@ html[data-theme="dark"]:has(.landing) {
 .landing .agent-section .pill-button {
   margin-top: 24px;
   background: var(--bg);
-}
-.landing .chapter-heading .agent-detail {
-  font-size: 13px;
-  margin-top: 20px;
 }
 .landing .install-section {
   padding-block: 112px;
@@ -396,9 +405,7 @@ html[data-theme="dark"]:has(.landing) {
     padding-top: 64px;
   }
   .landing .hero-stage {
-    padding: 16px 16px 0;
     margin-top: 44px;
-    border-radius: 16px;
   }
   .landing .chapter-heading,
   .landing .faq-layout {
@@ -407,19 +414,14 @@ html[data-theme="dark"]:has(.landing) {
   }
   .landing .section-intro {
     padding-top: 96px;
+    grid-template-columns: 1fr;
+    gap: 36px;
   }
-  .landing .section-intro > p:last-child {
+  .landing .intro-copy > p {
     font-size: 17px;
   }
   .landing .product-chapter {
     padding-top: 48px;
-  }
-  .landing .media-stage {
-    padding: 20px 20px 0;
-    border-radius: 14px;
-  }
-  .landing .detail-studies {
-    gap: 32px;
   }
   .landing .detail-studies h3 {
     font-size: 22px;
@@ -449,16 +451,14 @@ html[data-theme="dark"]:has(.landing) {
     gap: 4px;
   }
   .landing .detail-studies {
-    grid-template-columns: 1fr;
-    gap: 48px;
     padding-top: 64px;
   }
-  .landing .hero-stage,
-  .landing .media-stage {
-    padding: 10px 10px 0;
+  .landing .study-slide {
+    flex-basis: 88%;
+    padding-left: 20px;
   }
-  .landing .hero-caption {
-    max-width: 38ch;
+  .landing .study-track {
+    margin-left: -20px;
   }
   .landing .closing-section {
     padding-block: 72px 88px;

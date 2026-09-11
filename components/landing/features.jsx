@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ProductShot from "./product-shot";
-import LazyVideo from "./lazy-video";
+import FeatureCarousel from "./feature-carousel";
 
 export default function Features() {
   return (
@@ -10,17 +10,27 @@ export default function Features() {
       className="feature-section"
     >
       <div className="section-intro page-width">
-        <p className="section-label">From preview to workspace</p>
-        <h2 id="features-title">
-          Your files.
-          <br />
-          Ready to explore.
-        </h2>
-        <p>
-          Select a file in Finder and press Space. Rotate a protein, inspect a
-          ligand, or browse a collection. Open Burette when you want to keep
-          working.
-        </p>
+        <div className="intro-copy">
+          <h2 id="features-title">
+            Your files.
+            <br />
+            Ready to explore.
+          </h2>
+          <p>
+            Select a file in Finder and press Space. Rotate a protein, inspect a
+            ligand, or browse a collection. Open Burette when you want to keep
+            working.
+          </p>
+        </div>
+        <ProductShot
+          light="/assets/multi-light.png"
+          dark="/assets/multi-dark.png"
+          alt="Multiple molecular views open in the Burette workspace"
+          width={1804}
+          height={1262}
+          ratio="1.43 / 1"
+          sizes="(min-width: 900px) 600px, 90vw"
+        />
       </div>
       <article className="product-chapter page-width">
         <div className="chapter-heading">
@@ -119,38 +129,7 @@ export default function Features() {
           />
         </div>
       </article>
-      <div className="detail-studies page-width">
-        <article>
-          <LazyVideo
-            src="/assets/lasso.mp4"
-            poster="/assets/lasso-poster.jpg"
-            label="Draw a lasso in Burette to select residues and ligands in the molecular viewport"
-            width={1280}
-            height={978}
-          />
-          <h3>Select it where you see it.</h3>
-          <p>
-            Draw around a pocket or ligand. Use the selection for measurements,
-            isolation, and export.
-          </p>
-        </article>
-        <article>
-          <ProductShot
-            light="/assets/second-light.png"
-            dark="/assets/second-dark.png"
-            alt="Trajectory playback and frame controls in Burette"
-            width={1804}
-            height={1262}
-            ratio="1280 / 978"
-            sizes="(min-width: 900px) 530px, 90vw"
-          />
-          <h3>Follow every frame.</h3>
-          <p>
-            Play a molecular trajectory, pause on a moment, and step through the
-            structure frame by frame.
-          </p>
-        </article>
-      </div>
+      <FeatureCarousel />
     </section>
   );
 }
