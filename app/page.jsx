@@ -1,4 +1,5 @@
 import "./landing.css";
+import "./editorial.css";
 import { SITE_URL } from "./site-url.js";
 import Analytics from "@/components/landing/analytics";
 import SiteNav from "@/components/landing/site-nav";
@@ -7,7 +8,6 @@ import Formats from "@/components/landing/formats";
 import Features from "@/components/landing/features";
 import CodexMcp from "@/components/landing/codex-mcp";
 import Install from "@/components/landing/install";
-import Docs from "@/components/landing/docs";
 import Faq from "@/components/landing/faq";
 import ClosingCta from "@/components/landing/closing-cta";
 import SiteFooter from "@/components/landing/site-footer";
@@ -38,13 +38,15 @@ export default function Page() {
     <div className="landing bg-background text-foreground min-w-0">
       <Analytics />
       <SiteNav />
-      <main>
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
+      <main id="main">
         <Hero />
-        <Formats />
         <Features />
+        <Formats />
         <CodexMcp />
         <Install />
-        <Docs />
         <Faq />
         <ClosingCta />
       </main>

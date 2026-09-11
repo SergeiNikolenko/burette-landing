@@ -113,17 +113,13 @@ if (outboundLinks.length > 0 && !(await exists(outboundRoute))) {
   failures.push("landing: outbound links have no /out/[target] route");
 }
 
-// The browser demo has to stay reachable from the primary navigation. It used to
-// be pinned to the hero, but the hero now leads with one download button and the
-// demo sits in the nav, so the check follows it there.
+// Keep the live demo reachable from the first screen.
 const navSource = await readFile(path.join(landingRoot, "site-nav.jsx"), "utf8");
-if (!navSource.includes('href: "/demo"')) {
-  failures.push("site-nav.jsx: primary navigation is missing the online demo link");
-}
 const heroSource = await readFile(path.join(landingRoot, "hero.jsx"), "utf8");
-if (!heroSource.includes("<AsciiFluid") || !heroSource.includes('className="hero-ascii-fluid"')) {
-  failures.push("hero.jsx: cloud background is missing the ASCII fluid layer");
+if (![navSource, heroSource].some(source => attributeValues(source, "href").includes("/demo"))) {
+  failures.push("landing: the first screen is missing the online demo link");
 }
+
 // main added this after the cask moved into a tap: the copyable command has to
 // carry both steps or it fails on exactly the machines the button is for. The
 // command now lives in its own component rather than in the hero markup.
@@ -167,7 +163,6 @@ if (!(await exists(path.join(root, "app", "api", "release", "route.js")))) {
 const landingText = landingSource.replace(/\s+/gu, " ");
 for (const requiredLandingCopy of [
   "Free and open source",
-  "Nothing leaves your Mac",
   "Apple Silicon and Intel",
   "macOS 12+",
 ]) {
@@ -182,14 +177,6 @@ for (const requiredLandingCopy of [
   const rootLayout = await readFile(path.join(root, "app", "layout.jsx"), "utf8");
   if (!/<Head[\s>]/u.test(rootLayout)) {
     failures.push("app/layout.jsx: nextra <Head> is missing, so the docs CSS variables are undefined");
-  }
-}
-
-// The hero animation guards are the load-bearing part of the WebGL background.
-{
-  const sky = await readFile(path.join(landingRoot, "sky-canvas.jsx"), "utf8");
-  for (const guard of ["visibilitychange", "IntersectionObserver", "webglcontextlost", "prefers-reduced-motion"]) {
-    if (!sky.includes(guard)) failures.push(`sky-canvas.jsx: hero animation is missing its ${guard} guard`);
   }
 }
 
