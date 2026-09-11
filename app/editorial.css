@@ -1,0 +1,446 @@
+/* Product compositions use the existing shadcn semantic colours and controls.
+   Keep these rules inside .landing so the Nextra docs retain their own layout. */
+body:has(.landing) {
+  margin: 0;
+  background: var(--bg);
+}
+html:has(.landing) {
+  scroll-padding-top: 0;
+  color-scheme: light;
+}
+html[data-theme="dark"]:has(.landing) {
+  color-scheme: dark;
+}
+.landing .page-width {
+  width: min(1120px, calc(100% - 80px));
+  margin-inline: auto;
+}
+.landing main section[id] {
+  scroll-margin-top: 120px;
+}
+.landing .section-label {
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--body);
+  margin-bottom: 20px;
+}
+.landing h1,
+.landing h2,
+.landing h3 {
+  text-wrap: balance;
+}
+.landing .pill-button {
+  height: 48px;
+  padding-inline: 24px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: none;
+}
+.landing button,
+.landing a {
+  touch-action: manipulation;
+}
+.landing .skip-link {
+  position: fixed;
+  top: 8px;
+  left: 16px;
+  z-index: 200;
+  padding: 12px 20px;
+  background: var(--invert-bg);
+  color: var(--invert-fg);
+  transform: translateY(-160%);
+  border-radius: 8px;
+}
+.landing .skip-link:focus {
+  transform: translateY(0);
+}
+.landing .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.landing .site-nav {
+  min-height: 76px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: space-between;
+}
+.landing .wordmark {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+}
+.landing .wordmark-description {
+  color: var(--body);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.landing .section-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 13px;
+  color: var(--body);
+}
+.landing .section-nav a {
+  padding-block: 14px;
+  white-space: nowrap;
+}
+.landing .section-nav a:hover {
+  color: var(--text);
+}
+.landing .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.landing .nav-download {
+  height: 38px;
+  padding-inline: 18px;
+  font-size: 13px;
+}
+.landing .hero-section {
+  padding-top: 94px;
+}
+.landing .hero-copy {
+  text-align: center;
+  padding-inline: 24px;
+}
+.landing .hero-copy h1 {
+  font-size: clamp(50px, 7.1vw, 92px);
+  line-height: 1.03;
+  letter-spacing: -0.065em;
+  font-weight: 500;
+}
+.landing .hero-description {
+  color: var(--body);
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.5;
+  max-width: 34ch;
+  margin: 26px auto 0;
+  text-wrap: balance;
+}
+.landing .hero-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 30px;
+}
+.landing .hero-note {
+  margin-top: 18px;
+  color: var(--body);
+  font-size: 13px;
+}
+.landing .hero-stage {
+  margin-top: 64px;
+  padding: 28px 28px 0;
+  background: var(--surface-2);
+  border-radius: 24px;
+  overflow: hidden;
+}
+.landing .hero-stage .product-shot {
+  border-radius: 12px 12px 0 0;
+}
+.landing .hero-caption {
+  margin: 20px auto 0;
+  max-width: 60ch;
+  padding-inline: 24px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--body);
+}
+.landing .section-intro {
+  padding-block: 132px 56px;
+  max-width: 800px;
+  text-align: center;
+}
+.landing .section-intro h2,
+.landing .closing-section h2 {
+  font-size: clamp(42px, 5.8vw, 72px);
+  line-height: 1.06;
+  letter-spacing: -0.055em;
+  font-weight: 500;
+}
+.landing .section-intro > p:last-child {
+  margin: 28px auto 0;
+  max-width: 46ch;
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--body);
+  text-wrap: pretty;
+}
+.landing .product-chapter {
+  padding-top: 72px;
+}
+.landing .chapter-heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 72px;
+  margin-bottom: 36px;
+}
+.landing .chapter-heading h2,
+.landing .chapter-heading h3 {
+  font-size: clamp(32px, 4.1vw, 50px);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+}
+.landing .chapter-heading p:not(.section-label) {
+  max-width: 43ch;
+  color: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+.landing .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.landing .text-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.landing .media-stage {
+  background: var(--surface-2);
+  padding: 40px 40px 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.landing .media-stage .product-shot {
+  border-radius: 10px 10px 0 0;
+}
+.landing .detail-studies {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding-top: 88px;
+}
+.landing .detail-studies article {
+  min-width: 0;
+}
+.landing .detail-studies video,
+.landing .detail-studies .product-shot {
+  border-radius: 14px;
+}
+.landing .detail-studies h3 {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  margin-top: 26px;
+}
+.landing .detail-studies p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--body);
+  max-width: 43ch;
+  margin-top: 12px;
+}
+.landing .quiet-section {
+  padding-block: 128px 100px;
+}
+.landing .format-list > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  padding-block: 26px;
+  border-bottom: 1px solid var(--border);
+}
+.landing .format-list dt {
+  font-size: 18px;
+  font-weight: 500;
+}
+.landing .format-list dd {
+  font-size: 15px;
+  line-height: 1.7;
+}
+.landing .format-list dd p + p {
+  margin-top: 6px;
+  color: var(--body);
+}
+.landing .agent-section {
+  padding-block: 96px;
+  background: var(--surface-2);
+}
+.landing .agent-section .chapter-heading {
+  margin-bottom: 0;
+}
+.landing .agent-section .pill-button {
+  margin-top: 24px;
+  background: var(--bg);
+}
+.landing .chapter-heading .agent-detail {
+  font-size: 13px;
+  margin-top: 20px;
+}
+.landing .install-section {
+  padding-block: 112px;
+}
+.landing .install-section .chapter-heading {
+  align-items: start;
+  margin-bottom: 0;
+}
+.landing .install-commands {
+  background: var(--surface-2);
+  border-radius: 16px;
+  padding: 16px 24px;
+}
+.landing .install-commands li {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+}
+.landing .install-commands li + li {
+  border-top: 1px solid var(--border);
+}
+.landing .install-commands code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.landing .install-section .install-note {
+  font-size: 13px;
+  margin-top: 20px;
+}
+.landing .faq-section {
+  padding-block: 64px 80px;
+  border-top: 1px solid var(--border);
+}
+.landing .faq-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 72px;
+}
+.landing .faq-layout h2 {
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+.landing .closing-section {
+  text-align: center;
+  padding-block: 96px 120px;
+}
+.landing .closing-section p {
+  margin-top: 24px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--body);
+}
+.landing .closing-section .pill-button {
+  margin-top: 28px;
+}
+@media (max-width: 1100px) {
+  .landing .wordmark-description {
+    display: none;
+  }
+}
+@media (max-width: 800px) {
+  .landing .page-width {
+    width: calc(100% - 48px);
+  }
+  .landing .site-nav {
+    flex-wrap: wrap;
+    gap: 0;
+    padding-top: 12px;
+    padding-bottom: 4px;
+  }
+  .landing .section-nav {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 4px;
+  }
+  .landing .hero-section {
+    padding-top: 64px;
+  }
+  .landing .hero-stage {
+    padding: 16px 16px 0;
+    margin-top: 44px;
+    border-radius: 16px;
+  }
+  .landing .chapter-heading,
+  .landing .faq-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .landing .section-intro {
+    padding-top: 96px;
+  }
+  .landing .section-intro > p:last-child {
+    font-size: 17px;
+  }
+  .landing .product-chapter {
+    padding-top: 48px;
+  }
+  .landing .media-stage {
+    padding: 20px 20px 0;
+    border-radius: 14px;
+  }
+  .landing .detail-studies {
+    gap: 32px;
+  }
+  .landing .detail-studies h3 {
+    font-size: 22px;
+  }
+  .landing .format-list > div {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .landing .quiet-section,
+  .landing .install-section {
+    padding-block: 80px;
+  }
+  .landing .agent-section {
+    padding-block: 72px;
+  }
+}
+@media (max-width: 520px) {
+  .landing .page-width {
+    width: calc(100% - 40px);
+  }
+  .landing .hero-copy h1 {
+    font-size: clamp(42px, 11vw, 56px);
+  }
+  .landing .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .landing .detail-studies {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding-top: 64px;
+  }
+  .landing .hero-stage,
+  .landing .media-stage {
+    padding: 10px 10px 0;
+  }
+  .landing .hero-caption {
+    max-width: 38ch;
+  }
+  .landing .closing-section {
+    padding-block: 72px 88px;
+  }
+  .landing .install-commands {
+    padding-inline: 16px;
+  }
+}
