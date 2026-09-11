@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ProductShot from "./product-shot";
+import ThemedImage from "./themed-image";
 import FeatureCarousel from "./feature-carousel";
 
 export default function Features() {
@@ -22,13 +23,13 @@ export default function Features() {
             working.
           </p>
         </div>
-        <ProductShot
+        <ThemedImage
           light="/assets/multi-light.png"
           dark="/assets/multi-dark.png"
           alt="Multiple molecular views open in the Burette workspace"
           width={1804}
           height={1262}
-          ratio="1.43 / 1"
+          className="w-full aspect-[1.43/1] rounded-lg object-cover object-top"
           sizes="(min-width: 900px) 600px, 90vw"
         />
       </div>
