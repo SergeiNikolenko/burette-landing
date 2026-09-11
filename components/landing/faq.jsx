@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
@@ -68,45 +67,25 @@ const QUESTIONS = [
   },
 ];
 
-// The questions that actually block installing a Finder extension are "is it
-// free", "does anything leave my Mac" and "do I have to install RDKit first" -
-// none of which the old page answered anywhere. The section is deliberately
-// framed as what Burette does and does not do, rather than as a support FAQ.
 export default function Faq() {
   return (
     <section
       id="faq"
       aria-labelledby="faq-title"
-      className="border-border mx-auto max-w-[1200px] border-b px-5 py-20 sm:px-8 sm:py-24"
+      className="faq-section page-width"
     >
-      <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-12">
+      <div className="faq-layout">
         <div>
-          <div className="mb-4 flex flex-wrap items-center gap-3.5">
-            <span className="text-mono font-mono text-xs tracking-[0.16em] uppercase">
-              Questions
-            </span>
-            <Badge
-              variant="outline"
-              className="border-input text-muted-foreground gap-2 rounded-full px-3 py-1"
-            >
-              Free · local-first · MIT
-            </Badge>
-          </div>
-          <h2
-            id="faq-title"
-            className="text-foreground max-w-[22ch] text-[clamp(26px,3.4vw,38px)] leading-[1.12] font-bold tracking-[-0.03em]"
-          >
-            What Burette does on your Mac — and what it never does.
-          </h2>
+          <p className="section-label">A few practical details</p>
+          <h2 id="faq-title">Good to know.</h2>
         </div>
-
-        <Accordion type="single" collapsible defaultValue="free" className="w-full">
+        <Accordion type="single" collapsible className="w-full">
           {QUESTIONS.map(({ id, q, a }) => (
             <AccordionItem key={id} value={id}>
-              <AccordionTrigger className="text-foreground hover:text-brand py-5 text-left text-[15.5px] font-medium hover:no-underline">
+              <AccordionTrigger className="text-foreground py-5 text-left text-[15.5px] font-medium hover:no-underline">
                 {q}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground max-w-[64ch] pb-5 text-sm leading-relaxed [&_code]:border-border [&_code]:bg-muted [&_code]:text-foreground [&_code]:rounded-xs [&_code]:border [&_code]:px-1.5 [&_code]:py-px [&_code]:font-mono [&_code]:text-[13px]">
+              <AccordionContent className="text-muted-foreground max-w-[64ch] pb-5 text-sm leading-relaxed">
                 {a}
               </AccordionContent>
             </AccordionItem>
