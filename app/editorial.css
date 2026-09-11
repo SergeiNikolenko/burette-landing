@@ -246,6 +246,15 @@ html[data-theme="dark"]:has(.landing) {
 }
 .landing .study-track {
   margin-left: -28px;
+  touch-action: pan-y pinch-zoom;
+  cursor: grab;
+}
+.landing .study-track:active {
+  cursor: grabbing;
+}
+.landing .study-track img {
+  -webkit-user-drag: none;
+  user-select: none;
 }
 .landing .study-slide {
   padding-left: 28px;

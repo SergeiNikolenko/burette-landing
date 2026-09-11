@@ -23,7 +23,9 @@ application; a horizontal gallery covers lasso selection, trajectories, and mole
 Reuse the installed shadcn Button, Accordion, Dialog, and Carousel components. Custom
 compositions in the landing components and `app/editorial.css` control the
 page layout. The shadcn carousel uses Embla, with touch dragging, keyboard
-navigation, and previous/next controls. Reduced motion makes slide changes immediate.
+navigation, horizontal wheel/trackpad gestures, and previous/next controls.
+Vertical scrolling continues through the page. Touch input permits vertical
+page movement while the carousel handles horizontal swipes. Reduced motion makes slide changes immediate.
 Styles are scoped to `.landing` to preserve the Nextra documentation layout.
 
 Use ordinary sans-serif labels. Reserve monospace for commands and file data.

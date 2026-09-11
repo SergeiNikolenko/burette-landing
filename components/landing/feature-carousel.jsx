@@ -1,5 +1,6 @@
 "use client";
 
+import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import {
   Carousel,
   CarouselContent,
@@ -18,6 +19,7 @@ export default function FeatureCarousel() {
         align: "start",
         breakpoints: { "(prefers-reduced-motion: reduce)": { duration: 0 } },
       }}
+      plugins={[WheelGesturesPlugin({ forceWheelAxis: "x" })]}
       aria-label="More ways to explore with Burette"
     >
       <CarouselContent className="study-track">
