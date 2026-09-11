@@ -36,7 +36,7 @@ export default function ExpandableShot({
   const frame = (
     <figure
       className={cn(
-        "border-input bg-muted overflow-hidden rounded-lg border shadow-[var(--shadow-card)]",
+        "product-shot bg-muted overflow-hidden rounded-lg",
         className,
       )}
     >
@@ -49,7 +49,7 @@ export default function ExpandableShot({
           height={height}
           priority={priority}
           sizes={sizes}
-          className="size-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+          className="size-full object-cover object-top"
         />
         {/* Cards without a title bar have nowhere to put the affordance, so it
             floats over the image instead - otherwise nothing tells you the
@@ -57,7 +57,7 @@ export default function ExpandableShot({
         {(
           <span
             aria-hidden="true"
-            className="bg-card/85 text-nav border-input pointer-events-none absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] opacity-0 backdrop-blur transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+            className="bg-card/85 text-nav border-input pointer-events-none absolute top-2.5 right-2.5 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs opacity-0 backdrop-blur transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
           >
             <Maximize2 className="size-3" />
             Enlarge
@@ -85,7 +85,7 @@ export default function ExpandableShot({
 
       <DialogContent
         showCloseButton
-        className="bg-card border-input w-[min(96vw,1500px)] max-w-none gap-0 overflow-hidden rounded-lg p-0 sm:max-w-none"
+        className="font-sans bg-card border-input w-[min(96vw,1500px)] max-w-none gap-0 overflow-hidden rounded-lg p-0 sm:max-w-none"
       >
         <div className="border-input bg-card flex items-center justify-between gap-4 border-b px-4 py-3">
           <DialogTitle className="text-foreground inline-flex min-w-0 items-center gap-2 text-[13px] font-medium">
