@@ -63,10 +63,8 @@ export async function playWorkspaceStory(frame, scene, signal) {
     await wait(1400);
     await turn(0.7, 3200);
     await run({ type: "focus_ligand", selector: { comp_id: "6IC" }, showNeighborhood: true, radiusA: 5, extraRadius: 8, durationMs: 1800 });
-    win.BuretteViewer.structureInteractivity({
-      elements: { label_comp_id: "6IC" }, action: "focus",
-      focusOptions: { durationMs: 1800, extraRadius: 5, optimizeDirection: true, zoomOut: false },
-    });
+    const pocket = plugin.managers.structure.selection.getBoundary().sphere;
+    plugin.managers.camera.focusSphere(pocket, { durationMs: 1800, extraRadius: 5, zoomOut: false });
     await wait(2600);
     await turn(-0.35, 2000);
     await wait(2200);
