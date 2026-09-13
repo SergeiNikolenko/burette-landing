@@ -109,8 +109,8 @@ export default function Features() {
           </div>
           <div>
             <p>
-              Select a point to inspect its molecule. This example places 48
-              compounds by molecular weight and SLogP, a measure of lipophilicity.
+              Select a point to inspect its molecule. Explore this 48-compound
+              collection by molecular weight and SLogP, a measure of lipophilicity.
             </p>
             <Link className="text-link" href="/docs/workflows/native-compute">
               Explore Chemical Space <span aria-hidden="true">↗</span>
