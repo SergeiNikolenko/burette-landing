@@ -57,6 +57,8 @@ for (const file of sourceFiles) {
     if (src.includes("${") || /^(?:data:|https?:|\/\/)/u.test(src)) continue;
     const clean = src.split(/[?#]/u)[0];
     if (clean.startsWith("/_vercel/")) continue;
+    // Published Burette runtimes are served through next.config.mjs rewrites.
+    if (clean.startsWith("/web-demo/") || clean.startsWith("/burette-viewer/")) continue;
     const target = staticPages.includes(file) || isLanding(file)
       ? path.join(root, "public", clean.replace(/^\.\//u, "").replace(/^\//u, ""))
       : clean.startsWith("/assets/")
@@ -116,7 +118,8 @@ if (outboundLinks.length > 0 && !(await exists(outboundRoute))) {
 // Keep the live demo reachable from the first screen.
 const navSource = await readFile(path.join(landingRoot, "site-nav.jsx"), "utf8");
 const heroSource = await readFile(path.join(landingRoot, "hero.jsx"), "utf8");
-if (![navSource, heroSource].some(source => attributeValues(source, "href").includes("/demo"))) {
+const workspaceDemoSource = await readFile(path.join(landingRoot, "workspace-demo.jsx"), "utf8");
+if (![navSource, heroSource, workspaceDemoSource].some(source => attributeValues(source, "href").includes("/demo"))) {
   failures.push("landing: the first screen is missing the online demo link");
 }
 

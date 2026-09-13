@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import ProductShot from "./product-shot";
+import LiveScene from "./live-scene";
+import WorkspaceDemo from "./workspace-demo";
 import SkyCanvas from "./sky-canvas";
 
 export default function Hero() {
@@ -30,29 +31,18 @@ export default function Hero() {
               Download for macOS
             </Link>
           </Button>
-          <Button asChild variant="ghost" size="lg" className="pill-button">
-            <Link
-              href="/demo"
-              data-analytics-event="Online Demo"
-              data-analytics-location="hero"
-              data-analytics-target="demo"
-            >
-              Try in your browser <span aria-hidden="true">↗</span>
-            </Link>
-          </Button>
+          <WorkspaceDemo />
         </div>
         <p className="hero-note">Free and open source.</p>
       </div>
       <div className="hero-stage page-width">
-        <ProductShot
+        <LiveScene
+          id="live-demo"
+          scene="structure"
+          label="1HTB.pdb"
           light="/assets/main-light.png"
           dark="/assets/main-dark.png"
-          alt="Burette showing the 3HTB protein structure in its molecular workspace"
-          width={1804}
-          height={1262}
-          ratio="1.65 / 1"
-          priority
-          sizes="(min-width: 1200px) 1120px, 94vw"
+          autoLoad
         />
       </div>
     </section>

@@ -73,7 +73,7 @@ export default function SkyCanvas({ className }) {
       "  color = mix(color, u_skyBottom * 1.06, smoothstep(0.35, 0.0, uv.y) * 0.5);",
       "  vec2 sunPos = vec2(aspect * 0.78, 0.92);",
       "  float sunDist = length(p - sunPos);",
-      "  color += vec3(1.0,0.95,0.82) * exp(-sunDist*sunDist*5.0) * 0.28;",
+      "  color += vec3(1.0,0.95,0.82) * exp(-sunDist*sunDist*5.0) * 0.28 * dot(u_skyTop, vec3(0.3333));",
       "  float cirrusBand = smoothstep(0.55,0.8,uv.y) * (1.0 - smoothstep(0.9,1.0,uv.y));",
       "  if (cirrusBand > 0.01) {",
       "    float streak = fbm(vec2(p.x*1.6 - t*0.006, p.y*12.0));",

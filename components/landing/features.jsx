@@ -2,6 +2,8 @@ import Link from "next/link";
 import ProductShot from "./product-shot";
 import ThemedImage from "./themed-image";
 import FeatureCarousel from "./feature-carousel";
+import LiveScene from "./live-scene";
+import PropertyMap from "./property-map";
 
 export default function Features() {
   return (
@@ -87,18 +89,15 @@ export default function Features() {
           </div>
         </div>
         <div className="media-stage">
-          <ProductShot
+          <LiveScene
+            scene="collection"
+            label="MOSES · 48 molecules"
             light="/assets/grid-table-light.png"
             dark="/assets/grid-table-dark.png"
-            alt="Molecular structures and property columns in the Burette collection grid"
-            width={1804}
-            height={1262}
-            ratio="1.6 / 1"
-            sizes="(min-width: 1200px) 1040px, 90vw"
           />
         </div>
       </article>
-      <article className="product-chapter chapter-split chapter-reverse page-width">
+      <article className="product-chapter chapter-wide page-width">
         <div className="chapter-heading">
           <div>
             <p className="section-label">Chemical Space</p>
@@ -110,27 +109,25 @@ export default function Features() {
           </div>
           <div>
             <p>
-              Explore a molecular map. Colour by activity, look for clusters,
-              and follow a selection back to its structures and properties.
+              Move from a map to an individual structure. Try this small
+              descriptor map: each point is a real molecule, positioned by
+              molecular weight and SLogP.
             </p>
             <Link className="text-link" href="/docs/workflows/native-compute">
               Explore Chemical Space <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </div>
-        <div className="media-stage">
-          <ProductShot
-            light="/assets/chemical-space-light.png"
-            dark="/assets/chemical-space-dark.png"
-            alt="Burette Chemical Space showing a molecular map linked to the collection and inspector"
-            width={2258}
-            height={1522}
-            ratio="1.48 / 1"
-            sizes="(min-width: 1200px) 1040px, 90vw"
-          />
-        </div>
+        <PropertyMap />
       </article>
       <FeatureCarousel />
+      <article className="product-chapter chapter-split page-width">
+        <div className="chapter-heading">
+          <div><p className="section-label">Molecular motion</p><h3>Every frame.<br />In your hands.</h3></div>
+          <div><p>Play, pause, and step through a real multi-frame file. Try this 20-frame vibrational-mode example in the same viewer.</p></div>
+        </div>
+        <LiveScene scene="motion" label="SN2 · molecular motion" light="/assets/second-light.png" dark="/assets/second-dark.png" />
+      </article>
     </section>
   );
 }

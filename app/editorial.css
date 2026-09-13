@@ -18,15 +18,15 @@ html:has(.landing) {
   color-scheme: light;
 }
 html[data-theme="dark"]:has(.landing) {
-  --bg: #101722;
-  --surface: #172232;
-  --surface-2: #1c2a3c;
-  --border: #2b3b50;
-  --molecular-panel: #192c41;
+  --bg: #000000;
+  --surface: #111111;
+  --surface-2: #1b1b1b;
+  --border: #292929;
+  --molecular-panel: #151515;
   --molecular-ink: #a9cff3;
-  --sky-top: #10253c;
-  --sky-bottom: #233e5a;
-  --sky-cloud: #3d5770;
+  --sky-top: #000000;
+  --sky-bottom: #101010;
+  --sky-cloud: #303030;
   color-scheme: dark;
 }
 .landing .page-width {
