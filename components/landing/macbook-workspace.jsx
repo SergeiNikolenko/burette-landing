@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import WorkspaceDemo from "./workspace-demo";
 import WorkspaceLoading from "./workspace-loading";
@@ -14,7 +15,7 @@ export default function MacbookWorkspace() {
   const [desktop, setDesktop] = useState(false);
   useEffect(() => {
     const query = matchMedia("(min-width: 900px)");
-    const sync = () => setDesktop(query.matches);
+    const sync = () => setDesktop(query.matches && !navigator.connection?.saveData && !/(^|-)2g$|3g/.test(navigator.connection?.effectiveType || ""));
     sync(); query.addEventListener("change", sync);
     return () => query.removeEventListener("change", sync);
   }, []);
@@ -44,10 +45,11 @@ function DesktopPresentation() {
   const story = useRef(null);
   const paused = () => { if (pointer.current) pointer.current.dataset.visible = "false"; story.current?.abort(); transition.current++; userActive.current = true; setPlaying(false); };
   useEffect(() => {
+    if (!ready || !visible) return;
     const controller = new AbortController();
-    const timer = setTimeout(() => preloadWorkspaceResources(controller.signal), 1200);
+    const timer = setTimeout(() => preloadWorkspaceResources(controller.signal), 3000);
     return () => { clearTimeout(timer); controller.abort(); };
-  }, []);
+  }, [ready, visible]);
   useEffect(() => {
     const sync = () => {
       const next = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
@@ -56,21 +58,27 @@ function DesktopPresentation() {
         localStorage.setItem("burette.shell", JSON.stringify({ ...saved, state: { ...saved.state, preferences: { ...saved.state?.preferences, theme: next } } }));
       } catch { /* The workspace can still use its system theme. */ }
       setTheme(next);
-      setMounted(true);
     };
     sync();
     setPlaying(!matchMedia("(prefers-reduced-motion: reduce)").matches);
     const themes = new MutationObserver(sync);
     themes.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.2 });
+    let onScreen = false;
+    const syncVisibility = () => setVisible(onScreen && !document.hidden);
+    document.addEventListener("visibilitychange", syncVisibility);
+    const observer = new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; syncVisibility(); }, { threshold: 0.2 });
     observer.observe(root.current);
+    const load = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setMounted(true); load.disconnect(); }
+    }, { rootMargin: "240px 0px" });
+    load.observe(root.current);
     const resize = new ResizeObserver(([entry]) => {
       const width = Math.max(960, Math.min(1440, Math.round(entry.contentRect.width)));
       const scale = entry.contentRect.width / width;
       setViewport({ width, height: Math.round(entry.contentRect.height / scale), scale });
     });
     resize.observe(screen.current);
-    return () => { themes.disconnect(); observer.disconnect(); resize.disconnect(); };
+    return () => { themes.disconnect(); observer.disconnect(); load.disconnect(); resize.disconnect(); document.removeEventListener("visibilitychange", syncVisibility); };
   }, []);
   useEffect(() => {
     if (!mounted) return;
@@ -166,10 +174,10 @@ function DesktopPresentation() {
     <div className="macbook-product">
       <div ref={screen} className="macbook-screen" data-switching={switching}>
         {mounted && <iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=${theme}`} title="Burette complete interactive workspace" style={{ width: viewport.width, height: viewport.height, transform: `scale(${viewport.scale})` }} />}
-        <div ref={pointer} className="presentation-pointer" aria-hidden="true"><span className="presentation-click-ring" /><svg viewBox="0 0 24 30" width="24" height="30"><path d="M2.5 2.5v21l5.8-5.1 4.2 9.1 4-1.9-4.2-8.8 7.8-.3Z" fill="#202124" stroke="#fff" strokeWidth="1.7" strokeLinejoin="round" /></svg></div>
+        <div ref={pointer} className="presentation-pointer" aria-hidden="true"><span className="presentation-click-ring" /><svg viewBox="0 0 26 28" width="26" height="28"><path d="M3 3C2.2 2.6 1.6 3.4 2 4.5L9.2 24C9.8 25.6 11.5 25.4 12 23.9L14.2 16.6 21.8 14.2C23.4 13.7 23.5 12.1 21.9 11.4Z" fill="#17191d" stroke="#fff" strokeWidth="2" strokeLinejoin="round" /></svg></div>
         <WorkspaceLoading ready={ready} failed={failed}>Open the workspace to try Burette.</WorkspaceLoading>
       </div>
-      <img className="macbook-product-bezel" src={`/assets/devices/macbook-pro-${theme === "dark" ? "space-black" : "silver"}.png`} alt="MacBook Pro showing Burette" width={4260} height={2840} />
+      <Image className="macbook-product-bezel" src={`/assets/devices/macbook-pro-${theme === "dark" ? "space-black" : "silver"}.png`} alt="MacBook Pro showing Burette" width={4260} height={2840} sizes="(min-width: 1280px) 1200px, 96vw" quality={75} />
     </div>
     <div className="presentation-controls">
       <div role="group" aria-label="Workspace examples">

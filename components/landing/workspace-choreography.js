@@ -87,7 +87,9 @@ export async function playWorkspaceStory(frame, scene, signal, indicate = async 
     }
   };
   await wait(2200);
-  await selectStyle("appearance", scene.label === "Molecules" ? "default" : "illustrative");
+  // The viewer already supplies the default appearance. Only the SDF overlay
+  // needs a different one to make its transparent poses legible.
+  if (scene.label === "Molecules") await selectStyle("appearance", "default");
   fit();
   await wait(950);
   if (scene.label === "Structures") {

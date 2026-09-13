@@ -154,7 +154,8 @@ export default function SkyCanvas({ className }) {
       w = rect.width; h = rect.height;
       // five octaves of billow noise per cloud pass is the most expensive thing on the
       // page, so the shader gets a fixed pixel budget rather than the display's full DPR
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5, Math.sqrt(1.6e6 / (w * h)));
+      const pixels = w < 700 ? 300000 : 650000;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5, Math.sqrt(pixels / (w * h)));
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
       gl.viewport(0, 0, cv.width, cv.height);
       gl.useProgram(prog);
@@ -163,7 +164,7 @@ export default function SkyCanvas({ className }) {
       draw(0);
     };
 
-    const SPEED = 0.28, FRAME = 1000 / 30; // the drift is slow enough that 30fps reads identically
+    const SPEED = 0.28, FRAME = 1000 / 24;
     const t0 = performance.now();
     const draw = (elapsed) => {
       gl.useProgram(prog);
@@ -172,7 +173,7 @@ export default function SkyCanvas({ className }) {
     };
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let reduced = motionQuery.matches;
+    let reduced = motionQuery.matches || navigator.connection?.saveData;
 
     let raf = 0;
     let running = false, lastFrame = 0;
@@ -245,7 +246,7 @@ export default function SkyCanvas({ className }) {
       visible = false;
     };
     const onMotion = () => {
-      reduced = motionQuery.matches;
+      reduced = motionQuery.matches || navigator.connection?.saveData;
       if (reduced) disableMotion(); else enableMotion();
     };
     motionQuery.addEventListener("change", onMotion);

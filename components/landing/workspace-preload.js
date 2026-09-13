@@ -1,5 +1,7 @@
 // Warm only the desktop presentation resources; do not create hidden renderers.
 export async function preloadWorkspaceResources(signal) {
+  const connection = navigator.connection;
+  if (connection?.saveData || /(^|-)2g$|3g/.test(connection?.effectiveType || "")) return;
   const urls = [
     "/live-data/imatinib-poses.sdf",
     "/burette-viewer/rdkit/RDKit_minimal.js",
@@ -17,5 +19,6 @@ export async function preloadWorkspaceResources(signal) {
       } catch { /* Normal scene loading remains the fallback. */ }
     }
   }
-  await Promise.all([warm(), warm()]);
+  // One low-priority stream leaves room for the active model and page images.
+  await warm();
 }
