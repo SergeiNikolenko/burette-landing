@@ -2,7 +2,11 @@ import { workspaceScenes } from "./workspace-scenes";
 export { workspaceScenes } from "./workspace-scenes";
 
 export function activeWorkspaceViewer(doc) {
-  return doc?.querySelector('.page-surface[data-active="true"] iframe.viewer-iframe:not([data-read-only="true"])');
+  const active = doc?.querySelector('.page-surface[data-active="true"] iframe.viewer-iframe:not([data-read-only="true"])');
+  if (active) return active;
+  const title = doc?.querySelector('[role="tablist"][aria-label="Open structures"] [aria-selected="true"]')?.textContent.trim();
+  const viewers = [...(doc?.querySelectorAll("iframe.viewer-iframe") || [])];
+  return viewers.find(viewer => viewer.title === title) || (viewers.length === 1 ? viewers[0] : null);
 }
 const button = (doc, label) => doc?.querySelector(`button[aria-label="${label}"]`);
 export const sceneWindow = frame => activeWorkspaceViewer(frame?.contentDocument)?.contentWindow;
