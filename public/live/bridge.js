@@ -24,6 +24,19 @@
     window.__mqlPost(body.type, body.message, body);
   } } } };
   window.__mqlAction = () => {};
+  if (config.documentId === "landing-motion") {
+    let starting = false;
+    const autoplay = setInterval(async () => {
+      if (starting || !document.querySelector('button[aria-label="Play frame loop"]')) return;
+      starting = true;
+      const result = await window.BuretteViewerActions?.run({ type: "set_sdf_pose_mode", mode: "single" });
+      if (result?.ok) {
+        document.querySelector('button[aria-label="Play frame loop"]')?.click();
+        clearInterval(autoplay);
+      } else starting = false;
+    }, 300);
+    setTimeout(() => clearInterval(autoplay), 45000);
+  }
   window.addEventListener("burette-agent-ready", async () => {
     const result = await window.BuretteAgent.run({ command: "capabilities" });
     if (result.ok && result.result.ready) send("ready", { scene: config.documentId });
@@ -34,7 +47,6 @@
     surface: { type: "show_surface" },
     frames: { type: "set_sdf_pose_mode", mode: "single" },
     smooth: { type: "apply_trajectory_smoothing", outputFrames: 80 },
-    all: { type: "set_sdf_pose_mode", mode: "all" },
   };
   let smoothed = false;
   async function motionView(name) {
@@ -99,7 +111,7 @@
     busy = true;
     try {
       const result = body.action === "surface" ? await showSurface()
-        : ["frames", "smooth", "all"].includes(body.action) ? await motionView(body.action)
+        : ["frames", "smooth"].includes(body.action) ? await motionView(body.action)
         : await window.BuretteViewerActions.run(actions[body.action]);
       send("action-result", { action: body.action, ok: result?.ok === true, message: result?.error?.message?.slice(0, 200) });
     } catch {

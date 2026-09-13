@@ -129,7 +129,6 @@ export default function LiveScene({ scene, label, light, dark, autoLoad = false,
         </div> : scene === "motion" && status === "ready" ? <div role="group" aria-label="Motion views">
           <Button variant="ghost" size="sm" disabled={!!action} onClick={() => run("frames")}>Original frames</Button>
           <Button variant="ghost" size="sm" disabled={!!action} onClick={() => run("smooth")}>Smooth motion</Button>
-          <Button variant="ghost" size="sm" disabled={!!action} onClick={() => run("all")}>All · overlay</Button>
         </div> : <span>{scene === "motion" ? "20 frames · vibrational-mode example" : scene === "collection" ? "48 molecules · search, select and compare" : "A real structure, rendered with Burette."}</span>}
         <span role="status" className="live-scene-status">
           {status === "loading" ? "Preparing the scene…" : status === "error" ? "Scene unavailable. Please try again." : notice}

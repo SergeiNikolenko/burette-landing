@@ -18,3 +18,5 @@ calculation is requested by these examples.
 Rendering uses the published Burette viewer and RDKit runtime through narrowly
 scoped same-origin asset rewrites. The source-owned adapter lives in
 `lib/live-scene.mjs` and `public/live/bridge.js`.
+
+`caffeine-water.sdf` comes from Burette `samples/structures/small-molecules/multi-molecule.sdf`. Coordinates and bonds are unchanged; empty record titles are replaced with Caffeine and Water so SDF readers preserve the three header lines. The hero opens this two-molecule collection in Mol* All mode through the existing app host bridge.

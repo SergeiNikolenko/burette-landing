@@ -50,9 +50,9 @@ Demo, documentation, plugin setup, downloads, and installation remain reachable.
 
 ## Live demonstrations
 
-The hero loads the complete published Burette browser workspace immediately, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. The app sits below the camera notch so no controls are obscured.
+The hero loads the complete published Burette browser workspace immediately, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. A continuous CSS display band covers the camera cutout; the original bezel image remains unchanged.
 
-Presentation mode selects four real bundled files at 12-second intervals while visible. A narrow file-tree adapter owns this integration with the published shell. Pointer, wheel, or keyboard input inside the app or nested molecular viewer pauses presentation; visitors can resume or choose an example with the dots. Reduced-motion preference disables automatic presentation initially. Theme changes reload the embedded workspace after synchronizing its stored theme preference. The old external file-name bar and scientific action row are absent.
+Presentation mode selects four real bundled files at 12-second intervals while visible. A narrow file-tree adapter owns this integration with the published shell. Presentation starts enabled on every page load, as requested. Pointer or keyboard input inside the app pauses it; scrolling no longer stops the presentation. Visitors can pause, resume, or choose an example with the dots. Theme changes reload the embedded workspace after synchronizing its stored theme preference. The old external file-name bar and scientific action row are absent.
 The introductory workspace illustration remains non-interactive.
 
 Collections use the published Burette RDKit grid with 48 source-ordered MOSES
@@ -61,7 +61,7 @@ selecting a point or using the keyboard-accessible selector updates a large
 RDKit SVG structure and a three-property summary. This is a descriptor plot, not a computed chemical-space embedding.
 The motion scene uses a real 20-frame BIMP vibrational-mode file, with native
 playback and frame controls. Explicit actions switch between the original 20
-frames, 80 smoothed/interpolated frames, and an overlay of the original frames.
+frames and 80 smoothed/interpolated frames. Playback starts when the example opens. The SDF collection in the hero demonstrates All instead.
 The scene mounts on approach, without a screenshot poster. It is not presented as a molecular-dynamics run.
 Data provenance is recorded in `public/live-data/README.md`.
 
@@ -88,9 +88,11 @@ ligand focus, surface, grid search, map selection, motion playback, dialog close
 and offscreen frame cleanup. Review typography, section pacing, image crops,
 control contrast, and horizontal overflow against the reference pages.
 
-Check the hero automatic cycle, pause on real input, theme synchronization, notch clearance, and gallery dialogs at desktop and mobile widths. Runtime readiness and frame switching require a browser check in addition to the static tests.
+Check the hero automatic cycle, pause on real input, theme synchronization, continuous top edge, and gallery dialogs at desktop and mobile widths. Runtime readiness and frame switching require a browser check in addition to the static tests.
 The footer wordmark uses cap-height alignment to meet the lower page edge.
 
 ## Copy review
 
 Headlines and descriptions name concrete actions. FAQ copy distinguishes local desktop files from hosted plugin processing and avoids claiming that Burette only supports a short preview workflow. On 2026-09-13 the public landing copy, feature descriptions, and FAQ were submitted to Pangram 4.0: 1,025 words scanned, 96% AI / 4% human. This is the detector result, not an authorship or copy-quality guarantee. No third-party humanizer was used.
+
+The hero SDF example uses the published `openSdfMolstarDocument` host message, then waits for that specific document before selecting All. `caffeine-water.sdf` retains the bundled sample coordinates and bonds, with explicit record names to avoid blank-header parsing failures. Trajectory preparation waits for its own viewer, selects individual frames, and starts the native frame loop.

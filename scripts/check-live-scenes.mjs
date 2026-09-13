@@ -62,13 +62,12 @@ assert.deepEqual(JSON.parse(JSON.stringify(actions)), [{ type: "reset_camera", a
 assert.equal(replies.at(-1).ok, true);
 actions.length = 0;
 await message({ type: "action", action: "smooth" });
-await message({ type: "action", action: "all" });
+
 await message({ type: "action", action: "frames" });
 assert.deepEqual(JSON.parse(JSON.stringify(actions)), [
   { type: "set_sdf_pose_mode", mode: "single" },
   { type: "apply_trajectory_smoothing", outputFrames: 80 },
   { type: "set_trajectory_smoothing_view", view: "original" },
-  { type: "set_sdf_pose_mode", mode: "all" },
   { type: "set_sdf_pose_mode", mode: "single" },
 ]);
 actions.length = 0;
@@ -79,3 +78,13 @@ assert.equal(replies.at(-1).ok, false);
 await message({ type: "select", indexes: [-1, 7, 48, "8", 2.5], filterToSelection: true });
 assert.deepEqual(JSON.parse(JSON.stringify(selections[0].body)), { type: "chemicalSpaceSelectionChanged", sourceRecordIds: [7], focusSourceRecordId: 7, filterToSelection: true });
 console.log("Live scene data, route bounds, and frame bridge checks passed.");
+
+const sdf = await readFile(new URL("../public/live-data/caffeine-water.sdf", import.meta.url), "utf8");
+const records = sdf.split("$$$$").filter(record => record.trim());
+assert.equal(records.length, 2);
+for (const record of records) {
+  const lines = record.replace(/^\n/, "").split("\n");
+  assert.ok(lines[0].trim(), "SDF record must have a title before its program and comment lines");
+  assert.match(lines[3], /V2000/);
+  assert.ok(record.includes("M  END"));
+}

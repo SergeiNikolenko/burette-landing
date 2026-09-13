@@ -178,3 +178,6 @@
   .landing .feature-card { height: 440px; }
   .feature-story-dialog { padding: 28px 18px; }
 }
+
+/* A continuous display band masks the camera cutout without editing the asset. */
+.landing .macbook-camera-band { position: absolute; z-index: 3; pointer-events: none; left: 9.6%; top: 10.669%; width: 80.8%; height: 2.48%; background: #111; border-radius: 5px 5px 0 0; }

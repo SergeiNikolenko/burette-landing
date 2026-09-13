@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import WorkspaceDemo from "./workspace-demo";
-import { openWorkspaceScene, workspaceScenes } from "./workspace-presentation";
+import { activeWorkspaceViewer, openWorkspaceScene, prepareWorkspaceScene, workspaceScenes } from "./workspace-presentation";
 
 export default function MacbookWorkspace() {
   const root = useRef(null);
@@ -14,12 +14,14 @@ export default function MacbookWorkspace() {
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const [theme, setTheme] = useState("light");
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
   const [scene, setScene] = useState(0);
   const [scale, setScale] = useState(1);
   const userActive = useRef(false);
   const readyRef = useRef(false);
-  const paused = () => { userActive.current = true; setPlaying(false); };
+  const transition = useRef(0);
+  const changing = useRef(false);
+  const paused = () => { transition.current++; userActive.current = true; setPlaying(false); };
   useEffect(() => {
     const sync = () => {
       const next = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
@@ -31,7 +33,7 @@ export default function MacbookWorkspace() {
       setMounted(true);
     };
     sync();
-    setPlaying(!matchMedia("(prefers-reduced-motion: reduce)").matches);
+    setPlaying(true);
     const themes = new MutationObserver(sync);
     themes.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
     const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.2 });
@@ -42,13 +44,14 @@ export default function MacbookWorkspace() {
   }, []);
   useEffect(() => {
     if (!mounted) return;
+    transition.current++;
     setReady(false); readyRef.current = false; setFailed(false); setScene(0);
     const attached = new Set();
     const onInput = event => { if (event.isTrusted) paused(); };
     const attach = doc => {
       if (!doc || attached.has(doc)) return;
       attached.add(doc);
-      for (const type of ["pointerdown", "keydown", "wheel"]) doc.addEventListener(type, onInput, { capture: true, passive: true });
+      for (const type of ["pointerdown", "keydown"]) doc.addEventListener(type, onInput, { capture: true, passive: true });
     };
     let checking = false;
     let alive = true;
@@ -57,10 +60,10 @@ export default function MacbookWorkspace() {
       checking = true;
       try {
         const doc = frame.current?.contentDocument;
-        const viewer = doc?.querySelector("iframe.viewer-iframe");
+        const viewer = activeWorkspaceViewer(doc);
         const currentDocs = [doc, viewer?.contentDocument];
         for (const old of attached) if (!currentDocs.includes(old)) {
-          for (const type of ["pointerdown", "keydown", "wheel"]) old.removeEventListener(type, onInput, true);
+          for (const type of ["pointerdown", "keydown"]) old.removeEventListener(type, onInput, true);
           attached.delete(old);
         }
         currentDocs.forEach(attach);
@@ -72,25 +75,36 @@ export default function MacbookWorkspace() {
     const deadline = setTimeout(() => { if (alive) setFailed(true); }, 45000);
     return () => {
       alive = false; clearInterval(timer); clearTimeout(deadline);
-      for (const doc of attached) for (const type of ["pointerdown", "keydown", "wheel"]) doc.removeEventListener(type, onInput, true);
+      for (const doc of attached) for (const type of ["pointerdown", "keydown"]) doc.removeEventListener(type, onInput, true);
     };
   }, [mounted, theme]);
   useEffect(() => {
     if (!playing || !visible || !ready) return;
     const timer = setInterval(async () => {
-      if (document.hidden || userActive.current || !readyRef.current) return;
+      if (document.hidden || userActive.current || !readyRef.current || changing.current) return;
       const next = (scene + 1) % workspaceScenes.length;
-      if (await openWorkspaceScene(frame.current, workspaceScenes[next])) setScene(next);
-      else setPlaying(false);
+      const token = ++transition.current;
+      changing.current = true;
+      try {
+        if (await openWorkspaceScene(frame.current, workspaceScenes[next])) {
+          await prepareWorkspaceScene(frame.current, workspaceScenes[next], () => transition.current !== token);
+          if (transition.current === token) setScene(next);
+        }
+      } finally { changing.current = false; }
     }, 12000);
     return () => clearInterval(timer);
   }, [playing, visible, ready, scene]);
   const choose = async index => {
     paused();
-    if (await openWorkspaceScene(frame.current, workspaceScenes[index])) setScene(index);
+    const token = transition.current;
+    if (await openWorkspaceScene(frame.current, workspaceScenes[index])) {
+      setScene(index);
+      await prepareWorkspaceScene(frame.current, workspaceScenes[index], () => transition.current !== token);
+    }
   };
   return <div ref={root} id="live-demo" className="macbook-workspace">
     <div className="macbook-product">
+      <div className="macbook-camera-band" aria-hidden="true" />
       <div ref={screen} className="macbook-screen">
         {mounted && <iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=${theme}`} title="Burette complete interactive workspace" style={{ width: 1280, height: 800, top: 26 * scale, transform: `scale(${scale})` }} />}
         {!ready && <div className="macbook-loading" role="status">{failed ? "Open the workspace to try Burette." : "Opening Burette…"}</div>}
