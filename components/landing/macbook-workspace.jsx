@@ -29,6 +29,7 @@ function DesktopPresentation() {
   const screen = useRef(null);
   const frame = useRef(null);
   const pointer = useRef(null);
+  const indicators = useRef(null);
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [ready, setReady] = useState(false);
@@ -55,7 +56,7 @@ function DesktopPresentation() {
       const next = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
       try {
         const saved = JSON.parse(localStorage.getItem("burette.shell") || "{}");
-        localStorage.setItem("burette.shell", JSON.stringify({ ...saved, state: { ...saved.state, preferences: { ...saved.state?.preferences, theme: next } } }));
+        localStorage.setItem("burette.shell", JSON.stringify({ ...saved, state: { ...saved.state, preferences: { ...saved.state?.preferences, theme: next, molstarStyle: "illustrative" } } }));
       } catch { /* The workspace can still use its system theme. */ }
       setTheme(next);
     };
@@ -136,7 +137,9 @@ function DesktopPresentation() {
           return;
         }
         if (cancelled()) return;
-        await playWorkspaceStory(frame.current, workspaceScenes[scene], controller.signal, element => pointAtControl(frame.current, pointer.current, element, cancelled));
+        await playWorkspaceStory(frame.current, workspaceScenes[scene], controller.signal, element => pointAtControl(frame.current, pointer.current, element, cancelled), value => {
+          if (!cancelled()) indicators.current?.style.setProperty("--scene-progress", String(value));
+        });
         if (cancelled()) return;
         const next = (scene + 1) % workspaceScenes.length;
         setSwitching(true);
@@ -180,8 +183,8 @@ function DesktopPresentation() {
       <Image className="macbook-product-bezel" src={`/assets/devices/macbook-pro-${theme === "dark" ? "space-black" : "silver"}.png`} alt="MacBook Pro showing Burette" width={4260} height={2840} sizes="(min-width: 1280px) 1200px, 96vw" quality={75} />
     </div>
     <div className="presentation-controls">
-      <div role="group" aria-label="Workspace examples">
-        {workspaceScenes.map((item, index) => <button key={item.label} disabled={!ready} onClick={() => choose(index)} aria-label={`Show ${item.label.toLowerCase()}`} aria-pressed={scene === index}><span /></button>)}
+      <div ref={indicators} role="group" aria-label="Workspace examples">
+        {workspaceScenes.map((item, index) => <button key={item.label} disabled={!ready} onClick={() => choose(index)} aria-label={`Show ${item.label.toLowerCase()}`} aria-pressed={scene === index} title={item.label}><span aria-hidden="true"><i /></span></button>)}
       </div>
       <Button variant="ghost" size="sm" disabled={!ready} onClick={() => { userActive.current = false; setPlaying(!playing); }}>{playing ? "Pause presentation" : "Play presentation"}</Button>
       <WorkspaceDemo label="Open workspace" />
