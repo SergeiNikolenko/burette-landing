@@ -111,7 +111,7 @@ function DesktopPresentation() {
   useEffect(() => {
     if (!visible) {
       for (const viewer of frame.current?.contentDocument?.querySelectorAll("iframe.viewer-iframe") || []) {
-        viewer.contentDocument?.querySelector('button[aria-label="Stop frame loop"]')?.click();
+        viewer.contentDocument?.querySelector('button[aria-label="Stop frame loop"], button[aria-label="Stop pose loop"]')?.click();
       }
     }
   }, [visible]);

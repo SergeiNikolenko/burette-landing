@@ -13,7 +13,7 @@ export const sceneWindow = frame => activeWorkspaceViewer(frame?.contentDocument
 export async function openWorkspaceScene(frame, scene, cancelled = () => false, indicate = async () => {}) {
   const doc = frame?.contentDocument;
   if (!doc || cancelled()) return false;
-  button(sceneWindow(frame)?.document, "Stop frame loop")?.click();
+  for (const label of ["Stop frame loop", "Stop pose loop"]) button(sceneWindow(frame)?.document, label)?.click();
   button(doc, "Back to app")?.click();
   button(doc, "Hide bottom dock")?.click();
   button(doc, "Hide right dock")?.click();
