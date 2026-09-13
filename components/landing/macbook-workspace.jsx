@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import WorkspaceDemo from "./workspace-demo";
 import WorkspaceLoading from "./workspace-loading";
 import ProductShot from "./product-shot";
-import { preloadWorkspaceResources } from "./workspace-preload";
 import { pointAtControl } from "./presentation-pointer";
 import { playWorkspaceStory } from "./workspace-choreography";
 import { activeWorkspaceViewer, openWorkspaceScene, prepareWorkspaceScene, workspaceScenes } from "./workspace-presentation";
@@ -48,12 +47,6 @@ function DesktopPresentation() {
     indicators.current?.style.setProperty("--scene-progress", "0");
   }, [scene, ready]);
   const paused = () => { if (pointer.current) pointer.current.dataset.visible = "false"; story.current?.abort(); transition.current++; userActive.current = true; setPlaying(false); };
-  useEffect(() => {
-    if (!ready || !visible) return;
-    const controller = new AbortController();
-    const timer = setTimeout(() => preloadWorkspaceResources(controller.signal), 3000);
-    return () => { clearTimeout(timer); controller.abort(); };
-  }, [ready, visible]);
   useEffect(() => {
     const sync = () => {
       const next = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
@@ -140,13 +133,13 @@ function DesktopPresentation() {
           return;
         }
         if (cancelled()) return;
-        await playWorkspaceStory(frame.current, workspaceScenes[scene], controller.signal, element => pointAtControl(frame.current, pointer.current, element, cancelled), value => {
+        await playWorkspaceStory(frame.current, workspaceScenes[scene], controller.signal, value => {
           if (!cancelled()) indicators.current?.style.setProperty("--scene-progress", String(value));
         });
         if (cancelled()) return;
         const next = (scene + 1) % workspaceScenes.length;
         setSwitching(true);
-        await new Promise(resolve => setTimeout(resolve, 180));
+        await new Promise(resolve => setTimeout(resolve, 450));
         if (cancelled()) return;
         const opened = await openWorkspaceScene(frame.current, workspaceScenes[next], cancelled, element => pointAtControl(frame.current, pointer.current, element, cancelled))
           && await prepareWorkspaceScene(frame.current, workspaceScenes[next], cancelled);
@@ -167,7 +160,7 @@ function DesktopPresentation() {
     changing.current = true;
     setSwitching(true);
     try {
-      await new Promise(resolve => setTimeout(resolve, 180));
+      await new Promise(resolve => setTimeout(resolve, 450));
       if (cancelled()) return;
       if (await openWorkspaceScene(frame.current, workspaceScenes[index], cancelled)
         && await prepareWorkspaceScene(frame.current, workspaceScenes[index], cancelled) && !cancelled()) {

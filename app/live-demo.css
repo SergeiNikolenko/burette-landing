@@ -128,8 +128,8 @@
 
 /* Keep the real desktop legible; phones receive an uncropped still instead. */
 .landing .macbook-screen { background: var(--surface); }
-.landing .macbook-screen iframe { transition: opacity 180ms cubic-bezier(.2,.8,.2,1), filter 180ms cubic-bezier(.2,.8,.2,1); }
-.landing .macbook-screen[data-switching="true"] iframe { opacity: .85; filter: blur(1px); pointer-events: none; }
+.landing .macbook-screen iframe { transition: opacity 450ms cubic-bezier(.4,0,.2,1); }
+.landing .macbook-screen[data-switching="true"] iframe { opacity: 0; pointer-events: none; }
 .landing .mobile-workspace-preview img { object-fit: contain; }
 .landing .live-poster { object-fit: contain; }
 @media (prefers-reduced-motion: reduce) {
