@@ -24,6 +24,10 @@ for (const story of featureStories) {
   for (const src of media) if (!(await exists(path.join(root, "public", src)))) failures.push(`feature ${story.id}: missing media ${src}`);
 }
 
+if (!(await exists(path.join(root, "public/__burette/app-icon/finder.png")))) {
+  failures.push("workspace: missing Finder icon used by the published browser shell");
+}
+
 const isLanding = (file) => landingFiles.includes(file);
 // Fragment links resolve across the whole page, not within one component, so
 // anchors are validated against every landing source concatenated.
