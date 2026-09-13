@@ -108,12 +108,9 @@ export async function playWorkspaceStory(frame, scene, signal, indicate = async 
     await click("Play frame loop");
     await wait(10000);
     await click("Stop frame loop");
-    await click("Turn Smooth motion on");
-    for (let attempt = 0; attempt < 80; attempt++) {
-      if (doc.querySelector('[aria-label="Turn Smooth motion off"]')) break;
-      await wait(250);
-    }
-    await click("Show playback controls");
+    await click("Next frame");
+    await wait(4000);
+    await turn(0.3, 4000);
     await click("Play frame loop");
     await wait(12000);
   } else if (scene.label === "Molecules") {
