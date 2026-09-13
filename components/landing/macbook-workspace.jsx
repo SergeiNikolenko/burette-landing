@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import WorkspaceDemo from "./workspace-demo";
 import ProductShot from "./product-shot";
+import { pointAtControl } from "./presentation-pointer";
 import { playWorkspaceStory } from "./workspace-choreography";
 import { activeWorkspaceViewer, openWorkspaceScene, prepareWorkspaceScene, workspaceScenes } from "./workspace-presentation";
 
@@ -24,6 +25,7 @@ function DesktopPresentation() {
   const root = useRef(null);
   const screen = useRef(null);
   const frame = useRef(null);
+  const pointer = useRef(null);
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [ready, setReady] = useState(false);
@@ -38,7 +40,7 @@ function DesktopPresentation() {
   const transition = useRef(0);
   const changing = useRef(false);
   const story = useRef(null);
-  const paused = () => { story.current?.abort(); transition.current++; userActive.current = true; setPlaying(false); };
+  const paused = () => { if (pointer.current) pointer.current.dataset.visible = "false"; story.current?.abort(); transition.current++; userActive.current = true; setPlaying(false); };
   useEffect(() => {
     const sync = () => {
       const next = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
@@ -119,13 +121,13 @@ function DesktopPresentation() {
           return;
         }
         if (cancelled()) return;
-        await playWorkspaceStory(frame.current, workspaceScenes[scene], controller.signal);
+        await playWorkspaceStory(frame.current, workspaceScenes[scene], controller.signal, element => pointAtControl(frame.current, pointer.current, element, cancelled));
         if (cancelled()) return;
         const next = (scene + 1) % workspaceScenes.length;
         setSwitching(true);
         await new Promise(resolve => setTimeout(resolve, 180));
         if (cancelled()) return;
-        const opened = await openWorkspaceScene(frame.current, workspaceScenes[next], cancelled)
+        const opened = await openWorkspaceScene(frame.current, workspaceScenes[next], cancelled, element => pointAtControl(frame.current, pointer.current, element, cancelled))
           && await prepareWorkspaceScene(frame.current, workspaceScenes[next], cancelled);
         if (cancelled()) return;
         setSwitching(false);
@@ -135,7 +137,7 @@ function DesktopPresentation() {
         if (!cancelled()) { console.warn("Presentation paused:", error.message); setPlaying(false); }
       }
     })();
-    return () => { controller.abort(); setSwitching(false); };
+    return () => { controller.abort(); if (pointer.current) pointer.current.dataset.visible = "false"; setSwitching(false); };
   }, [playing, visible, ready, scene]);
   const choose = async index => {
     paused();
@@ -158,6 +160,7 @@ function DesktopPresentation() {
       <div className="macbook-camera-band" aria-hidden="true" />
       <div ref={screen} className="macbook-screen" data-switching={switching}>
         {mounted && <iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=${theme}`} title="Burette complete interactive workspace" style={{ width: viewport.width, height: viewport.height, top: 26 * viewport.scale, transform: `scale(${viewport.scale})` }} />}
+        <svg ref={pointer} className="presentation-pointer" viewBox="0 0 24 30" width="19" height="24" aria-hidden="true"><path d="M3 2v22l6-5 4 9 4-2-4-8h8Z" fill="#202124" stroke="#fff" strokeWidth="1.8" strokeLinejoin="round" /></svg>
         {!ready && <div className="macbook-loading" role="status">{failed ? "Open the workspace to try Burette." : "Opening Burette…"}</div>}
       </div>
       <img className="macbook-product-bezel" src={`/assets/devices/macbook-pro-${theme === "dark" ? "space-black" : "silver"}.png`} alt="MacBook Pro showing Burette" width={4260} height={2840} />

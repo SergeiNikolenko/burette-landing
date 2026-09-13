@@ -125,7 +125,7 @@
 /* Keep the real desktop legible; phones receive an uncropped still instead. */
 .landing .macbook-screen { background: var(--surface); }
 .landing .macbook-screen iframe { transition: opacity 180ms cubic-bezier(.2,.8,.2,1), filter 180ms cubic-bezier(.2,.8,.2,1); }
-.landing .macbook-screen[data-switching="true"] iframe { opacity: .55; filter: blur(3px); pointer-events: none; }
+.landing .macbook-screen[data-switching="true"] iframe { opacity: .85; filter: blur(1px); pointer-events: none; }
 .landing .mobile-workspace-preview img { object-fit: contain; }
 .landing .live-poster { object-fit: contain; }
 @media (prefers-reduced-motion: reduce) {
@@ -133,3 +133,7 @@
 }
 
 .landing .live-scene-loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--body); font-size: 13px; }
+
+.landing .presentation-pointer { position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none; opacity: 0; filter: drop-shadow(0 1px 2px #0005); transition: transform 420ms cubic-bezier(.2,.8,.2,1), opacity 120ms; }
+.landing .presentation-pointer[data-visible="true"] { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .landing .presentation-pointer { display: none; } }

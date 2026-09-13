@@ -95,3 +95,5 @@ The hero SDF example uses the published `openSdfMolstarDocument` host message an
 The agent section reserves an empty, neutral 16:9 space for a future video, with no poster, caption, or inactive play control. The existing recorded agent demo remains available in the feature gallery.
 
 Below 900 CSS pixels, the hero uses an uncropped, enlargable real-app screenshot and does not mount the desktop runtime. Desktop canvas resolution follows the visible screen width with a 960 CSS-pixel minimum, preserving readable controls. Camera turns follow animation frames; tab transitions briefly soften the viewport while waiting for the next document. Reduced-motion preferences disable automatic presentation.
+
+A small presentation pointer moves to real file tabs, sidebar items, playback controls, and Grid cards before their actions. Coordinates account for nested scaled frames. Real input cancels pending pointer actions, and the pointer is hidden for reduced motion.

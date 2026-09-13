@@ -10,7 +10,7 @@ export function activeWorkspaceViewer(doc) {
 }
 const button = (doc, label) => doc?.querySelector(`button[aria-label="${label}"]`);
 export const sceneWindow = frame => activeWorkspaceViewer(frame?.contentDocument)?.contentWindow;
-export async function openWorkspaceScene(frame, scene, cancelled = () => false) {
+export async function openWorkspaceScene(frame, scene, cancelled = () => false, indicate = async () => {}) {
   const doc = frame?.contentDocument;
   if (!doc || cancelled()) return false;
   button(sceneWindow(frame)?.document, "Stop frame loop")?.click();
@@ -19,7 +19,7 @@ export async function openWorkspaceScene(frame, scene, cancelled = () => false) 
   button(doc, "Hide right dock")?.click();
   const name = scene.title || scene.path.split("/").pop();
   const existing = [...doc.querySelectorAll('[role="tablist"][aria-label="Open structures"] [role="tab"]')].find(tab => tab.textContent.trim() === name);
-  if (existing) { existing.click(); return true; }
+  if (existing) { await indicate(existing); if (cancelled()) return false; existing.click(); return true; }
   if (scene.asset) {
     const win = sceneWindow(frame);
     if (!win?.__mqlPost) return false;
@@ -35,7 +35,7 @@ export async function openWorkspaceScene(frame, scene, cancelled = () => false) 
   }
   for (let attempt = 0; attempt < 8 && !cancelled(); attempt++) {
     const item = doc.querySelector(`[data-sidebar-structure-path="${scene.path}"]`);
-    if (item) { item.click(); return true; }
+    if (item) { await indicate(item); if (cancelled()) return false; item.click(); return true; }
     button(doc, "Show sidebar")?.click();
     for (const control of doc.querySelectorAll('button[aria-label]')) {
       const label = control.getAttribute("aria-label");

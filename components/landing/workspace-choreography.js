@@ -2,11 +2,16 @@ import { sceneWindow } from "./workspace-presentation";
 
 // All steps operate the real workspace and its Mol* scene. Cancelling hands the
 // current camera and controls to the visitor, without resetting their view.
-export async function playWorkspaceStory(frame, scene, signal) {
+export async function playWorkspaceStory(frame, scene, signal, indicate = async () => {}) {
   const win = sceneWindow(frame);
   const doc = win?.document;
   const plugin = win?.BuretteViewer?.plugin;
-  const click = label => doc?.querySelector(`button[aria-label="${label}"]`)?.click();
+  const click = async label => {
+    const control = doc?.querySelector(`button[aria-label="${label}"]`);
+    if (!control) return;
+    await indicate(control);
+    if (!signal.aborted) control.click();
+  };
   const run = async action => {
     if (signal.aborted) throw new DOMException("Presentation paused", "AbortError");
     if (!win?.BuretteViewerActions?.run) throw new Error("Scene actions are not ready");
@@ -49,12 +54,16 @@ export async function playWorkspaceStory(frame, scene, signal) {
   };
   if (scene.label === "Library") {
     const cards = [...doc.querySelectorAll('button')].find(b => b.textContent.trim() === "Cards");
+    await indicate(cards);
+    if (signal.aborted) return;
     cards?.click();
     await wait(2500);
     for (const index of [2, 6, 10]) {
       const card = doc.querySelector(`.buret-card[data-index="${index}"]`);
       card?.scrollIntoView({ behavior: "smooth", block: "nearest" });
       await wait(600);
+      await indicate(card);
+      if (signal.aborted) return;
       card?.click();
       await wait(2000);
     }
@@ -84,17 +93,17 @@ export async function playWorkspaceStory(frame, scene, signal) {
     await wait(2500);
   } else if (scene.label === "Motion") {
     await run({ type: "set_sdf_pose_mode", mode: "single" });
-    click("Show playback controls");
-    click("Play frame loop");
+    await click("Show playback controls");
+    await click("Play frame loop");
     await wait(4200);
-    click("Stop frame loop");
+    await click("Stop frame loop");
     await run({ type: "apply_trajectory_smoothing", outputFrames: 80 });
-    click("Show playback controls");
-    click("Play frame loop");
+    await click("Show playback controls");
+    await click("Play frame loop");
     await wait(5000);
   } else if (scene.label === "Molecules") {
     await run({ type: "set_sdf_pose_mode", mode: "single" });
-    click("Show playback controls");
+    await click("Show playback controls");
     await run({ type: "set_sdf_pose_index", index: 0 });
     await wait(2000);
     await run({ type: "set_sdf_pose_index", index: 2 });
