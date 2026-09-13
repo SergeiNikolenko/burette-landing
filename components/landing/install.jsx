@@ -12,9 +12,9 @@ export default function Install() {
         <div>
           <p className="section-label">Installation</p>
           <h2 id="install-title">
-            On your Mac.
+            Install Burette.
             <br />
-            In a moment.
+            Start in Finder.
           </h2>
           <p className="install-note">macOS 12+ · Apple Silicon and Intel</p>
           <Link className="text-link" href="/docs/get-started/install">
@@ -22,6 +22,10 @@ export default function Install() {
           </Link>
         </div>
         <div>
+          <p className="install-note">
+            Download Burette, move it to Applications, and open it once to
+            register Finder previews. Or install with Homebrew:
+          </p>
           <ol
             className="install-commands"
             aria-label="Homebrew installation commands"
@@ -42,8 +46,8 @@ export default function Install() {
             </li>
           </ol>
           <p className="install-note">
-            Open Burette once to enable Finder previews. Public downloads are
-            ad-hoc signed; macOS may ask you to approve the first launch.
+            Public downloads are ad-hoc signed. macOS may require first-launch
+            approval in System Settings → Privacy &amp; Security.
           </p>
         </div>
       </div>

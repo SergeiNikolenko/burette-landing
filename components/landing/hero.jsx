@@ -18,7 +18,7 @@ export default function Hero() {
           See the molecule.
         </h1>
         <p className="hero-description">
-          A molecular viewer that opens with the space bar.
+          Preview molecular files in Finder. Open Burette to compare, edit, and export.
         </p>
         <div className="hero-actions">
           <Button asChild size="lg" className="pill-button">

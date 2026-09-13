@@ -14,14 +14,14 @@ export default function Features() {
       <div className="section-intro page-width">
         <div className="intro-copy">
           <h2 id="features-title">
-            A folder full
+            From a quick look
             <br />
-            of structures.
+            to your next step.
           </h2>
           <p>
-            You don’t always need to start a modelling session. Sometimes you just
-            need to see what’s in a PDB file. Select it in Finder and press Space;
-            the structure is right there. For tabs and editing, there’s a separate workspace.
+            Inspect a file in Finder, then open it in Burette to keep working.
+            Compare structures side by side, edit molecules in Ketcher, and export
+            the structures you need.
           </p>
         </div>
         <ThemedImage
@@ -46,8 +46,8 @@ export default function Features() {
           </div>
           <div>
             <p>
-              The first angle may hide the part you’re looking for. Drag to rotate
-              the protein, then zoom in on the residue you’re trying to inspect.
+              Select a molecular file in Finder and press Space. Rotate the structure
+              and zoom in on a ligand or residue directly in the preview.
             </p>
             <Link className="text-link" href="/docs/surfaces/quick-look">
               Explore Quick Look <span aria-hidden="true">↗</span>
@@ -78,8 +78,8 @@ export default function Features() {
           </div>
           <div>
             <p>
-              When there are 500 structures in an SDF, opening them one at a time
-              gets old. Use the cards or table, then export a smaller set.
+              Search an SDF collection, browse structure cards, and compare properties
+              in the table. Select compounds to inspect or export.
             </p>
             <Link className="text-link" href="/docs/workflows/collections">
               Explore collections <span aria-hidden="true">↗</span>
@@ -102,8 +102,8 @@ export default function Features() {
           </div>
           <div>
             <p>
-              The similarity map is another way into a large collection. Nearby
-              points have similar structures; select a group to inspect the compounds.
+              Explore structural similarity across a collection. Select a cluster
+              on the map to inspect its molecules and properties.
             </p>
             <Link className="text-link" href="/docs/workflows/native-compute">
               Explore Chemical Space <span aria-hidden="true">↗</span>
@@ -116,7 +116,7 @@ export default function Features() {
       <article className="product-chapter chapter-split page-width">
         <div className="chapter-heading">
           <div><p className="section-label">Molecular motion</p><h3>Let it run.<br />Stop where it matters.</h3></div>
-          <div><p>This is a 20-frame vibrational mode, shown in a loop. Pause it if you want to compare two neighboring frames. The Mac app also has trajectory smoothing for less abrupt playback.</p></div>
+          <div><p>Play, pause, and step through this 20-frame vibrational mode. In the Mac app, smoothing interpolates between frames for more continuous playback.</p></div>
         </div>
         <LiveScene autoLoad scene="motion" label="BIMP · molecular motion" />
       </article>
