@@ -18,7 +18,7 @@ export default function Hero() {
           See the molecule.
         </h1>
         <p className="hero-description">
-          Explore structures and molecular collections, straight from Finder.
+          A molecular viewer that opens with the space bar.
         </p>
         <div className="hero-actions">
           <Button asChild size="lg" className="pill-button">

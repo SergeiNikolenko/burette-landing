@@ -14,9 +14,10 @@ export async function pointAtControl(frame, pointer, element, cancelled) {
   }
   if (owner !== frame) return;
   const screen = pointer.parentElement.getBoundingClientRect();
-  pointer.style.transform = `translate(${x - screen.left}px, ${y - screen.top}px)`;
+  pointer.style.transform = `translate(${x - screen.left - 2.5}px, ${y - screen.top - 2.5}px)`;
   pointer.dataset.visible = "true";
-  await new Promise(resolve => setTimeout(resolve, 420));
+  await new Promise(resolve => setTimeout(resolve, 700));
   if (cancelled()) { pointer.dataset.visible = "false"; return; }
-  pointer.animate([{ opacity: 1 }, { opacity: .55 }, { opacity: 1 }], { duration: 160 });
+  pointer.querySelector("svg")?.animate([{ transform: "scale(1)" }, { transform: "scale(.88)", offset: .35 }, { transform: "scale(1)" }], { duration: 220, easing: "ease-out" });
+  pointer.querySelector(".presentation-click-ring")?.animate([{ opacity: .65, transform: "scale(.5)" }, { opacity: 0, transform: "scale(1.6)" }], { duration: 420, easing: "ease-out" });
 }

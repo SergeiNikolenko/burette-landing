@@ -9,61 +9,47 @@ const QUESTIONS = [
   {
     id: "free",
     q: "Is Burette really free?",
-    a: (
-      <>
-        Yes. Burette is free and open source under the MIT license. The desktop app
-        needs no account or subscription. Download the .dmg or follow the
-        Homebrew instructions above and run{" "}
-        <code>brew install --cask burette</code>.
-      </>
-    ),
+    a: "Yes. No subscription, no account, and no paid tier. The source is on GitHub under the MIT license.",
   },
   {
     id: "formats",
     q: "Which files can I preview with Space?",
-    a: "Structures (PDB, CIF, mmCIF, SDF, MOL, MOL2, XYZ, GRO, BCIF), multi-frame XYZ and MD trajectories, chemistry tables (SMILES, SMI, CSV, TSV) and QM outputs (CUBE, LOG, OUT, PSI4, VASP). See the formats guide for the complete list and renderer requirements.",
+    a: "PDB, CIF, SDF and XYZ are a few common ones. There’s also support for molecular tables, trajectories and quantum-chemistry outputs. Check the formats guide for your file type; some need an optional renderer.",
   },
   {
     id: "first-launch",
     q: "Do I have to open the app for Quick Look to work?",
-    a: "Open Burette once after installation to register the extension. You can then close the app and use previews from Finder.",
+    a: "Only once, after installing it. That registers the Finder extension. After that, Burette can stay closed while you use Quick Look.",
   },
   {
     id: "preview-vs-workspace",
     q: "What is the difference between the preview and the workspace?",
-    a: "Quick Look lets you inspect structures, scrub trajectories, and browse molecule grids from Finder. Open the workspace for file tabs, side-by-side views, collection filtering and export, Ketcher editing, and local calculations.",
+    a: "Quick Look is handy for checking a file without leaving Finder. In the workspace you get tabs, views next to each other, and Ketcher for editing. Collection export and local calculation tools live there too.",
   },
   {
     id: "privacy",
     q: "Does anything leave my Mac?",
-    a: "The desktop app opens local molecular files on your Mac without uploading them. Online integrations have their own data paths: files shared with a hosted plugin or AI provider are processed by those services. See the privacy policy for details.",
+    a: "Opening a file in the Mac app doesn’t upload it. If you send a file to an AI service or the hosted plugin, that service receives it. The privacy policy covers those connections.",
   },
   {
     id: "dependencies",
     q: "Do I need Python, RDKit or Mol* installed first?",
-    a: (
-      <>
-        No. Mol*, RDKit and Ketcher ship inside the app. Optional tools include <code>xyzrender</code> for
-        vector illustrations, and <code>xtb</code> / <code>crest</code> for
-        local calculations. See the engines guide for installation options
-        and other supported tools.
-      </>
-    ),
+    a: "The usual viewing tools are bundled: Mol*, RDKit and Ketcher. You’ll need a separate install for extras such as xyzrender, xTB or CREST. Start with the app; add those tools when you need them.",
   },
   {
     id: "not",
     q: "Is this a replacement for PyMOL, ChimeraX or Maestro?",
-    a: "Burette is useful for inspecting files from Finder, comparing molecules, editing structures, and preparing calculations. You can keep using your existing modelling tools for the workflows you already rely on.",
+    a: "There’s no need to switch. Use Burette for the quick check or the comparison in front of you, then send the file to your usual modelling application from the app menu.",
   },
   {
     id: "agents",
     q: "Can Codex or another agent drive Burette?",
-    a: "Yes. The local plugin lets an agent open files, control molecular views, edit in Ketcher, and work with collections and trajectories. A separate hosted plugin provides browser-based molecular tools. The plugin guide explains setup and availability.",
+    a: "Yes, through the Burette plugin. An agent can open a local file, change the view, or edit a molecule in Ketcher. There’s also a hosted version for browser use. Follow the plugin guide for the version you want.",
   },
   {
     id: "requirements",
     q: "Which macOS versions and chips are supported?",
-    a: "macOS 12 Monterey and later, on both Apple Silicon and Intel. Public downloads are ad-hoc signed rather than Apple-notarized, so macOS may ask you to approve the first launch. The Metal-accelerated Chemical Space path runs on Apple Silicon; on Intel the same analyses fall back to the CPU implementation.",
+    a: "macOS 12 or later, on Apple Silicon and Intel. Chemical Space uses Metal on Apple Silicon and CPU calculations on Intel. The public build isn’t Apple-notarized yet: macOS may ask you to approve the first launch.",
   },
 ];
 

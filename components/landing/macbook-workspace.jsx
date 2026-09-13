@@ -166,7 +166,7 @@ function DesktopPresentation() {
     <div className="macbook-product">
       <div ref={screen} className="macbook-screen" data-switching={switching}>
         {mounted && <iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=${theme}`} title="Burette complete interactive workspace" style={{ width: viewport.width, height: viewport.height, transform: `scale(${viewport.scale})` }} />}
-        <div ref={pointer} className="presentation-pointer" aria-hidden="true"><svg viewBox="0 0 24 30" width="20" height="25"><path d="M3 2v22l6-5 4 9 4-2-4-8h8Z" fill="#fff" stroke="#202124" strokeWidth="1.8" strokeLinejoin="round" /></svg></div>
+        <div ref={pointer} className="presentation-pointer" aria-hidden="true"><span className="presentation-click-ring" /><svg viewBox="0 0 24 30" width="24" height="30"><path d="M2.5 2.5v21l5.8-5.1 4.2 9.1 4-1.9-4.2-8.8 7.8-.3Z" fill="#202124" stroke="#fff" strokeWidth="1.7" strokeLinejoin="round" /></svg></div>
         <WorkspaceLoading ready={ready} failed={failed}>Open the workspace to try Burette.</WorkspaceLoading>
       </div>
       <img className="macbook-product-bezel" src={`/assets/devices/macbook-pro-${theme === "dark" ? "space-black" : "silver"}.png`} alt="MacBook Pro showing Burette" width={4260} height={2840} />

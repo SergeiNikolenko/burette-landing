@@ -20,9 +20,9 @@ export default function CodexMcp() {
         </div>
         <div>
           <p>
-            Ask Codex to open a structure, focus on a ligand, or prepare a
-            sequence of molecular views. The Burette plugin connects your agent to the tools
-            in your workspace.
+            Already working with Codex? Add the Burette plugin and ask it to open
+            your file or find a ligand. The molecule appears in the workspace,
+            where you can take over.
           </p>
           <Button asChild variant="outline" className="pill-button">
             <Link
