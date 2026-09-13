@@ -9,7 +9,19 @@ export default withNextra({
   reactStrictMode: true,
   // the floating dev badge sits on top of the hero and gets into every screenshot
   devIndicators: false,
+  async rewrites() {
+    return [
+      {
+        source: "/web-demo/:path*",
+        destination: "https://burette-plugin.vercel.app/web-demo/:path*",
+      },
+      {
+        source: "/burette-viewer/:path*",
+        destination: "https://burette-plugin.vercel.app/burette-viewer/:path*",
+      },
+    ];
+  },
   outputFileTracingIncludes: {
-    "/*": ["./download.html", "./out.html"],
+    "/*": ["./download.html", "./out.html", "./public/live-data/**"],
   },
 });
