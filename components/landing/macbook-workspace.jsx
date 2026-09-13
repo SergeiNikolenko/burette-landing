@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import WorkspaceDemo from "./workspace-demo";
@@ -44,6 +44,9 @@ function DesktopPresentation() {
   const transition = useRef(0);
   const changing = useRef(false);
   const story = useRef(null);
+  useLayoutEffect(() => {
+    indicators.current?.style.setProperty("--scene-progress", "0");
+  }, [scene, ready]);
   const paused = () => { if (pointer.current) pointer.current.dataset.visible = "false"; story.current?.abort(); transition.current++; userActive.current = true; setPlaying(false); };
   useEffect(() => {
     if (!ready || !visible) return;
