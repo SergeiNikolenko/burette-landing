@@ -28,6 +28,7 @@ export default function MobileNav() {
           <DialogClose asChild><a href="#formats">File formats</a></DialogClose>
           <DialogClose asChild><a href="#codex">For agents</a></DialogClose>
           <DialogClose asChild><Link href="/docs">Documentation</Link></DialogClose>
+          <DialogClose asChild><a href="/out/github-repo?surface=mobile-nav">GitHub ↗</a></DialogClose>
           <DialogClose asChild><Link href="/demo">Open the browser workspace ↗</Link></DialogClose>
         </nav>
       </DialogContent>

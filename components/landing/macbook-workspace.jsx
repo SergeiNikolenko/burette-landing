@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import WorkspaceDemo from "./workspace-demo";
+import WorkspaceLoading from "./workspace-loading";
 import ProductShot from "./product-shot";
+import { preloadWorkspaceResources } from "./workspace-preload";
 import { pointAtControl } from "./presentation-pointer";
 import { playWorkspaceStory } from "./workspace-choreography";
 import { activeWorkspaceViewer, openWorkspaceScene, prepareWorkspaceScene, workspaceScenes } from "./workspace-presentation";
@@ -42,6 +44,11 @@ function DesktopPresentation() {
   const story = useRef(null);
   const paused = () => { if (pointer.current) pointer.current.dataset.visible = "false"; story.current?.abort(); transition.current++; userActive.current = true; setPlaying(false); };
   useEffect(() => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => preloadWorkspaceResources(controller.signal), 1200);
+    return () => { clearTimeout(timer); controller.abort(); };
+  }, []);
+  useEffect(() => {
     const sync = () => {
       const next = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
       try {
@@ -60,7 +67,7 @@ function DesktopPresentation() {
     const resize = new ResizeObserver(([entry]) => {
       const width = Math.max(960, Math.min(1440, Math.round(entry.contentRect.width)));
       const scale = entry.contentRect.width / width;
-      setViewport({ width, height: Math.round(entry.contentRect.height / scale - 26), scale });
+      setViewport({ width, height: Math.round(entry.contentRect.height / scale), scale });
     });
     resize.observe(screen.current);
     return () => { themes.disconnect(); observer.disconnect(); resize.disconnect(); };
@@ -157,11 +164,10 @@ function DesktopPresentation() {
   };
   return <div ref={root} className="macbook-workspace">
     <div className="macbook-product">
-      <div className="macbook-camera-band" aria-hidden="true" />
       <div ref={screen} className="macbook-screen" data-switching={switching}>
-        {mounted && <iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=${theme}`} title="Burette complete interactive workspace" style={{ width: viewport.width, height: viewport.height, top: 26 * viewport.scale, transform: `scale(${viewport.scale})` }} />}
-        <svg ref={pointer} className="presentation-pointer" viewBox="0 0 24 30" width="19" height="24" aria-hidden="true"><path d="M3 2v22l6-5 4 9 4-2-4-8h8Z" fill="#202124" stroke="#fff" strokeWidth="1.8" strokeLinejoin="round" /></svg>
-        {!ready && <div className="macbook-loading" role="status">{failed ? "Open the workspace to try Burette." : "Opening Burette…"}</div>}
+        {mounted && <iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=${theme}`} title="Burette complete interactive workspace" style={{ width: viewport.width, height: viewport.height, transform: `scale(${viewport.scale})` }} />}
+        <div ref={pointer} className="presentation-pointer" aria-hidden="true"><svg viewBox="0 0 24 30" width="20" height="25"><path d="M3 2v22l6-5 4 9 4-2-4-8h8Z" fill="#fff" stroke="#202124" strokeWidth="1.8" strokeLinejoin="round" /></svg></div>
+        <WorkspaceLoading ready={ready} failed={failed}>Open the workspace to try Burette.</WorkspaceLoading>
       </div>
       <img className="macbook-product-bezel" src={`/assets/devices/macbook-pro-${theme === "dark" ? "space-black" : "silver"}.png`} alt="MacBook Pro showing Burette" width={4260} height={2840} />
     </div>

@@ -18,6 +18,7 @@ export default function SiteNav() {
           <Link href="/docs">Docs</Link>
         </nav>
         <div className="nav-actions">
+          <a className="nav-github" href="/out/github-repo?surface=nav">GitHub</a>
           <ThemeToggle />
           <Button asChild size="sm" className="pill-button nav-download">
             <Link

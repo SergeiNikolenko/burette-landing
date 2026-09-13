@@ -3,7 +3,7 @@ import Link from "next/link";
 const FORMATS = [
   [
     "Structures & trajectories",
-    "PDB, CIF, mmCIF, SDF, MOL2, XYZ, GRO",
+    "PDB, CIF, mmCIF, SDF, MOL, MOL2, XYZ, GRO, MAE",
     "Interactive molecular views with Mol*.",
   ],
   [
@@ -13,7 +13,7 @@ const FORMATS = [
   ],
   [
     "Quantum chemistry",
-    "CUBE, LOG, OUT, PSI4, VASP, MAE",
+    "CUBE, LOG, OUT, PSI4, VASP",
     "Vector artwork with the optional xyzrender engine.",
   ],
 ];

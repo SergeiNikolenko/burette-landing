@@ -57,7 +57,7 @@ export async function playWorkspaceStory(frame, scene, signal, indicate = async 
     await indicate(cards);
     if (signal.aborted) return;
     cards?.click();
-    await wait(2500);
+    await wait(6000);
     for (const index of [2, 6, 10]) {
       const card = doc.querySelector(`.buret-card[data-index="${index}"]`);
       card?.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -65,61 +65,84 @@ export async function playWorkspaceStory(frame, scene, signal, indicate = async 
       await indicate(card);
       if (signal.aborted) return;
       card?.click();
-      await wait(2000);
+      await wait(5000);
     }
     return;
   }
-  await run({ type: "set_molstar_style", style: "illustrative" });
-  await wait(800);
+  const selectStyle = async (kind, value) => {
+    await click("Expand controls");
+    if (doc.querySelector('[aria-label="Mol* representation preset"]')?.getAttribute("aria-expanded") !== "true") {
+      await click("Mol* representation preset");
+    }
+    await wait(1400);
+    const option = doc.querySelector(`[data-buret-molstar-${kind}="${value}"]`);
+    if (!option) throw new Error("The style menu is not ready");
+    await indicate(option);
+    await wait(600);
+    if (signal.aborted) return;
+    option.click();
+    await wait(2400);
+    if (doc.querySelector('[aria-label="Mol* representation preset"]')?.getAttribute("aria-expanded") === "true") {
+      await click("Mol* representation preset");
+    }
+  };
+  await wait(2200);
+  await selectStyle("appearance", scene.label === "Molecules" ? "default" : "illustrative");
   fit();
   await wait(950);
   if (scene.label === "Structures") {
     await run({ type: "hide_waters" });
     await wait(1400);
-    await turn(0.7, 3200);
+    await turn(0.7, 6000);
     await run({ type: "focus_ligand", selector: { comp_id: "6IC" }, showNeighborhood: true, radiusA: 5, extraRadius: 8, durationMs: 1800 });
     const pocket = plugin.managers.structure.selection.getBoundary().sphere;
     plugin.managers.camera.focusSphere(pocket, { durationMs: 1800, extraRadius: 5, zoomOut: false });
-    await wait(2600);
-    await turn(-0.35, 2000);
-    await wait(2200);
-    // Same builder as the real scene-tree Surface action; retain cartoon context.
-    for (const structure of plugin.managers.structure.hierarchy.current.structures) {
-      if (signal.aborted) return;
-      if (structure.components.some(c => c.cell?.transform?.tags?.includes("presentation-surface"))) continue;
-      const component = await plugin.builders.structure.tryCreateComponentStatic(structure.cell, "polymer", { tags: ["presentation-surface"] });
-      if (component) await plugin.builders.structure.representation.addRepresentation(component, { type: "molecular-surface", typeParams: { alpha: 0.16 }, color: "chain-id" });
-    }
-    await wait(2500);
+    await wait(6000);
+    await turn(-0.35, 4000);
+    await wait(5000);
+    await selectStyle("preset", "illustrative-surface");
+    await wait(9000);
   } else if (scene.label === "Motion") {
     await run({ type: "set_sdf_pose_mode", mode: "single" });
     await click("Show playback controls");
     await click("Play frame loop");
-    await wait(4200);
+    await wait(10000);
     await click("Stop frame loop");
-    await run({ type: "apply_trajectory_smoothing", outputFrames: 80 });
+    await click("Turn Smooth motion on");
+    for (let attempt = 0; attempt < 80; attempt++) {
+      if (doc.querySelector('[aria-label="Turn Smooth motion off"]')) break;
+      await wait(250);
+    }
     await click("Show playback controls");
     await click("Play frame loop");
-    await wait(5000);
+    await wait(12000);
   } else if (scene.label === "Molecules") {
-    await run({ type: "set_sdf_pose_mode", mode: "single" });
+    await selectStyle("preset", "ball-and-stick");
     await click("Show playback controls");
-    await run({ type: "set_sdf_pose_index", index: 0 });
-    await wait(2000);
-    await run({ type: "set_sdf_pose_index", index: 2 });
-    await wait(2000);
-    await run({ type: "set_sdf_pose_mode", mode: "all" });
+    const single = [...doc.querySelectorAll('.buret-docking-pose-all')].find(button => button.getAttribute("aria-pressed") === "true");
+    if (single) { await indicate(single); if (signal.aborted) return; single.click(); }
+    await wait(5000);
+    await click("Next pose");
+    await wait(5000);
+    const all = doc.querySelector('.buret-docking-poses .buret-docking-pose-all');
+    if (!all) throw new Error("The All control is not ready");
+    await indicate(all);
+    if (signal.aborted) return;
+    all.click();
+    await wait(4500);
     fit();
-    await turn(0.45, 2600);
-    await wait(3000);
+    await wait(1200);
+    await click("Play pose loop");
+    await turn(0.45, 5000);
+    await wait(14000);
   } else if (scene.label === "Crystals") {
     await wait(1500);
-    await turn(0.55, 2500);
+    await turn(0.55, 5000);
     for (const structure of plugin.managers.structure.hierarchy.current.structures) {
       if (signal.aborted) return;
       await plugin.builders.structure.tryCreateUnitcell(structure.model.cell, { cellColor: 0x87bcea, cellScale: 1, ref: "model", attachment: "corner" }, { isHidden: false });
     }
-    await turn(-0.3, 2000);
-    await wait(3000);
+    await turn(-0.3, 4000);
+    await wait(9000);
   }
 }

@@ -50,7 +50,7 @@ Demo, documentation, plugin setup, downloads, and installation remain reachable.
 
 ## Live demonstrations
 
-At widths of 900 CSS pixels and above, the hero loads the complete published Burette browser workspace, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. A continuous CSS display band covers the camera cutout; the original bezel image remains unchanged.
+At widths of 900 CSS pixels and above, the hero loads the complete published Burette browser workspace, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. The live display covers the camera cutout without an extra black band; the original bezel image remains unchanged.
 
 Presentation mode follows five real workspace scenes with scene-specific timings: KRAS and its ligand pocket, BIMP motion, MATCHA imatinib poses, MOSES cards, and a caffeine crystal. Camera turns, ligand focus, representation changes, playback and pose selection precede each file transition. A narrow file-tree adapter owns this integration with the published shell. Presentation starts enabled on every page load, as requested. Pointer or keyboard input inside the app pauses it; scrolling no longer stops the presentation. Visitors can pause, resume, or choose an example with the dots. Theme changes reload the embedded workspace after synchronizing its stored theme preference. The old external file-name bar and scientific action row are absent.
 The introductory workspace illustration remains non-interactive.
@@ -97,3 +97,9 @@ The agent section reserves an empty, neutral 16:9 space for a future video, with
 Below 900 CSS pixels, the hero uses an uncropped, enlargable real-app screenshot and does not mount the desktop runtime. Desktop canvas resolution follows the visible screen width with a 960 CSS-pixel minimum, preserving readable controls. Camera turns follow animation frames; tab transitions briefly soften the viewport while waiting for the next document. Reduced-motion preferences disable automatic presentation.
 
 A small presentation pointer moves to real file tabs, sidebar items, playback controls, and Grid cards before their actions. Coordinates account for nested scaled frames. Real input cancels pending pointer actions, and the pointer is hidden for reduced motion.
+
+Workspace startup uses the real Burette app icon, a theme-aware soft background, and a small indeterminate ring. The overlay fades only after actual viewer readiness; timeouts stop the ring and show the existing fallback. Reduced motion disables the spin and fade. The icon is derived from the desktop app’s bundle asset and limited to 128 pixels.
+
+Scene results now remain visible for 9–14 seconds before continuing. Representation changes open the actual preset menu and point to its option. SDF All uses ball-and-stick with the native translucent context. Two low-priority preload workers warm the SDF and RDKit/Grid assets on desktop only; normal browser caching is reused, with no hidden renderers. The header includes a GitHub link at every width. Native app/Finder actions in the browser show an informational availability notice.
+
+A follow-up Pangram 4.0 scan on 2026-09-13 covered the revised main-page copy and all FAQ answers: 694 words, 100% AI. Gallery dialog descriptions were reviewed separately for accuracy but were not part of this follow-up submission. This check did not pass as human writing.

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import WorkspaceLoading from "./workspace-loading";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
@@ -47,9 +48,9 @@ export default function WorkspaceDemo({ label = "Try in your browser" }) {
       <DialogDescription className="sr-only">Explore the real Burette workspace with sample structures. Close this dialog to return to the page.</DialogDescription>
       <div className="workspace-demo-stage">
         <iframe ref={frame} src="/web-demo/index.html" title="Burette browser workspace" />
-        {!ready && <div className="workspace-demo-loading" role="status">
-          {failed ? <>The workspace could not start here. <a href="/demo" target="_blank" rel="noopener noreferrer">Open it separately ↗</a></> : "Opening Burette…"}
-        </div>}
+        <WorkspaceLoading ready={ready} failed={failed}>
+          <span>The workspace could not start here. <a href="/demo" target="_blank" rel="noopener noreferrer">Open separately ↗</a></span>
+        </WorkspaceLoading>
       </div>
     </DialogContent>
   </Dialog>;

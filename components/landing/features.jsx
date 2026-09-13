@@ -20,8 +20,7 @@ export default function Features() {
           </h2>
           <p>
             Select a file in Finder and press Space. Rotate a protein, inspect a
-            ligand, or browse a collection. Open Burette when you want to keep
-            working.
+            ligand, or browse a collection. Open the workspace for editing and side-by-side views.
           </p>
         </div>
         <ThemedImage

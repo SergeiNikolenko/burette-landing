@@ -23,7 +23,7 @@ export async function openWorkspaceScene(frame, scene, cancelled = () => false, 
   if (scene.asset) {
     const win = sceneWindow(frame);
     if (!win?.__mqlPost) return false;
-    const response = await fetch(scene.asset);
+    const response = await fetch(scene.asset, { cache: "force-cache" });
     if (!response.ok || cancelled()) return false;
     const text = await response.text();
     if (cancelled()) return false;
