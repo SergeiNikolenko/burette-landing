@@ -17,28 +17,33 @@ export async function playWorkspaceStory(frame, scene, signal, onProgress = () =
   let previous = performance.now();
   const duration = 32000;
   const offset = base.position.map((value, i) => value - base.target[i]);
-  while (elapsed < duration) {
-    const now = await new Promise(requestAnimationFrame);
-    if (signal.aborted) throw new DOMException("Presentation paused", "AbortError");
-    if (!document.hidden) elapsed += Math.min(50, now - previous);
-    previous = now;
-    const progress = Math.min(1, elapsed / duration);
-    onProgress(progress);
-    if (elapsed < 1200) continue;
-    const phase = Math.min(1, (elapsed - 1200) / (duration - 1200));
-    const ease = 0.5 - Math.cos(Math.PI * phase) / 2;
-    const yaw = scene.direction * 0.85 * Math.sin(ease * Math.PI * 1.3);
-    const pitch = 0.1 * Math.sin(ease * Math.PI * 2);
-    const zoom = 1 - 0.12 * Math.sin(ease * Math.PI);
-    const x = offset[0] * Math.cos(yaw) + offset[2] * Math.sin(yaw);
-    const z = -offset[0] * Math.sin(yaw) + offset[2] * Math.cos(yaw);
-    camera.setState({
-      ...base,
-      position: [
-        base.target[0] + x * zoom,
-        base.target[1] + (offset[1] * Math.cos(pitch) - z * Math.sin(pitch)) * zoom,
-        base.target[2] + (offset[1] * Math.sin(pitch) + z * Math.cos(pitch)) * zoom,
-      ],
-    }, 0);
+  if (scene.motion) win.document.querySelector('button[aria-label="Play frame loop"]')?.click();
+  try {
+    while (elapsed < duration) {
+      const now = await new Promise(requestAnimationFrame);
+      if (signal.aborted) throw new DOMException("Presentation paused", "AbortError");
+      if (!document.hidden) elapsed += Math.min(50, now - previous);
+      previous = now;
+      const progress = Math.min(1, elapsed / duration);
+      onProgress(progress);
+      if (elapsed < 1200) continue;
+      const phase = Math.min(1, (elapsed - 1200) / (duration - 1200));
+      const ease = 0.5 - Math.cos(Math.PI * phase) / 2;
+      const yaw = scene.direction * 0.85 * Math.sin(ease * Math.PI * 1.3);
+      const pitch = 0.1 * Math.sin(ease * Math.PI * 2);
+      const zoom = 1 - 0.12 * Math.sin(ease * Math.PI);
+      const x = offset[0] * Math.cos(yaw) + offset[2] * Math.sin(yaw);
+      const z = -offset[0] * Math.sin(yaw) + offset[2] * Math.cos(yaw);
+      camera.setState({
+        ...base,
+        position: [
+          base.target[0] + x * zoom,
+          base.target[1] + (offset[1] * Math.cos(pitch) - z * Math.sin(pitch)) * zoom,
+          base.target[2] + (offset[1] * Math.sin(pitch) + z * Math.cos(pitch)) * zoom,
+        ],
+      }, 0);
+    }
+  } finally {
+    if (scene.motion) win.document.querySelector('button[aria-label="Stop frame loop"]')?.click();
   }
 }
