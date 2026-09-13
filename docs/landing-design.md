@@ -50,15 +50,13 @@ Demo, documentation, plugin setup, downloads, and installation remain reachable.
 
 ## Live demonstrations
 
-The hero loads the complete published Burette browser workspace immediately, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. A continuous CSS display band covers the camera cutout; the original bezel image remains unchanged.
+At widths of 900 CSS pixels and above, the hero loads the complete published Burette browser workspace, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. A continuous CSS display band covers the camera cutout; the original bezel image remains unchanged.
 
-Presentation mode follows five real workspace scenes with scene-specific timings: KRAS and its ligand pocket, BIMP motion, MATCHA imatinib poses, MOSES properties, and a caffeine crystal. Camera turns, ligand focus, representation changes, playback and pose selection precede each file transition. A narrow file-tree adapter owns this integration with the published shell. Presentation starts enabled on every page load, as requested. Pointer or keyboard input inside the app pauses it; scrolling no longer stops the presentation. Visitors can pause, resume, or choose an example with the dots. Theme changes reload the embedded workspace after synchronizing its stored theme preference. The old external file-name bar and scientific action row are absent.
+Presentation mode follows five real workspace scenes with scene-specific timings: KRAS and its ligand pocket, BIMP motion, MATCHA imatinib poses, MOSES cards, and a caffeine crystal. Camera turns, ligand focus, representation changes, playback and pose selection precede each file transition. A narrow file-tree adapter owns this integration with the published shell. Presentation starts enabled on every page load, as requested. Pointer or keyboard input inside the app pauses it; scrolling no longer stops the presentation. Visitors can pause, resume, or choose an example with the dots. Theme changes reload the embedded workspace after synchronizing its stored theme preference. The old external file-name bar and scientific action row are absent.
 The introductory workspace illustration remains non-interactive.
 
-Collections use the published Burette RDKit grid. Chemical Space now opens the complete Burette workspace and its Properties panel, rather than a landing-owned chart. The real panel plots stored numeric columns and sends point selections through the Grid/inspector bridge. The curated MOSES example has 48 records. This is a descriptor plot, not a chemical-space embedding. The heavier workspace preview mounts on request and unloads offscreen; the gallery dialog opens it directly.
-The motion scene uses a real 20-frame BIMP vibrational-mode file, with native
-playback and frame controls. Explicit actions switch between the original 20
-frames and 80 smoothed/interpolated frames. Playback starts when the example opens. The SDF collection in the hero demonstrates All instead.
+The Library scene selects ordinary cards in the published Burette RDKit Grid. The custom Properties plot and Properties/Similarity mode switch have been removed from both app and presentation. The Chemical Space section shows an uncropped screenshot of the existing similarity workflow.
+The motion scene uses a real 20-frame BIMP vibrational-mode file. Playback starts on opening, with the native toolbar and playback panel collapsed. Visitors can expand these controls. There are no surrounding file-name bars or extra frame/smoothing action rows. The SDF collection in the hero demonstrates All instead.
 The scene mounts on approach, without a screenshot poster. It is not presented as a molecular-dynamics run.
 Data provenance is recorded in `public/live-data/README.md`.
 
@@ -94,4 +92,6 @@ Headlines and descriptions name concrete actions. FAQ copy distinguishes local d
 
 The hero SDF example uses the published `openSdfMolstarDocument` host message and eight recorded MATCHA imatinib poses. It waits for that document, shows two individual poses, then selects All. Viewing these poses does not run docking or calculate affinity. Trajectory preparation waits for its own viewer, selects individual frames, and starts the native frame loop.
 
-The agent section reserves a 16:9 cover for a future video. It labels the walkthrough as coming soon and has no inactive play control. The existing recorded agent demo remains available in the feature gallery.
+The agent section reserves an empty, neutral 16:9 space for a future video, with no poster, caption, or inactive play control. The existing recorded agent demo remains available in the feature gallery.
+
+Below 900 CSS pixels, the hero uses an uncropped, enlargable real-app screenshot and does not mount the desktop runtime. Desktop canvas resolution follows the visible screen width with a 960 CSS-pixel minimum, preserving readable controls. Camera turns follow animation frames; tab transitions briefly fade the viewport while waiting for the next document. Reduced-motion preferences disable automatic presentation.

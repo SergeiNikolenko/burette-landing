@@ -560,11 +560,5 @@ html[data-theme="dark"] .landing .hero-copy :is(h1, p) {
 }
 
 .landing .plugin-video { margin-top: 36px; }
-.landing .plugin-video :is(img, video) { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); }
+.landing .plugin-video :is(video, .plugin-video-placeholder) { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); }
 .landing .plugin-video figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 12px; color: var(--body); font-size: 13px; }
-
-.landing .real-property-workspace { position: relative; width: 100%; aspect-ratio: 1.6; overflow: hidden; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); }
-.landing .real-property-workspace iframe { border: 0; transform-origin: top left; }
-.landing .real-property-workspace img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.landing .property-open { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); }
-.landing .property-close { position: absolute; top: 8px; right: 8px; }

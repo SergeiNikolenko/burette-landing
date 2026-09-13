@@ -3,10 +3,24 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import WorkspaceDemo from "./workspace-demo";
+import ProductShot from "./product-shot";
 import { playWorkspaceStory } from "./workspace-choreography";
 import { activeWorkspaceViewer, openWorkspaceScene, prepareWorkspaceScene, workspaceScenes } from "./workspace-presentation";
 
 export default function MacbookWorkspace() {
+  const [desktop, setDesktop] = useState(false);
+  useEffect(() => {
+    const query = matchMedia("(min-width: 900px)");
+    const sync = () => setDesktop(query.matches);
+    sync(); query.addEventListener("change", sync);
+    return () => query.removeEventListener("change", sync);
+  }, []);
+  return <div id="live-demo">{desktop ? <DesktopPresentation /> : <div className="mobile-workspace-preview">
+    <ProductShot light="/assets/main-light.png" dark="/assets/main-dark.png" alt="Burette molecular workspace" width={1804} height={1262} ratio="1804 / 1262" priority />
+  </div>}</div>;
+}
+
+function DesktopPresentation() {
   const root = useRef(null);
   const screen = useRef(null);
   const frame = useRef(null);
@@ -17,7 +31,8 @@ export default function MacbookWorkspace() {
   const [theme, setTheme] = useState("light");
   const [playing, setPlaying] = useState(true);
   const [scene, setScene] = useState(0);
-  const [scale, setScale] = useState(1);
+  const [viewport, setViewport] = useState({ width: 1280, height: 800, scale: 1 });
+  const [switching, setSwitching] = useState(false);
   const userActive = useRef(false);
   const readyRef = useRef(false);
   const transition = useRef(0);
@@ -35,12 +50,16 @@ export default function MacbookWorkspace() {
       setMounted(true);
     };
     sync();
-    setPlaying(true);
+    setPlaying(!matchMedia("(prefers-reduced-motion: reduce)").matches);
     const themes = new MutationObserver(sync);
     themes.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
     const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.2 });
     observer.observe(root.current);
-    const resize = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / 1280));
+    const resize = new ResizeObserver(([entry]) => {
+      const width = Math.max(960, Math.min(1440, Math.round(entry.contentRect.width)));
+      const scale = entry.contentRect.width / width;
+      setViewport({ width, height: Math.round(entry.contentRect.height / scale - 26), scale });
+    });
     resize.observe(screen.current);
     return () => { themes.disconnect(); observer.disconnect(); resize.disconnect(); };
   }, []);
@@ -103,33 +122,42 @@ export default function MacbookWorkspace() {
         await playWorkspaceStory(frame.current, workspaceScenes[scene], controller.signal);
         if (cancelled()) return;
         const next = (scene + 1) % workspaceScenes.length;
-        const opened = await openWorkspaceScene(frame.current, workspaceScenes[next], cancelled);
+        setSwitching(true);
+        await new Promise(resolve => setTimeout(resolve, 180));
+        if (cancelled()) return;
+        const opened = await openWorkspaceScene(frame.current, workspaceScenes[next], cancelled)
+          && await prepareWorkspaceScene(frame.current, workspaceScenes[next], cancelled);
+        if (cancelled()) return;
+        setSwitching(false);
         if (opened) setScene(next);
         else if (!cancelled()) setPlaying(false);
       } catch (error) {
         if (!cancelled()) { console.warn("Presentation paused:", error.message); setPlaying(false); }
       }
     })();
-    return () => controller.abort();
+    return () => { controller.abort(); setSwitching(false); };
   }, [playing, visible, ready, scene]);
   const choose = async index => {
     paused();
     const token = transition.current;
     const cancelled = () => transition.current !== token;
     changing.current = true;
+    setSwitching(true);
     try {
+      await new Promise(resolve => setTimeout(resolve, 180));
+      if (cancelled()) return;
       if (await openWorkspaceScene(frame.current, workspaceScenes[index], cancelled)
         && await prepareWorkspaceScene(frame.current, workspaceScenes[index], cancelled) && !cancelled()) {
         changing.current = false;
         setScene(index); userActive.current = false; setPlaying(true);
       }
-    } finally { changing.current = false; }
+    } finally { changing.current = false; setSwitching(false); }
   };
-  return <div ref={root} id="live-demo" className="macbook-workspace">
+  return <div ref={root} className="macbook-workspace">
     <div className="macbook-product">
       <div className="macbook-camera-band" aria-hidden="true" />
-      <div ref={screen} className="macbook-screen">
-        {mounted && <iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=${theme}`} title="Burette complete interactive workspace" style={{ width: 1280, height: 800, top: 26 * scale, transform: `scale(${scale})` }} />}
+      <div ref={screen} className="macbook-screen" data-switching={switching}>
+        {mounted && <iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=${theme}`} title="Burette complete interactive workspace" style={{ width: viewport.width, height: viewport.height, top: 26 * viewport.scale, transform: `scale(${viewport.scale})` }} />}
         {!ready && <div className="macbook-loading" role="status">{failed ? "Open the workspace to try Burette." : "Opening Burette…"}</div>}
       </div>
       <img className="macbook-product-bezel" src={`/assets/devices/macbook-pro-${theme === "dark" ? "space-black" : "silver"}.png`} alt="MacBook Pro showing Burette" width={4260} height={2840} />

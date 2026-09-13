@@ -42,7 +42,7 @@ export default function ExpandableShot({
           height={height}
           priority={priority}
           sizes={sizes}
-          className="size-full object-cover object-top"
+          className="size-full object-contain"
         />
       </div>
     </figure>

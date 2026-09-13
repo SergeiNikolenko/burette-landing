@@ -3,7 +3,6 @@ import ProductShot from "./product-shot";
 import ThemedImage from "./themed-image";
 import FeatureCarousel from "./feature-carousel";
 import LiveScene from "./live-scene";
-import PropertyMap from "./property-map";
 
 export default function Features() {
   return (
@@ -89,12 +88,7 @@ export default function Features() {
           </div>
         </div>
         <div className="media-stage">
-          <LiveScene
-            scene="collection"
-            label="MOSES · 48 molecules"
-            light="/assets/grid-table-light.png"
-            dark="/assets/grid-table-dark.png"
-          />
+          <ProductShot light="/assets/grid-table-light.png" dark="/assets/grid-table-dark.png" alt="A molecular collection in the Burette workspace" width={1804} height={1262} ratio="1804 / 1262" />
         </div>
       </article>
       <article className="product-chapter chapter-wide page-width">
@@ -109,21 +103,21 @@ export default function Features() {
           </div>
           <div>
             <p>
-              Select a point to inspect its molecule. Explore this 48-compound
-              collection by molecular weight and SLogP, a measure of lipophilicity.
+              Map structural similarities across a collection. Select a region
+              to explore related molecules together.
             </p>
             <Link className="text-link" href="/docs/workflows/native-compute">
               Explore Chemical Space <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </div>
-        <PropertyMap />
+        <ProductShot light="/assets/chemical-space-light.png" dark="/assets/chemical-space-dark.png" alt="Chemical Space in the Burette workspace" width={1804} height={1262} ratio="1804 / 1262" />
       </article>
       <FeatureCarousel />
       <article className="product-chapter chapter-split page-width">
         <div className="chapter-heading">
           <div><p className="section-label">Molecular motion</p><h3>Every frame.<br />In your hands.</h3></div>
-          <div><p>Play, pause, or step through a molecular trajectory. Smooth the motion between frames to follow small changes more easily.</p><p className="motion-example-note">Try this 20-frame vibrational mode. Smoothing creates interpolated frames for viewing.</p></div>
+          <div><p>Play, pause, or step through a molecular trajectory. Smooth the motion between frames to follow small changes more easily.</p></div>
         </div>
         <LiveScene autoLoad scene="motion" label="BIMP · molecular motion" />
       </article>

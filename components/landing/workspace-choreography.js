@@ -1,4 +1,4 @@
-import { sceneWindow, showWorkspaceProperties } from "./workspace-presentation";
+import { sceneWindow } from "./workspace-presentation";
 
 // All steps operate the real workspace and its Mol* scene. Cancelling hands the
 // current camera and controls to the visitor, without resetting their view.
@@ -29,28 +29,33 @@ export async function playWorkspaceStory(frame, scene, signal) {
     const center = spheres[0].center;
     const radius = Math.max(...spheres.map(s => Math.hypot(...s.center.map((v, i) => v - center[i])) + s.radius));
     const camera = plugin.canvas3d.camera;
-    camera.setState(camera.getFocus(center, radius * 1.18 * Math.max(1, win.innerHeight / win.innerWidth)), 0);
+    camera.setState(camera.getFocus(center, radius * 1.18 * Math.max(1, win.innerHeight / win.innerWidth)), 900);
   };
   const turn = async (angle = 0.5, duration = 2800) => {
     const camera = plugin?.canvas3d?.camera;
     if (!camera) return;
     const base = camera.getSnapshot();
     const d = base.position.map((v, i) => v - base.target[i]);
-    for (let elapsed = 0; elapsed <= duration; elapsed += 50) {
-      const a = angle * (0.5 - Math.cos(Math.PI * elapsed / duration) / 2);
+    let elapsed = 0;
+    let previous = performance.now();
+    while (elapsed < duration) {
+      if (signal.aborted) throw new DOMException("Presentation paused", "AbortError");
+      const now = await new Promise(requestAnimationFrame);
+      if (!document.hidden) elapsed += Math.min(50, now - previous);
+      previous = now;
+      const a = angle * (0.5 - Math.cos(Math.PI * Math.min(1, elapsed / duration)) / 2);
       camera.setState({ ...base, position: [base.target[0] + d[0] * Math.cos(a) + d[2] * Math.sin(a), base.position[1], base.target[2] - d[0] * Math.sin(a) + d[2] * Math.cos(a)] }, 0);
-      await wait(50);
     }
   };
   if (scene.label === "Library") {
-    const app = frame.contentDocument;
     const cards = [...doc.querySelectorAll('button')].find(b => b.textContent.trim() === "Cards");
     cards?.click();
     await wait(2500);
-    if (!await showWorkspaceProperties(frame, () => signal.aborted)) throw new Error("The property plot is not ready");
-    await wait(3000);
-    for (const index of [6, 20, 35]) {
-      app.querySelector(`[data-property-point="${index}"]`)?.dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
+    for (const index of [2, 6, 10]) {
+      const card = doc.querySelector(`.buret-card[data-index="${index}"]`);
+      card?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      await wait(600);
+      card?.click();
       await wait(2000);
     }
     return;
@@ -58,6 +63,7 @@ export async function playWorkspaceStory(frame, scene, signal) {
   await run({ type: "set_molstar_style", style: "illustrative" });
   await wait(800);
   fit();
+  await wait(950);
   if (scene.label === "Structures") {
     await run({ type: "hide_waters" });
     await wait(1400);

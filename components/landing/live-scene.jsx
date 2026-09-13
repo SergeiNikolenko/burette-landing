@@ -13,8 +13,6 @@ export default function LiveScene({ scene, label, light, dark, autoLoad = false,
   const [status, setStatus] = useState("idle");
   const [interactive, setInteractive] = useState(scene === "motion");
   const [theme, setTheme] = useState("light");
-  const [action, setAction] = useState(null);
-  const [notice, setNotice] = useState("");
   const send = (type, detail = {}) => frame.current?.contentWindow?.postMessage(
     { source: "burette-landing-host", type, ...detail }, window.location.origin,
   );
@@ -60,8 +58,6 @@ export default function LiveScene({ scene, label, light, dark, autoLoad = false,
   useEffect(() => {
     if (!mounted) return;
     setStatus("loading");
-    setAction(null);
-    setNotice("");
     const timeout = setTimeout(() => { setStatus("error"); setMounted(false); }, 45000);
     const handle = (event) => {
       if (event.origin !== location.origin || event.source !== frame.current?.contentWindow) return;
@@ -78,34 +74,15 @@ export default function LiveScene({ scene, label, light, dark, autoLoad = false,
         setStatus("idle");
       }
       if (data.type === "error") { clearTimeout(timeout); setStatus("error"); setMounted(false); }
-      if (data.type === "action-result") {
-        setAction(null);
-        setNotice(data.ok ? { overview: "Whole structure in view.", ligand: "Ligand in focus.", surface: "Molecular surface shown.", frames: "20 original frames. Play or step through them above.", smooth: "Smoothed motion · 80 interpolated frames.", all: "All 20 original frames overlaid in one view." }[data.action] || "" : "That view could not be shown. Try resetting the scene.");
-      }
+
     };
     addEventListener("message", handle);
     return () => { clearTimeout(timeout); removeEventListener("message", handle); };
   }, [mounted, theme]);
 
-  useEffect(() => {
-    if (!action) return;
-    const timeout = setTimeout(() => {
-      setAction(null);
-      setNotice("This view is taking too long. Try another view.");
-    }, 15000);
-    return () => clearTimeout(timeout);
-  }, [action]);
-
   const start = () => { setMounted(true); setInteractive(true); };
-  const run = (name) => { setInteractive(true); setAction(name); send("action", { action: name }); };
   return (
     <div ref={root} id={id} className={`live-scene live-scene-${scene}`} data-status={status}>
-      <div className="live-scene-bar">
-        <span>{label}</span>
-        <Button variant="ghost" size="sm" onClick={interactive ? () => setInteractive(false) : start}>
-          {interactive ? "Done exploring" : status === "ready" ? "Explore" : "Try it live"}
-        </Button>
-      </div>
       <div className="live-scene-display">
       <div className="live-scene-viewport">
         {scene !== "motion" && <ThemedImage light={light} dark={dark} alt={label} width={1804} height={1262} className="live-poster" sizes="(min-width: 1200px) 1200px, 94vw" priority={autoLoad} />}
@@ -121,19 +98,8 @@ export default function LiveScene({ scene, label, light, dark, autoLoad = false,
         {!interactive && status === "ready" && <button className="scene-activate" onClick={start} aria-label={`Interact with ${label}`} />}
       </div>
       </div>
-      <div className="live-scene-tools">
-        {scene === "structure" && status === "ready" ? <div role="group" aria-label="Structure views">
-          <Button variant="ghost" size="sm" disabled={!!action} onClick={() => run("overview")}>Whole structure</Button>
-          <Button variant="ghost" size="sm" disabled={!!action} onClick={() => run("ligand")}>Focus on a ligand</Button>
-          <Button variant="ghost" size="sm" disabled={!!action} onClick={() => run("surface")}>Show surface</Button>
-        </div> : scene === "motion" && status === "ready" ? <div role="group" aria-label="Motion views">
-          <Button variant="ghost" size="sm" disabled={!!action} onClick={() => run("frames")}>Original frames</Button>
-          <Button variant="ghost" size="sm" disabled={!!action} onClick={() => run("smooth")}>Smooth motion</Button>
-        </div> : <span>{scene === "motion" ? "20 frames · vibrational-mode example" : scene === "collection" ? "48 molecules · search, select and compare" : "A real structure, rendered with Burette."}</span>}
-        <span role="status" className="live-scene-status">
-          {status === "loading" ? "Preparing the scene…" : status === "error" ? "Scene unavailable. Please try again." : notice}
-        </span>
-      </div>
+      {status === "error" && <Button variant="ghost" onClick={start}>Reload preview</Button>}
+
     </div>
   );
 }

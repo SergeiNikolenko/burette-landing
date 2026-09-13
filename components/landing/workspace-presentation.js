@@ -10,27 +10,6 @@ export function activeWorkspaceViewer(doc) {
 }
 const button = (doc, label) => doc?.querySelector(`button[aria-label="${label}"]`);
 export const sceneWindow = frame => activeWorkspaceViewer(frame?.contentDocument)?.contentWindow;
-export async function showWorkspaceProperties(frame, cancelled = () => false) {
-  const doc = frame?.contentDocument;
-  button(doc, "Hide right dock")?.click();
-  button(doc, "Show bottom dock")?.click();
-  for (let attempt = 0; attempt < 100 && !cancelled(); attempt++) {
-    const tab = [...doc.querySelectorAll('[role="tab"]')].find(tab => tab.textContent.trim() === "Chemical Space");
-    if (tab && tab.getAttribute("aria-selected") !== "true") tab.click();
-    button(doc, "Plot molecular properties")?.click();
-    if (doc.querySelector('[data-property-point]')) {
-      const divider = doc.querySelector('[role="separator"][aria-label="Resize bottom dock"]');
-      divider?.focus({ preventScroll: true });
-      for (let step = 0; step < 5 && Number(divider?.getAttribute("aria-valuenow")) > 50 && !cancelled(); step++) {
-        divider.dispatchEvent(new doc.defaultView.KeyboardEvent("keydown", { key: "ArrowUp", code: "ArrowUp", bubbles: true, cancelable: true }));
-        await new Promise(resolve => setTimeout(resolve, 50));
-      }
-      return !cancelled();
-    }
-    await new Promise(resolve => setTimeout(resolve, 150));
-  }
-  return false;
-}
 export async function openWorkspaceScene(frame, scene, cancelled = () => false) {
   const doc = frame?.contentDocument;
   if (!doc || cancelled()) return false;
