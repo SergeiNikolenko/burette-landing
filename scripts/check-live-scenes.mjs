@@ -8,6 +8,10 @@ for (const scene of ["structure", "motion", "collection"]) {
   const html = await liveSceneHtml(scene, "dark");
   const config = parse(html, "landing-scene-config");
   const data = parse(html, "landing-scene-data");
+  if (scene !== "collection") {
+    assert.ok(html.indexOf("/burette-viewer/sequence-panel.js") > 0);
+    assert.ok(html.indexOf("/burette-viewer/sequence-panel.js") < html.indexOf("/burette-viewer/viewer.js"));
+  }
   assert.equal(config.theme, "dark");
   assert.equal(config.canvasBackground, "black");
   if (scene === "structure") assert.match(Buffer.from(data, "base64").toString(), /^ATOM /m);
