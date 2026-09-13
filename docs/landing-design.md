@@ -50,7 +50,7 @@ Demo, documentation, plugin setup, downloads, and installation remain reachable.
 
 ## Live demonstrations
 
-At widths of 900 CSS pixels and above, the hero loads the complete published Burette browser workspace, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. The live display covers the camera cutout without an extra black band; the original bezel image remains unchanged.
+At widths of 640 CSS pixels and above, the hero loads the complete published Burette browser workspace, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. The live display covers the camera cutout without an extra black band; the original bezel image remains unchanged.
 
 Presentation alternates between two real files: 7RPZ.pdb and caffeine.cif. Each runs a 32-second camera sequence with gentle rotation, direction changes, and a bounded 12% zoom. It does not open menus, select atoms, change representations, or operate playback controls. Presentation starts enabled unless reduced motion is requested. Pointer or keyboard input pauses it; visitors can resume or choose either progress indicator. Theme changes reload the workspace after synchronizing its stored preferences.
 The introductory workspace illustration remains non-interactive.
@@ -94,7 +94,7 @@ The hero SDF example uses the published `openSdfMolstarDocument` host message an
 
 The agent section reserves an empty, neutral 16:9 space for a future video, with no poster, caption, or inactive play control. The existing recorded agent demo remains available in the feature gallery.
 
-Below 900 CSS pixels, the hero uses an uncropped, enlargable real-app screenshot and does not mount the desktop runtime. Desktop canvas resolution follows the visible screen width with a 960 CSS-pixel minimum, preserving readable controls. Camera turns follow animation frames; tab transitions briefly fade the viewport while waiting for the next document. Reduced-motion preferences disable automatic presentation.
+Below 640 CSS pixels, the hero uses an uncropped, enlargable real-app screenshot and does not mount the desktop runtime. Desktop canvas resolution follows the visible screen width with a 960 CSS-pixel minimum, preserving readable controls. Camera turns follow animation frames; tab transitions briefly fade the viewport while waiting for the next document. Reduced-motion preferences disable automatic presentation.
 
 A small presentation pointer targets file tabs or sidebar files only. Coordinates account for nested scaled frames, and real input cancels pending actions.
 
