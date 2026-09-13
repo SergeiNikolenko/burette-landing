@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import WorkspaceDemo from "./workspace-demo";
+import { playWorkspaceStory } from "./workspace-choreography";
 import { activeWorkspaceViewer, openWorkspaceScene, prepareWorkspaceScene, workspaceScenes } from "./workspace-presentation";
 
 export default function MacbookWorkspace() {
@@ -21,7 +22,8 @@ export default function MacbookWorkspace() {
   const readyRef = useRef(false);
   const transition = useRef(0);
   const changing = useRef(false);
-  const paused = () => { transition.current++; userActive.current = true; setPlaying(false); };
+  const story = useRef(null);
+  const paused = () => { story.current?.abort(); transition.current++; userActive.current = true; setPlaying(false); };
   useEffect(() => {
     const sync = () => {
       const next = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
@@ -79,28 +81,49 @@ export default function MacbookWorkspace() {
     };
   }, [mounted, theme]);
   useEffect(() => {
-    if (!playing || !visible || !ready) return;
-    const timer = setInterval(async () => {
-      if (document.hidden || userActive.current || !readyRef.current || changing.current) return;
-      const next = (scene + 1) % workspaceScenes.length;
-      const token = ++transition.current;
-      changing.current = true;
+    if (!visible) {
+      for (const viewer of frame.current?.contentDocument?.querySelectorAll("iframe.viewer-iframe") || []) {
+        viewer.contentDocument?.querySelector('button[aria-label="Stop frame loop"]')?.click();
+      }
+    }
+  }, [visible]);
+  useEffect(() => {
+    if (!playing || !visible || !ready || changing.current) return;
+    const controller = new AbortController();
+    story.current = controller;
+    const token = ++transition.current;
+    const cancelled = () => controller.signal.aborted || transition.current !== token;
+    (async () => {
       try {
-        if (await openWorkspaceScene(frame.current, workspaceScenes[next])) {
-          await prepareWorkspaceScene(frame.current, workspaceScenes[next], () => transition.current !== token);
-          if (transition.current === token) setScene(next);
+        if (!await prepareWorkspaceScene(frame.current, workspaceScenes[scene], cancelled)) {
+          if (!cancelled()) setPlaying(false);
+          return;
         }
-      } finally { changing.current = false; }
-    }, 12000);
-    return () => clearInterval(timer);
+        if (cancelled()) return;
+        await playWorkspaceStory(frame.current, workspaceScenes[scene], controller.signal);
+        if (cancelled()) return;
+        const next = (scene + 1) % workspaceScenes.length;
+        const opened = await openWorkspaceScene(frame.current, workspaceScenes[next], cancelled);
+        if (opened) setScene(next);
+        else if (!cancelled()) setPlaying(false);
+      } catch (error) {
+        if (!cancelled()) { console.warn("Presentation paused:", error.message); setPlaying(false); }
+      }
+    })();
+    return () => controller.abort();
   }, [playing, visible, ready, scene]);
   const choose = async index => {
     paused();
     const token = transition.current;
-    if (await openWorkspaceScene(frame.current, workspaceScenes[index])) {
-      setScene(index);
-      await prepareWorkspaceScene(frame.current, workspaceScenes[index], () => transition.current !== token);
-    }
+    const cancelled = () => transition.current !== token;
+    changing.current = true;
+    try {
+      if (await openWorkspaceScene(frame.current, workspaceScenes[index], cancelled)
+        && await prepareWorkspaceScene(frame.current, workspaceScenes[index], cancelled) && !cancelled()) {
+        changing.current = false;
+        setScene(index); userActive.current = false; setPlaying(true);
+      }
+    } finally { changing.current = false; }
   };
   return <div ref={root} id="live-demo" className="macbook-workspace">
     <div className="macbook-product">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PluginVideo from "./plugin-video";
 import { Button } from "@/components/ui/button";
 
 export default function CodexMcp() {
@@ -35,6 +36,7 @@ export default function CodexMcp() {
           </Button>
         </div>
       </div>
+      <PluginVideo />
     </section>
   );
 }

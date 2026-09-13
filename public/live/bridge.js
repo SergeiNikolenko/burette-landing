@@ -31,6 +31,10 @@
       starting = true;
       const result = await window.BuretteViewerActions?.run({ type: "set_sdf_pose_mode", mode: "single" });
       if (result?.ok) {
+        document.querySelector('button[aria-label="Show playback controls"]')?.click();
+        const plugin = window.BuretteViewer?.plugin;
+        const sphere = plugin?.managers?.structure?.hierarchy?.current?.structures?.[0]?.cell.obj?.data?.boundary?.sphere;
+        if (sphere) plugin.canvas3d.camera.setState(plugin.canvas3d.camera.getFocus(sphere.center, sphere.radius * 1.25 * Math.max(1, innerHeight / innerWidth)), 0);
         document.querySelector('button[aria-label="Play frame loop"]')?.click();
         clearInterval(autoplay);
       } else starting = false;

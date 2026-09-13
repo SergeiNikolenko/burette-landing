@@ -52,13 +52,10 @@ Demo, documentation, plugin setup, downloads, and installation remain reachable.
 
 The hero loads the complete published Burette browser workspace immediately, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. A continuous CSS display band covers the camera cutout; the original bezel image remains unchanged.
 
-Presentation mode selects four real bundled files at 12-second intervals while visible. A narrow file-tree adapter owns this integration with the published shell. Presentation starts enabled on every page load, as requested. Pointer or keyboard input inside the app pauses it; scrolling no longer stops the presentation. Visitors can pause, resume, or choose an example with the dots. Theme changes reload the embedded workspace after synchronizing its stored theme preference. The old external file-name bar and scientific action row are absent.
+Presentation mode follows five real workspace scenes with scene-specific timings: KRAS and its ligand pocket, BIMP motion, MATCHA imatinib poses, MOSES properties, and a caffeine crystal. Camera turns, ligand focus, representation changes, playback and pose selection precede each file transition. A narrow file-tree adapter owns this integration with the published shell. Presentation starts enabled on every page load, as requested. Pointer or keyboard input inside the app pauses it; scrolling no longer stops the presentation. Visitors can pause, resume, or choose an example with the dots. Theme changes reload the embedded workspace after synchronizing its stored theme preference. The old external file-name bar and scientific action row are absent.
 The introductory workspace illustration remains non-interactive.
 
-Collections use the published Burette RDKit grid with 48 source-ordered MOSES
-records. The descriptor map plots supplied molecular weight and SLogP values;
-selecting a point or using the keyboard-accessible selector updates a large
-RDKit SVG structure and a three-property summary. This is a descriptor plot, not a computed chemical-space embedding.
+Collections use the published Burette RDKit grid. Chemical Space now opens the complete Burette workspace and its Properties panel, rather than a landing-owned chart. The real panel plots stored numeric columns and sends point selections through the Grid/inspector bridge. The curated MOSES example has 48 records. This is a descriptor plot, not a chemical-space embedding. The heavier workspace preview mounts on request and unloads offscreen; the gallery dialog opens it directly.
 The motion scene uses a real 20-frame BIMP vibrational-mode file, with native
 playback and frame controls. Explicit actions switch between the original 20
 frames and 80 smoothed/interpolated frames. Playback starts when the example opens. The SDF collection in the hero demonstrates All instead.
@@ -95,4 +92,6 @@ The footer wordmark uses cap-height alignment to meet the lower page edge.
 
 Headlines and descriptions name concrete actions. FAQ copy distinguishes local desktop files from hosted plugin processing and avoids claiming that Burette only supports a short preview workflow. On 2026-09-13 the public landing copy, feature descriptions, and FAQ were submitted to Pangram 4.0: 1,025 words scanned, 96% AI / 4% human. This is the detector result, not an authorship or copy-quality guarantee. No third-party humanizer was used.
 
-The hero SDF example uses the published `openSdfMolstarDocument` host message, then waits for that specific document before selecting All. `caffeine-water.sdf` retains the bundled sample coordinates and bonds, with explicit record names to avoid blank-header parsing failures. Trajectory preparation waits for its own viewer, selects individual frames, and starts the native frame loop.
+The hero SDF example uses the published `openSdfMolstarDocument` host message and eight recorded MATCHA imatinib poses. It waits for that document, shows two individual poses, then selects All. Viewing these poses does not run docking or calculate affinity. Trajectory preparation waits for its own viewer, selects individual frames, and starts the native frame loop.
+
+The agent section reserves a 16:9 cover for a future video. It labels the walkthrough as coming soon and has no inactive play control. The existing recorded agent demo remains available in the feature gallery.

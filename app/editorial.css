@@ -27,7 +27,7 @@ html[data-theme="dark"]:has(.landing) {
   --sky-top: #000000;
   --sky-bottom: #101010;
   /* Cloud shading and the hero fade both reduce contrast against the night sky. */
-  --sky-cloud: #9298a1;
+  --sky-cloud: #d9dfe7;
   color-scheme: dark;
 }
 .landing .page-width {
@@ -155,7 +155,10 @@ html[data-theme="dark"]:has(.landing) {
   padding-inline: 24px;
 }
 html[data-theme="dark"] .landing .hero-copy {
-  --body: #d8dbe0;
+  --body: #f1f3f6;
+}
+html[data-theme="dark"] .landing .hero-copy :is(h1, p) {
+  text-shadow: 0 1px 8px #000, 0 1px 3px #000;
 }
 .landing .hero-copy h1 {
   font-size: clamp(48px, 5.3vw, 72px);
@@ -555,3 +558,13 @@ html[data-theme="dark"] .landing .hero-copy {
   background: var(--bg);
   color: var(--text);
 }
+
+.landing .plugin-video { margin-top: 36px; }
+.landing .plugin-video :is(img, video) { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); }
+.landing .plugin-video figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 12px; color: var(--body); font-size: 13px; }
+
+.landing .real-property-workspace { position: relative; width: 100%; aspect-ratio: 1.6; overflow: hidden; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); }
+.landing .real-property-workspace iframe { border: 0; transform-origin: top left; }
+.landing .real-property-workspace img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.landing .property-open { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); }
+.landing .property-close { position: absolute; top: 8px; right: 8px; }

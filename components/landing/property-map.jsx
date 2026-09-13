@@ -1,63 +1,52 @@
 "use client";
 
-import { useState } from "react";
-import records from "@/public/live-data/collection.json";
-import MoleculePortrait from "./molecule-portrait";
+import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import ThemedImage from "./themed-image";
+import { activeWorkspaceViewer, openWorkspaceScene, prepareWorkspaceScene, showWorkspaceProperties, workspaceScenes } from "./workspace-presentation";
 
-// A descriptor plot of supplied values, not a simulated embedding or activity map.
-const xValue = (row) => Number(row.props["Molecular weight"]);
-const yValue = (row) => Number(row.props.SLogP);
-const xMin = Math.floor(Math.min(...records.map(xValue)) / 50) * 50;
-const xMax = Math.ceil(Math.max(...records.map(xValue)) / 50) * 50;
-const yMin = Math.floor(Math.min(...records.map(yValue)));
-const yMax = Math.ceil(Math.max(...records.map(yValue)));
-const x = (value) => 62 + (value - xMin) / (xMax - xMin) * 442;
-const y = (value) => 324 - (value - yMin) / (yMax - yMin) * 288;
-
-export default function PropertyMap() {
-  const [selection, choose] = useState(35);
-  const selected = records[selection];
-  return <div className="property-map">
-    <div className="property-map-chart">
-      <div className="property-map-heading">
-        <span>Choose a dot. Meet a molecule.</span>
-        <span>48 molecules</span>
-      </div>
-      <svg viewBox="0 0 550 390" role="group" aria-label="Molecular weight against SLogP. Select a molecule using the points or the selector below.">
-        {Array.from({ length: 5 }, (_, i) => {
-          const v = yMin + (yMax - yMin) * i / 4;
-          return <g key={i}><line x1="62" x2="504" y1={y(v)} y2={y(v)} className="map-grid-line" /><text x="49" y={y(v) + 4} textAnchor="end">{v.toFixed(1)}</text></g>;
-        })}
-        {Array.from({ length: 5 }, (_, i) => {
-          const v = xMin + (xMax - xMin) * i / 4;
-          return <text key={i} x={x(v)} y="347" textAnchor="middle">{v.toFixed(0)}</text>;
-        })}
-        <text x="283" y="379" textAnchor="middle">Molecular weight · g/mol</text>
-        <text x="18" y="182" transform="rotate(-90 18 182)" textAnchor="middle">SLogP</text>
-        {records.map(row => <circle key={row.index} cx={x(xValue(row))} cy={y(yValue(row))}
-          r={selected?.index === row.index ? 8 : 5.5} className={selected?.index === row.index ? "map-point selected" : "map-point"}
-          onClick={() => choose(row.index)} role="button" tabIndex={0} aria-label={`Inspect ${row.name}`} aria-pressed={selected.index === row.index}
-          onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); choose(row.index); } }}>
-          <title>{`${row.name}: MW ${row.props["Molecular weight"]}, SLogP ${row.props.SLogP}`}</title>
-        </circle>)}
-      </svg>
-      <label className="property-map-select">Inspect a molecule
-        <select value={selected?.index ?? ""} onChange={event => { if (event.target.value !== "") choose(Number(event.target.value)); }}>
-          <option value="" disabled>Choose a point or molecule</option>
-          {records.map(row => <option key={row.index} value={row.index}>{row.name}</option>)}
-        </select>
-      </label>
-      <p className="property-map-detail">Further right: heavier molecules. Higher up: more lipophilic.</p>
-    </div>
-    <div className="property-map-molecule">
-      <div className="property-map-heading"><span>Selected molecule</span><span>MOSES collection</span></div>
-      <h4 aria-live="polite">{selected.name}</h4>
-      <MoleculePortrait molecule={selected} />
-      <dl className="molecule-properties">
-        <div><dt>Molecular weight</dt><dd>{xValue(selected).toFixed(1)} <small>g/mol</small></dd></div>
-        <div><dt>SLogP</dt><dd>{yValue(selected).toFixed(2)}</dd></div>
-        <div><dt>Polar surface</dt><dd>{Number(selected.props.TPSA).toFixed(1)} <small>Å²</small></dd></div>
-      </dl>
-    </div>
+// The actual application owns the chart, axis choices and Grid selection. Only
+// mount it on request, and release it when it leaves the screen.
+export default function PropertyMap({ autoLoad = false }) {
+  const [active, setActive] = useState(autoLoad);
+  const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [scale, setScale] = useState(1);
+  const root = useRef(null);
+  const frame = useRef(null);
+  useEffect(() => {
+    const size = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / 1280));
+    size.observe(root.current);
+    const observer = new IntersectionObserver(([entry]) => { if (!entry.isIntersecting) setActive(false); }, { rootMargin: "200px" });
+    observer.observe(root.current);
+    return () => { size.disconnect(); observer.disconnect(); };
+  }, []);
+  useEffect(() => {
+    if (!active) return;
+    setReady(false); setFailed(false);
+    let cancelled = false, busy = false;
+    const timeout = setTimeout(() => { if (!cancelled) { setFailed(true); cancelled = true; clearInterval(timer); } }, 45000);
+    const timer = setInterval(async () => {
+      if (busy || !activeWorkspaceViewer(frame.current?.contentDocument)?.contentWindow?.BuretteViewer?.plugin) return;
+      busy = true;
+      try {
+        const library = workspaceScenes.find(scene => scene.label === "Library");
+        if (!await openWorkspaceScene(frame.current, library, () => cancelled) || !await prepareWorkspaceScene(frame.current, library, () => cancelled) || cancelled) return;
+        const doc = frame.current.contentDocument;
+        doc.querySelector('button[aria-label="Hide sidebar"]')?.click();
+        if (await showWorkspaceProperties(frame.current, () => cancelled) && !cancelled) {
+          setReady(true); clearTimeout(timeout); clearInterval(timer);
+        }
+      } catch { if (!cancelled) { setFailed(true); clearInterval(timer); clearTimeout(timeout); } }
+      finally { busy = false; }
+    }, 400);
+    return () => { cancelled = true; clearInterval(timer); clearTimeout(timeout); };
+  }, [active]);
+  return <div className="real-property-workspace" ref={root}>
+    {active ? <><iframe ref={frame} src="/web-demo/index.html?presentation=library" title="Chemical Space in the Burette workspace" style={{ width: 1280, height: 800, transform: `scale(${scale})` }} />
+      {!ready && <div className="workspace-demo-loading" role="status">{failed ? <Button onClick={() => setActive(false)}>Close and try again</Button> : "Opening Chemical Space in Burette…"}</div>}
+      <Button className="property-close" variant="secondary" size="sm" onClick={() => setActive(false)}>Close preview</Button></>
+      : <><ThemedImage light="/assets/chemical-space-light.png" dark="/assets/chemical-space-dark.png" alt="Chemical Space in the Burette app" width={1804} height={1262} />
+        <Button className="property-open pill-button" onClick={() => setActive(true)}>Explore Chemical Space</Button></>}
   </div>;
 }

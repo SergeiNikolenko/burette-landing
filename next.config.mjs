@@ -13,11 +13,11 @@ export default withNextra({
     return [
       {
         source: "/web-demo/:path*",
-        destination: "https://burette-plugin.vercel.app/web-demo/:path*",
+        destination: "https://burette-plugin-git-design-presentation-scenes-nikolenko-sergei.vercel.app/web-demo/:path*",
       },
       {
         source: "/burette-viewer/:path*",
-        destination: "https://burette-plugin.vercel.app/burette-viewer/:path*",
+        destination: "https://burette-plugin-git-design-presentation-scenes-nikolenko-sergei.vercel.app/burette-viewer/:path*",
       },
     ];
   },

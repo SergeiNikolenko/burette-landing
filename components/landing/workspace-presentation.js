@@ -1,82 +1,77 @@
-export const workspaceScenes = [
-  { label: "Structures", path: "/BuretteDemo/proteins/1HTB.pdb" },
-  { label: "Molecules", path: "/BuretteDemo/small-molecules/multi-molecule.sdf", title: "caffeine-water.sdf" },
-  { label: "Motion", path: "/BuretteDemo/structures/bimp.v000.xyz" },
-  { label: "Crystals", path: "/BuretteDemo/crystals/caffeine.cif" },
-];
+import { workspaceScenes } from "./workspace-scenes";
+export { workspaceScenes } from "./workspace-scenes";
 
 export function activeWorkspaceViewer(doc) {
-  const title = doc?.querySelector('[role="tablist"][aria-label="Open structures"] [aria-selected="true"]')?.textContent;
-  return [...(doc?.querySelectorAll("iframe.viewer-iframe") || [])].find(viewer => viewer.title === title);
+  return doc?.querySelector('.page-surface[data-active="true"] iframe.viewer-iframe:not([data-read-only="true"])');
 }
-
-// Use the published workspace's real file tree; keep this adapter separate from
-// the landing UI so changes to the hosted shell have one integration boundary.
-export async function openWorkspaceScene(frame, scene) {
+const button = (doc, label) => doc?.querySelector(`button[aria-label="${label}"]`);
+export const sceneWindow = frame => activeWorkspaceViewer(frame?.contentDocument)?.contentWindow;
+export async function showWorkspaceProperties(frame, cancelled = () => false) {
   const doc = frame?.contentDocument;
-  if (!doc) return false;
-  activeWorkspaceViewer(doc)?.contentDocument?.querySelector('button[aria-label="Stop frame loop"]')?.click();
-  const back = doc.querySelector('button[aria-label="Back to app"]');
-  back?.click();
-  for (let attempt = 0; attempt < 6; attempt++) {
-    const item = doc.querySelector(`[data-sidebar-structure-path="${scene.path}"]`);
-    if (item) {
-      if (scene.label === "Molecules") {
-        const existing = [...doc.querySelectorAll('[role="tab"]')].find(tab => tab.textContent.includes(scene.title));
-        if (existing) { existing.click(); return true; }
-        const win = activeWorkspaceViewer(doc)?.contentWindow;
-        if (!win?.__mqlPost) return false;
-        const response = await fetch("/live-data/caffeine-water.sdf");
-        if (!response.ok) return false;
-        const text = await response.text();
-        win.__mqlPost("openSdfMolstarDocument", "Open SDF collection", {
-          documentId: win.BuretteConfig?.documentId, title: scene.title,
-          textBase64: btoa(text), controlLabel: "Molecule",
-        });
-        return true;
+  button(doc, "Hide right dock")?.click();
+  button(doc, "Show bottom dock")?.click();
+  for (let attempt = 0; attempt < 100 && !cancelled(); attempt++) {
+    const tab = [...doc.querySelectorAll('[role="tab"]')].find(tab => tab.textContent.trim() === "Chemical Space");
+    if (tab && tab.getAttribute("aria-selected") !== "true") tab.click();
+    button(doc, "Plot molecular properties")?.click();
+    if (doc.querySelector('[data-property-point]')) {
+      const divider = doc.querySelector('[role="separator"][aria-label="Resize bottom dock"]');
+      divider?.focus({ preventScroll: true });
+      for (let step = 0; step < 5 && Number(divider?.getAttribute("aria-valuenow")) > 50 && !cancelled(); step++) {
+        divider.dispatchEvent(new doc.defaultView.KeyboardEvent("keydown", { key: "ArrowUp", code: "ArrowUp", bubbles: true, cancelable: true }));
+        await new Promise(resolve => setTimeout(resolve, 50));
       }
-      item.click(); return true;
+      return !cancelled();
     }
-    doc.querySelector('button[aria-label="Show sidebar"]')?.click();
-    for (const button of doc.querySelectorAll('button[aria-label]')) {
-      const label = button.getAttribute('aria-label');
-      if (/^Show \d+ more files/.test(label) || (label.startsWith("Expand ") && scene.path.includes(label.slice(7)))) button.click();
-    }
-    await new Promise(resolve => requestAnimationFrame(resolve));
+    await new Promise(resolve => setTimeout(resolve, 150));
   }
   return false;
 }
-
-// Wait for the selected document, not merely the previous viewer's readiness.
+export async function openWorkspaceScene(frame, scene, cancelled = () => false) {
+  const doc = frame?.contentDocument;
+  if (!doc || cancelled()) return false;
+  button(sceneWindow(frame)?.document, "Stop frame loop")?.click();
+  button(doc, "Back to app")?.click();
+  button(doc, "Hide bottom dock")?.click();
+  button(doc, "Hide right dock")?.click();
+  const name = scene.title || scene.path.split("/").pop();
+  const existing = [...doc.querySelectorAll('[role="tablist"][aria-label="Open structures"] [role="tab"]')].find(tab => tab.textContent.trim() === name);
+  if (existing) { existing.click(); return true; }
+  if (scene.asset) {
+    const win = sceneWindow(frame);
+    if (!win?.__mqlPost) return false;
+    const response = await fetch(scene.asset);
+    if (!response.ok || cancelled()) return false;
+    const text = await response.text();
+    if (cancelled()) return false;
+    win.__mqlPost("openSdfMolstarDocument", "Open SDF collection", {
+      documentId: win.BuretteConfig?.documentId, title: scene.title,
+      textBase64: btoa(text), controlLabel: "Pose",
+    });
+    return true;
+  }
+  for (let attempt = 0; attempt < 8 && !cancelled(); attempt++) {
+    const item = doc.querySelector(`[data-sidebar-structure-path="${scene.path}"]`);
+    if (item) { item.click(); return true; }
+    button(doc, "Show sidebar")?.click();
+    for (const control of doc.querySelectorAll('button[aria-label]')) {
+      const label = control.getAttribute("aria-label");
+      if (/^Show \d+ more files/.test(label) || (label.startsWith("Expand ") && scene.path.includes(label.slice(7)))) control.click();
+    }
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  return false;
+}
 export async function prepareWorkspaceScene(frame, scene, cancelled = () => false) {
   const name = scene.title || scene.path.split("/").pop();
-  let individualFrames = false;
-  for (let attempt = 0; attempt < 80 && !cancelled(); attempt++) {
-    const doc = frame?.contentDocument;
-    const viewer = activeWorkspaceViewer(doc);
+  for (let attempt = 0; attempt < 100 && !cancelled(); attempt++) {
+    const viewer = activeWorkspaceViewer(frame?.contentDocument);
     const win = viewer?.contentWindow;
-    const selected = doc?.querySelector('[role="tab"][aria-selected="true"]')?.textContent;
-    const config = win?.BuretteConfig;
-    const source = config?.sourcePath || config?.label || "";
-    if (selected?.includes(name) && source.includes(name)) {
-      const controls = viewer.contentDocument;
-      const all = [...controls.querySelectorAll("button")].find(button => button.textContent.trim() === "All");
-      if (scene.label === "Molecules" && all && !all.disabled) {
-        if (all.getAttribute("aria-pressed") !== "true") all.click();
-        return true;
-      }
-      if (scene.label === "Motion") {
-        if (!individualFrames && all?.getAttribute("aria-pressed") === "true") {
-          all.click();
-          individualFrames = true;
-        } else {
-          const play = controls.querySelector('button[aria-label="Play frame loop"]');
-          if (play && !play.disabled) play.click();
-          if (controls.querySelector('button[aria-label="Stop frame loop"]')) return true;
-        }
-      } else if (scene.label !== "Molecules" && controls.querySelector("canvas")) return true;
+    const title = frame?.contentDocument?.querySelector('[role="tablist"][aria-label="Open structures"] [aria-selected="true"]')?.textContent.trim();
+    if (title === name && (win?.BuretteViewer?.plugin?.managers?.structure?.hierarchy?.current?.structures?.length || (scene.label === "Library" && win?.document.querySelector('.grid-card, .mol-card, [role="searchbox"], input[type="search"]')))) {
+      return true;
     }
-    await new Promise(resolve => setTimeout(resolve, 250));
+    await new Promise(resolve => setTimeout(resolve, 200));
   }
   return false;
 }

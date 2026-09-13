@@ -32,7 +32,7 @@ export default function FeatureCarousel() {
       <DialogContent className="landing feature-story-dialog" onCloseAutoFocus={event => { event.preventDefault(); returnFocus.current?.focus({ preventScroll: true }); }}>
         {selected && <><header><p className="section-label">{selected.category}</p><DialogTitle>{selected.title}</DialogTitle><DialogDescription>{selected.description}</DialogDescription></header>
           {selected.scene ? <LiveScene autoLoad scene={selected.scene} label={selected.category} light={selected.image && `/assets/${selected.image}-light.png`} dark={selected.image && `/assets/${selected.image}-dark.png`} />
-            : selected.id === "space" ? <PropertyMap />
+            : selected.id === "space" ? <PropertyMap autoLoad />
             : selected.video ? <LazyVideo src={selected.video} poster={selected.poster} label={selected.description} width={1280} height={978} />
             : <ThemedImage light={`/assets/${selected.image}-light.png`} dark={`/assets/${selected.image}-dark.png`} alt={selected.description} width={1804} height={1262} className="feature-story-image" sizes="90vw" />}
           <Link className="text-link" href={selected.docs}>Read the guide ↗</Link></>}
