@@ -1,0 +1,180 @@
+.landing .live-scene {
+  min-width: 0;
+  color: var(--text);
+}
+.landing .live-scene-viewport {
+  position: relative;
+  height: clamp(420px, 49vw, 640px);
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--surface);
+  isolation: isolate;
+}
+.landing .live-scene-viewport > picture,
+.landing .live-scene-viewport iframe,
+.landing .scene-activate {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.landing .live-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.landing .live-scene-viewport iframe {
+  opacity: 0;
+  background: var(--surface);
+}
+.landing .live-scene-viewport iframe.scene-ready { opacity: 1; }
+.landing .scene-activate {
+  background: transparent;
+  cursor: grab;
+  touch-action: pan-y pinch-zoom;
+}
+.landing .scene-activate:focus-visible { outline: 3px solid var(--molecular-ink); outline-offset: -4px; }
+.landing .live-scene-motion .live-scene-viewport { height: 480px; }
+.workspace-demo-dialog {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  width: min(1500px, calc(100vw - 40px));
+  max-width: none;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.workspace-demo-heading {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 56px;
+  padding: 12px 64px 12px 20px;
+}
+.workspace-demo-heading a { color: var(--body); font-size: 13px; margin-left: auto; }
+.workspace-demo-stage { position: relative; height: min(82dvh, 900px); }
+.workspace-demo-stage iframe { border: 0; width: 100%; height: 100%; display: block; }
+@media (min-width: 640px) { .workspace-demo-dialog { max-width: min(1500px, calc(100vw - 40px)); } }
+@media (max-width: 600px) {
+  .landing .hero-stage { width: calc(100% - 24px); margin-top: 28px; }
+  .landing .live-scene-viewport { height: 440px; border-radius: 10px; }
+  .landing .live-scene-motion .live-scene-viewport { height: 420px; }
+  .landing .live-scene-collection .live-scene-viewport { height: 560px; }
+  .workspace-demo-dialog { width: calc(100vw - 16px); }
+  .workspace-demo-heading { gap: 12px; padding-left: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .workspace-demo-dialog { animation: none; }
+}
+.landing .motion-example-note { font-size: 14px; color: var(--body); margin-top: 20px; }
+.landing .live-scene-motion .live-scene-viewport { border: 1px solid var(--border); }
+.footer-signature { height: .735em; overflow: hidden; font-size: min(17vw, 210px); line-height: .735; }
+.footer-signature span { line-height: .735; }
+/* Official, unmodified Apple product bezel; the complete app occupies its screen. */
+.landing .macbook-product { position: relative; width: 100%; aspect-ratio: 4260 / 2840; }
+.landing .macbook-product-bezel { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.landing .macbook-screen { position: absolute; left: 9.437%; top: 10.669%; width: 81.1268%; height: 78.662%; overflow: hidden; background: #111; }
+.landing .macbook-screen iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: top left; }
+.landing .presentation-controls { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px 14px; }
+.landing .presentation-controls [role="group"] { display: flex; align-items: center; --scene-progress: 0; }
+.landing .presentation-controls [role="group"] button { width: 28px; height: 36px; display: grid; place-items: center; cursor: pointer; transition: width 240ms ease; border-radius: 12px; }
+.landing .presentation-controls [role="group"] button[aria-pressed="true"] { width: 60px; }
+.landing .presentation-controls [role="group"] span { position: relative; overflow: hidden; width: 6px; height: 6px; border-radius: 99px; background: color-mix(in srgb, var(--body) 28%, transparent); transition: width 240ms ease, background 160ms ease; }
+.landing .presentation-controls [aria-pressed="true"] span { width: 44px; }
+.landing .presentation-controls [role="group"] i { position: absolute; inset: 0; background: var(--body); transform: scaleX(0); transform-origin: left; border-radius: inherit; }
+.landing .presentation-controls [aria-pressed="true"] i { transform: scaleX(var(--scene-progress)); }
+.landing .presentation-controls [role="group"] button:hover span { background: color-mix(in srgb, var(--body) 48%, transparent); }
+.landing .presentation-controls [role="group"] button:focus-visible { outline: 2px solid var(--molecular-ink); outline-offset: 1px; }
+@media (prefers-reduced-motion: reduce) {
+  .landing .presentation-controls [role="group"] button,
+  .landing .presentation-controls [role="group"] span { transition: none; }
+}
+.landing .presentation-controls .pill-button { font-size: 13px; height: 36px; padding: 0 12px; }
+@media (max-width: 600px) {
+  .landing .presentation-controls { gap: 0 8px; }
+  .landing .presentation-controls [role="group"] { width: 100%; justify-content: center; }
+}
+.landing .gallery-heading h2 { font-size: clamp(34px, 4vw, 56px); letter-spacing: -.045em; line-height: 1.06; margin: 18px 0; }
+.landing .gallery-heading > p:last-child { color: var(--body); font-size: 17px; }
+.landing .feature-gallery { padding: 80px 0; }
+.landing .feature-gallery .detail-studies { padding-top: 32px; }
+.landing .feature-card-slide { flex-basis: 36%; padding-left: 28px; }
+.landing .feature-card { position: relative; text-align: left; height: 490px; width: 100%; overflow: hidden; border-radius: 28px; background: var(--surface); border: 1px solid var(--border); cursor: pointer; }
+.landing .feature-card-copy { position: absolute; top: 0; left: 0; right: 0; z-index: 1; display: grid; gap: 16px; padding: 28px; }
+.landing .feature-card-copy > span { font-size: 14px; color: var(--body); }
+.landing .feature-card-copy strong { font-size: clamp(25px, 2.5vw, 34px); font-weight: 500; letter-spacing: -.035em; line-height: 1.1; }
+.landing .feature-card-image { position: absolute; bottom: 0; width: 100%; height: 60%; object-fit: cover; object-position: top left; }
+.landing .feature-card-open { position: absolute; right: 20px; bottom: 20px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--text); color: var(--bg); font-size: 25px; }
+.landing .feature-card:hover { border-color: var(--body); }
+.feature-story-dialog { font-family: var(--font-geist-sans), sans-serif; width: min(1100px, calc(100vw - 32px)); max-width: none; max-height: 90dvh; overflow-y: auto; padding: 40px; background: var(--bg); color: var(--text); border-radius: 24px; }
+.feature-story-dialog header { max-width: 740px; padding-right: 20px; }
+.feature-story-dialog header h2 { font-size: clamp(28px, 4vw, 44px); letter-spacing: -.04em; line-height: 1.1; margin: 12px 0 20px; }
+.feature-story-dialog header p { color: var(--body); line-height: 1.6; }
+.feature-story-image { width: 100%; height: auto; border-radius: 14px; }
+.feature-story-dialog .text-link { margin-top: 20px; }
+@media (min-width: 640px) { .feature-story-dialog { max-width: min(1100px, calc(100vw - 40px)); } }
+@media (max-width: 600px) {
+  .landing .feature-card-slide { flex-basis: 88%; padding-left: 20px; }
+  .landing .feature-card { height: 440px; }
+  .feature-story-dialog { padding: 28px 18px; }
+}
+
+/* The display sits above the asset cutout, keeping a continuous thin bezel. */
+
+/* Keep the real desktop legible; phones receive an uncropped still instead. */
+.landing .macbook-screen { background: var(--surface); }
+.landing .macbook-screen iframe { transition: opacity 450ms cubic-bezier(.4,0,.2,1); }
+.landing .macbook-screen[data-switching="true"] iframe { opacity: 0; pointer-events: none; }
+.landing .mobile-workspace-preview img { object-fit: contain; }
+.landing .live-poster { object-fit: contain; }
+@media (prefers-reduced-motion: reduce) {
+  .landing .macbook-screen iframe { transition: none; }
+}
+
+.landing .live-scene-loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--body); font-size: 13px; }
+
+.landing .presentation-pointer { position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 140ms; }
+.landing .presentation-pointer[data-visible="true"] { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .landing .presentation-pointer { display: none; } }
+
+/* The real app icon anchors startup; the ring indicates activity, not progress. */
+.workspace-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at 50% 42%, var(--molecular-panel), transparent 65%), var(--surface);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 240ms cubic-bezier(.2,.8,.2,1), visibility 0s;
+}
+.workspace-loading[data-ready="true"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 240ms cubic-bezier(.2,.8,.2,1), visibility 0s 240ms;
+}
+.workspace-loading-content { display: grid; justify-items: center; gap: 12px; padding: 28px; text-align: center; }
+.workspace-loading-content img { width: 80px; height: 80px; filter: drop-shadow(0 10px 14px #00000012); }
+.workspace-loading-name { color: var(--text); font-size: 22px; font-weight: 550; letter-spacing: -.035em; line-height: 1.2; }
+.workspace-loading-message { display: flex; justify-content: center; align-items: center; gap: 9px; max-width: 290px; color: var(--body); font-size: 12px; line-height: 1.5; }
+.workspace-loading-message a { text-decoration: underline; text-underline-offset: 3px; }
+.workspace-loading-spinner { width: 13px; height: 13px; flex: none; border: 1.5px solid var(--border); border-top-color: var(--molecular-ink); border-right-color: var(--molecular-ink); border-radius: 50%; animation: workspace-loading-spin 900ms linear infinite; }
+@keyframes workspace-loading-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .workspace-loading, .workspace-loading[data-ready="true"] { transition: none; }
+  .workspace-loading-spinner { animation: none; }
+}
+
+.landing .macbook-screen { z-index: 3; border-radius: 10px 10px 2px 2px; }
+.landing .presentation-click-ring { position: absolute; width: 22px; height: 22px; left: -9px; top: -9px; border-radius: 50%; background: #8ac7ff24; border: 1.5px solid #8ac7ff; opacity: 0; }
+.landing .presentation-pointer svg { position: relative; display: block; transform-origin: 3px 3px; filter: drop-shadow(0 0 5px #78baffb3) drop-shadow(0 0 12px #78baff66) drop-shadow(0 1px 1px #0004); }
+
+.landing .nav-github { font-size: 13px; padding: 10px 4px; }
+@media (max-width: 480px) { .landing .wordmark { font-size: 22px; } .landing .nav-actions { gap: 8px; } }

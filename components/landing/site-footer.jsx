@@ -82,9 +82,6 @@ const COLUMNS = [
 
 export default function SiteFooter() {
   return (
-    // overflow-hidden lives here and NOWHERE higher up: the wordmark below
-    // deliberately overflows, but putting overflow on body or on the nav's
-    // ancestor would kill the sticky header.
     <footer className="border-border bg-card overflow-hidden border-t">
       <div className="mx-auto max-w-[1200px] px-5 pt-14 sm:px-8">
         <div className="grid grid-cols-1 items-start gap-9 min-[430px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-[repeat(3,minmax(0,1fr))_minmax(0,1.15fr)] lg:gap-10">
@@ -137,15 +134,12 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        {/* The wordmark is decorative and clipped by the page edge on purpose, so
-            the page reads as continuing past the fold rather than stopping in
-            empty space. The vw cap is set low enough that the fallback font,
-            ~8% wider than Geist, still fits during FOUT. */}
+        {/* Cap-height alignment lets the wordmark meet the page edge. */}
         <div
           aria-hidden="true"
-          className="pointer-events-none mt-8 overflow-hidden leading-[0] select-none sm:mt-14"
+          className="footer-signature pointer-events-none mt-8 select-none sm:mt-14"
         >
-          <span className="block text-center text-[min(19.8vw,248px)] leading-none font-bold tracking-[-0.05em] text-[var(--wordmark-fill)] [margin-bottom:calc(min(19.8vw,248px)*-0.24)] whitespace-nowrap">
+          <span className="block text-center font-medium tracking-[0.02em] [font-kerning:none] text-[var(--wordmark-fill)] whitespace-nowrap">
             BURETTE
           </span>
         </div>

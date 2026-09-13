@@ -1,0 +1,564 @@
+/* Product compositions use the existing shadcn semantic colours and controls.
+   Keep these rules inside .landing so the Nextra docs retain their own layout. */
+body:has(.landing) {
+  margin: 0;
+  background: var(--bg);
+}
+html:has(.landing) {
+  --bg: #f8fbff;
+  --surface: #ffffff;
+  --surface-2: #edf3fa;
+  --border: #e1e9f3;
+  --molecular-panel: #eaf3fc;
+  --molecular-ink: #265e94;
+  --sky-top: #a8cff4;
+  --sky-bottom: #e4f1fd;
+  --sky-cloud: #ffffff;
+  scroll-padding-top: 0;
+  color-scheme: light;
+}
+html[data-theme="dark"]:has(.landing) {
+  --bg: #000000;
+  --surface: #111111;
+  --surface-2: #1b1b1b;
+  --border: #292929;
+  --molecular-panel: #151515;
+  --molecular-ink: #a9cff3;
+  --sky-top: #000000;
+  --sky-bottom: #101010;
+  /* Cloud shading and the hero fade both reduce contrast against the night sky. */
+  --sky-cloud: #d9dfe7;
+  color-scheme: dark;
+}
+.landing .page-width {
+  width: min(1200px, calc(100% - 96px));
+  margin-inline: auto;
+}
+.landing main section[id] {
+  scroll-margin-top: 120px;
+}
+.landing .section-label {
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--body);
+  margin-bottom: 20px;
+}
+.landing h1,
+.landing h2,
+.landing h3 {
+  text-wrap: balance;
+}
+.landing .pill-button {
+  height: 48px;
+  padding-inline: 24px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: none;
+}
+.landing button,
+.landing a {
+  touch-action: manipulation;
+}
+.landing .skip-link {
+  position: fixed;
+  top: 8px;
+  left: 16px;
+  z-index: 200;
+  padding: 12px 20px;
+  background: var(--invert-bg);
+  color: var(--invert-fg);
+  transform: translateY(-160%);
+  border-radius: 8px;
+}
+.landing .skip-link:focus {
+  transform: translateY(0);
+}
+.landing .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.landing .site-nav {
+  width: calc(100% - 64px);
+  min-height: 64px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: space-between;
+}
+.landing .wordmark {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+}
+.landing .wordmark-description {
+  color: var(--body);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.landing .section-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: 13px;
+  color: var(--body);
+}
+.landing .section-nav a {
+  padding-block: 14px;
+  white-space: nowrap;
+}
+.landing .section-nav a:hover {
+  color: var(--text);
+}
+.landing .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.landing .nav-download {
+  height: 38px;
+  padding-inline: 18px;
+  font-size: 13px;
+}
+.landing .hero-section {
+  position: relative;
+  isolation: isolate;
+  padding-top: 80px;
+}
+.landing .hero-sky {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: min(900px, 100%);
+  pointer-events: none;
+  overflow: hidden;
+  background: linear-gradient(var(--sky-top), var(--sky-bottom));
+  mask-image: linear-gradient(#000 45%, transparent 100%);
+}
+.landing .hero-clouds {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.72;
+}
+.landing .hero-copy {
+  text-align: center;
+  padding-inline: 24px;
+}
+html[data-theme="dark"] .landing .hero-copy {
+  --body: #f1f3f6;
+}
+html[data-theme="dark"] .landing .hero-copy :is(h1, p) {
+  text-shadow: 0 1px 8px #000, 0 1px 3px #000;
+}
+.landing .hero-copy h1 {
+  font-size: clamp(48px, 5.3vw, 72px);
+  line-height: 1.03;
+  letter-spacing: -0.065em;
+  font-weight: 500;
+}
+.landing .hero-description {
+  color: var(--body);
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.5;
+  max-width: 34ch;
+  margin: 26px auto 0;
+  text-wrap: balance;
+}
+.landing .hero-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 30px;
+}
+.landing .hero-note {
+  margin-top: 18px;
+  color: var(--body);
+  font-size: 13px;
+}
+.landing .hero-stage {
+  width: min(1260px, calc(100% - 64px));
+  margin-top: 52px;
+}
+.landing .section-intro {
+  padding-block: 112px 40px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 56px;
+}
+.landing .section-intro h2,
+.landing .closing-section h2 {
+  font-size: clamp(36px, 4vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -0.055em;
+  font-weight: 500;
+}
+.landing .intro-copy > p {
+  margin: 28px 0 0;
+  max-width: 46ch;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--body);
+  text-wrap: pretty;
+}
+.landing .product-chapter {
+  padding-top: 96px;
+}
+.landing .chapter-split {
+  display: grid;
+  grid-template-columns: 0.8fr 1.4fr;
+  gap: 64px;
+  align-items: center;
+}
+.landing .chapter-split .chapter-heading {
+  display: block;
+  margin: 0;
+}
+.landing .chapter-split .chapter-heading > div + div {
+  margin-top: 24px;
+}
+.landing .chapter-split h3 {
+  font-size: clamp(32px, 3vw, 42px);
+}
+.landing .chapter-reverse {
+  grid-template-columns: 1.4fr 0.8fr;
+}
+.landing .chapter-reverse .media-stage {
+  grid-column: 1;
+  grid-row: 1;
+}
+.landing .chapter-reverse .chapter-heading {
+  grid-column: 2;
+}
+.landing .mobile-nav-trigger {
+  display: none;
+}
+.landing .chapter-heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 72px;
+  margin-bottom: 36px;
+}
+.landing .chapter-heading h2,
+.landing .chapter-heading h3 {
+  font-size: clamp(32px, 4.1vw, 50px);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+}
+.landing .chapter-heading p:not(.section-label) {
+  max-width: 43ch;
+  color: var(--body);
+  font-size: 17px;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+.landing .text-link {
+  color: var(--molecular-ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.landing .text-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.landing .detail-studies {
+  padding-top: 88px;
+}
+.landing .study-track {
+  margin-left: -28px;
+  touch-action: pan-y pinch-zoom;
+  cursor: grab;
+}
+.landing .study-track:active {
+  cursor: grabbing;
+}
+.landing .study-track img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.landing .study-slide {
+  padding-left: 28px;
+  flex-basis: 62%;
+}
+.landing .study-slide article {
+  min-width: 0;
+}
+.landing .study-slide video,
+.landing .study-slide .study-image {
+  border-radius: 16px;
+  width: 100%;
+  aspect-ratio: 1280 / 978;
+  object-fit: cover;
+}
+.landing .study-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+.landing .study-controls button {
+  position: static;
+  transform: none;
+  width: 44px;
+  height: 44px;
+  background: var(--surface-2);
+  border: 0;
+}
+.landing .detail-studies h3 {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  margin-top: 26px;
+}
+.landing .detail-studies p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--body);
+  max-width: 43ch;
+  margin-top: 12px;
+}
+.landing .quiet-section {
+  padding-block: 128px 100px;
+}
+.landing .format-list > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  padding-block: 26px;
+  border-bottom: 1px solid var(--border);
+}
+.landing .format-list dt {
+  font-size: 18px;
+  font-weight: 500;
+}
+.landing .format-list dd {
+  font-size: 15px;
+  line-height: 1.7;
+}
+.landing .format-list dd p + p {
+  margin-top: 6px;
+  color: var(--body);
+}
+.landing .agent-section {
+  padding-block: 96px;
+  background: var(--molecular-panel);
+}
+.landing .agent-section .chapter-heading {
+  margin-bottom: 0;
+}
+.landing .agent-section .pill-button {
+  margin-top: 24px;
+  background: var(--bg);
+}
+.landing .install-section {
+  padding-block: 112px;
+}
+.landing .install-section .chapter-heading {
+  align-items: start;
+  margin-bottom: 0;
+}
+.landing .install-commands {
+  background: var(--surface-2);
+  border-radius: 16px;
+  padding: 16px 24px;
+}
+.landing .install-commands li {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+}
+.landing .install-commands li + li {
+  border-top: 1px solid var(--border);
+}
+.landing .install-commands code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.landing .install-section .install-note {
+  font-size: 13px;
+  margin-top: 20px;
+}
+.landing .faq-section {
+  padding-block: 64px 80px;
+  border-top: 1px solid var(--border);
+}
+.landing .faq-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 72px;
+}
+.landing .faq-layout h2 {
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+.landing .closing-section {
+  text-align: center;
+  padding-block: 96px 120px;
+}
+.landing .closing-section p {
+  margin-top: 24px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--body);
+}
+.landing .closing-section .pill-button {
+  margin-top: 28px;
+}
+@media (max-width: 1100px) {
+  .landing .wordmark-description {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .landing .page-width {
+    width: calc(100% - 48px);
+  }
+  .landing .site-nav {
+    width: calc(100% - 40px);
+    gap: 12px;
+  }
+  .landing .section-nav {
+    display: none;
+  }
+  .landing .mobile-nav-trigger {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+  }
+  .landing .chapter-split {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .landing .chapter-reverse .media-stage,
+  .landing .chapter-reverse .chapter-heading {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .landing .hero-section {
+    padding-top: 52px;
+  }
+  .landing .hero-stage {
+    margin-top: 44px;
+  }
+  .landing .chapter-heading,
+  .landing .faq-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .landing .section-intro {
+    padding-top: 96px;
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .landing .intro-copy > p {
+    font-size: 17px;
+  }
+  .landing .product-chapter {
+    padding-top: 72px;
+  }
+  .landing .detail-studies h3 {
+    font-size: 22px;
+  }
+  .landing .format-list > div {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .landing .quiet-section,
+  .landing .install-section {
+    padding-block: 80px;
+  }
+  .landing .agent-section {
+    padding-block: 72px;
+  }
+}
+@media (max-width: 520px) {
+  .landing .page-width {
+    width: calc(100% - 40px);
+  }
+  .landing .hero-copy h1 {
+    font-size: clamp(40px, 10.5vw, 52px);
+  }
+  .landing .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .landing .detail-studies {
+    padding-top: 64px;
+  }
+  .landing .study-slide {
+    flex-basis: 88%;
+    padding-left: 20px;
+  }
+  .landing .study-track {
+    margin-left: -20px;
+  }
+  .landing .closing-section {
+    padding-block: 72px 88px;
+  }
+  .landing .install-commands {
+    padding-inline: 16px;
+  }
+}
+
+.landing-menu {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 80px #0002;
+  width: calc(100% - 32px);
+  max-width: 480px;
+  border-radius: 20px;
+}
+.landing-menu nav {
+  display: grid;
+  gap: 4px;
+  padding-top: 12px;
+}
+.landing-menu nav a {
+  padding: 12px 0;
+  font-size: 20px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-menu {
+    animation: none;
+  }
+}
+
+/* The enlarged screenshot has no title strip or overlay label. */
+.screenshot-dialog > [data-slot="dialog-close"] {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.landing .plugin-video { margin-top: 36px; }
+.landing .plugin-video :is(video, .plugin-video-placeholder) { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); }
+.landing .plugin-video figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 12px; color: var(--body); font-size: 13px; }

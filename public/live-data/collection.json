@@ -1,0 +1,530 @@
+[
+  {
+    "index": 0,
+    "name": "MOSES 1",
+    "smiles": "Fc1c(cc(cc1)Cn1c(C)cc(n1)C)Br",
+    "props": {
+      "Molecular weight": "283.144",
+      "SLogP": "3.44984",
+      "TPSA": "17.82",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 1,
+    "name": "MOSES 2",
+    "smiles": "C(C(C)(CO)C)(c1ccc(cc1)S(=O)(N)=O)c1ccccc1",
+    "props": {
+      "Molecular weight": "319.426",
+      "SLogP": "2.4844",
+      "TPSA": "80.39",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 2,
+    "name": "MOSES 3",
+    "smiles": "c12OCOc2ccc(c1)OCCN1Cc2nn(C)c(n2CC1)=O",
+    "props": {
+      "Molecular weight": "318.333",
+      "SLogP": "0.2051",
+      "TPSA": "70.75",
+      "Rings": "4"
+    }
+  },
+  {
+    "index": 3,
+    "name": "MOSES 4",
+    "smiles": "c1cccc2OC(COc12)C(=O)Nc1ccc(C)cc1",
+    "props": {
+      "Molecular weight": "269.3",
+      "SLogP": "2.77352",
+      "TPSA": "47.56",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 4,
+    "name": "MOSES 5",
+    "smiles": "CC(C)(C)c1nc(no1)COc1cc2OCC(=O)Nc2cc1",
+    "props": {
+      "Molecular weight": "303.318",
+      "SLogP": "2.277",
+      "TPSA": "86.48",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 5,
+    "name": "MOSES 6",
+    "smiles": "c1cccc(c1COc1ccc(cc1)C(N(C)C)=O)Cl",
+    "props": {
+      "Molecular weight": "289.762",
+      "SLogP": "3.6208",
+      "TPSA": "29.54",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 6,
+    "name": "MOSES 7",
+    "smiles": "c1(=O)n(nc(C(=O)N2CCC(CC2)C(N)=O)cc1)CCC",
+    "props": {
+      "Molecular weight": "292.339",
+      "SLogP": "-0.0092",
+      "TPSA": "98.29",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 7,
+    "name": "MOSES 8",
+    "smiles": "Cn1c(c(cn1)CCC(N1CCCCC1CC(OCC)=O)=O)C",
+    "props": {
+      "Molecular weight": "321.421",
+      "SLogP": "1.99542",
+      "TPSA": "64.43",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 8,
+    "name": "MOSES 9",
+    "smiles": "c1cc(CCNC(=O)C2CCCN(C(OC(C)(C)C)=O)C2)cnc1",
+    "props": {
+      "Molecular weight": "333.432",
+      "SLogP": "2.3874",
+      "TPSA": "71.53",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 9,
+    "name": "MOSES 10",
+    "smiles": "CN(C)c1cccc(C(=O)Nc2ccc(CC(=O)N(C)C)cc2)c1",
+    "props": {
+      "Molecular weight": "325.412",
+      "SLogP": "2.6356",
+      "TPSA": "52.65",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 10,
+    "name": "MOSES 11",
+    "smiles": "c1coc(CCNS(=O)(=O)Cc2cc(Cl)ccc2)c1",
+    "props": {
+      "Molecular weight": "299.779",
+      "SLogP": "2.5951",
+      "TPSA": "59.31",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 11,
+    "name": "MOSES 12",
+    "smiles": "c1cc(sc1)CCC(=O)NCc1ccc(cc1)S(=O)(N)=O",
+    "props": {
+      "Molecular weight": "324.427",
+      "SLogP": "1.6445",
+      "TPSA": "89.26",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 12,
+    "name": "MOSES 13",
+    "smiles": "c1(C(=O)Nc2cc(ccc2)C(=O)NC2CC2)cscc1",
+    "props": {
+      "Molecular weight": "286.356",
+      "SLogP": "2.8926",
+      "TPSA": "58.2",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 13,
+    "name": "MOSES 14",
+    "smiles": "C(N1CCOCC1)(NCc1ccc(cc1)OCC(F)(F)F)=O",
+    "props": {
+      "Molecular weight": "318.295",
+      "SLogP": "2.1695",
+      "TPSA": "50.8",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 14,
+    "name": "MOSES 15",
+    "smiles": "O=S(=O)(NCCn1ccnc1)c1c(F)cc(F)cc1F",
+    "props": {
+      "Molecular weight": "305.281",
+      "SLogP": "1.2789",
+      "TPSA": "63.99",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 15,
+    "name": "MOSES 16",
+    "smiles": "COC(=O)N1CCC(NC(=O)N(C)CC2CC2)CC1",
+    "props": {
+      "Molecular weight": "269.345",
+      "SLogP": "1.2686",
+      "TPSA": "61.88",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 16,
+    "name": "MOSES 17",
+    "smiles": "CCn1cc(c(n1)C)CN(C)C(=O)C1CC(=O)N(C1)C1CC1",
+    "props": {
+      "Molecular weight": "304.394",
+      "SLogP": "1.18072",
+      "TPSA": "58.44",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 17,
+    "name": "MOSES 18",
+    "smiles": "CN(CC1CCCC1)c1nn2cc(C)nc2s1",
+    "props": {
+      "Molecular weight": "250.371",
+      "SLogP": "2.72562",
+      "TPSA": "33.43",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 18,
+    "name": "MOSES 19",
+    "smiles": "C1CCc2c(N1C(COCc1[nH]c3c(n1)cccc3)=O)cccc2",
+    "props": {
+      "Molecular weight": "321.38",
+      "SLogP": "3.0589",
+      "TPSA": "58.22",
+      "Rings": "4"
+    }
+  },
+  {
+    "index": 19,
+    "name": "MOSES 20",
+    "smiles": "N1(CCC(c2[nH]c3cccc(c3n2)C)CC1)S(=O)(c1nc[nH]c1)=O",
+    "props": {
+      "Molecular weight": "345.428",
+      "SLogP": "2.16272",
+      "TPSA": "94.74",
+      "Rings": "4"
+    }
+  },
+  {
+    "index": 20,
+    "name": "MOSES 21",
+    "smiles": "CC(NC(=O)c1c(cc(OC)c(OC)c1)NC(C1C(C)C1)=O)C",
+    "props": {
+      "Molecular weight": "320.389",
+      "SLogP": "2.4365",
+      "TPSA": "76.66",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 21,
+    "name": "MOSES 22",
+    "smiles": "Cc1ccc(CS(=O)(=O)c2ccc(O)cc2)cc1",
+    "props": {
+      "Molecular weight": "262.33",
+      "SLogP": "2.67452",
+      "TPSA": "54.37",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 22,
+    "name": "MOSES 23",
+    "smiles": "c1ccnc(c1)-c1ccc2c(ccc(c2)-c2c(C(=O)N)ccnc2)n1",
+    "props": {
+      "Molecular weight": "326.359",
+      "SLogP": "3.4577",
+      "TPSA": "81.76",
+      "Rings": "4"
+    }
+  },
+  {
+    "index": 23,
+    "name": "MOSES 24",
+    "smiles": "c1cc(C(F)(F)F)cc(CNCc2n3CCCCc3nn2)c1",
+    "props": {
+      "Molecular weight": "310.323",
+      "SLogP": "2.923",
+      "TPSA": "42.74",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 24,
+    "name": "MOSES 25",
+    "smiles": "C(#Cc1ccc(cc1)C(=O)N(CCC)CC(F)F)CO",
+    "props": {
+      "Molecular weight": "281.302",
+      "SLogP": "2.1477",
+      "TPSA": "40.54",
+      "Rings": "1"
+    }
+  },
+  {
+    "index": 25,
+    "name": "MOSES 26",
+    "smiles": "N#Cc1ccc(C(=O)N2CCn3c(nnc3-c3ccccc3)C2)cc1",
+    "props": {
+      "Molecular weight": "329.363",
+      "SLogP": "2.47278",
+      "TPSA": "74.81",
+      "Rings": "4"
+    }
+  },
+  {
+    "index": 26,
+    "name": "MOSES 27",
+    "smiles": "n1(C(c2n[nH]c(c2)-c2ccccc2OC)=O)cc(nn1)C",
+    "props": {
+      "Molecular weight": "283.291",
+      "SLogP": "1.67372",
+      "TPSA": "85.69",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 27,
+    "name": "MOSES 28",
+    "smiles": "Cc1ccc(C)c(S(N(C)CC(COC)O)(=O)=O)c1",
+    "props": {
+      "Molecular weight": "287.381",
+      "SLogP": "0.93124",
+      "TPSA": "66.84",
+      "Rings": "1"
+    }
+  },
+  {
+    "index": 28,
+    "name": "MOSES 29",
+    "smiles": "C1CN(CCN1C(Cc1sccc1)=O)Cc1c(cccc1)C",
+    "props": {
+      "Molecular weight": "314.454",
+      "SLogP": "2.94342",
+      "TPSA": "23.55",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 29,
+    "name": "MOSES 30",
+    "smiles": "C(Nc1cc(S(N)(=O)=O)ccc1C)(=O)C(C)Sc1ccccc1",
+    "props": {
+      "Molecular weight": "350.465",
+      "SLogP": "2.76172",
+      "TPSA": "89.26",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 30,
+    "name": "MOSES 31",
+    "smiles": "CN1C=C(c2[nH]ncc2-c2ccccc2)C(C)(C)C1C(N)=O",
+    "props": {
+      "Molecular weight": "296.374",
+      "SLogP": "2.2431",
+      "TPSA": "75.01",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 31,
+    "name": "MOSES 32",
+    "smiles": "c1cc(c(cc1)N1CCC(C1=O)NS(=O)(=O)CC)Cl",
+    "props": {
+      "Molecular weight": "302.783",
+      "SLogP": "1.3846",
+      "TPSA": "66.48",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 32,
+    "name": "MOSES 33",
+    "smiles": "c1cc(C(N(C2CC2)C(C)C)=O)ccc1C(=O)NC(C#N)CCC",
+    "props": {
+      "Molecular weight": "327.428",
+      "SLogP": "3.12168",
+      "TPSA": "73.2",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 33,
+    "name": "MOSES 34",
+    "smiles": "C(c1sc(CNC(=O)c2cc3sncc3cc2)cc1)C",
+    "props": {
+      "Molecular weight": "302.424",
+      "SLogP": "3.8502",
+      "TPSA": "41.99",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 34,
+    "name": "MOSES 35",
+    "smiles": "c1(C(=O)NCc2ncccc2)n[nH]c(NC(=O)c2ccccc2)c1",
+    "props": {
+      "Molecular weight": "321.34",
+      "SLogP": "1.987",
+      "TPSA": "99.77",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 35,
+    "name": "MOSES 36",
+    "smiles": "c1(c(-c2n(nc(c2)C(NC(C)c2ccccc2)=O)C)cccc1)OC",
+    "props": {
+      "Molecular weight": "335.407",
+      "SLogP": "3.5867",
+      "TPSA": "56.15",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 36,
+    "name": "MOSES 37",
+    "smiles": "Cc1n[nH]cc1C(=O)NC1CCOc2ccccc21",
+    "props": {
+      "Molecular weight": "257.293",
+      "SLogP": "1.97172",
+      "TPSA": "67.01",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 37,
+    "name": "MOSES 38",
+    "smiles": "CCOC(CC(C)CNC(N1C(C2CCCC2)CCC1)=O)=O",
+    "props": {
+      "Molecular weight": "310.438",
+      "SLogP": "2.9399",
+      "TPSA": "58.64",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 38,
+    "name": "MOSES 39",
+    "smiles": "N1(C(COC2CCCC2)=O)CCN(CC1)Cc1cccc(c1)Cl",
+    "props": {
+      "Molecular weight": "336.863",
+      "SLogP": "2.9434",
+      "TPSA": "32.78",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 39,
+    "name": "MOSES 40",
+    "smiles": "c1c(CCNCc2sc(C)nc2C)cc(cc1)F",
+    "props": {
+      "Molecular weight": "264.369",
+      "SLogP": "3.23134",
+      "TPSA": "24.92",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 40,
+    "name": "MOSES 41",
+    "smiles": "C(c1c(cccc1)OCC)(=O)NCc1ccc(cc1)-n1cncn1",
+    "props": {
+      "Molecular weight": "322.368",
+      "SLogP": "2.596",
+      "TPSA": "69.04",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 41,
+    "name": "MOSES 42",
+    "smiles": "C(NS(c1c(cc(F)cc1)F)(=O)=O)C1OCC2N(CCCC2)C1",
+    "props": {
+      "Molecular weight": "346.399",
+      "SLogP": "1.4964",
+      "TPSA": "58.64",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 42,
+    "name": "MOSES 43",
+    "smiles": "C(c1ccc(cc1)Cl)C(CO)CNC(=O)CC(F)(F)F",
+    "props": {
+      "Molecular weight": "309.715",
+      "SLogP": "2.5596",
+      "TPSA": "49.33",
+      "Rings": "1"
+    }
+  },
+  {
+    "index": 43,
+    "name": "MOSES 44",
+    "smiles": "c1ccn(c1)-c1oc(C)c(C(Nc2cc(OC)ccn2)=O)c1C#N",
+    "props": {
+      "Molecular weight": "322.324",
+      "SLogP": "2.9063",
+      "TPSA": "93.08",
+      "Rings": "3"
+    }
+  },
+  {
+    "index": 44,
+    "name": "MOSES 45",
+    "smiles": "CC(=O)c1cc(NC(=O)c2ccccc2OC(C)C)c(F)cc1F",
+    "props": {
+      "Molecular weight": "333.334",
+      "SLogP": "4.2069",
+      "TPSA": "55.4",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 45,
+    "name": "MOSES 46",
+    "smiles": "c12cc(Cl)cc(c1OCCO2)1c2nc[nH]c2nc(n1)N",
+    "props": {
+      "Molecular weight": "",
+      "SLogP": "",
+      "TPSA": "",
+      "Rings": ""
+    }
+  },
+  {
+    "index": 46,
+    "name": "MOSES 47",
+    "smiles": "c1cnc(C(c2cc(cc(c2)Cl)Cl)N)nc1C",
+    "props": {
+      "Molecular weight": "268.147",
+      "SLogP": "3.13992",
+      "TPSA": "51.8",
+      "Rings": "2"
+    }
+  },
+  {
+    "index": 47,
+    "name": "MOSES 48",
+    "smiles": "Cn1cnc2c(N3CCCC(C(=O)NCC4CC4)C3)ncnc21",
+    "props": {
+      "Molecular weight": "314.393",
+      "SLogP": "1.1059",
+      "TPSA": "75.94",
+      "Rings": "4"
+    }
+  }
+]

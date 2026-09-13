@@ -73,7 +73,7 @@ export default function SkyCanvas({ className }) {
       "  color = mix(color, u_skyBottom * 1.06, smoothstep(0.35, 0.0, uv.y) * 0.5);",
       "  vec2 sunPos = vec2(aspect * 0.78, 0.92);",
       "  float sunDist = length(p - sunPos);",
-      "  color += vec3(1.0,0.95,0.82) * exp(-sunDist*sunDist*5.0) * 0.28;",
+      "  color += vec3(1.0,0.95,0.82) * exp(-sunDist*sunDist*5.0) * 0.28 * dot(u_skyTop, vec3(0.3333));",
       "  float cirrusBand = smoothstep(0.55,0.8,uv.y) * (1.0 - smoothstep(0.9,1.0,uv.y));",
       "  if (cirrusBand > 0.01) {",
       "    float streak = fbm(vec2(p.x*1.6 - t*0.006, p.y*12.0));",
@@ -154,7 +154,8 @@ export default function SkyCanvas({ className }) {
       w = rect.width; h = rect.height;
       // five octaves of billow noise per cloud pass is the most expensive thing on the
       // page, so the shader gets a fixed pixel budget rather than the display's full DPR
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5, Math.sqrt(1.6e6 / (w * h)));
+      const pixels = w < 700 ? 300000 : 650000;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5, Math.sqrt(pixels / (w * h)));
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
       gl.viewport(0, 0, cv.width, cv.height);
       gl.useProgram(prog);
@@ -163,7 +164,7 @@ export default function SkyCanvas({ className }) {
       draw(0);
     };
 
-    const SPEED = 0.28, FRAME = 1000 / 30; // the drift is slow enough that 30fps reads identically
+    const SPEED = 0.28, FRAME = 1000 / 24;
     const t0 = performance.now();
     const draw = (elapsed) => {
       gl.useProgram(prog);
@@ -172,7 +173,7 @@ export default function SkyCanvas({ className }) {
     };
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let reduced = motionQuery.matches;
+    let reduced = motionQuery.matches || navigator.connection?.saveData;
 
     let raf = 0;
     let running = false, lastFrame = 0;
@@ -245,7 +246,7 @@ export default function SkyCanvas({ className }) {
       visible = false;
     };
     const onMotion = () => {
-      reduced = motionQuery.matches;
+      reduced = motionQuery.matches || navigator.connection?.saveData;
       if (reduced) disableMotion(); else enableMotion();
     };
     motionQuery.addEventListener("change", onMotion);

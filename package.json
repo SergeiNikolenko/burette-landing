@@ -5,11 +5,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node scripts/check-site.mjs"
+    "test": "node scripts/check-site.mjs && node scripts/check-live-scenes.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.6.0",
+    "embla-carousel-wheel-gestures": "^8.1.0",
     "lucide-react": "^1.33.0",
     "next": "16.2.11",
     "nextra": "4.6.0",

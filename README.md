@@ -37,3 +37,8 @@ npm audit --omit=dev
 
 The site check validates internal documentation routes, fragment links, local
 assets, duplicate IDs, and image alternative text.
+
+## Visual direction
+
+See [Landing design](docs/landing-design.md) for the composition, references,
+and responsive behaviour.
