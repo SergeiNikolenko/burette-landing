@@ -60,6 +60,22 @@ assert.deepEqual(actions, []);
 await message({ type: "action", action: "overview" });
 assert.deepEqual(JSON.parse(JSON.stringify(actions)), [{ type: "reset_camera", args: { durationMs: 0 } }]);
 assert.equal(replies.at(-1).ok, true);
+actions.length = 0;
+await message({ type: "action", action: "smooth" });
+await message({ type: "action", action: "all" });
+await message({ type: "action", action: "frames" });
+assert.deepEqual(JSON.parse(JSON.stringify(actions)), [
+  { type: "set_sdf_pose_mode", mode: "single" },
+  { type: "apply_trajectory_smoothing", outputFrames: 80 },
+  { type: "set_trajectory_smoothing_view", view: "original" },
+  { type: "set_sdf_pose_mode", mode: "all" },
+  { type: "set_sdf_pose_mode", mode: "single" },
+]);
+actions.length = 0;
+window.BuretteViewerActions.run = async action => { actions.push(action); return { ok: false }; };
+await message({ type: "action", action: "smooth" });
+assert.deepEqual(JSON.parse(JSON.stringify(actions)), [{ type: "set_sdf_pose_mode", mode: "single" }]);
+assert.equal(replies.at(-1).ok, false);
 await message({ type: "select", indexes: [-1, 7, 48, "8", 2.5], filterToSelection: true });
 assert.deepEqual(JSON.parse(JSON.stringify(selections[0].body)), { type: "chemicalSpaceSelectionChanged", sourceRecordIds: [7], focusSourceRecordId: 7, filterToSelection: true });
 console.log("Live scene data, route bounds, and frame bridge checks passed.");

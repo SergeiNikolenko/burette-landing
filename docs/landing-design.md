@@ -58,10 +58,12 @@ The introductory workspace illustration remains non-interactive.
 
 Collections use the published Burette RDKit grid with 48 source-ordered MOSES
 records. The descriptor map plots supplied molecular weight and SLogP values;
-selecting a point or using the keyboard-accessible selector filters the adjacent
-native grid. This is a descriptor plot, not a computed chemical-space embedding.
-The motion scene uses a real 20-frame SN2 vibrational-mode file, with native
-playback and frame controls. It is not presented as a molecular-dynamics run.
+selecting a point or using the keyboard-accessible selector updates a large
+RDKit SVG structure and a three-property summary. This is a descriptor plot, not a computed chemical-space embedding.
+The motion scene uses a real 20-frame BIMP vibrational-mode file, with native
+playback and frame controls. Explicit actions switch between the original 20
+frames, 80 smoothed/interpolated frames, and an overlay of the original frames.
+The scene mounts on approach, without a screenshot poster. It is not presented as a molecular-dynamics run.
 Data provenance is recorded in `public/live-data/README.md`.
 
 `/live/[scene]` accepts only three named examples and serves bounded data to the
@@ -86,3 +88,8 @@ frame message bounds. Manually verify the deployed preview in both themes at
 ligand focus, surface, grid search, map selection, motion playback, dialog close,
 and offscreen frame cleanup. Review typography, section pacing, image crops,
 control contrast, and horizontal overflow against the reference pages.
+
+The hero live canvas sits inside a source-owned CSS laptop outline (bezel, camera,
+aluminum base). Aceternity MacBook Scroll was reviewed as a reference; its
+image-only parallax component was not added to this interactive canvas.
+The footer wordmark uses cap-height alignment to meet the lower page edge.

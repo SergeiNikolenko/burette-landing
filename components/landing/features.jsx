@@ -124,9 +124,9 @@ export default function Features() {
       <article className="product-chapter chapter-split page-width">
         <div className="chapter-heading">
           <div><p className="section-label">Molecular motion</p><h3>Every frame.<br />In your hands.</h3></div>
-          <div><p>Play, pause, and step through a real multi-frame file. Try this 20-frame vibrational-mode example in the same viewer.</p></div>
+          <div><p>Follow a molecule through every frame. Smooth the motion between frames, or choose All to overlay the entire path in one view.</p><p className="motion-example-note">Try this 20-frame vibrational mode. Smoothing creates interpolated frames for viewing.</p></div>
         </div>
-        <LiveScene scene="motion" label="SN2 · molecular motion" light="/assets/second-light.png" dark="/assets/second-dark.png" />
+        <LiveScene autoLoad scene="motion" label="BIMP · molecular motion" />
       </article>
     </section>
   );

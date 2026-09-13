@@ -17,6 +17,7 @@
     if (type === "ready" && (config.mode !== "grid2d" || payload?.rdkitLoaded)) send("ready", { scene: config.documentId });
     if (type === "error") send("error", { message: String(message).slice(0, 300) });
     if (type === "gridMenuStateChanged") send("selection", { indexes: (payload?.selectedSourceIndexes || []).slice(0, 48) });
+    if (type === "trajectorySmoothingChanged") smoothed = payload?.view === "smoothed";
   };
   // Native and browser Burette runtimes share this host-message contract.
   window.webkit = { messageHandlers: { burette: { postMessage(body) {
@@ -31,7 +32,26 @@
     overview: { type: "reset_camera", args: { durationMs: 0 } },
     ligand: { type: "focus_ligand", index: 0, durationMs: 0, extraRadius: 5 },
     surface: { type: "show_surface" },
+    frames: { type: "set_sdf_pose_mode", mode: "single" },
+    smooth: { type: "apply_trajectory_smoothing", outputFrames: 80 },
+    all: { type: "set_sdf_pose_mode", mode: "all" },
   };
+  let smoothed = false;
+  async function motionView(name) {
+    const run = action => window.BuretteViewerActions.run(action);
+    if (smoothed) {
+      const original = await run({ type: "set_trajectory_smoothing_view", view: "original" });
+      if (!original.ok) return original;
+      smoothed = false;
+    }
+    if (name === "smooth") {
+      const single = await run(actions.frames);
+      if (!single.ok) return single;
+    }
+    const result = await run(actions[name]);
+    if (name === "smooth" && result.ok) smoothed = true;
+    return result;
+  }
   let surfaceShown = false;
   // The published scene action passes a hierarchy wrapper where Mol* expects
   // its state cell. Use the same runtime builder with the resolved cell here.
@@ -78,7 +98,9 @@
     if (body.type !== "action" || !Object.hasOwn(actions, body.action) || busy) return;
     busy = true;
     try {
-      const result = body.action === "surface" ? await showSurface() : await window.BuretteViewerActions.run(actions[body.action]);
+      const result = body.action === "surface" ? await showSurface()
+        : ["frames", "smooth", "all"].includes(body.action) ? await motionView(body.action)
+        : await window.BuretteViewerActions.run(actions[body.action]);
       send("action-result", { action: body.action, ok: result?.ok === true, message: result?.error?.message?.slice(0, 200) });
     } catch {
       send("action-result", { action: body.action, ok: false, message: "This scene could not complete the action." });

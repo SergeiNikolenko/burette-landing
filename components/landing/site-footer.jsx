@@ -134,12 +134,12 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        {/* Keep the decorative wordmark comfortably spaced and fully visible. */}
+        {/* Cap-height alignment lets the wordmark meet the page edge. */}
         <div
           aria-hidden="true"
-          className="pointer-events-none mt-8 pb-6 select-none sm:mt-14"
+          className="footer-signature pointer-events-none mt-8 select-none sm:mt-14"
         >
-          <span className="block text-center text-[min(17vw,210px)] leading-none font-medium tracking-[0.02em] [font-kerning:none] text-[var(--wordmark-fill)] whitespace-nowrap">
+          <span className="block text-center font-medium tracking-[0.02em] [font-kerning:none] text-[var(--wordmark-fill)] whitespace-nowrap">
             BURETTE
           </span>
         </div>

@@ -37,6 +37,7 @@ export default function Hero() {
       </div>
       <div className="hero-stage page-width">
         <LiveScene
+          device
           id="live-demo"
           scene="structure"
           label="1HTB.pdb"
