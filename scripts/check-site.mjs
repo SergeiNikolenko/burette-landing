@@ -145,13 +145,13 @@ if (!brewSource.includes("brew tap SergeiNikolenko/burette") || !brewSource.incl
 
 {
   const previousSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-  process.env.NEXT_PUBLIC_SITE_URL = "https://burrete-landing.vercel.app";
-  const { SITE_URL } = await import("../app/site-url.js?legacy-origin-check");
+  process.env.NEXT_PUBLIC_SITE_URL = "https://unrelated.example";
+  const { SITE_URL } = await import("../app/site-url.js?canonical-origin-check");
   if (previousSiteUrl === undefined) delete process.env.NEXT_PUBLIC_SITE_URL;
   else process.env.NEXT_PUBLIC_SITE_URL = previousSiteUrl;
 
   if (SITE_URL !== "https://burette-landing.vercel.app") {
-    failures.push("app/site-url.js: stale legacy environment value restores the misspelled origin");
+    failures.push("app/site-url.js: environment override changes the canonical public origin");
   }
 }
 
