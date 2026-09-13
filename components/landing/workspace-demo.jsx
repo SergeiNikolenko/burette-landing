@@ -22,6 +22,11 @@ export default function WorkspaceDemo() {
         if (!agent) return;
         const state = await agent.run({ command: "capabilities" });
         if (!cancelled && state.ok && state.result.ready) {
+          // Start narrow screens on the structure; the native sidebar toggle
+          // remains available to browse examples.
+          if (window.matchMedia("(max-width: 600px)").matches) {
+            frame.current?.contentDocument?.querySelector('button[aria-label="Hide sidebar"]')?.click();
+          }
           setReady(true);
           clearTimeout(deadline);
           clearInterval(timer);
