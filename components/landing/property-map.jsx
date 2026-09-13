@@ -12,8 +12,16 @@ export default function PropertyMap({ autoLoad = false }) {
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const [scale, setScale] = useState(1);
+  const [theme, setTheme] = useState("light");
   const root = useRef(null);
   const frame = useRef(null);
+  useEffect(() => {
+    const sync = () => setTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+    sync();
+    const observer = new MutationObserver(sync);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, []);
   useEffect(() => {
     const size = new ResizeObserver(([entry]) => setScale(entry.contentRect.width / 1280));
     size.observe(root.current);
@@ -41,9 +49,9 @@ export default function PropertyMap({ autoLoad = false }) {
       finally { busy = false; }
     }, 400);
     return () => { cancelled = true; clearInterval(timer); clearTimeout(timeout); };
-  }, [active]);
+  }, [active, theme]);
   return <div className="real-property-workspace" ref={root}>
-    {active ? <><iframe ref={frame} src="/web-demo/index.html?presentation=library" title="Chemical Space in the Burette workspace" style={{ width: 1280, height: 800, transform: `scale(${scale})` }} />
+    {active ? <><iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=library&theme=${theme}`} title="Chemical Space in the Burette workspace" style={{ width: 1280, height: 800, transform: `scale(${scale})` }} />
       {!ready && <div className="workspace-demo-loading" role="status">{failed ? <Button onClick={() => setActive(false)}>Close and try again</Button> : "Opening Chemical Space in Burette…"}</div>}
       <Button className="property-close" variant="secondary" size="sm" onClick={() => setActive(false)}>Close preview</Button></>
       : <><ThemedImage light="/assets/chemical-space-light.png" dark="/assets/chemical-space-dark.png" alt="Chemical Space in the Burette app" width={1804} height={1262} />
