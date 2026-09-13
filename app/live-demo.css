@@ -2,20 +2,6 @@
   min-width: 0;
   color: var(--text);
 }
-.landing .live-scene-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 48px;
-  padding: 4px 0;
-  font-size: 13px;
-  color: var(--body);
-}
-.landing .live-scene-bar button {
-  color: var(--molecular-ink);
-  border-radius: 999px;
-}
 .landing .live-scene-viewport {
   position: relative;
   height: clamp(420px, 49vw, 640px);
@@ -50,20 +36,6 @@
   touch-action: pan-y pinch-zoom;
 }
 .landing .scene-activate:focus-visible { outline: 3px solid var(--molecular-ink); outline-offset: -4px; }
-.landing .live-scene-tools {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px 16px;
-  min-height: 52px;
-  padding-block: 8px;
-  font-size: 12px;
-  color: var(--body);
-}
-.landing .live-scene-tools [role="group"] { display: flex; flex-wrap: wrap; gap: 0; }
-.landing .live-scene-tools button { min-height: 40px; padding-inline: 12px; border-radius: 999px; }
-.landing .live-scene-status { font-size: 12px; }
 .landing .live-scene-motion .live-scene-viewport { height: 480px; }
 .workspace-demo-dialog {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -93,8 +65,6 @@
 @media (max-width: 600px) {
   .landing .hero-stage { width: calc(100% - 24px); margin-top: 28px; }
   .landing .live-scene-viewport { height: 440px; border-radius: 10px; }
-  .landing .live-scene-tools { justify-content: center; }
-  .landing .live-scene-tools button { padding-inline: 9px; font-size: 12px; }
   .landing .live-scene-motion .live-scene-viewport { height: 420px; }
   .landing .live-scene-collection .live-scene-viewport { height: 560px; }
   .workspace-demo-dialog { width: calc(100vw - 16px); }
@@ -154,10 +124,12 @@
 
 /* Keep the real desktop legible; phones receive an uncropped still instead. */
 .landing .macbook-screen { background: var(--surface); }
-.landing .macbook-screen iframe { transition: opacity 180ms cubic-bezier(.2,.8,.2,1); }
-.landing .macbook-screen[data-switching="true"] iframe { opacity: 0; pointer-events: none; }
+.landing .macbook-screen iframe { transition: opacity 180ms cubic-bezier(.2,.8,.2,1), filter 180ms cubic-bezier(.2,.8,.2,1); }
+.landing .macbook-screen[data-switching="true"] iframe { opacity: .55; filter: blur(3px); pointer-events: none; }
 .landing .mobile-workspace-preview img { object-fit: contain; }
 .landing .live-poster { object-fit: contain; }
 @media (prefers-reduced-motion: reduce) {
   .landing .macbook-screen iframe { transition: none; }
 }
+
+.landing .live-scene-loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--body); font-size: 13px; }

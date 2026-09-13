@@ -95,6 +95,7 @@ export default function LiveScene({ scene, label, light, dark, autoLoad = false,
           inert={!interactive}
           style={{ pointerEvents: interactive ? "auto" : "none" }}
         />}
+        {status === "loading" && <span className="live-scene-loading" role="status">Loading preview…</span>}
         {!interactive && status === "ready" && <button className="scene-activate" onClick={start} aria-label={`Interact with ${label}`} />}
       </div>
       </div>
