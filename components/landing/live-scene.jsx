@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import ThemedImage from "./themed-image";
 
-export default function LiveScene({ scene, label, light, dark, autoLoad = false, id, selection, device = false }) {
+export default function LiveScene({ scene, label, light, dark, autoLoad = false, id, selection }) {
   const root = useRef(null);
   const frame = useRef(null);
   const camera = useRef(null);
@@ -106,7 +106,7 @@ export default function LiveScene({ scene, label, light, dark, autoLoad = false,
           {interactive ? "Done exploring" : status === "ready" ? "Explore" : "Try it live"}
         </Button>
       </div>
-      <div className={device ? "live-scene-display macbook-frame" : "live-scene-display"}>
+      <div className="live-scene-display">
       <div className="live-scene-viewport">
         {scene !== "motion" && <ThemedImage light={light} dark={dark} alt={label} width={1804} height={1262} className="live-poster" sizes="(min-width: 1200px) 1200px, 94vw" priority={autoLoad} />}
         {mounted && <iframe

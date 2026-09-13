@@ -11,54 +11,54 @@ const QUESTIONS = [
     q: "Is Burette really free?",
     a: (
       <>
-        Yes. Burette is free and open source under the MIT license. There is no
-        account, no sign-in, no trial and no paid tier. Download the .dmg or run{" "}
-        <code>brew install --cask burette</code> and it works.
+        Yes. Burette is free and open source under the MIT license. The desktop app
+        needs no account or subscription. Download the .dmg or follow the
+        Homebrew instructions above and run{" "}
+        <code>brew install --cask burette</code>.
       </>
     ),
   },
   {
     id: "formats",
     q: "Which files can I preview with Space?",
-    a: "Structures (PDB, CIF, mmCIF, SDF, MOL, MOL2, XYZ, GRO, BCIF), multi-frame XYZ and MD trajectories, chemistry tables (SMILES, SMI, CSV, TSV) and QM outputs (CUBE, LOG, OUT, PSI4, VASP) — around twenty extensions, all from Finder with a single keystroke.",
+    a: "Structures (PDB, CIF, mmCIF, SDF, MOL, MOL2, XYZ, GRO, BCIF), multi-frame XYZ and MD trajectories, chemistry tables (SMILES, SMI, CSV, TSV) and QM outputs (CUBE, LOG, OUT, PSI4, VASP). See the formats guide for the complete list and renderer requirements.",
   },
   {
     id: "first-launch",
     q: "Do I have to open the app for Quick Look to work?",
-    a: "Once. macOS only registers a Quick Look extension after its host app has been launched at least one time. Open Burette, then close it — previews keep working from Finder afterwards.",
+    a: "Open Burette once after installation to register the extension. You can then close the app and use previews from Finder.",
   },
   {
     id: "preview-vs-workspace",
     q: "What is the difference between the preview and the workspace?",
-    a: "Quick Look is for looking: interactive Mol* 3D, trajectory scrubbing, molecule grids, no window management. The workspace is for working: a tab per file, side-by-side comparison, RDKit grid filtering and export, Ketcher sketching, and local xTB or CREST jobs. Same renderers, more room.",
+    a: "Quick Look lets you inspect structures, scrub trajectories, and browse molecule grids from Finder. Open the workspace for file tabs, side-by-side views, collection filtering and export, Ketcher editing, and local calculations.",
   },
   {
     id: "privacy",
     q: "Does anything leave my Mac?",
-    a: "No. Files are parsed and rendered locally and nothing is uploaded. Structures, collections, calculations and exports stay on disk. Burette does not need network access to open a file.",
+    a: "The desktop app opens local molecular files on your Mac without uploading them. Online integrations have their own data paths: files shared with a hosted plugin or AI provider are processed by those services. See the privacy policy for details.",
   },
   {
     id: "dependencies",
     q: "Do I need Python, RDKit or Mol* installed first?",
     a: (
       <>
-        No. Mol*, RDKit and Ketcher ship inside the app. Only two things are
-        optional external executables: <code>xyzrender</code> for
-        publication-style artwork, and <code>xtb</code> / <code>crest</code> for
-        local calculations. Burette detects them on your PATH and hides those
-        features when they are absent.
+        No. Mol*, RDKit and Ketcher ship inside the app. Optional tools include <code>xyzrender</code> for
+        vector illustrations, and <code>xtb</code> / <code>crest</code> for
+        local calculations. See the engines guide for installation options
+        and other supported tools.
       </>
     ),
   },
   {
     id: "not",
     q: "Is this a replacement for PyMOL, ChimeraX or Maestro?",
-    a: "No, and it does not try to be. Those are modelling environments for figures and deep analysis. Burette is for the thirty seconds before you open one: confirm what a file is, look at it, compare a few, move on. It is also not a docking suite and not a cloud service.",
+    a: "Burette is useful for inspecting files from Finder, comparing molecules, editing structures, and preparing calculations. You can keep using your existing modelling tools for the workflows you already rely on.",
   },
   {
     id: "agents",
     q: "Can Codex or another agent drive Burette?",
-    a: "Yes. The Burette plugin exposes a local MCP server with typed tools for structures, Mol* scenes, Ketcher edits, molecule collections, trajectories and workflow artifacts. It runs on your machine and talks to the running app — no cloud round-trip.",
+    a: "Yes. The local plugin lets an agent open files, control molecular views, edit in Ketcher, and work with collections and trajectories. A separate hosted plugin provides browser-based molecular tools. The plugin guide explains setup and availability.",
   },
   {
     id: "requirements",

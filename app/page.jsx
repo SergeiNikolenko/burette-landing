@@ -16,14 +16,14 @@ import SiteFooter from "@/components/landing/site-footer";
 export const metadata = {
   title: "Burette | Molecular Quick Look and workspace for macOS",
   description:
-    "Press Space in Finder and see PDB, CIF, SDF, XYZ, trajectories and chemistry tables in interactive 3D. Free, open source, and everything stays on your Mac.",
+    "Press Space in Finder and see PDB, CIF, SDF, XYZ, trajectories and chemistry tables in interactive 3D. Free and open source, with local file viewing on your Mac.",
   alternates: { canonical: SITE_URL },
   openGraph: {
     type: "website",
     url: SITE_URL,
     title: "Burette | Molecular Quick Look and workspace for macOS",
     description:
-      "Press Space in Finder and see molecular files in interactive 3D. Free, open source, nothing leaves your Mac.",
+      "Press Space in Finder and see molecular files in interactive 3D. Free and open source, with local file viewing.",
     images: [
       {
         url: "/assets/burette-quicklook.png",

@@ -12,15 +12,15 @@ export default function CodexMcp() {
         <div>
           <p className="section-label">Burette for agents</p>
           <h2 id="agents-title">
-            The same workspace.
+            Your agent can
             <br />
-            Another way in.
+            work here too.
           </h2>
         </div>
         <div>
           <p>
             Ask Codex to open a structure, focus on a ligand, or prepare a
-            molecular story. The Burette plugin connects your agent to the tools
+            sequence of molecular views. The Burette plugin connects your agent to the tools
             in your workspace.
           </p>
           <Button asChild variant="outline" className="pill-button">

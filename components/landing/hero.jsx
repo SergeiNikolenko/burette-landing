@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import LiveScene from "./live-scene";
+import MacbookWorkspace from "./macbook-workspace";
 import WorkspaceDemo from "./workspace-demo";
 import SkyCanvas from "./sky-canvas";
 
@@ -36,15 +36,7 @@ export default function Hero() {
         <p className="hero-note">Free and open source.</p>
       </div>
       <div className="hero-stage page-width">
-        <LiveScene
-          device
-          id="live-demo"
-          scene="structure"
-          label="1HTB.pdb"
-          light="/assets/main-light.png"
-          dark="/assets/main-dark.png"
-          autoLoad
-        />
+        <MacbookWorkspace />
       </div>
     </section>
   );

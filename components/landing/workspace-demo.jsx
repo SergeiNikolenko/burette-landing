@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
-export default function WorkspaceDemo() {
+export default function WorkspaceDemo({ label = "Try in your browser" }) {
   const [open, setOpen] = useState(false);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -37,7 +37,7 @@ export default function WorkspaceDemo() {
   }, [open]);
   return <Dialog open={open} onOpenChange={setOpen}>
     <DialogTrigger asChild>
-      <Button variant="ghost" size="lg" className="pill-button" data-analytics-event="Online Demo" data-analytics-location="hero" data-analytics-target="embedded-demo">Try in your browser</Button>
+      <Button variant="ghost" size="lg" className="pill-button" data-analytics-event="Online Demo" data-analytics-location="hero" data-analytics-target="embedded-demo">{label}</Button>
     </DialogTrigger>
     <DialogContent className="workspace-demo-dialog">
       <div className="workspace-demo-heading">

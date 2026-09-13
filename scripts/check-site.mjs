@@ -16,6 +16,14 @@ const landingFiles = [
 const staticPages = [path.join(root, "download.html")];
 const sourceFiles = [...staticPages, ...landingFiles, ...contentFiles];
 
+// Feature cards carry their links and themed media in data rather than JSX.
+const { featureStories } = await import("../components/landing/feature-stories.js");
+for (const story of featureStories) {
+  if (!(await anyExists(docsFilesForRoute(story.docs)))) failures.push(`feature ${story.id}: missing guide ${story.docs}`);
+  const media = story.image ? [`/assets/${story.image}-light.png`, `/assets/${story.image}-dark.png`] : [story.video, story.poster];
+  for (const src of media) if (!(await exists(path.join(root, "public", src)))) failures.push(`feature ${story.id}: missing media ${src}`);
+}
+
 const isLanding = (file) => landingFiles.includes(file);
 // Fragment links resolve across the whole page, not within one component, so
 // anchors are validated against every landing source concatenated.

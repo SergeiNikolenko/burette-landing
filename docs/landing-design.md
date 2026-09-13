@@ -2,7 +2,7 @@
 
 The landing presents Burette through three product stories: Finder Quick Look,
 molecular collections, and Chemical Space. Large screenshots show the actual
-application; a horizontal gallery covers lasso selection, trajectories, and molecular artwork.
+application; a horizontal gallery opens eight feature stories: selection, trajectories, collections, Chemical Space, source text, figures, agents, and workspace tabs.
 
 ## References
 
@@ -38,7 +38,7 @@ control is text-only. Format groups are simple rows rather than nested cards.
 At narrow widths, a compact single-row header opens a shadcn navigation dialog, stories stack, and supporting
 gallery cards keep a peek of the next slide. Main product screenshots retain an accessible enlargement
 dialog with a close button, without a visible title strip or Enlarge badge. The introductory
-workspace illustration and gallery images are not clickable. The theme button changes colours directly without a reveal animation.
+workspace illustration remains non-interactive. Gallery cards open a feature dialog with live content, a video, or an uncropped screenshot; closing returns focus to the selected card. The theme button changes colours directly without a reveal animation.
 The existing video controls and reduced-motion behaviour remain available.
 
 The existing cloud renderer stops when hidden and respects reduced motion.
@@ -50,10 +50,9 @@ Demo, documentation, plugin setup, downloads, and installation remain reachable.
 
 ## Live demonstrations
 
-The hero loads the real Burette Mol* viewer with the bundled 1HTB structure.
-Explicit controls activate interaction, focus a ligand, reset the camera, and add
-a molecular surface. A small adapter resolves the hierarchy state cell for the
-surface builder; repeated surface requests do not accumulate representations.
+The hero loads the complete published Burette browser workspace immediately, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. The app sits below the camera notch so no controls are obscured.
+
+Presentation mode selects four real bundled files at 12-second intervals while visible. A narrow file-tree adapter owns this integration with the published shell. Pointer, wheel, or keyboard input inside the app or nested molecular viewer pauses presentation; visitors can resume or choose an example with the dots. Reduced-motion preference disables automatic presentation initially. Theme changes reload the embedded workspace after synchronizing its stored theme preference. The old external file-name bar and scientific action row are absent.
 The introductory workspace illustration remains non-interactive.
 
 Collections use the published Burette RDKit grid with 48 source-ordered MOSES
@@ -70,10 +69,10 @@ Data provenance is recorded in `public/live-data/README.md`.
 published renderer. `/web-demo/*` and `/burette-viewer/*` proxy the existing public
 Burette deployment through the landing origin. This lets branch previews embed
 the runtime under its same-origin framing policy. The full browser workspace
-opens in a shadcn dialog only on request and is unloaded when closed.
+is also available in a larger shadcn dialog on request and is unloaded when that dialog closes. The hero workspace remains mounted to preserve interaction state while scrolling.
 
 The parent/frame bridge checks both origin and window identity, whitelists
-commands, and reports actual readiness and action outcomes. Offscreen frames
+commands, and reports actual readiness and action outcomes. Offscreen standalone example frames
 are removed to release their renderer; camera position is retained when an
 acknowledgement arrives. Other edits and playback state reset on remount.
 Unactivated viewers allow page scrolling. Loading deadlines expose retry controls
@@ -89,7 +88,9 @@ ligand focus, surface, grid search, map selection, motion playback, dialog close
 and offscreen frame cleanup. Review typography, section pacing, image crops,
 control contrast, and horizontal overflow against the reference pages.
 
-The hero live canvas sits inside a source-owned CSS laptop outline (bezel, camera,
-aluminum base). Aceternity MacBook Scroll was reviewed as a reference; its
-image-only parallax component was not added to this interactive canvas.
+Check the hero automatic cycle, pause on real input, theme synchronization, notch clearance, and gallery dialogs at desktop and mobile widths. Runtime readiness and frame switching require a browser check in addition to the static tests.
 The footer wordmark uses cap-height alignment to meet the lower page edge.
+
+## Copy review
+
+Headlines and descriptions name concrete actions. FAQ copy distinguishes local desktop files from hosted plugin processing and avoids claiming that Burette only supports a short preview workflow. On 2026-09-13 the public landing copy, feature descriptions, and FAQ were submitted to Pangram 4.0: 1,025 words scanned, 96% AI / 4% human. This is the detector result, not an authorship or copy-quality guarantee. No third-party humanizer was used.

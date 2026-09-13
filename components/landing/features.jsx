@@ -40,15 +40,15 @@ export default function Features() {
           <div>
             <p className="section-label">Finder Quick Look</p>
             <h3>
-              One key.
+              A closer look.
               <br />
-              Into the structure.
+              Right in Finder.
             </h3>
           </div>
           <div>
             <p>
-              See chains, residues, ligands, and surfaces in interactive 3D.
-              Right where your files already are.
+              Inspect chains, residues, ligands, and surfaces in 3D without
+              opening a separate workspace.
             </p>
             <Link className="text-link" href="/docs/surfaces/quick-look">
               Explore Quick Look <span aria-hidden="true">↗</span>
@@ -72,9 +72,9 @@ export default function Features() {
           <div>
             <p className="section-label">Molecular collections</p>
             <h3>
-              Find what matters.
+              Browse your library.
               <br />
-              Keep the context.
+              Choose your compounds.
             </h3>
           </div>
           <div>
@@ -109,9 +109,8 @@ export default function Features() {
           </div>
           <div>
             <p>
-              Move from a map to an individual structure. Try this small
-              descriptor map: each point is a real molecule, positioned by
-              molecular weight and SLogP.
+              Select a point to inspect its molecule. This example places 48
+              compounds by molecular weight and SLogP, a measure of lipophilicity.
             </p>
             <Link className="text-link" href="/docs/workflows/native-compute">
               Explore Chemical Space <span aria-hidden="true">↗</span>
@@ -124,7 +123,7 @@ export default function Features() {
       <article className="product-chapter chapter-split page-width">
         <div className="chapter-heading">
           <div><p className="section-label">Molecular motion</p><h3>Every frame.<br />In your hands.</h3></div>
-          <div><p>Follow a molecule through every frame. Smooth the motion between frames, or choose All to overlay the entire path in one view.</p><p className="motion-example-note">Try this 20-frame vibrational mode. Smoothing creates interpolated frames for viewing.</p></div>
+          <div><p>Play, pause, or step through a molecular trajectory. Smooth the motion between frames, or choose All to see the original frames together.</p><p className="motion-example-note">Try this 20-frame vibrational mode. Smoothing creates interpolated frames for viewing.</p></div>
         </div>
         <LiveScene autoLoad scene="motion" label="BIMP · molecular motion" />
       </article>
