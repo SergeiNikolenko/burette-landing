@@ -56,6 +56,10 @@
     if (event.origin !== origin || event.source !== parent) return;
     const body = event.data;
     if (body?.source !== "burette-landing-host") return;
+    if (body.type === "interaction") {
+      document.body.classList.toggle("is-interactive", body.enabled === true);
+      return;
+    }
     if (body.type === "suspend") {
       const canvas = window.BuretteViewer?.plugin?.canvas3d;
       send("suspended", { camera: canvas?.camera?.getSnapshot?.() || null });

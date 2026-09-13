@@ -24,6 +24,10 @@ export default function LiveScene({ scene, label, light, dark, autoLoad = false,
   }, [selection]);
 
   useEffect(() => {
+    if (status === "ready") send("interaction", { enabled: interactive });
+  }, [status, interactive]);
+
+  useEffect(() => {
     if (status === "ready" && selection) send("select", { indexes: [selection.index], filterToSelection: true });
   }, [selection, status]);
 
