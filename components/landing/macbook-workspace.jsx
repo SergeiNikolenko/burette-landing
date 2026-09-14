@@ -43,10 +43,12 @@ function DesktopPresentation() {
   const transition = useRef(0);
   const changing = useRef(false);
   const story = useRef(null);
+  const resumeTimer = useRef(null);
+  useEffect(() => () => clearTimeout(resumeTimer.current), []);
   useLayoutEffect(() => {
     indicators.current?.style.setProperty("--scene-progress", "0");
   }, [scene, ready]);
-  const paused = () => { if (pointer.current) pointer.current.dataset.visible = "false"; story.current?.abort(); transition.current++; userActive.current = true; setPlaying(false); };
+  const paused = () => { clearTimeout(resumeTimer.current); if (pointer.current) pointer.current.dataset.visible = "false"; story.current?.abort(); transition.current++; userActive.current = true; setPlaying(false); };
   useEffect(() => {
     const sync = () => {
       const next = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
@@ -82,11 +84,20 @@ function DesktopPresentation() {
     transition.current++;
     setReady(false); readyRef.current = false; setFailed(false); setScene(0);
     const attached = new Set();
-    const onInput = event => { if (event.isTrusted) paused(); };
+    const onInput = event => {
+      if (!event.isTrusted || (event.type === "pointermove" && !userActive.current)) return;
+      paused();
+      const camera = activeWorkspaceViewer(frame.current?.contentDocument)?.contentWindow?.BuretteViewer?.plugin?.canvas3d?.camera;
+      if (camera) camera.setState(camera.getSnapshot(), 0);
+      resumeTimer.current = setTimeout(() => {
+        userActive.current = false;
+        setPlaying(true);
+      }, 5000);
+    };
     const attach = doc => {
       if (!doc || attached.has(doc)) return;
       attached.add(doc);
-      for (const type of ["pointerdown", "keydown"]) doc.addEventListener(type, onInput, { capture: true, passive: true });
+      for (const type of ["pointerdown", "pointermove", "keydown", "wheel"]) doc.addEventListener(type, onInput, { capture: true, passive: true });
     };
     let checking = false;
     let alive = true;
@@ -98,7 +109,7 @@ function DesktopPresentation() {
         const viewer = activeWorkspaceViewer(doc);
         const currentDocs = [doc, viewer?.contentDocument];
         for (const old of attached) if (!currentDocs.includes(old)) {
-          for (const type of ["pointerdown", "keydown"]) old.removeEventListener(type, onInput, true);
+          for (const type of ["pointerdown", "pointermove", "keydown", "wheel"]) old.removeEventListener(type, onInput, true);
           attached.delete(old);
         }
         currentDocs.forEach(attach);
@@ -109,8 +120,8 @@ function DesktopPresentation() {
     }, 700);
     const deadline = setTimeout(() => { if (alive) setFailed(true); }, 45000);
     return () => {
-      alive = false; clearInterval(timer); clearTimeout(deadline);
-      for (const doc of attached) for (const type of ["pointerdown", "keydown"]) doc.removeEventListener(type, onInput, true);
+      alive = false; clearInterval(timer); clearTimeout(deadline); clearTimeout(resumeTimer.current);
+      for (const doc of attached) for (const type of ["pointerdown", "pointermove", "keydown", "wheel"]) doc.removeEventListener(type, onInput, true);
     };
   }, [mounted, theme]);
   useEffect(() => {
@@ -182,7 +193,7 @@ function DesktopPresentation() {
       <div ref={indicators} role="group" aria-label="Workspace examples">
         {workspaceScenes.map((item, index) => <button key={item.label} disabled={!ready} onClick={() => choose(index)} aria-label={`Show ${item.label.toLowerCase()}`} aria-pressed={scene === index} title={item.label}><span aria-hidden="true"><i /></span></button>)}
       </div>
-      <Button variant="ghost" size="sm" disabled={!ready} onClick={() => { userActive.current = false; setPlaying(!playing); }}>{playing ? "Pause presentation" : "Play presentation"}</Button>
+      <Button variant="ghost" size="sm" disabled={!ready} onClick={() => { clearTimeout(resumeTimer.current); userActive.current = false; setPlaying(!playing); }}>{playing ? "Pause presentation" : "Play presentation"}</Button>
       <WorkspaceDemo label="Open workspace" />
     </div>
   </div>;
