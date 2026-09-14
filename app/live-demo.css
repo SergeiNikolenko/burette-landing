@@ -178,3 +178,20 @@
 
 .landing .nav-github { font-size: 13px; padding: 10px 4px; }
 @media (max-width: 480px) { .landing .wordmark { font-size: 22px; } .landing .nav-actions { gap: 8px; } }
+
+.startup-symbol { display: grid; place-items: center; width: 76px; height: 76px; padding: 0; border: 0; background: transparent; border-radius: 16px; cursor: pointer; color: var(--text); }
+.startup-symbol:focus-visible { outline: 2px solid var(--body); outline-offset: 4px; }
+.startup-lift, .startup-response, .startup-symbol svg { display: block; width: 76px; height: 76px; pointer-events: none; }
+.startup-lift { opacity: .78; transition: transform 650ms cubic-bezier(.2,.8,.2,1), opacity 350ms ease; }
+.startup-symbol:is(:hover,:focus-visible) .startup-lift { opacity: 1; transform: translateY(-4px); }
+.startup-tilt, .startup-rotation { transform-origin: 64px 64px; }
+.startup-tilt { transition: transform 650ms cubic-bezier(.2,.8,.2,1); }
+.startup-symbol:is(:hover,:focus-visible) .startup-tilt { transform: rotate(12deg); }
+.startup-base { fill: var(--body); transition: fill 400ms ease; }
+.startup-symbol:is(:hover,:focus-visible) .startup-base { fill: var(--text); }
+.startup-wave { animation: startup-wave 3.6s cubic-bezier(.4,0,.3,1) infinite; }
+@keyframes startup-wave { 0%,12% { transform: translate(-110px,-110px); } 82%,100% { transform: translate(220px,220px); } }
+@media (prefers-reduced-motion: reduce) {
+  .startup-wave { animation: none; opacity: 0; }
+  .startup-symbol:is(:hover,:focus-visible) .startup-lift, .startup-symbol:is(:hover,:focus-visible) .startup-tilt { transform: none; }
+}
