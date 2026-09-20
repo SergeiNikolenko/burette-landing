@@ -3,42 +3,49 @@
     "id": "finder",
     "source": "QuickLook_white.mp4",
     "start": 1,
-    "duration": 8
+    "duration": 8,
+    "posterTime": 6
   },
   {
     "id": "motion",
     "source": "QuikLook_dark.mp4",
     "start": 48,
-    "duration": 12
+    "duration": 12,
+    "posterTime": 50
   },
   {
     "id": "space",
     "source": "Chemical Space.mp4",
     "start": 34,
-    "duration": 14
+    "duration": 14,
+    "posterTime": 36
   },
   {
     "id": "collections",
     "source": "coolectiopns.mp4",
     "start": 1,
-    "duration": 14
+    "duration": 14,
+    "posterTime": 3
   },
   {
     "id": "collection-3d",
     "source": "coolectiopns.mp4",
     "start": 137,
-    "duration": 15
+    "duration": 15,
+    "posterTime": 139
   },
   {
     "id": "protein",
     "source": "сцена с белком.mp4",
     "start": 0,
-    "duration": 12
+    "duration": 12,
+    "posterTime": 2
   },
   {
     "id": "selection",
     "source": "сцена с белком.mp4",
     "start": 30,
-    "duration": 12
+    "duration": 12,
+    "posterTime": 32
   }
 ]

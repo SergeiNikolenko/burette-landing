@@ -5,7 +5,7 @@ Route: `/features`. 66 capabilities in nine groups. Videos are loaded only after
 ## Evidence
 
 Baseline: checked-in `content/surfaces/desktop.mdx`, `content/workflows/collections.mdx`, `content/workflows/native-compute.mdx`, `content/engines.mdx`.
-Recent merged Burette PRs reviewed:
+Recent merged Burette PRs checked (full bodies for #760, #754, #750; merged titles for the remainder):
 - #760: residue/chain/protein/ligand surfaces and 5 Å pocket surface.
 - #754: native Metal conformer workflow and compact trajectory controls.
 - #750: inline Mol* 2D/3D grid inspection and opening in a full tab.
@@ -18,7 +18,7 @@ Merged-source availability does not certify every released package or browser su
 ## Media
 
 Originals remain untouched in `/Users/nikolenko/Desktop/Burette`.
-`features-media.json` records source names, start times, and durations in seconds. Each cut has a 1280px H.264 MP4 (24fps, CRF26, no audio, faststart) and JPEG poster at start + 2 seconds. Public assets live in `public/assets/features/`. Seven cuts total; raw recordings are not committed.
+`features-media.json` records source names, start times, and durations in seconds. Each cut has a 1280px H.264 MP4 (24fps, CRF26, no audio, faststart) and JPEG poster at the recorded posterTime. Public assets live in `public/assets/features/`. Seven cuts total; raw recordings are not committed.
 
 ## Record next
 
