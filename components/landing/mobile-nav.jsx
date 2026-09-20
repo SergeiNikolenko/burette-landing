@@ -24,9 +24,9 @@ export default function MobileNav() {
         <DialogTitle>Burette</DialogTitle>
         <DialogDescription className="sr-only">Explore Burette and its documentation.</DialogDescription>
         <nav aria-label="Mobile sections">
-          <DialogClose asChild><a href="#features">Overview</a></DialogClose>
-          <DialogClose asChild><a href="#formats">File formats</a></DialogClose>
-          <DialogClose asChild><a href="#codex">For agents</a></DialogClose>
+          <DialogClose asChild><a href="/features">Features</a></DialogClose>
+          <DialogClose asChild><a href="/#formats">File formats</a></DialogClose>
+          <DialogClose asChild><a href="/#codex">For agents</a></DialogClose>
           <DialogClose asChild><Link href="/docs">Documentation</Link></DialogClose>
           <DialogClose asChild><a href="/out/github-repo?surface=mobile-nav">GitHub ↗</a></DialogClose>
           <DialogClose asChild><Link href="/demo">Open the browser workspace ↗</Link></DialogClose>

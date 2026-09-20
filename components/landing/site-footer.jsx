@@ -5,9 +5,9 @@ const COLUMNS = [
     heading: "Product",
     label: "Product",
     links: [
-      { href: "#features", label: "Features" },
-      { href: "#formats", label: "Formats & engines" },
-      { href: "#codex", label: "Codex + MCP" },
+      { href: "/features", label: "Features" },
+      { href: "/#formats", label: "Formats & engines" },
+      { href: "/#codex", label: "Codex + MCP" },
       {
         href: "/demo",
         label: "Live demo",
@@ -46,8 +46,8 @@ const COLUMNS = [
           target: "plugin-guide",
         },
       },
-      { href: "#faq", label: "FAQ" },
-      { href: "#install", label: "Install" },
+      { href: "/#faq", label: "FAQ" },
+      { href: "/#install", label: "Install" },
     ],
   },
   {

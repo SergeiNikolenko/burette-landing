@@ -1,0 +1,347 @@
+[
+  {
+    "id": "preview",
+    "title": "A quick look. A closer look.",
+    "intro": "Start in Finder. Press Space to see what is inside a molecular file, then open the workspace when you want to keep working.",
+    "media": "finder",
+    "docs": "/docs/surfaces/quick-look",
+    "features": [
+      {
+        "title": "Finder Quick Look",
+        "description": "Preview a molecular file without opening the full workspace."
+      },
+      {
+        "title": "Interactive 3D",
+        "description": "Rotate and zoom to inspect a structure from any angle."
+      },
+      {
+        "title": "Light and dark",
+        "description": "Choose the background that makes your structure easiest to read."
+      },
+      {
+        "title": "Molecular thumbnails",
+        "description": "Recognize supported structure files while browsing Finder."
+      },
+      {
+        "title": "Open in Burette",
+        "description": "Take a preview into the desktop workspace for editing and analysis."
+      },
+      {
+        "title": "Spectrum previews",
+        "description": "Inspect supported mass spectra in a dedicated spectrum viewer."
+      }
+    ]
+  },
+  {
+    "id": "structures",
+    "title": "See the structure your way.",
+    "intro": "Move from the whole protein to a ligand. Keep the parts you need in view.",
+    "media": "protein",
+    "docs": "/docs/surfaces/desktop",
+    "features": [
+      {
+        "title": "Illustrative appearance",
+        "description": "Give molecular shapes clear outlines for readable figures."
+      },
+      {
+        "title": "Representation styles",
+        "description": "Choose cartoons, sticks, spheres, or surfaces to suit the question."
+      },
+      {
+        "title": "Scene tree",
+        "description": "Find models, chains, ligands, and water in the structure hierarchy."
+      },
+      {
+        "title": "Show, hide, isolate",
+        "description": "Remove visual clutter while keeping the original structure available."
+      },
+      {
+        "title": "Colour controls",
+        "description": "Colour components and adjust transparency without rebuilding your scene."
+      },
+      {
+        "title": "Density maps",
+        "description": "View supported electron-density and volume files alongside structures."
+      },
+      {
+        "title": "Crystal structures",
+        "description": "Inspect supported CIF structures, unit cells, and symmetry."
+      },
+      {
+        "title": "Mesoscale scenes",
+        "description": "Explore supported cell-scale scenes in the dedicated Mesoscale viewer."
+      }
+    ]
+  },
+  {
+    "id": "selection",
+    "title": "Keep your question in focus.",
+    "intro": "Select a part of a structure, inspect its surroundings, and measure what matters.",
+    "media": "selection",
+    "docs": "/docs/surfaces/desktop",
+    "features": [
+      {
+        "title": "Lasso selection",
+        "description": "Draw around atoms to make a selection directly in the viewer."
+      },
+      {
+        "title": "Sequence selection",
+        "description": "Select residues and ranges through the Sequence panel."
+      },
+      {
+        "title": "Scoped surfaces",
+        "description": "Create a surface for a residue, chain, protein, or ligand."
+      },
+      {
+        "title": "Binding-pocket surfaces",
+        "description": "Inspect the protein residues within 5 \u00c5 of a ligand."
+      },
+      {
+        "title": "Measurements",
+        "description": "Measure distances, angles, and dihedrals between selected atoms."
+      },
+      {
+        "title": "Extract a subset",
+        "description": "Save the part of a structure you want to work with."
+      },
+      {
+        "title": "Structure superposition",
+        "description": "Compare structures using sequence, chain, residue, or TM-align workflows."
+      }
+    ]
+  },
+  {
+    "id": "motion",
+    "title": "Follow the motion. Compare the poses.",
+    "intro": "Play a trajectory or compare a set of molecular poses without leaving the viewer.",
+    "media": "motion",
+    "docs": "/docs/surfaces/desktop",
+    "features": [
+      {
+        "title": "Trajectory playback",
+        "description": "Play, pause, and step through the frames in a molecular trajectory."
+      },
+      {
+        "title": "Smooth motion",
+        "description": "Interpolate between frames to make small changes easier to follow."
+      },
+      {
+        "title": "Topology pairing",
+        "description": "Open supported topology and trajectory pairs together."
+      },
+      {
+        "title": "SDF poses",
+        "description": "Move between structures in a multi-record SDF, including V3000 files."
+      },
+      {
+        "title": "All poses and alignment",
+        "description": "Overlay poses, then align them to compare their geometry."
+      },
+      {
+        "title": "Molecular Stories",
+        "description": "Build and play a sequence of molecular views with MolViewSpec Stories."
+      }
+    ]
+  },
+  {
+    "id": "collections",
+    "title": "A library you can work through.",
+    "intro": "Browse structures and their properties together. Find a subset, inspect it, and export the result.",
+    "media": "collections",
+    "docs": "/docs/workflows/collections",
+    "features": [
+      {
+        "title": "Cards and tables",
+        "description": "Switch between molecular drawings and a property table."
+      },
+      {
+        "title": "Search and sort",
+        "description": "Find names, SMILES, and metadata, then sort by a collection field."
+      },
+      {
+        "title": "Substructure search",
+        "description": "Use SMARTS to filter molecules and highlight matching atoms."
+      },
+      {
+        "title": "Property inspector",
+        "description": "Read source properties and available molecular descriptors."
+      },
+      {
+        "title": "Inline 3D inspection",
+        "description": "Switch a grid molecule from 2D to a live Mol* preview."
+      },
+      {
+        "title": "Open in a full viewer",
+        "description": "Take the inspected molecule into a separate Mol* tab."
+      },
+      {
+        "title": "Append and merge",
+        "description": "Combine compatible collections into a reviewable document."
+      },
+      {
+        "title": "Selection and export",
+        "description": "Export the visible set as SMILES or table data as CSV."
+      },
+      {
+        "title": "Large libraries",
+        "description": "Browse large collections without loading every molecular card at once."
+      },
+      {
+        "title": "DataWarrior files",
+        "description": "Open supported DataWarrior structures in the molecular grid."
+      }
+    ]
+  },
+  {
+    "id": "chemical-space",
+    "title": "Find patterns across a collection.",
+    "intro": "Explore a molecular map, then bring your selection back to the grid. Native compute runs in the desktop app on Apple Silicon.",
+    "media": "space",
+    "docs": "/docs/workflows/native-compute",
+    "features": [
+      {
+        "title": "Chemical Space",
+        "description": "Explore a collection in an interactive 2D or 3D embedding."
+      },
+      {
+        "title": "Linked selection",
+        "description": "Select a region of the map and continue with those molecules in the grid."
+      },
+      {
+        "title": "Similarity search",
+        "description": "Find molecules most similar to a query using molecular fingerprints."
+      },
+      {
+        "title": "Clustering",
+        "description": "Group the selected, filtered, or complete collection."
+      },
+      {
+        "title": "Diverse subsets",
+        "description": "Export a representative subset with its structures and provenance."
+      },
+      {
+        "title": "Activity colouring",
+        "description": "Colour a map by a numeric property to see how values vary."
+      },
+      {
+        "title": "Activity cliffs",
+        "description": "Look for similar molecules with markedly different activity."
+      }
+    ]
+  },
+  {
+    "id": "compute",
+    "title": "Go from a sketch to coordinates.",
+    "intro": "Prepare molecular geometry and run local calculations. External engines are available separately from the built-in Apple Silicon compute tools.",
+    "media": null,
+    "docs": "/docs/workflows/native-compute",
+    "features": [
+      {
+        "title": "Conformer generation",
+        "description": "Generate 3D conformers from selected molecules or a Ketcher sketch."
+      },
+      {
+        "title": "MMFF refinement",
+        "description": "Refine generated geometry with MMFF94 or MMFF94s."
+      },
+      {
+        "title": "Pose scoring",
+        "description": "Compare poses with RMSD, shape, and electrostatic terms."
+      },
+      {
+        "title": "Semiempirical energies",
+        "description": "Run supported single-point methods and inspect their reports."
+      },
+      {
+        "title": "xTB calculations",
+        "description": "Use the optional local xTB engine for supported molecular calculations."
+      },
+      {
+        "title": "CREST and PRISM",
+        "description": "Run optional conformer sampling and ensemble-pruning workflows."
+      },
+      {
+        "title": "Background jobs",
+        "description": "Follow calculation status and open reports and artifacts when ready."
+      }
+    ]
+  },
+  {
+    "id": "editing",
+    "title": "Edit here. Keep working here.",
+    "intro": "Keep sketches, source text, molecular views, and project files in one workspace.",
+    "media": null,
+    "docs": "/docs/surfaces/desktop",
+    "features": [
+      {
+        "title": "Ketcher sketches",
+        "description": "Draw and edit small molecules in the integrated Ketcher editor."
+      },
+      {
+        "title": "Edit collection molecules",
+        "description": "Send a compatible grid row to Ketcher and update the collection."
+      },
+      {
+        "title": "Sketch to 3D",
+        "description": "Send a sketch to Mol* or a collection for the next step."
+      },
+      {
+        "title": "Text editing",
+        "description": "Inspect and edit supported molecular source files in place."
+      },
+      {
+        "title": "Project folders",
+        "description": "Browse nested project files from the workspace sidebar."
+      },
+      {
+        "title": "Tabs and docks",
+        "description": "Keep structures, tables, text, and inspectors alongside one another."
+      },
+      {
+        "title": "Command palette",
+        "description": "Find commands, files, and query-driven actions from the keyboard."
+      },
+      {
+        "title": "Drag and drop",
+        "description": "Move supported files, records, and sketches into workspace targets."
+      }
+    ]
+  },
+  {
+    "id": "integrations",
+    "title": "Part of your workflow.",
+    "intro": "Connect Burette to the tools you already use. Desktop handoffs need the destination app installed.",
+    "media": null,
+    "docs": "/docs/plugin",
+    "features": [
+      {
+        "title": "Agent plugin",
+        "description": "Let an agent open structures and use supported workspace tools through MCP."
+      },
+      {
+        "title": "Command-line tools",
+        "description": "Use Burette commands in scripts and agent workflows."
+      },
+      {
+        "title": "Native deep links",
+        "description": "Open supported Burette destinations through application links."
+      },
+      {
+        "title": "Dock quick actions",
+        "description": "Start common workspace tasks from the macOS Dock."
+      },
+      {
+        "title": "External applications",
+        "description": "Hand supported files to installed chemistry applications."
+      },
+      {
+        "title": "SVG rendering",
+        "description": "Use optional xyzrender for molecular artwork and supported fallback previews."
+      },
+      {
+        "title": "iPhone preview app",
+        "description": "Build the source-available iPhone app for supported molecular previews."
+      }
+    ]
+  }
+]

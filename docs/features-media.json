@@ -1,0 +1,44 @@
+[
+  {
+    "id": "finder",
+    "source": "QuickLook_white.mp4",
+    "start": 1,
+    "duration": 8
+  },
+  {
+    "id": "motion",
+    "source": "QuikLook_dark.mp4",
+    "start": 48,
+    "duration": 12
+  },
+  {
+    "id": "space",
+    "source": "Chemical Space.mp4",
+    "start": 34,
+    "duration": 14
+  },
+  {
+    "id": "collections",
+    "source": "coolectiopns.mp4",
+    "start": 1,
+    "duration": 14
+  },
+  {
+    "id": "collection-3d",
+    "source": "coolectiopns.mp4",
+    "start": 137,
+    "duration": 15
+  },
+  {
+    "id": "protein",
+    "source": "сцена с белком.mp4",
+    "start": 0,
+    "duration": 12
+  },
+  {
+    "id": "selection",
+    "source": "сцена с белком.mp4",
+    "start": 30,
+    "duration": 12
+  }
+]
