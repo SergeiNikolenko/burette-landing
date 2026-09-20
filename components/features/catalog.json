@@ -1,7 +1,7 @@
 [
   {
     "id": "preview",
-    "title": "A quick look. A closer look.",
+    "title": "Press Space. See the structure.",
     "intro": "Start in Finder. Press Space to see what is inside a molecular file, then open the workspace when you want to keep working.",
     "media": "finder",
     "docs": "/docs/surfaces/quick-look",
@@ -34,7 +34,7 @@
   },
   {
     "id": "structures",
-    "title": "See the structure your way.",
+    "title": "From the whole protein to its ligand.",
     "intro": "Move from the whole protein to a ligand. Keep the parts you need in view.",
     "media": "protein",
     "docs": "/docs/surfaces/desktop",
@@ -75,7 +75,7 @@
   },
   {
     "id": "selection",
-    "title": "Keep your question in focus.",
+    "title": "Select precisely. Inspect the surroundings.",
     "intro": "Select a part of a structure, inspect its surroundings, and measure what matters.",
     "media": "selection",
     "docs": "/docs/surfaces/desktop",
@@ -112,7 +112,7 @@
   },
   {
     "id": "motion",
-    "title": "Follow the motion. Compare the poses.",
+    "title": "Watch a molecule move.",
     "intro": "Play a trajectory or compare a set of molecular poses without leaving the viewer.",
     "media": "motion",
     "docs": "/docs/surfaces/desktop",
@@ -145,7 +145,7 @@
   },
   {
     "id": "collections",
-    "title": "A library you can work through.",
+    "title": "Find the compounds worth a closer look.",
     "intro": "Browse structures and their properties together. Find a subset, inspect it, and export the result.",
     "media": "collections",
     "docs": "/docs/workflows/collections",
@@ -194,7 +194,7 @@
   },
   {
     "id": "chemical-space",
-    "title": "Find patterns across a collection.",
+    "title": "See patterns you would miss in a table.",
     "intro": "Explore a molecular map, then bring your selection back to the grid. Native compute runs in the desktop app on Apple Silicon.",
     "media": "space",
     "docs": "/docs/workflows/native-compute",
@@ -231,7 +231,7 @@
   },
   {
     "id": "compute",
-    "title": "Go from a sketch to coordinates.",
+    "title": "Turn a sketch into a 3D structure.",
     "intro": "Prepare molecular geometry and run local calculations. External engines are available separately from the built-in Apple Silicon compute tools.",
     "media": null,
     "docs": "/docs/workflows/native-compute",
@@ -268,7 +268,7 @@
   },
   {
     "id": "editing",
-    "title": "Edit here. Keep working here.",
+    "title": "Keep the next step in the same workspace.",
     "intro": "Keep sketches, source text, molecular views, and project files in one workspace.",
     "media": null,
     "docs": "/docs/surfaces/desktop",
@@ -309,7 +309,7 @@
   },
   {
     "id": "integrations",
-    "title": "Part of your workflow.",
+    "title": "Bring Burette into your workflow.",
     "intro": "Connect Burette to the tools you already use. Desktop handoffs need the destination app installed.",
     "media": null,
     "docs": "/docs/plugin",

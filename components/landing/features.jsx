@@ -1,6 +1,5 @@
 import Link from "next/link";
-import ProductShot from "./product-shot";
-import ThemedImage from "./themed-image";
+import Demo from "@/components/features/demo";
 import FeatureCarousel from "./feature-carousel";
 import LiveScene from "./live-scene";
 
@@ -24,15 +23,7 @@ export default function Features() {
             the structures you need.
           </p>
         </div>
-        <ThemedImage
-          light="/assets/multi-light.png"
-          dark="/assets/multi-dark.png"
-          alt="Multiple molecular views open in the Burette workspace"
-          width={1804}
-          height={1262}
-          className="w-full aspect-[1.43/1] rounded-lg object-cover object-top"
-          sizes="(min-width: 900px) 600px, 90vw"
-        />
+        <Demo id="protein" title="Inspect a protein and its ligand" />
       </div>
       <article className="product-chapter chapter-split page-width">
         <div className="chapter-heading">
@@ -55,15 +46,7 @@ export default function Features() {
           </div>
         </div>
         <div className="media-stage">
-          <ProductShot
-            light="/assets/prev-light.png"
-            dark="/assets/prev-dark.png"
-            alt="A molecular Quick Look preview open directly from Finder"
-            width={1742}
-            height={1356}
-            ratio="1.6 / 1"
-            sizes="(min-width: 1200px) 1040px, 90vw"
-          />
+          <Demo id="finder" title="Open a structure in Finder Quick Look" />
         </div>
       </article>
       <article className="product-chapter chapter-wide page-width">
@@ -87,7 +70,7 @@ export default function Features() {
           </div>
         </div>
         <div className="media-stage">
-          <ProductShot light="/assets/grid-table-light.png" dark="/assets/grid-table-dark.png" alt="A molecular collection in the Burette workspace" width={1804} height={1262} ratio="1804 / 1262" />
+          <Demo id="collections" title="Browse a molecular collection" />
         </div>
       </article>
       <article className="product-chapter chapter-wide page-width">
@@ -110,7 +93,7 @@ export default function Features() {
             </Link>
           </div>
         </div>
-        <ProductShot light="/assets/chemical-space-light.png" dark="/assets/chemical-space-dark.png" alt="Chemical Space in the Burette workspace" width={1804} height={1262} ratio="1804 / 1262" />
+        <Demo id="space" title="Explore a molecular collection in Chemical Space" />
       </article>
       <FeatureCarousel />
       <article className="product-chapter chapter-split page-width">

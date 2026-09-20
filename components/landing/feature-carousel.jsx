@@ -20,7 +20,7 @@ export default function FeatureCarousel() {
         {featureStories.map((item, index) => <CarouselItem className="feature-card-slide" key={item.id} aria-label={`${index + 1} of ${featureStories.length}`}>
           <button className="feature-card" onClick={event => { returnFocus.current = event.currentTarget; setSelected(item); }} aria-label={`Explore ${item.category.toLowerCase()}`}>
             <span className="feature-card-copy"><span>{item.category}</span><strong>{item.title}</strong></span>
-            {item.image ? <ThemedImage light={`/assets/${item.image}-light.png`} dark={`/assets/${item.image}-dark.png`} alt="" width={1804} height={1262} className="feature-card-image" sizes="(max-width: 600px) 85vw, 400px" /> : <img src={item.poster} alt="" className="feature-card-image" loading="lazy" />}
+            {item.pending ? <span className="feature-media-pending">Demo coming soon</span> : item.image ? <ThemedImage light={`/assets/${item.image}-light.png`} dark={`/assets/${item.image}-dark.png`} alt="" width={1804} height={1262} className="feature-card-image" sizes="(max-width: 600px) 85vw, 400px" /> : <img src={item.poster} alt="" className="feature-card-image" loading="lazy" />}
             <span className="feature-card-open" aria-hidden="true">+</span>
           </button>
         </CarouselItem>)}
@@ -30,7 +30,7 @@ export default function FeatureCarousel() {
     <Dialog open={!!selected} onOpenChange={open => { if (!open) setSelected(null); }}>
       <DialogContent className="landing feature-story-dialog" onCloseAutoFocus={event => { event.preventDefault(); returnFocus.current?.focus({ preventScroll: true }); }}>
         {selected && <><header><p className="section-label">{selected.category}</p><DialogTitle>{selected.title}</DialogTitle><DialogDescription>{selected.description}</DialogDescription></header>
-          {selected.scene ? <LiveScene autoLoad scene={selected.scene} label={selected.category} light={selected.image && `/assets/${selected.image}-light.png`} dark={selected.image && `/assets/${selected.image}-dark.png`} />
+          {selected.pending ? <p className="feature-media-pending">Video walkthrough coming soon.</p> : selected.scene ? <LiveScene autoLoad scene={selected.scene} label={selected.category} light={selected.image && `/assets/${selected.image}-light.png`} dark={selected.image && `/assets/${selected.image}-dark.png`} />
             : selected.video ? <LazyVideo src={selected.video} poster={selected.poster} label={selected.description} width={1280} height={978} />
             : <ThemedImage light={`/assets/${selected.image}-light.png`} dark={`/assets/${selected.image}-dark.png`} alt={selected.description} width={1804} height={1262} className="feature-story-image" sizes="90vw" />}
           <Link className="text-link" href={selected.docs}>Read the guide ↗</Link></>}

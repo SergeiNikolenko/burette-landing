@@ -1,6 +1,6 @@
 # Features catalog — 21 September 2026
 
-Route: `/features`. 66 capabilities in nine groups. Videos are loaded only after a click; selecting another demo unmounts the previous player. Offscreen videos pause. Mobile uses complete, contained frames, without a live molecular runtime.
+Route: `/features`. 66 capabilities in nine groups. Videos load when at least half-visible and play inline. Offscreen videos pause; only one integrated demo plays at a time. Reduced motion and Save-Data use manual playback. Mobile uses complete, contained frames, without a live molecular runtime.
 
 ## Evidence
 
@@ -32,3 +32,17 @@ Originals remain untouched in `/Users/nikolenko/Desktop/Burette`.
 8. **Other dedicated stills:** density map, crystal symmetry, Mesoscale, spectrum, and source-built iPhone preview.
 
 Keep a stable window size, hide personal files, avoid recording startup waits, and leave 2–3 s around each action. Record full interface; crop only when a separate close-up makes the interaction clearer.
+
+## Presentation refinement
+
+Removed the Finder opening wait. The main page now uses the supplied footage for protein, Quick Look, collection and Chemical Space blocks. Carousel posters are extracted from those recordings; uncovered source/artwork/agent/workspace stories use explicit placeholders. Live molecular demo behavior and documentation screenshots remain separate.
+
+## Critical review against CleanShot
+
+1. Discovery: the first version used generic copy and too much space before product evidence. Shortened the introduction and named concrete molecular tasks. Conversion impact has not been measured.
+2. Demonstrations: click-only posters interrupted reading. Integrated silent loops now follow viewport visibility, with explicit pause and manual playback for reduced-motion/Save-Data. Whole source frames remain visible.
+3. Navigation: added the current category state to the desktop index. Mobile keeps a horizontally scrollable category list.
+4. Missing evidence: replaced large empty panels with compact placeholders. A placeholder does not demonstrate the advertised workflow; new recordings are still needed.
+5. Visual consistency: replaced old main-section media and carousel illustrations with supplied recordings/posters where available. Documentary screenshots elsewhere and the live hero runtime were not replaced.
+
+Next highest-impact content work: record one action and one result per clip, keep the window scale fixed, avoid macOS desktop transitions and oversized recorded cursor zooms. Add dedicated Ketcher, ligand pocket, alignment, and compute outcomes. A large catalog alone does not prove time savings; do not add numerical performance or customer claims without evidence.

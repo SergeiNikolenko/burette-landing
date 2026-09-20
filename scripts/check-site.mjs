@@ -20,8 +20,17 @@ const sourceFiles = [...staticPages, ...landingFiles, ...contentFiles];
 const { featureStories } = await import("../components/landing/feature-stories.js");
 for (const story of featureStories) {
   if (!(await anyExists(docsFilesForRoute(story.docs)))) failures.push(`feature ${story.id}: missing guide ${story.docs}`);
+  if (story.pending) continue;
   const media = story.image ? [`/assets/${story.image}-light.png`, `/assets/${story.image}-dark.png`] : [story.video, story.poster];
   for (const src of media) if (!(await exists(path.join(root, "public", src)))) failures.push(`feature ${story.id}: missing media ${src}`);
+}
+
+const catalog = JSON.parse(await readFile(path.join(root, "components/features/catalog.json"), "utf8"));
+for (const group of catalog) {
+  if (!(await anyExists(docsFilesForRoute(group.docs)))) failures.push(`catalog ${group.id}: missing guide`);
+  if (group.media) for (const extension of ["mp4", "jpg"]) {
+    if (!(await exists(path.join(root, "public/assets/features", `${group.media}.${extension}`)))) failures.push(`catalog ${group.id}: missing ${extension}`);
+  }
 }
 
 if (!(await exists(path.join(root, "public/__burette/app-icon/finder.png")))) {
