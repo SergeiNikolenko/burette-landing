@@ -26,5 +26,17 @@
   "selection": {
     "width": 1280,
     "height": 1134
+  },
+  "card-rotate": {
+    "width": 1280,
+    "height": 1134
+  },
+  "card-edit": {
+    "width": 1280,
+    "height": 880
+  },
+  "card-space-inspect": {
+    "width": 1280,
+    "height": 852
   }
 }

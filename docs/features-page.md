@@ -80,3 +80,7 @@ The largest remaining presentation gap is evidence: 54 review skeletons remain. 
 Removed seven reused section posters from the feature cards. Five dedicated detail captures remain; other cards show explicit recording placeholders. Card media uses a contained 16:9 landscape area, wider slides and smaller corner radii. Trackpad gestures use the existing wheel-gestures plugin, with eased button navigation and reduced-motion support. Interactive 3D remains a placeholder until a dedicated rotation clip is recorded; a still image must not imply playback.
 
 Integration curation: replaced seven equal-weight technical entries with four outcome-led stories: agent-assisted work, vector figures, external chemistry apps and scripting. Deep links are part of scripting; Dock details and the source-built iPhone app remain documented rather than promoted as major integration stories.
+
+## Portrait card media review
+
+Cards now use narrower columns and a 4:3 media area above their text. 13 of 63 cards have review media (10 stills and 3 distinct short clips); 50 retain explicit shot placeholders. All retain red review outlines. Card clips use the shared lazy video component at 0.8×, pause offscreen, and respect reduced motion and data saving. Sources and cut times are recorded in features-card-media.json.

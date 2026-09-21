@@ -12,7 +12,8 @@
       },
       {
         "title": "Interactive 3D",
-        "description": "Rotate and zoom to inspect a structure from any angle."
+        "description": "Rotate and zoom to inspect a structure from any angle.",
+        "video": "card-rotate"
       },
       {
         "title": "Light and dark",
@@ -45,7 +46,9 @@
       },
       {
         "title": "Representation styles",
-        "description": "Choose cartoons, sticks, spheres, or surfaces to suit the question."
+        "description": "Choose cartoons, sticks, spheres, or surfaces to suit the question.",
+        "screenshot": "/assets/features/card-representation.jpg",
+        "screenshotHeight": 1134
       },
       {
         "title": "Scene tree",
@@ -158,7 +161,9 @@
     "features": [
       {
         "title": "Cards and tables",
-        "description": "Switch between molecular drawings and a property table."
+        "description": "Switch between molecular drawings and a property table.",
+        "screenshot": "/assets/features/card-table.jpg",
+        "screenshotHeight": 880
       },
       {
         "title": "Substructure search",
@@ -175,12 +180,16 @@
         "screenshotHeight": 880
       },
       {
-        "title": "Search and sort",
-        "description": "Find names, SMILES, and metadata, then sort by a collection field."
+        "title": "Search, sort, and filter",
+        "description": "Find a name or SMILES, sort a column, or narrow the table with a numeric property filter.",
+        "screenshot": "/assets/features/card-filter.jpg",
+        "screenshotHeight": 880
       },
       {
         "title": "Open a molecule in its own tab",
-        "description": "Move from a collection card to a full molecular view for rotation, selection, and inspection."
+        "description": "Move from a collection card to a full molecular view for rotation, selection, and inspection.",
+        "screenshot": "/assets/features/card-open-viewer.jpg",
+        "screenshotHeight": 880
       },
       {
         "title": "Combine collections",
@@ -209,7 +218,8 @@
     "features": [
       {
         "title": "A map of your molecules",
-        "description": "Explore molecular similarity in a 2D or 3D map, with each point representing a compound."
+        "description": "Explore molecular similarity in a 2D or 3D map, with each point representing a compound.",
+        "video": "card-space-inspect"
       },
       {
         "title": "Linked selection",
@@ -283,11 +293,14 @@
     "features": [
       {
         "title": "Ketcher sketches",
-        "description": "Draw and edit small molecules in the integrated Ketcher editor."
+        "description": "Draw and edit small molecules in the integrated Ketcher editor.",
+        "screenshot": "/assets/features/card-ketcher.jpg",
+        "screenshotHeight": 880
       },
       {
         "title": "Edit collection molecules",
-        "description": "Send a compatible grid row to Ketcher and update the collection."
+        "description": "Send a compatible grid row to Ketcher and update the collection.",
+        "video": "card-edit"
       },
       {
         "title": "Sketch to 3D",

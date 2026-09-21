@@ -1,11 +1,10 @@
 # Screenshots still needed
 
-Capture one concrete action and its result per card. Use landscape 16:9. Do not repeat the main section video in a card.
+Capture one concrete action and its result per card. Cards are vertical; keep the full interface readable in a 4:3 media area. Do not repeat the main section video in a card. Red borders mark both review captures and missing shots.
 
 ## Press Space. See the structure.
 
 - Finder Quick Look
-- Interactive 3D
 - Light and dark
 - Molecular thumbnails
 - Open in Burette
@@ -14,7 +13,6 @@ Capture one concrete action and its result per card. Use landscape 16:9. Do not 
 ## From the whole protein to its ligand.
 
 - Illustrative appearance
-- Representation styles
 - Show, hide, isolate
 - Colour controls
 - Density maps
@@ -40,11 +38,8 @@ Capture one concrete action and its result per card. Use landscape 16:9. Do not 
 
 ## Find the compounds worth a closer look.
 
-- Cards and tables
 - Substructure search
 - 3D inside a collection
-- Search and sort
-- Open a molecule in its own tab
 - Combine collections
 - Selection and export
 - Browse large collections
@@ -52,7 +47,6 @@ Capture one concrete action and its result per card. Use landscape 16:9. Do not 
 
 ## Find neighbours in chemical space.
 
-- A map of your molecules
 - Linked selection
 - Similarity search
 - Clustering
@@ -72,8 +66,6 @@ Capture one concrete action and its result per card. Use landscape 16:9. Do not 
 
 ## Sketch, edit, and compare.
 
-- Ketcher sketches
-- Edit collection molecules
 - Sketch to 3D
 - Text editing
 - Project folders
@@ -86,10 +78,3 @@ Capture one concrete action and its result per card. Use landscape 16:9. Do not 
 - Ask your agent to open a structure
 - Continue in your preferred chemistry app
 - Automate repeatable steps
-
-## Integration recording direction
-
-- Agent: request to open a molecular file → actual workspace with that file visible.
-- Figures: xyzrender view → SVG export → opened vector image.
-- External apps: open-with menu → structure visible in the installed destination app.
-- Automation: one documented CLI command → its visible result in Burette.
