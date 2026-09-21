@@ -24,3 +24,7 @@
 
 .feature-index a[aria-current="location"] { background:var(--surface-2); color:var(--text); font-weight:600; }
 .feature-heading { padding-block:112px 64px; }
+
+.feature-list .feature-detail { grid-column:1 / -1; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); column-gap:32px; align-items:center; padding-block:24px; }
+.feature-detail img { grid-column:2; display:block; width:100%; height:auto; border-radius:10px; align-self:center; }
+@media(max-width:600px) { .feature-list .feature-detail { display:block; padding-block:12px; } .feature-detail img { margin-top:20px; } }

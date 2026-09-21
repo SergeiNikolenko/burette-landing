@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./demo.css";
+import media from "./media-sizes.json";
 
 export default function Demo({ id, title }) {
   const video = useRef(null);
-  const manualPause = useRef(false);
-  const [playing, setPlaying] = useState(false);
-  const [failed, setFailed] = useState(false);
   useEffect(() => {
     const element = video.current;
     if (!element) return;
@@ -17,10 +15,10 @@ export default function Demo({ id, title }) {
     let visible = false;
     const play = () => {
       if (!element.getAttribute("src")) element.src = `/assets/features/${id}.mp4`;
-      element.play().catch(() => setPlaying(false));
+      element.play().catch(() => {});
     };
     const update = () => {
-      if (visible && !document.hidden && automatic() && !manualPause.current) play();
+      if (visible && !document.hidden && automatic()) play();
       else element.pause();
     };
     const observer = new IntersectionObserver(([entry]) => {
@@ -33,15 +31,9 @@ export default function Demo({ id, title }) {
     return () => { observer.disconnect(); document.removeEventListener("visibilitychange", update); motion.removeEventListener("change", update); element.pause(); };
   }, [id]);
   if (!id) return <p className="feature-media-pending">Video walkthrough coming soon.</p>;
+  const size = media[id];
   return <figure className="integrated-demo">
-    <video ref={video} data-feature-demo poster={`/assets/features/${id}.jpg`} muted loop playsInline preload="none" aria-label={title}
-      onPlay={() => { document.querySelectorAll("video[data-feature-demo]").forEach(other => { if (other !== video.current) other.pause(); }); setPlaying(true); }}
-      onPause={() => setPlaying(false)} onError={() => { setFailed(true); setPlaying(false); }} />
-    <figcaption><span>{title}</span>{failed ? <span>Video unavailable</span> : <button aria-label={`${playing ? "Pause" : "Play"} ${title}`} onClick={() => {
-      const element = video.current;
-      manualPause.current = playing;
-      if (playing) element.pause();
-      else { if (!element.getAttribute("src")) element.src = `/assets/features/${id}.mp4`; element.play().catch(() => setPlaying(false)); }
-    }}>{playing ? "Pause" : "Play"}</button>}</figcaption>
+    <video ref={video} data-feature-demo width={size.width} height={size.height} poster={`/assets/features/${id}.jpg`} muted loop playsInline preload="none" aria-label={title}
+      onPlay={() => { document.querySelectorAll("video[data-feature-demo]").forEach(other => { if (other !== video.current) other.pause(); }); }} />
   </figure>;
 }

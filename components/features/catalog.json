@@ -48,8 +48,10 @@
         "description": "Choose cartoons, sticks, spheres, or surfaces to suit the question."
       },
       {
-        "title": "Scene tree",
-        "description": "Find models, chains, ligands, and water in the structure hierarchy."
+        "title": "Tree view: control the parts of your scene",
+        "description": "Expand a model into chains, ligands, water, and representations. Focus on a component, hide it, or isolate it; change its colour without losing the rest of the structure.",
+        "screenshot": "/assets/features/detail-tree.jpg",
+        "screenshotHeight": 1134
       },
       {
         "title": "Show, hide, isolate",
@@ -85,16 +87,16 @@
         "description": "Draw around atoms to make a selection directly in the viewer."
       },
       {
-        "title": "Sequence selection",
-        "description": "Select residues and ranges through the Sequence panel."
+        "title": "Go from sequence to structure",
+        "description": "Select a residue or range in the Sequence panel to locate it in the 3D structure. Work with the chain you need while keeping the surrounding protein available."
       },
       {
         "title": "Scoped surfaces",
         "description": "Create a surface for a residue, chain, protein, or ligand."
       },
       {
-        "title": "Binding-pocket surfaces",
-        "description": "Inspect the protein residues within 5 \u00c5 of a ligand."
+        "title": "See the pocket around a ligand",
+        "description": "Create a pocket surface from complete protein residues within 5 Å of the selected ligand. Compare the ligand shape with its immediate surroundings."
       },
       {
         "title": "Measurements",
@@ -118,12 +120,14 @@
     "docs": "/docs/surfaces/desktop",
     "features": [
       {
-        "title": "Trajectory playback",
-        "description": "Play, pause, and step through the frames in a molecular trajectory."
+        "title": "Inspect a trajectory at your own pace",
+        "description": "Play a multi-frame structure, pause at a useful conformation, or step through the recorded frames. Rotate and zoom while exploring. The BIMP example shows a vibrational mode, not a molecular-dynamics simulation."
       },
       {
-        "title": "Smooth motion",
-        "description": "Interpolate between frames to make small changes easier to follow."
+        "title": "Smooth the motion between frames",
+        "description": "Interpolation adds intermediate views between the recorded frames, making small movements easier to follow. It smooths playback; it does not add new simulation data or replace the original frames.",
+        "screenshot": "/assets/features/detail-smoothing.jpg",
+        "screenshotHeight": 854
       },
       {
         "title": "Topology pairing",
@@ -134,8 +138,8 @@
         "description": "Move between structures in a multi-record SDF, including V3000 files."
       },
       {
-        "title": "All poses and alignment",
-        "description": "Overlay poses, then align them to compare their geometry."
+        "title": "Overlay poses. Compare their geometry.",
+        "description": "Open a multi-pose SDF and use All to show its poses together. Toggle Align to compare their overlap, then return to individual poses for a closer inspection."
       },
       {
         "title": "Molecular Stories",
@@ -163,8 +167,10 @@
         "description": "Use SMARTS to filter molecules and highlight matching atoms."
       },
       {
-        "title": "Property inspector",
-        "description": "Read source properties and available molecular descriptors."
+        "title": "Keep the structure beside its properties",
+        "description": "Select a molecule to inspect its drawing and available descriptors alongside the collection. Use numeric filters to narrow the rows while keeping their structures in sight.",
+        "screenshot": "/assets/features/detail-properties.jpg",
+        "screenshotHeight": 880
       },
       {
         "title": "Inline 3D inspection",
@@ -335,8 +341,10 @@
         "description": "Hand supported files to installed chemistry applications."
       },
       {
-        "title": "SVG rendering",
-        "description": "Use optional xyzrender for molecular artwork and supported fallback previews."
+        "title": "xyzrender: molecular drawings for figures",
+        "description": "Use the optional local xyzrender engine to create SVG molecular illustrations. Choose it for supported collection cards or export vector artwork that stays sharp in a paper or slide.",
+        "screenshot": "/assets/features/detail-xyzrender.jpg",
+        "screenshotHeight": 880
       },
       {
         "title": "iPhone preview app",

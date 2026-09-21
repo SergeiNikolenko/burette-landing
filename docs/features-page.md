@@ -1,6 +1,6 @@
 # Features catalog — 21 September 2026
 
-Route: `/features`. 66 capabilities in nine groups. Videos load when at least half-visible and play inline. Offscreen videos pause; only one integrated demo plays at a time. Reduced motion and Save-Data use manual playback. Mobile uses complete, contained frames, without a live molecular runtime.
+Route: `/features`. 66 capabilities in nine groups. Videos load when at least half-visible and play inline. Offscreen videos pause; only one integrated demo plays at a time. Reduced motion and Save-Data show static posters. Mobile uses complete, contained frames, without a live molecular runtime.
 
 ## Evidence
 
@@ -40,9 +40,23 @@ Removed the Finder opening wait. The main page now uses the supplied footage for
 ## Critical review against CleanShot
 
 1. Discovery: the first version used generic copy and too much space before product evidence. Shortened the introduction and named concrete molecular tasks. Conversion impact has not been measured.
-2. Demonstrations: click-only posters interrupted reading. Integrated silent loops now follow viewport visibility, with explicit pause and manual playback for reduced-motion/Save-Data. Whole source frames remain visible.
+2. Demonstrations: click-only posters interrupted reading. Integrated silent loops now follow viewport visibility, without caption bars or player buttons; reduced-motion/Save-Data show static posters. Whole source frames remain visible.
 3. Navigation: added the current category state to the desktop index. Mobile keeps a horizontally scrollable category list.
 4. Missing evidence: replaced large empty panels with compact placeholders. A placeholder does not demonstrate the advertised workflow; new recordings are still needed.
 5. Visual consistency: replaced old main-section media and carousel illustrations with supplied recordings/posters where available. Documentary screenshots elsewhere and the live hero runtime were not replaced.
 
 Next highest-impact content work: record one action and one result per clip, keep the window scale fixed, avoid macOS desktop transitions and oversized recorded cursor zooms. Add dedicated Ketcher, ligand pocket, alignment, and compute outcomes. A large catalog alone does not prove time savings; do not add numerical performance or customer claims without evidence.
+
+## Layout references and detail stills
+
+Reviewed CleanShot Features and Apple Health in the browser. Adopt focused demonstrations and specific adjacent descriptions from CleanShot; use Apple Health as a reference for breathing room, grouped stories and varied image scale. Do not copy its scroll-driven effects or turn every section into a full-screen animation.
+
+Removed added video borders, forced aspect ratios and caption bars. Videos retain their intrinsic proportions. Main-page demonstrations are capped at 880px; Chemical Space now uses the stable whole-window segment at 41–49 seconds rather than the enlarged cursor view. Detail rows precede short feature lists so full-width rows do not leave gaps between grid items.
+
+Four real stills extracted at 1280px width:
+- Tree view: `сцена с белком.mp4`, 36 s → `detail-tree.jpg`.
+- xyzrender: `coolectiopns.mp4`, 42 s → `detail-xyzrender.jpg`.
+- Property inspector: `coolectiopns.mp4`, 20 s → `detail-properties.jpg`.
+- Smoothing controls: `QuikLook_dark.mp4`, 49 s → `detail-smoothing.jpg`.
+
+These screenshots document the recorded version; they are not fabricated interface mockups. Each image reserves its actual dimensions and loads lazily.
