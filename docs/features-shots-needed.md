@@ -1,6 +1,6 @@
 # Screenshots still needed
 
-Each item corresponds to a visible skeleton in /features. Capture the named action and its result in the real app; update catalog.json with the reviewed image.
+Each item corresponds to a visible skeleton in /features. Capture the named action and result in the real app; update catalog.json with the reviewed image.
 
 ## Press Space. See the structure.
 
@@ -18,38 +18,38 @@ Each item corresponds to a visible skeleton in /features. Capture the named acti
 - Crystal structures
 - Mesoscale scenes
 
-## Select precisely. Inspect the surroundings.
+## Pick a residue. Inspect its neighbours.
 
+- Ligand pockets
 - Lasso selection
-- Scoped surfaces
-- See the pocket around a ligand
 - Measurements
+- Surfaces for your selection
 - Extract a subset
 - Structure superposition
 
 ## Watch a molecule move.
 
-- Topology pairing
+- Pose alignment
+- Topology and trajectory
 - SDF poses
-- Overlay poses. Compare their geometry.
 - Molecular Stories
 
 ## Find the compounds worth a closer look.
 
-- Search and sort
 - Substructure search
-- Open in a full viewer
-- Append and merge
+- Search and sort
+- Open a molecule in its own tab
+- Combine collections
 - Selection and export
-- Large libraries
+- Browse large collections
 - DataWarrior files
 
-## See patterns you would miss in a table.
+## Find neighbours in chemical space.
 
 - Linked selection
 - Similarity search
 - Clustering
-- Diverse subsets
+- Choose a diverse subset
 - Activity colouring
 - Activity cliffs
 
@@ -61,9 +61,9 @@ Each item corresponds to a visible skeleton in /features. Capture the named acti
 - Semiempirical energies
 - xTB calculations
 - CREST and PRISM
-- Background jobs
+- Keep working during calculations
 
-## Keep the next step in the same workspace.
+## Sketch, edit, and compare.
 
 - Ketcher sketches
 - Edit collection molecules
@@ -72,13 +72,13 @@ Each item corresponds to a visible skeleton in /features. Capture the named acti
 - Project folders
 - Tabs and docks
 - Command palette
-- Drag and drop
+- Drag files into your workspace
 
-## Bring Burette into your workflow.
+## Work with your other chemistry tools.
 
 - Agent plugin
 - Command-line tools
-- Native deep links
+- Links that open Burette
 - Dock quick actions
 - External applications
 - iPhone preview app

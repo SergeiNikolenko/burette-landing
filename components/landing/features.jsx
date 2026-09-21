@@ -13,9 +13,9 @@ export default function Features() {
       <div className="section-intro page-width">
         <div className="intro-copy">
           <h2 id="features-title">
-            From a quick look
+            Open in Finder.
             <br />
-            to your next step.
+            Keep working in Burette.
           </h2>
           <p>
             Inspect a file in Finder, then open it in Burette to keep working.
@@ -78,14 +78,14 @@ export default function Features() {
           <div>
             <p className="section-label">Chemical Space</p>
             <h3>
-              See the shape
+              Find related molecules
               <br />
-              of your library.
+              in your library.
             </h3>
           </div>
           <div>
             <p>
-              Explore structural similarity across a collection. Select a cluster
+              Find structurally similar compounds in a collection. Select a group
               on the map to inspect its molecules and properties.
             </p>
             <Link className="text-link" href="/docs/workflows/native-compute">

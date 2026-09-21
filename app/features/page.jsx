@@ -14,6 +14,6 @@ export const metadata = {
 
 export default function FeaturesPage() {
   return <div className="landing feature-page" id="top"><SiteNav /><a className="skip-link" href="#main">Skip to content</a>
-    <main id="main"><header className="feature-heading page-width"><p>Explore Burette</p><h1>Open a file.<br />Find your next step.</h1><p>Preview structures in Finder. Compare compounds, inspect a binding site,<br className="feature-wide-break" /> or edit a molecule in the same Mac workspace.</p><a href="/download?source=features">Download for macOS ↗</a></header><Catalog />
+    <main id="main"><header className="feature-heading page-width"><p>Explore Burette</p><h1>Explore structures.<br />Compare molecules.</h1><p>Preview structures in Finder. Compare compounds, inspect a binding site,<br className="feature-wide-break" /> or edit a molecule in the same Mac workspace.</p><nav className="feature-shortcuts" aria-label="Popular workflows"><a href="#selection">Inspect a binding site ↗</a><a href="#motion">Compare molecular poses ↗</a><a href="#collections">Filter a collection ↗</a></nav><a href="/download?source=features">Download for macOS ↗</a></header><Catalog />
     <section className="feature-end page-width"><h2>Bring your own files.</h2><p>Free and open source. Made for your Mac.</p><a href="/download?source=features-bottom">Download Burette ↗</a></section></main><SiteFooter /></div>;
 }

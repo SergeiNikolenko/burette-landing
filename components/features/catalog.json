@@ -39,7 +39,7 @@
   {
     "id": "structures",
     "title": "From the whole protein to its ligand.",
-    "intro": "Move from the whole protein to a ligand. Keep the parts you need in view.",
+    "intro": "Show the protein fold, inspect a ligand, or hide water and focus on a single chain.",
     "media": "protein",
     "docs": "/docs/surfaces/desktop",
     "features": [
@@ -54,8 +54,8 @@
         "description": "Choose cartoons, sticks, spheres, or surfaces to suit the question."
       },
       {
-        "title": "Tree view: control the parts of your scene",
-        "description": "Expand a model into chains, ligands, water, and representations. Focus on a component, hide it, or isolate it; change its colour without losing the rest of the structure.",
+        "title": "Scene tree",
+        "description": "Browse chains, ligands, water, and representations. Focus on one component or hide the parts you do not need.",
         "screenshot": "/assets/features/detail-tree.jpg",
         "screenshotHeight": 1134
       },
@@ -83,32 +83,32 @@
   },
   {
     "id": "selection",
-    "title": "Select precisely. Inspect the surroundings.",
-    "intro": "Select a part of a structure, inspect its surroundings, and measure what matters.",
+    "title": "Pick a residue. Inspect its neighbours.",
+    "intro": "Select atoms in 3D or residues in the sequence, then measure distances or create a surface around your selection.",
     "media": "selection",
     "docs": "/docs/surfaces/desktop",
     "features": [
+      {
+        "title": "Sequence selection",
+        "description": "Select a residue or range in the Sequence panel to highlight it in 3D.",
+        "screenshot": "/assets/features/capture-sequence.png",
+        "screenshotHeight": 720
+      },
+      {
+        "title": "Ligand pockets",
+        "description": "Show a pocket surface from protein residues within 5 Å of a ligand to inspect how their shapes fit together."
+      },
       {
         "title": "Lasso selection",
         "description": "Draw around atoms to make a selection directly in the viewer."
       },
       {
-        "title": "Go from sequence to structure",
-        "description": "Select a residue or range in the Sequence panel to locate it in the 3D structure. Work with the chain you need while keeping the surrounding protein available.",
-        "screenshot": "/assets/features/capture-sequence.png",
-        "screenshotHeight": 720
-      },
-      {
-        "title": "Scoped surfaces",
-        "description": "Create a surface for a residue, chain, protein, or ligand."
-      },
-      {
-        "title": "See the pocket around a ligand",
-        "description": "Create a pocket surface from complete protein residues within 5 Å of the selected ligand. Compare the ligand shape with its immediate surroundings."
-      },
-      {
         "title": "Measurements",
         "description": "Measure distances, angles, and dihedrals between selected atoms."
+      },
+      {
+        "title": "Surfaces for your selection",
+        "description": "Create a surface for a residue, chain, protein, or ligand without covering the entire scene."
       },
       {
         "title": "Extract a subset",
@@ -128,28 +128,28 @@
     "docs": "/docs/surfaces/desktop",
     "features": [
       {
-        "title": "Inspect a trajectory at your own pace",
-        "description": "Play a multi-frame structure, pause at a useful conformation, or step through the recorded frames. Rotate and zoom while exploring. The BIMP example shows a vibrational mode, not a molecular-dynamics simulation.",
+        "title": "Trajectory playback",
+        "description": "Play, pause, or step through individual frames while rotating the structure. The demo shows a 20-frame molecular vibration.",
         "screenshot": "/assets/features/motion.jpg",
         "screenshotHeight": 854
       },
       {
-        "title": "Smooth the motion between frames",
-        "description": "Interpolation adds intermediate views between the recorded frames, making small movements easier to follow. It smooths playback; it does not add new simulation data or replace the original frames.",
+        "title": "Trajectory smoothing",
+        "description": "Add interpolated views between recorded frames for smoother playback. Your original frames stay unchanged.",
         "screenshot": "/assets/features/detail-smoothing.jpg",
         "screenshotHeight": 854
       },
       {
-        "title": "Topology pairing",
-        "description": "Open supported topology and trajectory pairs together."
+        "title": "Pose alignment",
+        "description": "Show every pose with All, then toggle Align to compare their overlap. Switch back to a single pose for a closer look."
+      },
+      {
+        "title": "Topology and trajectory",
+        "description": "Load a trajectory with its matching topology to view the motion in the context of the molecular structure."
       },
       {
         "title": "SDF poses",
         "description": "Move between structures in a multi-record SDF, including V3000 files."
-      },
-      {
-        "title": "Overlay poses. Compare their geometry.",
-        "description": "Open a multi-pose SDF and use All to show its poses together. Toggle Align to compare their overlap, then return to individual poses for a closer inspection."
       },
       {
         "title": "Molecular Stories",
@@ -171,40 +171,40 @@
         "screenshotHeight": 880
       },
       {
-        "title": "Search and sort",
-        "description": "Find names, SMILES, and metadata, then sort by a collection field."
-      },
-      {
         "title": "Substructure search",
         "description": "Use SMARTS to filter molecules and highlight matching atoms."
       },
       {
-        "title": "Keep the structure beside its properties",
-        "description": "Select a molecule to inspect its drawing and available descriptors alongside the collection. Use numeric filters to narrow the rows while keeping their structures in sight.",
-        "screenshot": "/assets/features/detail-properties.jpg",
-        "screenshotHeight": 880
-      },
-      {
-        "title": "Inline 3D inspection",
-        "description": "Switch a grid molecule from 2D to a live Mol* preview.",
+        "title": "3D inside a collection",
+        "description": "Switch a molecule from its 2D drawing to a live 3D view without leaving the collection.",
         "screenshot": "/assets/features/collection-3d.jpg",
         "screenshotHeight": 880
       },
       {
-        "title": "Open in a full viewer",
-        "description": "Take the inspected molecule into a separate Mol* tab."
+        "title": "Structures and properties",
+        "description": "Select a molecule to see its drawing and descriptors beside the table. Filter numeric properties to narrow your collection.",
+        "screenshot": "/assets/features/detail-properties.jpg",
+        "screenshotHeight": 880
       },
       {
-        "title": "Append and merge",
-        "description": "Combine compatible collections into a reviewable document."
+        "title": "Search and sort",
+        "description": "Find names, SMILES, and metadata, then sort by a collection field."
+      },
+      {
+        "title": "Open a molecule in its own tab",
+        "description": "Move from a collection card to a full molecular view for rotation, selection, and inspection."
+      },
+      {
+        "title": "Combine collections",
+        "description": "Append compatible molecular records to keep related compounds in one collection."
       },
       {
         "title": "Selection and export",
         "description": "Export the visible set as SMILES or table data as CSV."
       },
       {
-        "title": "Large libraries",
-        "description": "Browse large collections without loading every molecular card at once."
+        "title": "Browse large collections",
+        "description": "Browse molecular cards as they load into view, without waiting for every drawing to render."
       },
       {
         "title": "DataWarrior files",
@@ -214,14 +214,14 @@
   },
   {
     "id": "chemical-space",
-    "title": "See patterns you would miss in a table.",
-    "intro": "Explore a molecular map, then bring your selection back to the grid. Native compute runs in the desktop app on Apple Silicon.",
+    "title": "Find neighbours in chemical space.",
+    "intro": "Map a collection by molecular similarity and bring selected compounds back to the table. Native calculations run on Apple Silicon in the Mac app.",
     "media": "space",
     "docs": "/docs/workflows/native-compute",
     "features": [
       {
-        "title": "Chemical Space",
-        "description": "Explore a collection in an interactive 2D or 3D embedding.",
+        "title": "A map of your molecules",
+        "description": "Explore molecular similarity in a 2D or 3D map, with each point representing a compound.",
         "screenshot": "/assets/features/space.jpg",
         "screenshotHeight": 852
       },
@@ -238,8 +238,8 @@
         "description": "Group the selected, filtered, or complete collection."
       },
       {
-        "title": "Diverse subsets",
-        "description": "Export a representative subset with its structures and provenance."
+        "title": "Choose a diverse subset",
+        "description": "Export a representative set of compounds with their structures and provenance."
       },
       {
         "title": "Activity colouring",
@@ -283,15 +283,15 @@
         "description": "Run optional conformer sampling and ensemble-pruning workflows."
       },
       {
-        "title": "Background jobs",
-        "description": "Follow calculation status and open reports and artifacts when ready."
+        "title": "Keep working during calculations",
+        "description": "Follow a calculation’s progress, then open its report and output files when it finishes."
       }
     ]
   },
   {
     "id": "editing",
-    "title": "Keep the next step in the same workspace.",
-    "intro": "Keep sketches, source text, molecular views, and project files in one workspace.",
+    "title": "Sketch, edit, and compare.",
+    "intro": "Edit a molecule in Ketcher, inspect its coordinates, and keep related files open in tabs and side panels.",
     "media": null,
     "docs": "/docs/surfaces/desktop",
     "features": [
@@ -324,15 +324,15 @@
         "description": "Find commands, files, and query-driven actions from the keyboard."
       },
       {
-        "title": "Drag and drop",
-        "description": "Move supported files, records, and sketches into workspace targets."
+        "title": "Drag files into your workspace",
+        "description": "Drop molecular files, collection records, or sketches into the workspace to continue working with them."
       }
     ]
   },
   {
     "id": "integrations",
-    "title": "Bring Burette into your workflow.",
-    "intro": "Connect Burette to the tools you already use. Desktop handoffs need the destination app installed.",
+    "title": "Work with your other chemistry tools.",
+    "intro": "Open structures from an agent or a script, export vector figures, or send a file to an installed chemistry app.",
     "media": null,
     "docs": "/docs/plugin",
     "features": [
@@ -345,8 +345,8 @@
         "description": "Use Burette commands in scripts and agent workflows."
       },
       {
-        "title": "Native deep links",
-        "description": "Open supported Burette destinations through application links."
+        "title": "Links that open Burette",
+        "description": "Use application links to open a specific Burette destination from another tool."
       },
       {
         "title": "Dock quick actions",
@@ -357,8 +357,8 @@
         "description": "Hand supported files to installed chemistry applications."
       },
       {
-        "title": "xyzrender: molecular drawings for figures",
-        "description": "Use the optional local xyzrender engine to create SVG molecular illustrations. Choose it for supported collection cards or export vector artwork that stays sharp in a paper or slide.",
+        "title": "Vector molecular figures",
+        "description": "Use the optional xyzrender engine for molecular illustrations and SVG export. Resize the artwork for a paper or slide without losing sharpness.",
         "screenshot": "/assets/features/detail-xyzrender.jpg",
         "screenshotHeight": 880
       },

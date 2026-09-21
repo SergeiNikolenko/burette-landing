@@ -47,3 +47,6 @@
 .capture-skeleton-window i { display:block; height:8px; width:70%; border-radius:4px; background:var(--surface-2); }
 .capture-skeleton-window i:first-child { width:35%; }
 .capture-skeleton-window i:last-child { width:90%; }
+
+.feature-shortcuts { display:flex; justify-content:center; flex-wrap:wrap; gap:12px 26px; margin-top:28px; font-size:15px; color:var(--molecular-ink); }
+.feature-shortcuts a:hover { text-decoration:underline; }

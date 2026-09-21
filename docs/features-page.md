@@ -68,3 +68,9 @@ All nine feature lists are horizontal galleries with keyboard arrows, touch drag
 `capture-sequence.png` was captured on 21 September 2026 in the real hosted Burette web demo: 1HTB → Sequence → selected TRP 15 (chain A). This is a browser screenshot, not packaged-native acceptance. Previous `detail-*` captures come from the supplied recordings. Replace a card image through its `screenshot` and `screenshotHeight` fields in `components/features/catalog.json`.
 
 Videos now play at 0.8× speed across all three website video components.
+
+## Copy review against CleanShot — 21 September
+
+A separate read-only critic reviewed the catalog and home copy against CleanShot's live home and features pages. Findings: generic “next step” headlines, repeated introductions, internal terminology, overly long card descriptions, and equal emphasis on all capabilities. Replaced vague headlines, shortened 19 card descriptions, retained engine/platform qualifications, and placed specific tasks earlier in galleries. Three workflow anchors make binding-site inspection, pose comparison and collection filtering easier to find.
+
+The largest remaining presentation gap is evidence: 54 review skeletons remain. Prioritize ligand pockets, All/Align, substructure search and linked Chemical Space selection for recording. Do not compensate with invented testimonials, performance figures or decorative media.
