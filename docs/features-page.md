@@ -84,3 +84,7 @@ Integration curation: replaced seven equal-weight technical entries with four ou
 ## Portrait card media review
 
 Cards now use narrower columns and a 4:3 media area above their text. 13 of 63 cards have review media (10 stills and 3 distinct short clips); 50 retain explicit shot placeholders. All retain red review outlines. Card clips use the shared lazy video component at 0.8×, pause offscreen, and respect reduced motion and data saving. Sources and cut times are recorded in features-card-media.json.
+
+## Filled screenshot review
+
+All 63 cards now contain media: 60 stills and 3 clips. Fifty additional JPEG frames were extracted from the supplied recordings at 960px width. Thirty-four contextual frames carry an explicit Replace capture label; these are layout references, not evidence of the advertised action. All red review outlines remain. See features-fill-media.json for sources and timestamps, and features-shots-needed.md for replacements.

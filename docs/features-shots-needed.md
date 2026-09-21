@@ -1,20 +1,13 @@
-# Screenshots still needed
+# Captures requiring replacement
 
-Capture one concrete action and its result per card. Cards are vertical; keep the full interface readable in a 4:3 media area. Do not repeat the main section video in a card. Red borders mark both review captures and missing shots.
+All 63 cards contain media. Red outlines mark review captures. “Replace capture” identifies a contextual image that still needs a recording of the exact action.
 
 ## Press Space. See the structure.
 
-- Finder Quick Look
-- Light and dark
-- Molecular thumbnails
 - Open in Burette
-- Spectrum previews
 
 ## From the whole protein to its ligand.
 
-- Illustrative appearance
-- Show, hide, isolate
-- Colour controls
 - Density maps
 - Crystal structures
 - Mesoscale scenes
@@ -25,15 +18,12 @@ Capture one concrete action and its result per card. Cards are vertical; keep th
 - Lasso selection
 - Measurements
 - Surfaces for your selection
-- Extract a subset
 - Structure superposition
 
 ## Watch a molecule move.
 
-- Trajectory playback
 - Pose alignment
 - Topology and trajectory
-- SDF poses
 - Molecular Stories
 
 ## Find the compounds worth a closer look.
@@ -41,8 +31,6 @@ Capture one concrete action and its result per card. Cards are vertical; keep th
 - Substructure search
 - 3D inside a collection
 - Combine collections
-- Selection and export
-- Browse large collections
 - DataWarrior files
 
 ## Find neighbours in chemical space.
@@ -60,8 +48,6 @@ Capture one concrete action and its result per card. Cards are vertical; keep th
 - MMFF refinement
 - Pose scoring
 - Semiempirical energies
-- xTB calculations
-- CREST and PRISM
 - Keep working during calculations
 
 ## Sketch, edit, and compare.
@@ -69,9 +55,7 @@ Capture one concrete action and its result per card. Cards are vertical; keep th
 - Sketch to 3D
 - Text editing
 - Project folders
-- Tabs and docks
 - Command palette
-- Drag files into your workspace
 
 ## Connect your chemistry tools.
 
