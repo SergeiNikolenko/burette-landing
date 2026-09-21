@@ -15,6 +15,8 @@ export default function Demo({ id, title }) {
     let visible = false;
     const play = () => {
       if (!element.getAttribute("src")) element.src = `/assets/features/${id}.mp4`;
+      element.defaultPlaybackRate = 0.8;
+      element.playbackRate = 0.8;
       element.play().catch(() => {});
     };
     const update = () => {
