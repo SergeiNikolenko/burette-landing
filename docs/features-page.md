@@ -74,3 +74,7 @@ Videos now play at 0.8× speed across all three website video components.
 A separate read-only critic reviewed the catalog and home copy against CleanShot's live home and features pages. Findings: generic “next step” headlines, repeated introductions, internal terminology, overly long card descriptions, and equal emphasis on all capabilities. Replaced vague headlines, shortened 19 card descriptions, retained engine/platform qualifications, and placed specific tasks earlier in galleries. Three workflow anchors make binding-site inspection, pose comparison and collection filtering easier to find.
 
 The largest remaining presentation gap is evidence: 54 review skeletons remain. Prioritize ligand pockets, All/Align, substructure search and linked Chemical Space selection for recording. Do not compensate with invented testimonials, performance figures or decorative media.
+
+## Dedicated card media
+
+Removed seven reused section posters from the feature cards. Five dedicated detail captures remain; other cards show explicit recording placeholders. Card media uses a contained 16:9 landscape area, wider slides and smaller corner radii. Trackpad gestures use the existing wheel-gestures plugin, with eased button navigation and reduced-motion support. Interactive 3D remains a placeholder until a dedicated rotation clip is recorded; a still image must not imply playback.

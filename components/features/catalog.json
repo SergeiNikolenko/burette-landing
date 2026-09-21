@@ -8,15 +8,11 @@
     "features": [
       {
         "title": "Finder Quick Look",
-        "description": "Preview a molecular file without opening the full workspace.",
-        "screenshot": "/assets/features/finder.jpg",
-        "screenshotHeight": 854
+        "description": "Preview a molecular file without opening the full workspace."
       },
       {
         "title": "Interactive 3D",
-        "description": "Rotate and zoom to inspect a structure from any angle.",
-        "screenshot": "/assets/features/protein.jpg",
-        "screenshotHeight": 1134
+        "description": "Rotate and zoom to inspect a structure from any angle."
       },
       {
         "title": "Light and dark",
@@ -45,9 +41,7 @@
     "features": [
       {
         "title": "Illustrative appearance",
-        "description": "Give molecular shapes clear outlines for readable figures.",
-        "screenshot": "/assets/features/protein.jpg",
-        "screenshotHeight": 1134
+        "description": "Give molecular shapes clear outlines for readable figures."
       },
       {
         "title": "Representation styles",
@@ -129,9 +123,7 @@
     "features": [
       {
         "title": "Trajectory playback",
-        "description": "Play, pause, or step through individual frames while rotating the structure. The demo shows a 20-frame molecular vibration.",
-        "screenshot": "/assets/features/motion.jpg",
-        "screenshotHeight": 854
+        "description": "Play, pause, or step through individual frames while rotating the structure. The demo shows a 20-frame molecular vibration."
       },
       {
         "title": "Trajectory smoothing",
@@ -166,9 +158,7 @@
     "features": [
       {
         "title": "Cards and tables",
-        "description": "Switch between molecular drawings and a property table.",
-        "screenshot": "/assets/features/collections.jpg",
-        "screenshotHeight": 880
+        "description": "Switch between molecular drawings and a property table."
       },
       {
         "title": "Substructure search",
@@ -176,9 +166,7 @@
       },
       {
         "title": "3D inside a collection",
-        "description": "Switch a molecule from its 2D drawing to a live 3D view without leaving the collection.",
-        "screenshot": "/assets/features/collection-3d.jpg",
-        "screenshotHeight": 880
+        "description": "Switch a molecule from its 2D drawing to a live 3D view without leaving the collection."
       },
       {
         "title": "Structures and properties",
@@ -221,9 +209,7 @@
     "features": [
       {
         "title": "A map of your molecules",
-        "description": "Explore molecular similarity in a 2D or 3D map, with each point representing a compound.",
-        "screenshot": "/assets/features/space.jpg",
-        "screenshotHeight": 852
+        "description": "Explore molecular similarity in a 2D or 3D map, with each point representing a compound."
       },
       {
         "title": "Linked selection",

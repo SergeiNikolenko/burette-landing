@@ -1,9 +1,11 @@
 # Screenshots still needed
 
-Each item corresponds to a visible skeleton in /features. Capture the named action and result in the real app; update catalog.json with the reviewed image.
+Use a dedicated capture for each card. Do not reuse the main section video or its poster. Capture landscape 16:9, with the relevant controls readable. Interactive 3D needs a slow rotation and zoom clip.
 
 ## Press Space. See the structure.
 
+- Finder Quick Look
+- Interactive 3D
 - Light and dark
 - Molecular thumbnails
 - Open in Burette
@@ -11,6 +13,7 @@ Each item corresponds to a visible skeleton in /features. Capture the named acti
 
 ## From the whole protein to its ligand.
 
+- Illustrative appearance
 - Representation styles
 - Show, hide, isolate
 - Colour controls
@@ -29,6 +32,7 @@ Each item corresponds to a visible skeleton in /features. Capture the named acti
 
 ## Watch a molecule move.
 
+- Trajectory playback
 - Pose alignment
 - Topology and trajectory
 - SDF poses
@@ -36,7 +40,9 @@ Each item corresponds to a visible skeleton in /features. Capture the named acti
 
 ## Find the compounds worth a closer look.
 
+- Cards and tables
 - Substructure search
+- 3D inside a collection
 - Search and sort
 - Open a molecule in its own tab
 - Combine collections
@@ -46,6 +52,7 @@ Each item corresponds to a visible skeleton in /features. Capture the named acti
 
 ## Find neighbours in chemical space.
 
+- A map of your molecules
 - Linked selection
 - Similarity search
 - Clustering
