@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Demo from "./demo";
+import FeatureCards from "./cards";
 import groups from "./catalog.json";
 
 export default function Catalog() {
@@ -23,7 +24,7 @@ export default function Catalog() {
       <p className="feature-number">{String(index + 1).padStart(2, "0")} / {String(groups.length).padStart(2, "0")}</p>
       <h2>{group.title}</h2><p className="feature-intro">{group.intro}</p>
       <Demo id={group.media} title={group.title} />
-      <div className="feature-list">{[...group.features.filter(f => f.screenshot), ...group.features.filter(f => !f.screenshot)].map((feature) => <article key={feature.title} className={feature.screenshot ? "feature-detail" : undefined}><div><h3>{feature.title}</h3><p>{feature.description}</p></div>{feature.screenshot && <img src={feature.screenshot} alt={feature.title} loading="lazy" decoding="async" width="1280" height={feature.screenshotHeight} />}</article>)}</div>
+      <FeatureCards group={group} />
       {group.id === "collections" && <Demo id="collection-3d" title="From collection to molecular view" />}
       <a className="feature-guide" href={group.docs}>Read the guide <span aria-hidden="true">↗</span></a>
     </section>)}</div>

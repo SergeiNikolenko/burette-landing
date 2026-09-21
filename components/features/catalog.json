@@ -8,11 +8,15 @@
     "features": [
       {
         "title": "Finder Quick Look",
-        "description": "Preview a molecular file without opening the full workspace."
+        "description": "Preview a molecular file without opening the full workspace.",
+        "screenshot": "/assets/features/finder.jpg",
+        "screenshotHeight": 854
       },
       {
         "title": "Interactive 3D",
-        "description": "Rotate and zoom to inspect a structure from any angle."
+        "description": "Rotate and zoom to inspect a structure from any angle.",
+        "screenshot": "/assets/features/protein.jpg",
+        "screenshotHeight": 1134
       },
       {
         "title": "Light and dark",
@@ -41,7 +45,9 @@
     "features": [
       {
         "title": "Illustrative appearance",
-        "description": "Give molecular shapes clear outlines for readable figures."
+        "description": "Give molecular shapes clear outlines for readable figures.",
+        "screenshot": "/assets/features/protein.jpg",
+        "screenshotHeight": 1134
       },
       {
         "title": "Representation styles",
@@ -88,7 +94,9 @@
       },
       {
         "title": "Go from sequence to structure",
-        "description": "Select a residue or range in the Sequence panel to locate it in the 3D structure. Work with the chain you need while keeping the surrounding protein available."
+        "description": "Select a residue or range in the Sequence panel to locate it in the 3D structure. Work with the chain you need while keeping the surrounding protein available.",
+        "screenshot": "/assets/features/capture-sequence.png",
+        "screenshotHeight": 720
       },
       {
         "title": "Scoped surfaces",
@@ -121,7 +129,9 @@
     "features": [
       {
         "title": "Inspect a trajectory at your own pace",
-        "description": "Play a multi-frame structure, pause at a useful conformation, or step through the recorded frames. Rotate and zoom while exploring. The BIMP example shows a vibrational mode, not a molecular-dynamics simulation."
+        "description": "Play a multi-frame structure, pause at a useful conformation, or step through the recorded frames. Rotate and zoom while exploring. The BIMP example shows a vibrational mode, not a molecular-dynamics simulation.",
+        "screenshot": "/assets/features/motion.jpg",
+        "screenshotHeight": 854
       },
       {
         "title": "Smooth the motion between frames",
@@ -156,7 +166,9 @@
     "features": [
       {
         "title": "Cards and tables",
-        "description": "Switch between molecular drawings and a property table."
+        "description": "Switch between molecular drawings and a property table.",
+        "screenshot": "/assets/features/collections.jpg",
+        "screenshotHeight": 880
       },
       {
         "title": "Search and sort",
@@ -174,7 +186,9 @@
       },
       {
         "title": "Inline 3D inspection",
-        "description": "Switch a grid molecule from 2D to a live Mol* preview."
+        "description": "Switch a grid molecule from 2D to a live Mol* preview.",
+        "screenshot": "/assets/features/collection-3d.jpg",
+        "screenshotHeight": 880
       },
       {
         "title": "Open in a full viewer",
@@ -207,7 +221,9 @@
     "features": [
       {
         "title": "Chemical Space",
-        "description": "Explore a collection in an interactive 2D or 3D embedding."
+        "description": "Explore a collection in an interactive 2D or 3D embedding.",
+        "screenshot": "/assets/features/space.jpg",
+        "screenshotHeight": 852
       },
       {
         "title": "Linked selection",

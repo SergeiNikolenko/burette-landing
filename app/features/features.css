@@ -25,6 +25,25 @@
 .feature-index a[aria-current="location"] { background:var(--surface-2); color:var(--text); font-weight:600; }
 .feature-heading { padding-block:112px 64px; }
 
-.feature-list .feature-detail { grid-column:1 / -1; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); column-gap:32px; align-items:center; padding-block:24px; }
-.feature-detail img { grid-column:2; display:block; width:100%; height:auto; border-radius:10px; align-self:center; }
-@media(max-width:600px) { .feature-list .feature-detail { display:block; padding-block:12px; } .feature-detail img { margin-top:20px; } }
+.feature-sections { min-width:0; }
+.feature-cards { margin-block:36px; }
+.feature-cards-track { margin-left:-20px; align-items:stretch; }
+.feature-card-item { flex-basis:47%; padding-left:20px; display:flex; }
+.feature-explainer { width:100%; overflow:hidden; border-radius:22px; background:var(--surface-2); }
+.feature-capture img { display:block; width:100%; height:auto; aspect-ratio:4 / 3; object-fit:contain; background:var(--bg); }
+.feature-explainer-copy { padding:26px; }
+.feature-explainer h3 { font-size:21px; line-height:1.2; letter-spacing:-.025em; font-weight:550; margin:0 0 14px; text-wrap:balance; }
+.feature-explainer p { font-size:15px; line-height:1.6; color:var(--body); margin:0; }
+.feature-cards-controls { display:flex; justify-content:flex-end; gap:10px; margin-top:20px; }
+.feature-cards-controls button { position:static; transform:none; width:40px; height:40px; background:var(--surface-2); border:0; color:var(--text); }
+.feature-cards-controls button:disabled { opacity:.3; }
+.feature-cards-controls button:focus-visible { outline:2px solid var(--molecular-ink); outline-offset:3px; }
+@media(max-width:600px) { .feature-card-item { flex-basis:88%; } .feature-explainer-copy { padding:22px; } .feature-explainer h3 { font-size:20px; } }
+
+.feature-capture,.feature-capture-pending { position:relative; aspect-ratio:4 / 3; outline:2px solid #e05252; outline-offset:-2px; }
+.feature-capture > span { position:absolute; bottom:12px; left:12px; padding:5px 9px; border-radius:6px; background:#a52020; color:white; font-size:12px; }
+.feature-capture-pending { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; color:var(--body); font-size:13px; background:var(--bg); }
+.capture-skeleton-window { width:58%; height:42%; border:1px solid var(--border); border-radius:10px; padding:16px; display:flex; flex-direction:column; gap:12px; }
+.capture-skeleton-window i { display:block; height:8px; width:70%; border-radius:4px; background:var(--surface-2); }
+.capture-skeleton-window i:first-child { width:35%; }
+.capture-skeleton-window i:last-child { width:90%; }

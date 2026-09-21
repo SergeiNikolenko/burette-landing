@@ -60,3 +60,11 @@ Four real stills extracted at 1280px width:
 - Smoothing controls: `QuikLook_dark.mp4`, 49 s → `detail-smoothing.jpg`.
 
 These screenshots document the recorded version; they are not fabricated interface mockups. Each image reserves its actual dimensions and loads lazily.
+
+## Review galleries
+
+All nine feature lists are horizontal galleries with keyboard arrows, touch dragging, disabled edge controls and reduced-motion support. Red outlines mark review media. Real frames are reused only for corresponding capabilities; missing demonstrations have static, explicitly labelled skeletons.
+
+`capture-sequence.png` was captured on 21 September 2026 in the real hosted Burette web demo: 1HTB → Sequence → selected TRP 15 (chain A). This is a browser screenshot, not packaged-native acceptance. Previous `detail-*` captures come from the supplied recordings. Replace a card image through its `screenshot` and `screenshotHeight` fields in `components/features/catalog.json`.
+
+Videos now play at 0.8× speed across all three website video components.
