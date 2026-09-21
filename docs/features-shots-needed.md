@@ -1,6 +1,6 @@
 # Screenshots still needed
 
-Use a dedicated capture for each card. Do not reuse the main section video or its poster. Capture landscape 16:9, with the relevant controls readable. Interactive 3D needs a slow rotation and zoom clip.
+Capture one concrete action and its result per card. Use landscape 16:9. Do not repeat the main section video in a card.
 
 ## Press Space. See the structure.
 
@@ -81,11 +81,15 @@ Use a dedicated capture for each card. Do not reuse the main section video or it
 - Command palette
 - Drag files into your workspace
 
-## Work with your other chemistry tools.
+## Connect your chemistry tools.
 
-- Agent plugin
-- Command-line tools
-- Links that open Burette
-- Dock quick actions
-- External applications
-- iPhone preview app
+- Ask your agent to open a structure
+- Continue in your preferred chemistry app
+- Automate repeatable steps
+
+## Integration recording direction
+
+- Agent: request to open a molecular file → actual workspace with that file visible.
+- Figures: xyzrender view → SVG export → opened vector image.
+- External apps: open-with menu → structure visible in the installed destination app.
+- Automation: one documented CLI command → its visible result in Burette.

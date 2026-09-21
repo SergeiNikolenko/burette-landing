@@ -317,40 +317,28 @@
   },
   {
     "id": "integrations",
-    "title": "Work with your other chemistry tools.",
-    "intro": "Open structures from an agent or a script, export vector figures, or send a file to an installed chemistry app.",
+    "title": "Connect your chemistry tools.",
+    "intro": "Ask an agent to open a structure, export a figure for a paper, or continue in another chemistry app.",
     "media": null,
     "docs": "/docs/plugin",
     "features": [
       {
-        "title": "Agent plugin",
-        "description": "Let an agent open structures and use supported workspace tools through MCP."
+        "title": "Ask your agent to open a structure",
+        "description": "Use the Burette plugin to let an agent open molecular files and work with the available workspace tools through MCP."
       },
       {
-        "title": "Command-line tools",
-        "description": "Use Burette commands in scripts and agent workflows."
-      },
-      {
-        "title": "Links that open Burette",
-        "description": "Use application links to open a specific Burette destination from another tool."
-      },
-      {
-        "title": "Dock quick actions",
-        "description": "Start common workspace tasks from the macOS Dock."
-      },
-      {
-        "title": "External applications",
-        "description": "Hand supported files to installed chemistry applications."
-      },
-      {
-        "title": "Vector molecular figures",
-        "description": "Use the optional xyzrender engine for molecular illustrations and SVG export. Resize the artwork for a paper or slide without losing sharpness.",
+        "title": "Make a figure for your paper",
+        "description": "Create molecular illustrations with the optional xyzrender engine. Export SVG artwork that stays sharp when resized for a paper or slide.",
         "screenshot": "/assets/features/detail-xyzrender.jpg",
         "screenshotHeight": 880
       },
       {
-        "title": "iPhone preview app",
-        "description": "Build the source-available iPhone app for supported molecular previews."
+        "title": "Continue in your preferred chemistry app",
+        "description": "Send a supported structure to an installed chemistry application for the next part of your analysis."
+      },
+      {
+        "title": "Automate repeatable steps",
+        "description": "Use Burette commands in scripts and agent workflows. Application links can open specific destinations in the workspace."
       }
     ]
   }
