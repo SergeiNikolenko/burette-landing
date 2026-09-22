@@ -1,108 +1,23 @@
 import Link from "next/link";
 import Demo from "@/components/features/demo";
-import FeatureCarousel from "./feature-carousel";
-import LiveScene from "./live-scene";
+import Highlights from "./highlights";
 
 export default function Features() {
-  return (
-    <section
-      id="features"
-      aria-labelledby="features-title"
-      className="feature-section"
-    >
-      <div className="section-intro page-width">
-        <div className="intro-copy">
-          <h2 id="features-title">
-            Open in Finder.
-            <br />
-            Keep working in Burette.
-          </h2>
-          <p>
-            Inspect a file in Finder, then open it in Burette to keep working.
-            Compare structures side by side, edit molecules in Ketcher, and export
-            the structures you need.
-          </p>
-        </div>
-        <Demo id="protein" title="Inspect a protein and its ligand" />
-      </div>
-      <article className="product-chapter chapter-split page-width">
-        <div className="chapter-heading">
-          <div>
-            <p className="section-label">Finder Quick Look</p>
-            <h3>
-              A closer look.
-              <br />
-              Right in Finder.
-            </h3>
-          </div>
-          <div>
-            <p>
-              Select a molecular file in Finder and press Space. Rotate the structure
-              and zoom in on a ligand or residue directly in the preview.
-            </p>
-            <Link className="text-link" href="/docs/surfaces/quick-look">
-              Explore Quick Look <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-        </div>
-        <div className="media-stage">
-          <Demo id="finder" title="Open a structure in Finder Quick Look" />
-        </div>
+  return <section id="features" aria-label="Explore Burette">
+    <Highlights />
+    <div className="home-stories page-width">
+      <article id="quick-look-story" className="home-story home-story-wide">
+        <header className="home-section-heading"><div><p className="section-label">Start in Finder</p><h2>Open a file.<br />Find something worth exploring.</h2></div><div><p className="home-story-description">Select a molecular file and press Space. Rotate it, zoom in, and see what is inside before opening the workspace.</p><Link className="text-link" href="/features#preview">Explore Quick Look ↗</Link></div></header>
+        <Demo id="finder" title="Open and rotate a molecular structure in Finder Quick Look" />
       </article>
-      <article className="product-chapter chapter-wide page-width">
-        <div className="chapter-heading">
-          <div>
-            <p className="section-label">Molecular collections</p>
-            <h3>
-              Browse your library.
-              <br />
-              Choose your compounds.
-            </h3>
-          </div>
-          <div>
-            <p>
-              Search an SDF collection, browse structure cards, and compare properties
-              in the table. Select compounds to inspect or export.
-            </p>
-            <Link className="text-link" href="/docs/workflows/collections">
-              Explore collections <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-        </div>
-        <div className="media-stage">
-          <Demo id="collections" title="Browse a molecular collection" />
-        </div>
+      <article id="structure-story" className="home-story home-story-split">
+        <header><p className="section-label">Inspect the structure</p><h2>The whole protein.<br />The detail you need.</h2><p className="home-story-description">Find chains and ligands in the scene tree. Hide what gets in the way, select a component, and bring it into view.</p><Link className="text-link" href="/features#selection">Explore selection and analysis ↗</Link></header>
+        <Demo id="selection" title="Use the scene tree to inspect a protein and its components" />
       </article>
-      <article className="product-chapter chapter-wide page-width">
-        <div className="chapter-heading">
-          <div>
-            <p className="section-label">Chemical Space</p>
-            <h3>
-              Find related molecules
-              <br />
-              in your library.
-            </h3>
-          </div>
-          <div>
-            <p>
-              Find structurally similar compounds in a collection. Select a group
-              on the map to inspect its molecules and properties.
-            </p>
-            <Link className="text-link" href="/docs/workflows/native-compute">
-              Explore Chemical Space <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-        </div>
-        <Demo id="space" title="Explore a molecular collection in Chemical Space" />
+      <article id="collection-story" className="home-story home-story-wide">
+        <header className="home-section-heading"><div><p className="section-label">Work with a collection</p><h2>Many compounds.<br />A clear next step.</h2></div><div><p className="home-story-description">Browse molecular structures, compare their properties, and narrow your selection. Export the compounds you want to work with.</p><Link className="text-link" href="/features#collections">Explore collections ↗</Link></div></header>
+        <Demo id="collections" title="Browse structure cards and compare properties in a molecular collection" />
       </article>
-      <FeatureCarousel />
-      <article className="product-chapter chapter-split page-width">
-        <div className="chapter-heading">
-          <div><p className="section-label">Molecular motion</p><h3>Let it run.<br />Stop where it matters.</h3></div>
-          <div><p>Play, pause, and step through this 20-frame vibrational mode. In the Mac app, smoothing interpolates between frames for more continuous playback.</p></div>
-        </div>
-        <LiveScene autoLoad scene="motion" label="BIMP · molecular motion" />
-      </article>
-    </section>
-  );
+    </div>
+  </section>;
 }
