@@ -135,9 +135,10 @@
       {
         "title": "Sequence selection",
         "description": "Select a residue or range in the Sequence panel to highlight it in 3D.",
-        "screenshot": "/assets/features/capture-sequence.png",
+        "screenshot": "/assets/features/closeup-sequence.png",
         "screenshotHeight": 720,
-        "captureStatus": "replace"
+        "captureStatus": "approved",
+        "screenshotWidth": 1280
       },
       {
         "title": "Ligand pockets",
@@ -214,10 +215,10 @@
       {
         "title": "Pose alignment",
         "description": "Show every pose with All, then toggle Align to compare their overlap. Switch back to a single pose for a closer look.",
-        "screenshot": "/assets/features/shot-pose-alignment.jpg",
-        "screenshotHeight": 660,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "screenshot": "/assets/features/closeup-poses.png",
+        "screenshotHeight": 720,
+        "screenshotWidth": 1280,
+        "captureStatus": "approved"
       },
       {
         "title": "Topology and trajectory",
@@ -230,10 +231,10 @@
       {
         "title": "SDF poses",
         "description": "Move between structures in a multi-record SDF, including V3000 files.",
-        "screenshot": "/assets/features/shot-sdf-poses.jpg",
-        "screenshotHeight": 660,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "screenshot": "/assets/features/closeup-sdf-pose.png",
+        "screenshotHeight": 720,
+        "screenshotWidth": 1280,
+        "captureStatus": "approved"
       },
       {
         "title": "Molecular Stories",
@@ -306,11 +307,11 @@
       },
       {
         "title": "Selection and export",
-        "description": "Export the visible set as SMILES or table data as CSV.",
-        "screenshot": "/assets/features/shot-selection-and-export.jpg",
-        "screenshotHeight": 660,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "description": "Select the compounds you want to keep, then export them as SMILES or CSV.",
+        "screenshot": "/assets/features/closeup-export.png",
+        "screenshotHeight": 720,
+        "screenshotWidth": 1280,
+        "captureStatus": "approved"
       },
       {
         "title": "Browse large collections",
