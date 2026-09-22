@@ -24,8 +24,8 @@ The desktop app is the full Burette workspace. Use it when a one-off Finder prev
 ## Structure work
 
 - Superpose structures with auto, residue-number, sequence, chain, and TM-align flows.
-- Use Maestro/PyMOL-style operations: chain splitting, subset extraction, a selection toolkit, typed interactions, colour presets, and angle/dihedral measurements.
-- Play trajectories with smoothed playback; topology+trajectory pairs pair automatically, and trajectories without a topology get a synthetic one.
+- Select chains, residues, or atoms; hide components, extract a subset, change colours, and measure distances, angles, or dihedrals.
+- Play supported trajectories and step through frames. Provide compatible topology or coordinates for paired formats. Some inputs can use a generated topology for visualization; this cannot recover missing chemical identities. Smoothing interpolates display frames and does not add simulated data.
 - Build and play multi-state MolViewSpec Stories with step controls in the viewer and the Story dock.
 
 ## Collection work
@@ -42,9 +42,9 @@ Macromolecule editing is not enabled in the current Ketcher integration.
 
 ## Local calculations
 
-Native compute runs inside the app on Apple Silicon with no external installs: clustering, similarity search, conformer generation, MMFF optimization, semiempirical energies, and the Chemical Space map with Metal-accelerated embeddings, clustering, activity colouring, and cliffs.
+The desktop compute service supports clustering, similarity search, conformers, MMFF refinement, pose analysis, semiempirical energies, and Chemical Space. Available backends depend on hardware and runtime readiness. Read the job report for the backend actually used and any fallback or per-molecule failures.
 
-The structure inspector also exposes local xTB calculations (installable as a managed Conda environment from Settings) and CREST/PRISM conformer workflows. External engines keep job status and artifacts visible and reject direct chemistry jobs above the 300-atom guard unless you select a smaller molecular object.
+The structure inspector also exposes local xTB calculations (installable as a managed environment from Settings when Pixi or Conda is available) and CREST/PRISM conformer workflows. External engines keep job status and artifacts visible and reject direct chemistry jobs above the 300-atom guard unless you select a smaller molecular object.
 
 - [Native compute and Chemical Space](/docs/workflows/native-compute)
 - [xTB calculations](/docs/workflows/xtb)

@@ -36,19 +36,28 @@ You can also install manually:
 
 Open `Burette.app` once after installation. This gives macOS a chance to register the app bundle and Finder Quick Look extension.
 
-The current 2.3.8 public release is ad-hoc signed and is not Apple-notarized. macOS
-Gatekeeper may require you to approve the first launch manually in System
-Settings > Privacy & Security.
+Signing and notarization depend on the release build. If macOS blocks the downloaded app, first confirm it came from the official release page. Follow the first-launch instructions for that release; macOS may offer approval in **System Settings → Privacy & Security**. Do not disable Gatekeeper globally.
 
 If Finder previews do not appear after install, open Burette's command palette
 and run **Reset Quick Look**. **Open Logs Folder** and **Export Diagnostics**
 are available there as well.
 
+## Updates
+
+For a Homebrew installation, run:
+
+```bash
+brew update
+brew upgrade --cask burette
+```
+
+For a manual installation, replace the app with the version from the latest release. Keep your project files; an app update does not require deleting them.
+
 ## Codex plugin and local MCP
 
 The optional Codex integration lives in the same [Burette repository](https://github.com/SergeiNikolenko/Burette) as the app. It bundles workflow skills with typed MCP tools for opening, observing, and controlling a local molecular workspace.
 
-Clone the repository and run the plugin installer:
+Install Git, Bun, and Codex first. Clone the repository and run the plugin installer:
 
 ```bash
 git clone https://github.com/SergeiNikolenko/Burette.git
@@ -68,4 +77,4 @@ pixi global install crest
 uv tool install prism_pruner
 ```
 
-Check each executable before a production calculation, then use the matching runtime check in the desktop inspector. See [xTB calculations](/docs/workflows/xtb) and [CREST and PRISM](/docs/workflows/crest-prism).
+These commands require Pixi or uv to be installed first. For xTB, Settings can instead install a Burette-managed environment when Pixi or Conda is available. Check each executable, then use the matching runtime check in the desktop inspector. See [xTB calculations](/docs/workflows/xtb) and [CREST and PRISM](/docs/workflows/crest-prism).

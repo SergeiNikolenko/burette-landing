@@ -11,7 +11,7 @@ Burette uses several preview paths. The route depends on the file type and the r
 
 Mol* is the default interactive 3D path for most structure files, including PDB, CIF, BinaryCIF, MMTF, SDF, MOL, MOL2, XYZ, and GRO where supported by the runtime. It also renders CCP4/MRC/MAP density volumes, MTZ reflection maps, and MolViewSpec scenes and Stories.
 
-Use Mol* when you need interactive structure inspection, trajectory-aware controls (including smoothed playback), structure superposition, or Maestro/PyMOL-style structure operations such as chain splitting, selection tooling, measurements, and colour presets.
+Use Mol* when you need interactive structure inspection, trajectory-aware controls (including smoothed playback), structure superposition, or structure operations such as chain splitting, selections, measurements, and colour presets.
 
 ## Mesoscale viewer
 
@@ -41,9 +41,9 @@ CUBE, CIF, MMCIF, MCIF, XYZ, and external-renderer input previews expose an opti
 
 ## Calculation engines are separate
 
-xTB, CREST, and PRISM are local calculation executables, not preview renderers. Burette prepares bounded inputs, runs cancellable jobs, and opens reports and artifacts, while Mol*, RDKit, or the text viewer display their outputs. xTB can also be installed as a managed Conda environment directly from Settings, so it no longer requires a manual install.
+xTB, CREST, and PRISM are local calculation executables, not preview renderers. Burette prepares bounded inputs, runs cancellable jobs, and opens reports and artifacts, while Mol*, RDKit, or the text viewer display their outputs. xTB can also be installed as a managed environment from Settings when Pixi or Conda is installed; an existing executable can also be selected.
 
-Separately from these external executables, Burette ships a native Apple Silicon compute layer (CPU with Metal GPU acceleration) for clustering, similarity search, conformer generation, MMFF optimization, alignment and scoring, semiempirical energies, and Chemical Space embeddings. It runs inside the app with no external installation.
+Separately from these external executables, Burette ships a native Apple Silicon compute layer (CPU with Metal GPU acceleration) for clustering, similarity search, conformer generation, MMFF optimization, alignment and scoring, semiempirical energies, and Chemical Space embeddings. These operations use the desktop compute service. Backend availability depends on hardware and runtime readiness; each report identifies the backend used. They are not available merely by opening the website demo.
 
 - [Native compute and Chemical Space](/docs/workflows/native-compute)
 - [xTB calculations](/docs/workflows/xtb)

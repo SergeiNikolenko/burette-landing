@@ -5,20 +5,21 @@ description: Common Burette diagnostics for install, renderer, Quick Look, and c
 
 # Troubleshooting
 
-Start with Burette's command palette. Run **Reset Quick Look**, then use **Open
-Logs Folder** or **Export Diagnostics** if the problem remains.
+Start with the surface that is failing. A Finder registration reset will not fix a calculation engine or an unsupported file.
 
-## Common checks
+| Problem | First check |
+| --- | --- |
+| Finder shows no molecular preview | Open Burette once, then follow [Quick Look troubleshooting](/docs/troubleshooting/quick-look). |
+| One file fails in both Finder and the app | Check its format and required companion files in [supported formats](/docs/formats). Try a small known-good file of the same type. |
+| An external renderer is unavailable | Check the selected renderer and executable in Settings. See [engines](/docs/engines). |
+| xTB, CREST, or PRISM cannot start | Run the engine’s runtime check and inspect its executable path and version. |
+| A native calculation fails | Read the job report for runtime readiness, backend, scope, and per-molecule errors. See [native compute](/docs/workflows/native-compute). |
+| A website action cannot open a local app or run native compute | Use the installed Mac app; the browser demo has a smaller scope. |
 
-- Open `Burette.app` once after install.
-- Confirm the app is installed where you expect it.
-- Refresh Quick Look after replacing the app.
-- Check whether the file type is supported.
-- Use the desktop workspace when the Finder Quick Look surface is too constrained.
-- Confirm optional tools such as `xyzrender` or VESTA are installed before using workflows that depend on them.
+## Collect useful diagnostics
 
-## Diagnostics bundle
+Use **Open Logs Folder** or **Export Diagnostics** in the command palette. The diagnostics bundle is created locally; exporting it does not automatically submit an issue.
 
-The desktop app can export a local diagnostics bundle from Settings > Maintenance > Diagnostics or from the command palette.
+Before sharing a bundle, review it for filenames, paths, and other information you do not want to publish. Include the Burette version, macOS version, failing action, and error message. Attach a minimal example file only when you can share it.
 
-Diagnostics bundles are local files only. They do not upload telemetry and do not include raw molecule file contents or structure payloads.
+[Report an issue](https://github.com/SergeiNikolenko/Burette/issues).
