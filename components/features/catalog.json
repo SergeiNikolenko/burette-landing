@@ -11,26 +11,30 @@
         "description": "Preview a molecular file without opening the full workspace.",
         "screenshot": "/assets/features/shot-finder-quick-look.jpg",
         "screenshotHeight": 640,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       },
       {
         "title": "Interactive 3D",
         "description": "Rotate and zoom to inspect a structure from any angle.",
-        "video": "card-rotate"
+        "video": "card-rotate",
+        "captureStatus": "approved"
       },
       {
         "title": "Light and dark",
         "description": "Choose the background that makes your structure easiest to read.",
         "screenshot": "/assets/features/shot-light-and-dark.jpg",
         "screenshotHeight": 640,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       },
       {
         "title": "Molecular thumbnails",
         "description": "Recognize supported structure files while browsing Finder.",
         "screenshot": "/assets/features/shot-molecular-thumbnails.jpg",
         "screenshotHeight": 640,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       },
       {
         "title": "Open in Burette",
@@ -45,7 +49,8 @@
         "description": "Inspect supported mass spectra in a dedicated spectrum viewer.",
         "screenshot": "/assets/features/shot-spectrum-previews.jpg",
         "screenshotHeight": 640,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       }
     ]
   },
@@ -61,33 +66,38 @@
         "description": "Give molecular shapes clear outlines for readable figures.",
         "screenshot": "/assets/features/shot-illustrative-appearance.jpg",
         "screenshotHeight": 852,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       },
       {
         "title": "Representation styles",
         "description": "Choose cartoons, sticks, spheres, or surfaces to suit the question.",
         "screenshot": "/assets/features/card-representation.jpg",
-        "screenshotHeight": 1134
+        "screenshotHeight": 1134,
+        "captureStatus": "approved"
       },
       {
         "title": "Scene tree",
         "description": "Browse chains, ligands, water, and representations. Focus on one component or hide the parts you do not need.",
         "screenshot": "/assets/features/detail-tree.jpg",
-        "screenshotHeight": 1134
+        "screenshotHeight": 1134,
+        "captureStatus": "approved"
       },
       {
         "title": "Show, hide, isolate",
         "description": "Remove visual clutter while keeping the original structure available.",
         "screenshot": "/assets/features/shot-show-hide-isolate.jpg",
         "screenshotHeight": 852,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       },
       {
         "title": "Colour controls",
         "description": "Colour components and adjust transparency without rebuilding your scene.",
         "screenshot": "/assets/features/shot-colour-controls.jpg",
         "screenshotHeight": 852,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       },
       {
         "title": "Density maps",
@@ -126,7 +136,8 @@
         "title": "Sequence selection",
         "description": "Select a residue or range in the Sequence panel to highlight it in 3D.",
         "screenshot": "/assets/features/capture-sequence.png",
-        "screenshotHeight": 720
+        "screenshotHeight": 720,
+        "captureStatus": "replace"
       },
       {
         "title": "Ligand pockets",
@@ -165,7 +176,8 @@
         "description": "Save the part of a structure you want to work with.",
         "screenshot": "/assets/features/shot-extract-a-subset.jpg",
         "screenshotHeight": 852,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       },
       {
         "title": "Structure superposition",
@@ -189,13 +201,15 @@
         "description": "Play, pause, or step through individual frames while rotating the structure. The demo shows a 20-frame molecular vibration.",
         "screenshot": "/assets/features/shot-trajectory-playback.jpg",
         "screenshotHeight": 640,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       },
       {
         "title": "Trajectory smoothing",
         "description": "Add interpolated views between recorded frames for smoother playback. Your original frames stay unchanged.",
         "screenshot": "/assets/features/detail-smoothing.jpg",
-        "screenshotHeight": 854
+        "screenshotHeight": 854,
+        "captureStatus": "replace"
       },
       {
         "title": "Pose alignment",
@@ -218,7 +232,8 @@
         "description": "Move between structures in a multi-record SDF, including V3000 files.",
         "screenshot": "/assets/features/shot-sdf-poses.jpg",
         "screenshotHeight": 660,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
       },
       {
         "title": "Molecular Stories",
@@ -241,7 +256,8 @@
         "title": "Cards and tables",
         "description": "Switch between molecular drawings and a property table.",
         "screenshot": "/assets/features/card-table.jpg",
-        "screenshotHeight": 880
+        "screenshotHeight": 880,
+        "captureStatus": "approved"
       },
       {
         "title": "Substructure search",
@@ -263,19 +279,22 @@
         "title": "Structures and properties",
         "description": "Select a molecule to see its drawing and descriptors beside the table. Filter numeric properties to narrow your collection.",
         "screenshot": "/assets/features/detail-properties.jpg",
-        "screenshotHeight": 880
+        "screenshotHeight": 880,
+        "captureStatus": "approved"
       },
       {
         "title": "Search, sort, and filter",
         "description": "Find a name or SMILES, sort a column, or narrow the table with a numeric property filter.",
         "screenshot": "/assets/features/card-filter.jpg",
-        "screenshotHeight": 880
+        "screenshotHeight": 880,
+        "captureStatus": "approved"
       },
       {
         "title": "Open a molecule in its own tab",
         "description": "Move from a collection card to a full molecular view for rotation, selection, and inspection.",
         "screenshot": "/assets/features/card-open-viewer.jpg",
-        "screenshotHeight": 880
+        "screenshotHeight": 880,
+        "captureStatus": "approved"
       },
       {
         "title": "Combine collections",
@@ -290,14 +309,16 @@
         "description": "Export the visible set as SMILES or table data as CSV.",
         "screenshot": "/assets/features/shot-selection-and-export.jpg",
         "screenshotHeight": 660,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
       },
       {
         "title": "Browse large collections",
         "description": "Browse molecular cards as they load into view, without waiting for every drawing to render.",
         "screenshot": "/assets/features/shot-browse-large-collections.jpg",
         "screenshotHeight": 660,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       },
       {
         "title": "DataWarrior files",
@@ -319,7 +340,8 @@
       {
         "title": "A map of your molecules",
         "description": "Explore molecular similarity in a 2D or 3D map, with each point representing a compound.",
-        "video": "card-space-inspect"
+        "video": "card-space-inspect",
+        "captureStatus": "replace"
       },
       {
         "title": "Linked selection",
@@ -415,14 +437,16 @@
         "description": "Use the optional local xTB engine for supported molecular calculations.",
         "screenshot": "/assets/features/shot-xtb-calculations.jpg",
         "screenshotHeight": 660,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
       },
       {
         "title": "CREST and PRISM",
         "description": "Run optional conformer sampling and ensemble-pruning workflows.",
         "screenshot": "/assets/features/shot-crest-and-prism.jpg",
         "screenshotHeight": 660,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
       },
       {
         "title": "Keep working during calculations",
@@ -445,12 +469,14 @@
         "title": "Ketcher sketches",
         "description": "Draw and edit small molecules in the integrated Ketcher editor.",
         "screenshot": "/assets/features/card-ketcher.jpg",
-        "screenshotHeight": 880
+        "screenshotHeight": 880,
+        "captureStatus": "approved"
       },
       {
         "title": "Edit collection molecules",
         "description": "Send a compatible grid row to Ketcher and update the collection.",
-        "video": "card-edit"
+        "video": "card-edit",
+        "captureStatus": "replace"
       },
       {
         "title": "Sketch to 3D",
@@ -481,7 +507,8 @@
         "description": "Keep structures, tables, text, and inspectors alongside one another.",
         "screenshot": "/assets/features/shot-tabs-and-docks.jpg",
         "screenshotHeight": 660,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       },
       {
         "title": "Command palette",
@@ -496,7 +523,8 @@
         "description": "Drop molecular files, collection records, or sketches into the workspace to continue working with them.",
         "screenshot": "/assets/features/shot-drag-files-into-your-workspace.jpg",
         "screenshotHeight": 660,
-        "screenshotWidth": 960
+        "screenshotWidth": 960,
+        "captureStatus": "approved"
       }
     ]
   },
@@ -519,7 +547,8 @@
         "title": "Make a figure for your paper",
         "description": "Create molecular illustrations with the optional xyzrender engine. Export SVG artwork that stays sharp when resized for a paper or slide.",
         "screenshot": "/assets/features/detail-xyzrender.jpg",
-        "screenshotHeight": 880
+        "screenshotHeight": 880,
+        "captureStatus": "replace"
       },
       {
         "title": "Continue in your preferred chemistry app",
