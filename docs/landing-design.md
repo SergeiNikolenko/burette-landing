@@ -115,3 +115,15 @@ The desktop workspace mounts when approaching the hero viewport. On reported Dat
 The presentation initializes the workspace in Illustrative and preserves its appearance throughout both camera sequences.
 
 The active presentation dot expands to a 44 px capsule. Its fill follows completed viewing/rotation steps, stays still during preparation and on pause, and reaches the end before the next scene. Other dots retain their compact shape, labels, focus rings and click targets. Progress writes one CSS variable without rerendering the workspace; reduced motion disables capsule transitions. Resuming an interrupted story restarts that story and its progress.
+
+## Runtime and media refresh (2026-09-23)
+
+The hero, standalone examples, and Open workspace link share the immutable hosted
+runtime in `lib/burette-runtime.mjs`, built from Burette main commit
+`25e7a7e0838b6fdbd7e72a535e9c390fa33765f1`. Update the shell and viewer together;
+do not point either at the retired presentation preview branch. The public MCP
+production deployment is independent of this landing runtime pin.
+
+Feature and home gallery images retain their intrinsic proportions and fill the
+card width with an 8 px inset and 18 px image corners. No forced 4:3 image box or
+cover crop is used. Replacement frames retain their red review treatment.
