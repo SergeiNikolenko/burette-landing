@@ -1,4 +1,5 @@
 import nextra from "nextra";
+import { buretteRuntimeOrigin } from "./lib/burette-runtime.mjs";
 
 const withNextra = nextra({
   contentDirBasePath: "/docs",
@@ -13,11 +14,11 @@ export default withNextra({
     return [
       {
         source: "/web-demo/:path*",
-        destination: "https://burette-plugin-git-design-presentation-scenes-nikolenko-sergei.vercel.app/web-demo/:path*",
+        destination: `${buretteRuntimeOrigin}/web-demo/:path*`,
       },
       {
         source: "/burette-viewer/:path*",
-        destination: "https://burette-plugin-git-design-presentation-scenes-nikolenko-sergei.vercel.app/burette-viewer/:path*",
+        destination: `${buretteRuntimeOrigin}/burette-viewer/:path*`,
       },
     ];
   },

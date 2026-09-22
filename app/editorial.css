@@ -305,8 +305,7 @@ html[data-theme="dark"] .landing .hero-copy :is(h1, p) {
 .landing .study-slide .study-image {
   border-radius: 16px;
   width: 100%;
-  aspect-ratio: 1280 / 978;
-  object-fit: cover;
+  height: auto;
 }
 .landing .study-controls {
   display: flex;
