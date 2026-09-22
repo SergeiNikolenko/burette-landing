@@ -5,7 +5,7 @@ description: File formats supported by Burette and the preview path used for eac
 
 # Supported Formats
 
-The checked-in source of truth for format routing is `config/preview-formats.json` in the Burette repository. Burette 2.3.8 registers 31 format families and 118 unique extensions. Registration identifies the intended route; some paired or workflow artifacts are not meaningful as standalone structures.
+The checked-in source of truth for format routing is `config/preview-formats.json` in the Burette repository. The 2026.9.9 registry contains 31 format families and 118 unique extensions. Registration identifies the intended route; some paired or workflow artifacts are not meaningful as standalone structures.
 
 ## Format families
 
@@ -29,6 +29,8 @@ The checked-in source of truth for format routing is `config/preview-formats.jso
 
 Quick Look has per-format size limits in the format registry. The desktop workspace can expose richer surfaces for larger or more complex files, but very large files may still require format-specific handling. Binary trajectories and paired topology/coordinate inputs need surface-specific testing; a registered document type alone is not proof of successful decoding on every platform.
 
-## Updating support
+## If a file does not open
 
-Format support is a contract surface. Changes must keep the registry, app metadata, Quick Look plists, and focused format tests in sync.
+Check that the file contains the data expected for its extension. For a trajectory, supply compatible coordinates or topology with the same atom ordering. A registered extension is not a guarantee that every program’s variant can be decoded. Include the file format, app version, and error message when reporting a problem.
+
+Developers adding formats should follow the [development guide](/docs/development).

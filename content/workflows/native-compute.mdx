@@ -1,64 +1,55 @@
 ---
 title: Native Compute & Chemical Space
-description: Run clustering, similarity search, conformers, MMFF optimization, semiempirical energies, and Chemical Space embeddings natively on Apple Silicon.
+description: Explore molecular similarity, cluster collections, generate conformers, and read calculation results in the Mac app.
 ---
 
 # Native Compute and Chemical Space
 
-Burette ships a native Apple Silicon compute layer: a CPU reference backend
-with Metal GPU acceleration, running in a separate verified compute service
-next to the app. Unlike xTB or CREST, it needs no external installation.
+Use the Mac app to analyze a molecular collection, generate 3D conformers, or explore a similarity map. These workflows use Burette’s desktop compute service; they do not require a separate xTB or CREST installation.
 
-Clustering runs are cancellable mid-job. Every job records its provenance and
-reports which backend actually executed it: `Metal GPU` only when the GPU path
-really ran, otherwise `reference CPU`.
+Metal acceleration requires compatible Apple hardware and a working compute runtime. A CPU reference path is available for supported operations and policies. Check the job report for the backend actually used, fallback reasons, and failed records rather than assuming every calculation ran on the GPU.
 
-## Clustering and similarity
+## Explore a collection in Chemical Space
 
-The collection grid exposes compute actions over the current scope:
+1. Open a molecular collection with valid structures, such as SDF, SMILES, or a CSV with a molecular column.
+2. Open **Chemical Space** from the collection’s analysis actions.
+3. Choose the representation, similarity measure, and projection options available for that collection.
+4. Generate the map and inspect the result in 2D or 3D.
+5. Select points or lasso a region. The linked grid shows the corresponding molecular selection.
+6. Inspect the molecules and their properties before exporting a subset.
 
-- **Cluster selected / Cluster filtered / Cluster all** — Tanimoto-cutoff
-  clustering over the selected rows, the active filter result, or the whole
-  collection. Scope is frozen before the job starts, so edits during a run
-  cannot corrupt the result.
-- **Find similar** — exact top-ranked similarity search that reuses the
-  verified fingerprints from a previous clustering run.
-- **Export diverse** — an immutable diverse-subset export with structures, a
-  table, and provenance.
+![Chemical Space showing a molecular similarity map beside the collection.](/assets/features/space.jpg)
 
-## Conformers and optimization
+Each point represents a compound. A similarity projection helps locate groups worth inspecting; its axes are not molecular properties or physical coordinates. Nearby points are neighbours in the chosen projection, not proof of shared biological activity. Changing the representation or projection settings can change the map.
 
-The collection grid's **Generate 3D** action (for selected molecules) and the
-Ketcher **Compute** menu generate conformer ensembles natively (distance
-geometry, ETKDG-style optimization, MMFF94/MMFF94s refinement, and
-stereochemistry validation). The 3D engine, candidate count, and RMSD
-threshold are configurable in Settings.
+Activity colouring needs a suitable numeric property column. Activity-cliff analysis looks for similar molecules with different recorded activities. Check assay context, units, and missing values before interpreting those differences.
 
-Alignment and scoring compare poses with RMSD, shape, and electrostatic
-terms.
+## Cluster and find similar molecules
 
-## Semiempirical energies
+Choose **Cluster selected**, **Cluster filtered**, or **Cluster all** to define the input scope. The job uses a frozen snapshot of those records and reports cluster assignments and representatives. Invalid molecules should be reviewed through the reported record status.
 
-Single-point semiempirical energies (including RM1, AM1, and PM6) run through
-the same native service and produce readable reports with method and
-provenance details.
+After a successful clustering run, select one molecule and use **Find similar** to search the saved fingerprint snapshot. Similarity results depend on the fingerprint and metric used; they are not a docking score or activity prediction.
 
-## Chemical Space
+**Export diverse** exports representatives from that analysis with structures, a table, and provenance. If you change the source collection, rerun the analysis when you want those changes included.
 
-The Chemical Space panel projects a collection into an interactive 2D/3D map:
+## Generate conformers and refine geometry
 
-- Metal-accelerated embeddings (UMAP) over molecular representations
-- clustering directly in the projected space
-- activity colouring from a numeric column
-- activity-cliff highlighting for similar molecules with divergent activity
+The collection’s **Generate 3D** action and Ketcher’s **Compute** menu expose supported native 3D generation workflows. Settings control the engine, candidate count, and RMSD threshold. The native pipeline includes distance geometry, ETKDG-style constraints, stereochemistry checks, and MMFF94/MMFF94s refinement where supported.
 
-Selections in the map stay linked to the grid, so you can lasso a region and
-continue working with those rows.
+Review per-molecule failures and convergence status. Generated conformers are candidate geometries; check stereochemistry, protonation, charge, and method suitability before using them downstream. Use [CREST](/docs/workflows/crest-prism) when you specifically need the external CREST sampling workflow.
 
-## Boundaries
+## Compare poses
 
-- Native compute runs in the desktop app; Finder Quick Look and the iPhone
-  app stay preview-only surfaces.
-- External engines remain separate: [xTB](/docs/workflows/xtb) and
-  [CREST/PRISM](/docs/workflows/crest-prism) are still local executables with
-  their own pages.
+Alignment and scoring workflows report geometric comparisons such as RMSD, shape, and electrostatic terms. They require suitable 3D coordinates and atom correspondence for the selected method. A favourable alignment or score alone does not establish binding affinity.
+
+Viewer **All** and **Align** controls are for inspecting overlaid poses; distinguish that visual comparison from a separate calculation report.
+
+## Semiempirical calculations
+
+The native service includes single-point semiempirical methods such as RM1, AM1, and PM6. Read the reported method, electronic state, convergence, and provenance. A single-point result does not mean the geometry was optimized. External [xTB calculations](/docs/workflows/xtb) use a separate executable and workflow.
+
+## Progress, cancellation, and results
+
+Follow jobs in the desktop workspace. Cancellation can wait for an active calculation step to return. Partial reports, when offered, contain only completed work and must not be treated as a successful result for the whole input.
+
+If an action is unavailable, check the selected scope, structure data, and runtime status. Finder Quick Look, the website demo, and the iPhone preview app do not provide the full native compute workflow.

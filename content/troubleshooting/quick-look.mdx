@@ -9,7 +9,9 @@ Finder can keep stale Quick Look state after an app update, reinstall, or local 
 
 ## Reset Quick Look
 
-Run:
+First open Burette once from Applications, close the existing Finder preview, and run **Reset Quick Look** from Burette’s command palette. Reopen the preview.
+
+If it still fails, the equivalent manual cache reset is:
 
 ```bash
 qlmanage -r
@@ -36,6 +38,6 @@ For local packaged testing, use a unique `BURETTE_DEV_FLAVOR` value so the insta
 Example:
 
 ```bash
-BURETTE_DEV_FLAVOR=chat85b0 ./scripts/build.sh
-BURETTE_DEV_FLAVOR=chat85b0 ./scripts/install.sh
+BURETTE_DEV_FLAVOR=docs-check ./scripts/build.sh
+BURETTE_DEV_FLAVOR=docs-check ./scripts/install.sh
 ```

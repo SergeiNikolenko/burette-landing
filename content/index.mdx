@@ -5,57 +5,44 @@ description: Start here for Burette installation, desktop workflows, drag and dr
 
 # Burette Documentation
 
-Burette is a macOS desktop app, Finder Quick Look extension, source-built iPhone preview app, local Codex plugin, and hosted public plugin for molecular structure files.
+Preview molecular files in Finder, then open the Mac workspace to inspect structures, compare compounds, and edit molecules.
 
-It is built for the small daily loop of computational chemistry, structural biology, and cheminformatics work: open a structure, confirm what it is, switch renderer when needed, compare files in tabs, and recover quickly when Quick Look or renderer caches need maintenance.
+These guides were reviewed against [Burette 2026.9.9](https://github.com/SergeiNikolenko/Burette/releases/tag/v2026.9.9) on September 23, 2026. The hosted plugin is deployed separately. Features and controls can differ between the desktop app, Finder preview, browser demo, and source-built iPhone app.
 
-Burette is intentionally a compact utility, not a full molecular modeling environment.
+## Start here
 
-## What you can do
+1. [Install Burette](/docs/get-started/install) and open it once.
+2. [Preview your first file](/docs/get-started/quick-start) with Space in Finder.
+3. [Open the desktop workspace](/docs/surfaces/desktop) for tabs, editing, and analysis.
 
-- Press Space in Finder to preview supported molecular files.
-- Open the desktop workspace to inspect files in tabs, browse folders, search commands and structures, sketch molecules, edit text and structure sources in place, and route files or molecule records with target-aware drag and drop.
-- Use Mol* for interactive 3D structures, trajectories with smoothed playback, structure superposition, Maestro/PyMOL-style structure operations, and multi-state MolViewSpec Stories.
-- Open cell-scale crowded scenes (`molj`, `molx`, `.mesozip`) in the dedicated Mesoscale viewer.
-- Search, select, edit, append, merge, analyze, and export SDF, SMILES, CSV, TSV, DataWarrior, RXN, and RDF collections in grid and reaction-aware workspaces.
-- Run native Apple Silicon compute without external installs: clustering, similarity search, conformers, MMFF optimization, semiempirical energies, and the Chemical Space map with Metal-accelerated embeddings.
-- Review linked 2D/3D Chemical Space selections and activity cliffs beside the source collection.
-- Read PDF, DOCX, XLSX, PPTX, CSV, image, markdown, code, text, and email artifacts through the Retab-based file viewers.
-- Keep project folders current with the filesystem watcher and inspect Codex/Claude integration status in the Agents panel.
-- Inspect mass spectra (MGF, MSP, mzML, and more) in a dedicated spectrum viewer.
-- Use external `xyzrender` for formats that need artwork-style SVG rendering.
-- Run local xTB calculations (with an app-managed Conda install) for a small structure or selected molecular object.
-- Generate conformer ensembles with local CREST and optionally prune existing XYZ/SDF ensembles with PRISM.
-- Build the iPhone preview app from source when you need iOS document handoff.
-- Connect Codex to the local molecular workspace through focused skills and typed MCP tools, or preview attachments and public PDB entries through the hosted ChatGPT plugin.
+## Choose a task
 
-## Platform scope
+| I want to… | Guide |
+| --- | --- |
+| Check a structure without opening a workspace | [Finder Quick Look](/docs/surfaces/quick-look) |
+| Search, filter, edit, or export molecules | [Collections](/docs/workflows/collections) |
+| Move molecules between views | [Drag and drop](/docs/workflows/drag-and-drop) |
+| Cluster compounds or explore a similarity map | [Native compute and Chemical Space](/docs/workflows/native-compute) |
+| Optimize a small molecule or calculate properties | [xTB](/docs/workflows/xtb) |
+| Generate or prune a conformer ensemble | [CREST and PRISM](/docs/workflows/crest-prism) |
+| Open and inspect molecules with an agent | [Plugin and MCP](/docs/plugin) |
+| Check whether my file can be opened | [Formats](/docs/formats) and [engines](/docs/engines) |
 
-| Surface | Best for | Important boundary |
-| --- | --- | --- |
-| macOS desktop | Tabs, projects, drag and drop, grids, Ketcher, docking/FEP workspaces, native compute and Chemical Space, xTB, CREST/PRISM, exports, and diagnostics | Full workflow surface; external engines must be installed locally (managed install available for xTB). |
-| Finder Quick Look | A fast preview from Finder with Space | Preview surface, not the full desktop workflow. |
-| iPhone source target | Opening supported documents from Files and inspecting mobile previews | Built from source; not included in the macOS Homebrew release. |
-| Codex plugin and MCP | Typed local workspace observation, opening, viewer control, and bounded report panels | Purpose-built tools, not arbitrary shell or unrestricted file access. |
-| Hosted ChatGPT plugin | Previewing one authorized molecular attachment or public PDB entry, applying bounded scene actions, and editing an ephemeral Ketcher structure | Structure tools are read-only; Ketcher state is bounded, revision-checked, ephemeral, and not a persistent web workspace. |
+## Choose a surface
 
-## Recommended reading path
+| Surface | What it provides |
+| --- | --- |
+| macOS app | The desktop workspace, file saving, collections, editing, and supported local calculations. Metal acceleration requires compatible Apple hardware and a working compute runtime. |
+| Finder Quick Look | Structure, collection, and other supported file previews. Full desktop editing and calculation workflows are not available here. |
+| Website demo | A browser preview of selected workflows. Local application launching, native compute, and filesystem integration are not equivalent to the Mac app. |
+| Local Codex plugin | An inline molecular workspace and tools for supported local viewer or desktop sessions. |
+| Hosted ChatGPT plugin | Authorized molecular attachments and public PDB entries in a chat widget; separate from local desktop access. |
+| iPhone source app | Document previews built with Xcode; not installed by the macOS Homebrew cask. See [mobile scope](/docs/surfaces/mobile). |
 
-1. [Install Burette](/docs/get-started/install)
-2. [Open your first file](/docs/get-started/quick-start)
-3. [Choose the right surface](/docs/surfaces/desktop)
-4. [Learn target-aware drag and drop](/docs/workflows/drag-and-drop)
-5. [Work with SDF and molecule collections](/docs/workflows/collections)
-6. [Use native compute and Chemical Space](/docs/workflows/native-compute)
-7. [Run xTB calculations](/docs/workflows/xtb)
-8. [Generate conformers with CREST](/docs/workflows/crest-prism)
-9. [Check supported formats](/docs/formats)
-10. [Install the Codex plugin and MCP integration](/docs/plugin)
-11. [Fix Quick Look registration](/docs/troubleshooting/quick-look)
+## Help and project links
 
-## Project links
-
-- [GitHub repository](https://github.com/SergeiNikolenko/Burette)
-- [Codex plugin source](https://github.com/SergeiNikolenko/Burette/tree/main/plugins/burette-agent)
+- [Troubleshooting](/docs/troubleshooting)
 - [Latest release](https://github.com/SergeiNikolenko/Burette/releases/latest)
-- [Issue tracker](https://github.com/SergeiNikolenko/Burette/issues)
+- [Repository](https://github.com/SergeiNikolenko/Burette)
+- [Report an issue](https://github.com/SergeiNikolenko/Burette/issues)
+- [Build from source](/docs/development)

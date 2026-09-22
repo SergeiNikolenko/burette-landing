@@ -5,11 +5,11 @@ description: Search, sort, select, edit, merge, and export SDF, SMILES, CSV, and
 
 # SDF and Molecule Collections
 
-Burette opens molecular libraries in an RDKit-backed grid. The collection surface supports SDF/SD, SMI/SMILES, CSV, and TSV; an SDF can also be opened as a single 3D structure when that is the more useful view.
+Burette opens molecular libraries in an RDKit-backed grid. The collection surface supports SDF/SD, SMI/SMILES, CSV, TSV, and DataWarrior (`.dwar`); an SDF can also be opened as a single 3D structure when that is the more useful view.
 
-![Burette showing a searchable molecule collection with structure cards, table columns, and grid controls.](/assets/grid-table-light.png)
+![Burette showing a searchable molecule collection with structure cards, table columns, and grid controls.](/assets/features/card-table.jpg)
 
-*The checked-in Burette screenshot shows the real collection surface. Controls vary with the source format and available local renderers.*
+*Table and card views show the same collection. Available actions depend on the file and selected records.*
 
 ## Find and inspect molecules
 
@@ -60,6 +60,8 @@ The merged document is created as a reviewable collection with a suggested name 
 ![Collection files of one family merge into a reviewable grid before explicit saving.](/assets/workflow-collections.svg)
 
 ## Descriptors and calculations
+
+A CSV or TSV without a molecular column remains a data table. RXN and RDF use reaction-aware records rather than ordinary molecule rows. DataWarrior decoding does not extend the strict append/merge rules below to every format.
 
 The inspector can calculate collection-level 2D descriptors. Large Mordred runs are deliberately manual because the full descriptor set may take time. xTB does not batch a whole collection as one geometry: open the intended molecule in Mol* first, then follow [xTB calculations](/docs/workflows/xtb).
 

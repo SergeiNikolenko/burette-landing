@@ -57,11 +57,11 @@ Inline text is recognized when it looks like PDB, CIF, XYZ, SDF/MOL, or a single
 
 ## Clipboard input
 
-Paste or drop structure text when creating a temporary file would interrupt the workflow. Burette preserves recognized text as an in-memory structure record and assigns a matching extension. Drags that originate from collection rows carry those molecule records directly into compatible targets.
+Paste or drop structure text when creating a temporary file would interrupt the workflow. Burette recognizes supported structure text and routes it as a structure record with the corresponding format. A destination may create a temporary or saved file to complete the operation. Drags that originate from collection rows carry those molecule records directly into compatible targets.
 
 ## Safety and limits
 
-- Drag operations copy or combine data; they do not silently delete the source file.
+- The import routes described here copy or combine data; they do not remove the source molecule. Review destination paths before saving exported files.
 - Collection merge accepts one family at a time: SDF, SMILES, CSV, or TSV.
 - CSV/TSV merge requires identical headers in identical column order, and unsupported payload members reject the whole merge.
 - Ketcher import is limited to its small-molecule formats.

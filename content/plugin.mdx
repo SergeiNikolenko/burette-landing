@@ -8,7 +8,7 @@ description: Use the public Burette molecular workspace through its hosted MCP e
 Burette has two complementary plugin surfaces:
 
 - A public hosted plugin that opens supported molecular results directly in the real Burette browser workspace.
-- A local Codex plugin that can open local files and control Burette desktop or Browser sessions.
+- A local Codex plugin that opens molecular files in an inline chat workspace and supports local viewer or desktop sessions.
 
 Both implementations live in the [main Burette repository](https://github.com/SergeiNikolenko/Burette). There is no separate plugin source repository.
 
@@ -36,9 +36,9 @@ control_ketcher
 
 The three structure tools return bounded composition data and open the real Burette viewer with its toolbar, sequence and selection controls, measurements, representations, camera controls, and molecular inspector. The Ketcher tools return a bounded editor snapshot and editor widget. The deployment root redirects back to this documentation; it is not a separate viewer product.
 
-The public domain is only the HTTPS host for `/mcp` and the widget's JavaScript and CSS. After the MCP server returns a tool result and UI template, ChatGPT renders the Burette component inside an isolated iframe on the user's device, where WebGL and Mol* use that device's CPU and GPU. State belongs to that chat widget; there is no shared protein or shared Burette workspace between users.
+The public domain hosts the MCP service and widget assets. After the MCP server returns a tool result and UI template, ChatGPT renders the Burette component inside an isolated iframe on the user's device, where WebGL and Mol* use that device's CPU and GPU. State belongs to that chat widget; there is no shared protein or shared Burette workspace between users.
 
-The hosted plugin is deployed for testing and prepared for review. Public one-click installation becomes available only after OpenAI approves the listing and the publisher releases it in the Plugins Directory.
+A working endpoint does not by itself mean the plugin is listed for one-click installation. Availability depends on the host and account. Use the installation options shown by your host; this endpoint is separate from the local Codex plugin installer below.
 
 ### Demo recordings
 
@@ -66,7 +66,7 @@ Do not send credentials, protected health information, export-controlled structu
 
 The local plugin connects Codex to the same molecular workspace used by the macOS app. It combines focused workflow skills with a typed local stdio MCP server.
 
-This is the preferred path for local-first work on the same Mac: the plugin can open local files and control the installed Burette app without routing that workspace through the public hosted service.
+Use this path for files on the same Mac. The inline viewer opens inside the chat; opening a browser workspace or controlling the installed desktop app is a separate mode. Local workspace operations do not use the public hosted attachment service. Your agent host still handles the conversation and tool context under its own data policy.
 
 ### What local Codex can do
 
@@ -78,30 +78,17 @@ This is the preferred path for local-first work on the same Mac: the plugin can 
 - Render bounded markdown, tables, charts, and molecular reports beside the workspace.
 - Keep local-file provenance explicit without exposing an arbitrary shell or unrestricted file-access tool.
 
-The short MCP facade is:
+### Inline viewer and session tools
 
-```text
-burette.get_context
-burette.open_workspace
-burette.open_ketcher
-burette.observe_workspace
-burette.control_viewer
-burette.control_ketcher
-burette.get_mvs_authoring_reference
-burette.list_story_templates
-burette.create_story_from_template
-burette.create_story
-burette.validate_story
-burette.observe_story
-burette.control_story
-burette.render_panel
-```
+The packaged inline viewer opens with `burette.open_viewer`. Keep its `sessionId` and use `burette.control_inline_viewer` for subsequent actions and files in the same workspace. Repeated opener calls create separate sessions rather than continuing the existing view.
 
-`burette.open_workspace` returns a stable `workspaceSessionId`. Follow-up calls use that handle instead of carrying raw URLs or session-directory details through the conversation.
+The pinned package supports up to eight files and 16 MiB in one inline session. Available controls include camera movement, representation and colour changes, and supported document actions. Selection context reports what is selected in the viewer; it is not a scientific analysis result.
+
+Desktop and browser-session tools use their own handles and contracts. Let the installed plugin’s tool schema determine the correct arguments rather than copying a handle between modes. The repository also contains the desktop automation facade for observation, viewer control, Ketcher, and MolViewSpec Stories.
 
 ### Install the local plugin
 
-Clone the main repository and run its plugin installer:
+Install Git, Bun, and Codex first. Clone the main repository and run its plugin installer:
 
 ```bash
 git clone https://github.com/SergeiNikolenko/Burette.git
@@ -109,7 +96,7 @@ cd Burette
 bun run install:plugin
 ```
 
-Restart Codex after installation, then mention `@Burette` or select Burette from Plugins. The installer stages the self-contained plugin in a dedicated local marketplace, registers that marketplace with Codex, and enables `burette@burette` through the Codex CLI. The MCP server is bundled, so the installed plugin does not depend on a separate `node_modules` directory.
+Restart Codex after installation, then mention `@Burette` or select Burette from Plugins. The installer stages and verifies the native widget package pinned in `config/native-widget.json`, then installs it through the `burette-widget` marketplace as `burette@burette-widget`. The staged directory `plugins/burette-native-bundle` is generated; it is not a second source repository. The MCP server is bundled, so the installed plugin does not depend on a separate `node_modules` directory.
 
 ### Why the workspace bridge stays local
 
@@ -124,7 +111,9 @@ Browser development, the desktop app, tokenized preview, native Quick Look, and 
 - [Burette repository](https://github.com/SergeiNikolenko/Burette)
 - [Hosted plugin source](https://github.com/SergeiNikolenko/Burette/tree/main/apps/burette-public-plugin)
 - [Codex plugin source](https://github.com/SergeiNikolenko/Burette/tree/main/plugins/burette-agent)
-- [Plugin installation and architecture](https://github.com/SergeiNikolenko/Burette/blob/main/plugins/burette-agent/README.md)
+- [Packaged widget pin](https://github.com/SergeiNikolenko/Burette/blob/main/config/native-widget.json)
+- [Widget staging script](https://github.com/SergeiNikolenko/Burette/blob/main/scripts/stage-native-widget.mjs)
+- [Desktop automation architecture](https://github.com/SergeiNikolenko/Burette/blob/main/plugins/burette-agent/README.md)
 - [Agent platform and MCP contract](https://github.com/SergeiNikolenko/Burette/blob/main/docs/agent-platform.md)
 - [Privacy notice](https://github.com/SergeiNikolenko/Burette/blob/main/PRIVACY.md)
 - [Terms](https://github.com/SergeiNikolenko/Burette/blob/main/TERMS.md)

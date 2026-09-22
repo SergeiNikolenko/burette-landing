@@ -13,14 +13,16 @@ Burette can run the local `xtb` executable against a small-molecule file or a mo
 
 ## Install and check the runtime
 
-The recommended install path used by Burette is:
+In Settings, choose an existing xTB executable or install a Burette-managed environment. Managed installation requires **Pixi or Conda** and downloads the required packages. It does not require a global xTB installation.
+
+Alternatively, with Pixi already installed:
 
 ```bash
 pixi global install xtb
 xtb --version
 ```
 
-In the desktop app, open the structure inspector, expand **xTB**, then use **Settings → Check**. Burette discovers `xtb` from common Pixi, local, Homebrew, and `PATH` locations. When Pixi is available, the app can also invoke its xTB installer.
+In the desktop app, open the structure inspector, expand **xTB**, then use **Settings → Check**. Burette discovers `xtb` from common Pixi, local, Homebrew, and `PATH` locations. Run the runtime check again after installation and confirm the detected executable and version.
 
 ## Start a calculation
 

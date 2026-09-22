@@ -7,6 +7,18 @@ description: Build, validate, and change Burette using the repository's focused 
 
 The main Burette repository contains the desktop app, Quick Look extension, iPhone preview app, bundled web runtimes, agent tools, and documentation.
 
+## Set up a checkout
+
+Install Git, Bun, Rust, Xcode, and the Vite+ CLI as described in the repository’s [build guide](https://github.com/SergeiNikolenko/Burette/blob/main/docs/installing-building.md). For frontend work:
+
+```bash
+vp install
+vp dev
+vp check
+```
+
+Native app and Quick Look builds require macOS and Xcode. A browser preview does not validate Finder registration or packaged app behavior.
+
 ## Source of truth files
 
 | File | Owns |
@@ -31,8 +43,8 @@ bun scripts/check-preview-format-registry.mjs
 Use a unique development flavor for local packaged builds:
 
 ```bash
-BURETTE_DEV_FLAVOR=chat85b0 ./scripts/build.sh
-BURETTE_DEV_FLAVOR=chat85b0 ./scripts/install.sh
+BURETTE_DEV_FLAVOR=docs-check ./scripts/build.sh
+BURETTE_DEV_FLAVOR=docs-check ./scripts/install.sh
 ```
 
 Then refresh Quick Look:
