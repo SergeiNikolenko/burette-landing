@@ -26,6 +26,8 @@ export default function LazyVideo({
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
+    video.defaultPlaybackRate = 0.8;
+    video.playbackRate = 0.8;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const observer = new IntersectionObserver(

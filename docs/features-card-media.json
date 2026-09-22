@@ -1,0 +1,50 @@
+{
+  "stills": [
+    {
+      "id": "card-table",
+      "source": "coolectiopns.mp4",
+      "time": 28
+    },
+    {
+      "id": "card-open-viewer",
+      "source": "coolectiopns.mp4",
+      "time": 81
+    },
+    {
+      "id": "card-ketcher",
+      "source": "coolectiopns.mp4",
+      "time": 103
+    },
+    {
+      "id": "card-filter",
+      "source": "coolectiopns.mp4",
+      "time": 135
+    },
+    {
+      "id": "card-representation",
+      "source": "сцена с белком.mp4",
+      "time": 82
+    }
+  ],
+  "clips": [
+    {
+      "id": "card-rotate",
+      "source": "сцена с белком.mp4",
+      "start": 43,
+      "duration": 6
+    },
+    {
+      "id": "card-edit",
+      "source": "coolectiopns.mp4",
+      "start": 100,
+      "duration": 7,
+      "posterTime": 104
+    },
+    {
+      "id": "card-space-inspect",
+      "source": "Chemical Space.mp4",
+      "start": 35,
+      "duration": 5
+    }
+  ]
+}

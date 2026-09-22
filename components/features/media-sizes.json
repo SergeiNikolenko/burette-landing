@@ -1,0 +1,42 @@
+{
+  "collections": {
+    "width": 1280,
+    "height": 880
+  },
+  "collection-3d": {
+    "width": 1280,
+    "height": 880
+  },
+  "motion": {
+    "width": 1280,
+    "height": 854
+  },
+  "protein": {
+    "width": 1280,
+    "height": 1134
+  },
+  "finder": {
+    "width": 1280,
+    "height": 854
+  },
+  "space": {
+    "width": 1280,
+    "height": 852
+  },
+  "selection": {
+    "width": 1280,
+    "height": 1134
+  },
+  "card-rotate": {
+    "width": 1280,
+    "height": 1134
+  },
+  "card-edit": {
+    "width": 1280,
+    "height": 880
+  },
+  "card-space-inspect": {
+    "width": 1280,
+    "height": 852
+  }
+}

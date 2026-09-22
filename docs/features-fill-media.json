@@ -1,0 +1,352 @@
+[
+  {
+    "title": "Finder Quick Look",
+    "source": "QuikLook_dark.mp4",
+    "time": 4,
+    "asset": "shot-finder-quick-look.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Light and dark",
+    "source": "QuickLook_white.mp4",
+    "time": 6,
+    "asset": "shot-light-and-dark.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Molecular thumbnails",
+    "source": "QuikLook_dark.mp4",
+    "time": 12,
+    "asset": "shot-molecular-thumbnails.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Open in Burette",
+    "source": "QuikLook_dark.mp4",
+    "time": 20,
+    "asset": "shot-open-in-burette.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Spectrum previews",
+    "source": "QuikLook_dark.mp4",
+    "time": 28,
+    "asset": "shot-spectrum-previews.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Illustrative appearance",
+    "source": "сцена с белком.mp4",
+    "time": 100,
+    "asset": "shot-illustrative-appearance.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Show, hide, isolate",
+    "source": "сцена с белком.mp4",
+    "time": 44,
+    "asset": "shot-show-hide-isolate.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Colour controls",
+    "source": "сцена с белком.mp4",
+    "time": 84,
+    "asset": "shot-colour-controls.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Density maps",
+    "source": "сцена с белком.mp4",
+    "time": 48,
+    "asset": "shot-density-maps.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Crystal structures",
+    "source": "QuikLook_dark.mp4",
+    "time": 75,
+    "asset": "shot-crystal-structures.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Mesoscale scenes",
+    "source": "сцена с белком.mp4",
+    "time": 3,
+    "asset": "shot-mesoscale-scenes.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Ligand pockets",
+    "source": "сцена с белком.mp4",
+    "time": 12,
+    "asset": "shot-ligand-pockets.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Lasso selection",
+    "source": "сцена с белком.mp4",
+    "time": 20,
+    "asset": "shot-lasso-selection.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Measurements",
+    "source": "сцена с белком.mp4",
+    "time": 28,
+    "asset": "shot-measurements.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Surfaces for your selection",
+    "source": "сцена с белком.mp4",
+    "time": 101,
+    "asset": "shot-surfaces-for-your-selection.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Extract a subset",
+    "source": "сцена с белком.mp4",
+    "time": 68,
+    "asset": "shot-extract-a-subset.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Structure superposition",
+    "source": "сцена с белком.mp4",
+    "time": 76,
+    "asset": "shot-structure-superposition.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Trajectory playback",
+    "source": "QuikLook_dark.mp4",
+    "time": 44,
+    "asset": "shot-trajectory-playback.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Pose alignment",
+    "source": "coolectiopns.mp4",
+    "time": 159,
+    "asset": "shot-pose-alignment.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Topology and trajectory",
+    "source": "QuikLook_dark.mp4",
+    "time": 46,
+    "asset": "shot-topology-and-trajectory.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "SDF poses",
+    "source": "coolectiopns.mp4",
+    "time": 150,
+    "asset": "shot-sdf-poses.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Molecular Stories",
+    "source": "сцена с белком.mp4",
+    "time": 92,
+    "asset": "shot-molecular-stories.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Substructure search",
+    "source": "coolectiopns.mp4",
+    "time": 32,
+    "asset": "shot-substructure-search.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "3D inside a collection",
+    "source": "coolectiopns.mp4",
+    "time": 50,
+    "asset": "shot-3d-inside-a-collection.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Combine collections",
+    "source": "coolectiopns.mp4",
+    "time": 66,
+    "asset": "shot-combine-collections.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Selection and export",
+    "source": "coolectiopns.mp4",
+    "time": 64,
+    "asset": "shot-selection-and-export.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Browse large collections",
+    "source": "coolectiopns.mp4",
+    "time": 94,
+    "asset": "shot-browse-large-collections.jpg",
+    "status": "review"
+  },
+  {
+    "title": "DataWarrior files",
+    "source": "coolectiopns.mp4",
+    "time": 119,
+    "asset": "shot-datawarrior-files.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Linked selection",
+    "source": "Chemical Space.mp4",
+    "time": 39,
+    "asset": "shot-linked-selection.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Similarity search",
+    "source": "Chemical Space.mp4",
+    "time": 18,
+    "asset": "shot-similarity-search.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Clustering",
+    "source": "Chemical Space.mp4",
+    "time": 19,
+    "asset": "shot-clustering.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Choose a diverse subset",
+    "source": "Chemical Space.mp4",
+    "time": 44,
+    "asset": "shot-choose-a-diverse-subset.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Activity colouring",
+    "source": "Chemical Space.mp4",
+    "time": 28,
+    "asset": "shot-activity-colouring.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Activity cliffs",
+    "source": "Chemical Space.mp4",
+    "time": 38,
+    "asset": "shot-activity-cliffs.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Conformer generation",
+    "source": "coolectiopns.mp4",
+    "time": 82,
+    "asset": "shot-conformer-generation.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "MMFF refinement",
+    "source": "coolectiopns.mp4",
+    "time": 83,
+    "asset": "shot-mmff-refinement.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Pose scoring",
+    "source": "coolectiopns.mp4",
+    "time": 160,
+    "asset": "shot-pose-scoring.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Semiempirical energies",
+    "source": "сцена с белком.mp4",
+    "time": 60,
+    "asset": "shot-semiempirical-energies.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "xTB calculations",
+    "source": "coolectiopns.mp4",
+    "time": 80,
+    "asset": "shot-xtb-calculations.jpg",
+    "status": "review"
+  },
+  {
+    "title": "CREST and PRISM",
+    "source": "coolectiopns.mp4",
+    "time": 81,
+    "asset": "shot-crest-and-prism.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Keep working during calculations",
+    "source": "Chemical Space.mp4",
+    "time": 25,
+    "asset": "shot-keep-working-during-calculations.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Sketch to 3D",
+    "source": "coolectiopns.mp4",
+    "time": 106,
+    "asset": "shot-sketch-to-3d.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Text editing",
+    "source": "сцена с белком.mp4",
+    "time": 53,
+    "asset": "shot-text-editing.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Project folders",
+    "source": "Chemical Space.mp4",
+    "time": 2,
+    "asset": "shot-project-folders.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Tabs and docks",
+    "source": "coolectiopns.mp4",
+    "time": 30,
+    "asset": "shot-tabs-and-docks.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Command palette",
+    "source": "coolectiopns.mp4",
+    "time": 63,
+    "asset": "shot-command-palette.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Drag files into your workspace",
+    "source": "coolectiopns.mp4",
+    "time": 5,
+    "asset": "shot-drag-files-into-your-workspace.jpg",
+    "status": "review"
+  },
+  {
+    "title": "Ask your agent to open a structure",
+    "source": "сцена с белком.mp4",
+    "time": 4,
+    "asset": "shot-ask-your-agent-to-open-a-structure.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Continue in your preferred chemistry app",
+    "source": "сцена с белком.mp4",
+    "time": 67,
+    "asset": "shot-continue-in-your-preferred-chemistry-app.jpg",
+    "status": "replace-context-frame"
+  },
+  {
+    "title": "Automate repeatable steps",
+    "source": "Chemical Space.mp4",
+    "time": 8,
+    "asset": "shot-automate-repeatable-steps.jpg",
+    "status": "replace-context-frame"
+  }
+]

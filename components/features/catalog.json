@@ -1,0 +1,542 @@
+[
+  {
+    "id": "preview",
+    "title": "Press Space. See the structure.",
+    "intro": "Start in Finder. Press Space to see what is inside a molecular file, then open the workspace when you want to keep working.",
+    "media": "finder",
+    "docs": "/docs/surfaces/quick-look",
+    "features": [
+      {
+        "title": "Finder Quick Look",
+        "description": "Preview a molecular file without opening the full workspace.",
+        "screenshot": "/assets/features/shot-finder-quick-look.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Interactive 3D",
+        "description": "Rotate and zoom to inspect a structure from any angle.",
+        "video": "card-rotate"
+      },
+      {
+        "title": "Light and dark",
+        "description": "Choose the background that makes your structure easiest to read.",
+        "screenshot": "/assets/features/shot-light-and-dark.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Molecular thumbnails",
+        "description": "Recognize supported structure files while browsing Finder.",
+        "screenshot": "/assets/features/shot-molecular-thumbnails.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Open in Burette",
+        "description": "Take a preview into the desktop workspace for editing and analysis.",
+        "screenshot": "/assets/features/shot-open-in-burette.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Spectrum previews",
+        "description": "Inspect supported mass spectra in a dedicated spectrum viewer.",
+        "screenshot": "/assets/features/shot-spectrum-previews.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960
+      }
+    ]
+  },
+  {
+    "id": "structures",
+    "title": "From the whole protein to its ligand.",
+    "intro": "Show the protein fold, inspect a ligand, or hide water and focus on a single chain.",
+    "media": "protein",
+    "docs": "/docs/surfaces/desktop",
+    "features": [
+      {
+        "title": "Illustrative appearance",
+        "description": "Give molecular shapes clear outlines for readable figures.",
+        "screenshot": "/assets/features/shot-illustrative-appearance.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Representation styles",
+        "description": "Choose cartoons, sticks, spheres, or surfaces to suit the question.",
+        "screenshot": "/assets/features/card-representation.jpg",
+        "screenshotHeight": 1134
+      },
+      {
+        "title": "Scene tree",
+        "description": "Browse chains, ligands, water, and representations. Focus on one component or hide the parts you do not need.",
+        "screenshot": "/assets/features/detail-tree.jpg",
+        "screenshotHeight": 1134
+      },
+      {
+        "title": "Show, hide, isolate",
+        "description": "Remove visual clutter while keeping the original structure available.",
+        "screenshot": "/assets/features/shot-show-hide-isolate.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Colour controls",
+        "description": "Colour components and adjust transparency without rebuilding your scene.",
+        "screenshot": "/assets/features/shot-colour-controls.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Density maps",
+        "description": "View supported electron-density and volume files alongside structures.",
+        "screenshot": "/assets/features/shot-density-maps.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Crystal structures",
+        "description": "Inspect supported CIF structures, unit cells, and symmetry.",
+        "screenshot": "/assets/features/shot-crystal-structures.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Mesoscale scenes",
+        "description": "Explore supported cell-scale scenes in the dedicated Mesoscale viewer.",
+        "screenshot": "/assets/features/shot-mesoscale-scenes.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      }
+    ]
+  },
+  {
+    "id": "selection",
+    "title": "Pick a residue. Inspect its neighbours.",
+    "intro": "Select atoms in 3D or residues in the sequence, then measure distances or create a surface around your selection.",
+    "media": "selection",
+    "docs": "/docs/surfaces/desktop",
+    "features": [
+      {
+        "title": "Sequence selection",
+        "description": "Select a residue or range in the Sequence panel to highlight it in 3D.",
+        "screenshot": "/assets/features/capture-sequence.png",
+        "screenshotHeight": 720
+      },
+      {
+        "title": "Ligand pockets",
+        "description": "Show a pocket surface from protein residues within 5 Å of a ligand to inspect how their shapes fit together.",
+        "screenshot": "/assets/features/shot-ligand-pockets.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Lasso selection",
+        "description": "Draw around atoms to make a selection directly in the viewer.",
+        "screenshot": "/assets/features/shot-lasso-selection.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Measurements",
+        "description": "Measure distances, angles, and dihedrals between selected atoms.",
+        "screenshot": "/assets/features/shot-measurements.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Surfaces for your selection",
+        "description": "Create a surface for a residue, chain, protein, or ligand without covering the entire scene.",
+        "screenshot": "/assets/features/shot-surfaces-for-your-selection.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Extract a subset",
+        "description": "Save the part of a structure you want to work with.",
+        "screenshot": "/assets/features/shot-extract-a-subset.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Structure superposition",
+        "description": "Compare structures using sequence, chain, residue, or TM-align workflows.",
+        "screenshot": "/assets/features/shot-structure-superposition.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      }
+    ]
+  },
+  {
+    "id": "motion",
+    "title": "Watch a molecule move.",
+    "intro": "Play a trajectory or compare a set of molecular poses without leaving the viewer.",
+    "media": "motion",
+    "docs": "/docs/surfaces/desktop",
+    "features": [
+      {
+        "title": "Trajectory playback",
+        "description": "Play, pause, or step through individual frames while rotating the structure. The demo shows a 20-frame molecular vibration.",
+        "screenshot": "/assets/features/shot-trajectory-playback.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Trajectory smoothing",
+        "description": "Add interpolated views between recorded frames for smoother playback. Your original frames stay unchanged.",
+        "screenshot": "/assets/features/detail-smoothing.jpg",
+        "screenshotHeight": 854
+      },
+      {
+        "title": "Pose alignment",
+        "description": "Show every pose with All, then toggle Align to compare their overlap. Switch back to a single pose for a closer look.",
+        "screenshot": "/assets/features/shot-pose-alignment.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Topology and trajectory",
+        "description": "Load a trajectory with its matching topology to view the motion in the context of the molecular structure.",
+        "screenshot": "/assets/features/shot-topology-and-trajectory.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "SDF poses",
+        "description": "Move between structures in a multi-record SDF, including V3000 files.",
+        "screenshot": "/assets/features/shot-sdf-poses.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Molecular Stories",
+        "description": "Build and play a sequence of molecular views with MolViewSpec Stories.",
+        "screenshot": "/assets/features/shot-molecular-stories.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      }
+    ]
+  },
+  {
+    "id": "collections",
+    "title": "Find the compounds worth a closer look.",
+    "intro": "Browse structures and their properties together. Find a subset, inspect it, and export the result.",
+    "media": "collections",
+    "docs": "/docs/workflows/collections",
+    "features": [
+      {
+        "title": "Cards and tables",
+        "description": "Switch between molecular drawings and a property table.",
+        "screenshot": "/assets/features/card-table.jpg",
+        "screenshotHeight": 880
+      },
+      {
+        "title": "Substructure search",
+        "description": "Use SMARTS to filter molecules and highlight matching atoms.",
+        "screenshot": "/assets/features/shot-substructure-search.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "3D inside a collection",
+        "description": "Switch a molecule from its 2D drawing to a live 3D view without leaving the collection.",
+        "screenshot": "/assets/features/shot-3d-inside-a-collection.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Structures and properties",
+        "description": "Select a molecule to see its drawing and descriptors beside the table. Filter numeric properties to narrow your collection.",
+        "screenshot": "/assets/features/detail-properties.jpg",
+        "screenshotHeight": 880
+      },
+      {
+        "title": "Search, sort, and filter",
+        "description": "Find a name or SMILES, sort a column, or narrow the table with a numeric property filter.",
+        "screenshot": "/assets/features/card-filter.jpg",
+        "screenshotHeight": 880
+      },
+      {
+        "title": "Open a molecule in its own tab",
+        "description": "Move from a collection card to a full molecular view for rotation, selection, and inspection.",
+        "screenshot": "/assets/features/card-open-viewer.jpg",
+        "screenshotHeight": 880
+      },
+      {
+        "title": "Combine collections",
+        "description": "Append compatible molecular records to keep related compounds in one collection.",
+        "screenshot": "/assets/features/shot-combine-collections.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Selection and export",
+        "description": "Export the visible set as SMILES or table data as CSV.",
+        "screenshot": "/assets/features/shot-selection-and-export.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Browse large collections",
+        "description": "Browse molecular cards as they load into view, without waiting for every drawing to render.",
+        "screenshot": "/assets/features/shot-browse-large-collections.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "DataWarrior files",
+        "description": "Open supported DataWarrior structures in the molecular grid.",
+        "screenshot": "/assets/features/shot-datawarrior-files.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      }
+    ]
+  },
+  {
+    "id": "chemical-space",
+    "title": "Find neighbours in chemical space.",
+    "intro": "Map a collection by molecular similarity and bring selected compounds back to the table. Native calculations run on Apple Silicon in the Mac app.",
+    "media": "space",
+    "docs": "/docs/workflows/native-compute",
+    "features": [
+      {
+        "title": "A map of your molecules",
+        "description": "Explore molecular similarity in a 2D or 3D map, with each point representing a compound.",
+        "video": "card-space-inspect"
+      },
+      {
+        "title": "Linked selection",
+        "description": "Select a region of the map and continue with those molecules in the grid.",
+        "screenshot": "/assets/features/shot-linked-selection.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Similarity search",
+        "description": "Find molecules most similar to a query using molecular fingerprints.",
+        "screenshot": "/assets/features/shot-similarity-search.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Clustering",
+        "description": "Group the selected, filtered, or complete collection.",
+        "screenshot": "/assets/features/shot-clustering.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Choose a diverse subset",
+        "description": "Export a representative set of compounds with their structures and provenance.",
+        "screenshot": "/assets/features/shot-choose-a-diverse-subset.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Activity colouring",
+        "description": "Colour a map by a numeric property to see how values vary.",
+        "screenshot": "/assets/features/shot-activity-colouring.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Activity cliffs",
+        "description": "Look for similar molecules with markedly different activity.",
+        "screenshot": "/assets/features/shot-activity-cliffs.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      }
+    ]
+  },
+  {
+    "id": "compute",
+    "title": "Turn a sketch into a 3D structure.",
+    "intro": "Prepare molecular geometry and run local calculations. External engines are available separately from the built-in Apple Silicon compute tools.",
+    "media": null,
+    "docs": "/docs/workflows/native-compute",
+    "features": [
+      {
+        "title": "Conformer generation",
+        "description": "Generate 3D conformers from selected molecules or a Ketcher sketch.",
+        "screenshot": "/assets/features/shot-conformer-generation.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "MMFF refinement",
+        "description": "Refine generated geometry with MMFF94 or MMFF94s.",
+        "screenshot": "/assets/features/shot-mmff-refinement.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Pose scoring",
+        "description": "Compare poses with RMSD, shape, and electrostatic terms.",
+        "screenshot": "/assets/features/shot-pose-scoring.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Semiempirical energies",
+        "description": "Run supported single-point methods and inspect their reports.",
+        "screenshot": "/assets/features/shot-semiempirical-energies.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "xTB calculations",
+        "description": "Use the optional local xTB engine for supported molecular calculations.",
+        "screenshot": "/assets/features/shot-xtb-calculations.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "CREST and PRISM",
+        "description": "Run optional conformer sampling and ensemble-pruning workflows.",
+        "screenshot": "/assets/features/shot-crest-and-prism.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Keep working during calculations",
+        "description": "Follow a calculation’s progress, then open its report and output files when it finishes.",
+        "screenshot": "/assets/features/shot-keep-working-during-calculations.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      }
+    ]
+  },
+  {
+    "id": "editing",
+    "title": "Sketch, edit, and compare.",
+    "intro": "Edit a molecule in Ketcher, inspect its coordinates, and keep related files open in tabs and side panels.",
+    "media": null,
+    "docs": "/docs/surfaces/desktop",
+    "features": [
+      {
+        "title": "Ketcher sketches",
+        "description": "Draw and edit small molecules in the integrated Ketcher editor.",
+        "screenshot": "/assets/features/card-ketcher.jpg",
+        "screenshotHeight": 880
+      },
+      {
+        "title": "Edit collection molecules",
+        "description": "Send a compatible grid row to Ketcher and update the collection.",
+        "video": "card-edit"
+      },
+      {
+        "title": "Sketch to 3D",
+        "description": "Send a sketch to Mol* or a collection for the next step.",
+        "screenshot": "/assets/features/shot-sketch-to-3d.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Text editing",
+        "description": "Inspect and edit supported molecular source files in place.",
+        "screenshot": "/assets/features/shot-text-editing.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Project folders",
+        "description": "Browse nested project files from the workspace sidebar.",
+        "screenshot": "/assets/features/shot-project-folders.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Tabs and docks",
+        "description": "Keep structures, tables, text, and inspectors alongside one another.",
+        "screenshot": "/assets/features/shot-tabs-and-docks.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960
+      },
+      {
+        "title": "Command palette",
+        "description": "Find commands, files, and query-driven actions from the keyboard.",
+        "screenshot": "/assets/features/shot-command-palette.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Drag files into your workspace",
+        "description": "Drop molecular files, collection records, or sketches into the workspace to continue working with them.",
+        "screenshot": "/assets/features/shot-drag-files-into-your-workspace.jpg",
+        "screenshotHeight": 660,
+        "screenshotWidth": 960
+      }
+    ]
+  },
+  {
+    "id": "integrations",
+    "title": "Connect your chemistry tools.",
+    "intro": "Ask an agent to open a structure, export a figure for a paper, or continue in another chemistry app.",
+    "media": null,
+    "docs": "/docs/plugin",
+    "features": [
+      {
+        "title": "Ask your agent to open a structure",
+        "description": "Use the Burette plugin to let an agent open molecular files and work with the available workspace tools through MCP.",
+        "screenshot": "/assets/features/shot-ask-your-agent-to-open-a-structure.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Make a figure for your paper",
+        "description": "Create molecular illustrations with the optional xyzrender engine. Export SVG artwork that stays sharp when resized for a paper or slide.",
+        "screenshot": "/assets/features/detail-xyzrender.jpg",
+        "screenshotHeight": 880
+      },
+      {
+        "title": "Continue in your preferred chemistry app",
+        "description": "Send a supported structure to an installed chemistry application for the next part of your analysis.",
+        "screenshot": "/assets/features/shot-continue-in-your-preferred-chemistry-app.jpg",
+        "screenshotHeight": 852,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      },
+      {
+        "title": "Automate repeatable steps",
+        "description": "Use Burette commands in scripts and agent workflows. Application links can open specific destinations in the workspace.",
+        "screenshot": "/assets/features/shot-automate-repeatable-steps.jpg",
+        "screenshotHeight": 640,
+        "screenshotWidth": 960,
+        "captureStatus": "replace"
+      }
+    ]
+  }
+]

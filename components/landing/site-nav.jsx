@@ -7,14 +7,14 @@ export default function SiteNav() {
   return (
     <header className="site-header">
       <div className="site-nav page-width">
-        <a href="#top" className="wordmark" translate="no">
+        <a href="/#top" className="wordmark" translate="no">
           Burette
           <span className="wordmark-description">Molecular workspace</span>
         </a>
         <nav aria-label="Sections" className="section-nav">
-          <a href="#features">Overview</a>
-          <a href="#formats">Formats</a>
-          <a href="#codex">For agents</a>
+          <a href="/features">Features</a>
+          <a href="/#formats">Formats</a>
+          <a href="/#codex">For agents</a>
           <Link href="/docs">Docs</Link>
         </nav>
         <div className="nav-actions">

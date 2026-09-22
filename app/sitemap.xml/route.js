@@ -2,6 +2,7 @@ import { SITE_URL } from "../site-url.js";
 
 const URLS = [
   { path: "", priority: "1.0", changefreq: "weekly" },
+  { path: "/features", priority: "0.9", changefreq: "weekly" },
   { path: "/docs", priority: "0.8", changefreq: "weekly" },
   { path: "/docs/get-started/install", priority: "0.7", changefreq: "monthly" },
   { path: "/docs/formats", priority: "0.7", changefreq: "monthly" },

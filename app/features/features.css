@@ -1,0 +1,70 @@
+.landing.feature-page { color:var(--text); background:var(--bg); }
+.feature-heading { text-align:center; padding-block:150px 100px; }
+.feature-heading > p:first-child { font-size:14px; margin-bottom:24px; color:var(--molecular-ink); }
+.feature-heading h1 { font-size:clamp(42px,6vw,76px); line-height:1.04; letter-spacing:-.055em; margin:0 0 28px; font-weight:550; }
+.feature-heading p { font-size:19px; line-height:1.6; color:var(--body); }
+.feature-heading > a,.feature-end a { display:inline-block; margin-top:28px; color:var(--molecular-ink); }
+.feature-layout { display:grid; grid-template-columns:190px minmax(0,1fr); gap:60px; align-items:start; }
+.feature-index { position:sticky; top:110px; display:flex; flex-direction:column; gap:5px; padding-bottom:20px; }
+.feature-index a { padding:10px 12px; border-radius:10px; font-size:14px; color:var(--body); text-decoration:none; }
+.feature-index a:hover,.feature-index a:focus-visible { color:var(--text); background:var(--surface-2); }
+.feature-group { padding-bottom:86px; margin-bottom:65px; border-bottom:1px solid var(--border); }
+.feature-number { color:var(--molecular-ink); font-size:12px; font-variant-numeric:tabular-nums; letter-spacing:.1em; margin-bottom:20px; }
+.feature-group h2 { font-size:clamp(30px,3.8vw,46px); font-weight:550; line-height:1.12; letter-spacing:-.04em; margin:0 0 22px; }
+.feature-intro { max-width:65ch; font-size:18px; line-height:1.65; color:var(--body); margin:0 0 30px; }
+.feature-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 38px; margin-block:36px; }
+.feature-list h3 { font-size:17px; font-weight:550; line-height:1.4; margin-bottom:8px; }
+.feature-list p { font-size:15px; line-height:1.65; color:var(--body); margin:0; }
+.feature-guide { display:inline-block; margin-top:5px; color:var(--molecular-ink); font-size:15px; }
+.feature-end { text-align:center; padding-block:20px 120px; }
+.feature-end h2 { font-size:clamp(30px,4vw,46px); letter-spacing:-.04em; margin-bottom:20px; }
+.feature-end p { color:var(--body); }
+@media(max-width:900px) { .feature-layout { grid-template-columns:1fr; gap:32px; } .feature-index { position:static; flex-direction:row; overflow-x:auto; white-space:nowrap; margin-inline:-8px; } .feature-heading { padding-block:125px 55px; } }
+@media(max-width:540px) { .landing.feature-page .page-width { width:calc(100% - 40px); } .feature-heading h1 { font-size:43px; } .feature-heading p,.feature-intro { font-size:17px; } .feature-wide-break { display:none; } .feature-list { grid-template-columns:1fr; gap:24px; } .feature-group { margin-bottom:44px; padding-bottom:44px; } .feature-demo { border-radius:12px; } .feature-play { left:10px; bottom:10px; padding:8px 12px; font-size:12px; } }
+
+.feature-index a[aria-current="location"] { background:var(--surface-2); color:var(--text); font-weight:600; }
+.feature-heading { padding-block:112px 64px; }
+
+.feature-sections { min-width:0; }
+.feature-cards { margin-block:36px; }
+.feature-cards-track { margin-left:-20px; align-items:stretch; }
+.feature-card-item { flex-basis:38%; padding-left:20px; display:flex; }
+.feature-explainer { width:100%; overflow:hidden; border-radius:14px; background:var(--surface-2); }
+.feature-capture img { display:block; width:100%; height:auto; aspect-ratio:4 / 3; object-fit:contain; background:var(--bg); }
+.feature-explainer-copy { padding:22px 26px; }
+.feature-explainer h3 { font-size:21px; line-height:1.2; letter-spacing:-.025em; font-weight:550; margin:0 0 14px; text-wrap:balance; }
+.feature-explainer p { font-size:15px; line-height:1.6; color:var(--body); margin:0; }
+.feature-cards-controls { display:flex; justify-content:flex-end; gap:10px; margin-top:20px; }
+.feature-cards-controls button { position:static; transform:none; width:40px; height:40px; background:var(--surface-2); border:0; color:var(--text); }
+.feature-cards-controls button:disabled { opacity:.3; }
+.feature-cards-controls button:focus-visible { outline:2px solid var(--molecular-ink); outline-offset:3px; }
+@media(max-width:600px) { .feature-card-item { flex-basis:88%; } .feature-explainer-copy { padding:22px; } .feature-explainer h3 { font-size:20px; } }
+
+.feature-capture,.feature-capture-pending { position:relative; aspect-ratio:4 / 3; outline:2px solid #e05252; outline-offset:-2px; }
+.feature-capture > span { position:absolute; bottom:12px; left:12px; padding:5px 9px; border-radius:6px; background:#a52020; color:white; font-size:12px; }
+.feature-capture-pending { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; color:var(--body); font-size:13px; background:var(--bg); }
+.capture-skeleton-window { width:58%; height:42%; border:1px solid var(--border); border-radius:10px; padding:16px; display:flex; flex-direction:column; gap:12px; }
+.capture-skeleton-window i { display:block; height:8px; width:70%; border-radius:4px; background:var(--surface-2); }
+.capture-skeleton-window i:first-child { width:35%; }
+.capture-skeleton-window i:last-child { width:90%; }
+
+.feature-shortcuts { display:flex; justify-content:center; flex-wrap:wrap; gap:12px 26px; margin-top:28px; font-size:15px; color:var(--molecular-ink); }
+.feature-shortcuts a:hover { text-decoration:underline; }
+
+.feature-capture .integrated-demo { margin:0; height:100%; }
+.feature-capture .integrated-demo video { width:100%; height:100%; object-fit:contain; border-radius:0; }
+.feature-explainer-copy { min-height:174px; }
+@media(min-width:1600px) { .feature-card-item { flex-basis:33%; } }
+
+
+.feature-hero { position:relative; isolation:isolate; }
+.feature-sky {
+  position:absolute; inset:0; z-index:-1; overflow:hidden; pointer-events:none;
+  background:linear-gradient(var(--sky-top),var(--sky-bottom));
+  mask-image:linear-gradient(#000 20%,transparent 100%);
+}
+.feature-clouds { display:block; width:100%; height:100%; opacity:.72; }
+.feature-sky::after {
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 42%,var(--bg) 22%,color-mix(in srgb,var(--bg) 85%,transparent) 48%,transparent 100%);
+}

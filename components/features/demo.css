@@ -1,0 +1,6 @@
+.integrated-demo { margin:28px 0; background:transparent; border:0; }
+.integrated-demo video { display:block; width:100%; height:auto; border:0; border-radius:10px; }
+.landing .product-chapter > .integrated-demo, .landing .product-chapter .media-stage > .integrated-demo { max-width:880px; margin:28px auto; }
+.feature-media-pending { color:var(--body); border-bottom:1px solid var(--border); padding:12px 0 20px; font-size:13px; }
+.landing .feature-card .feature-media-pending { display:block; margin:40px 24px; border:0; }
+.landing .feature-card-image { object-fit:contain; }
