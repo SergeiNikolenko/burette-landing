@@ -63,10 +63,14 @@
 .feature-sky {
   position:absolute; inset:0; z-index:-1; overflow:hidden; pointer-events:none;
   background:linear-gradient(var(--sky-top),var(--sky-bottom));
-  mask-image:linear-gradient(#000 20%,transparent 100%);
+  mask-image:linear-gradient(#000 65%,transparent 100%);
 }
-.feature-clouds { display:block; width:100%; height:100%; opacity:.72; }
+.feature-clouds { display:block; width:100%; height:100%; opacity:1; }
 .feature-sky::after {
   content:""; position:absolute; inset:0;
-  background:radial-gradient(ellipse at 50% 42%,var(--bg) 22%,color-mix(in srgb,var(--bg) 85%,transparent) 48%,transparent 100%);
+  background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,var(--bg) 40%,transparent) 22%,color-mix(in srgb,var(--bg) 20%,transparent) 48%,transparent 100%);
+}
+
+html[data-theme="dark"] .feature-heading {
+  text-shadow:0 2px 8px #000,0 0 24px #000;
 }
