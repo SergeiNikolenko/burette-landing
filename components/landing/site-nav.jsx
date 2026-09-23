@@ -9,7 +9,6 @@ export default function SiteNav() {
       <div className="site-nav page-width">
         <a href="/#top" className="wordmark" translate="no">
           Burette
-          <span className="wordmark-description">Molecular workspace</span>
         </a>
         <nav aria-label="Sections" className="section-nav">
           <a href="/features">Features</a>
