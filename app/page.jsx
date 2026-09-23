@@ -2,6 +2,7 @@ import "./landing.css";
 import "./editorial.css";
 import "./live-demo.css";
 import "./home-stories.css";
+import "./mobile.css";
 import { SITE_URL } from "./site-url.js";
 import Analytics from "@/components/landing/analytics";
 import SiteNav from "@/components/landing/site-nav";
