@@ -13,7 +13,7 @@ import { activeWorkspaceViewer, openWorkspaceScene, prepareWorkspaceScene, works
 export default function MacbookWorkspace() {
   const [desktop, setDesktop] = useState(false);
   useEffect(() => {
-    const query = matchMedia("(min-width: 640px)");
+    const query = matchMedia("(min-width: 960px)");
     const sync = () => setDesktop(query.matches && !navigator.connection?.saveData && !/(^|-)2g$|3g/.test(navigator.connection?.effectiveType || ""));
     sync(); query.addEventListener("change", sync);
     return () => query.removeEventListener("change", sync);

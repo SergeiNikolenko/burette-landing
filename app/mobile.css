@@ -1,0 +1,49 @@
+/* Shared phone layout; desktop compositions keep their original proportions. */
+@media (max-width: 600px) {
+  .landing .site-nav { width:calc(100% - 32px); gap:8px; }
+  .landing .wordmark { min-height:44px; font-size:23px; flex-shrink:0; }
+  .landing .nav-actions { gap:4px; }
+  .landing .nav-github { display:none; }
+  .landing .nav-download { height:44px; padding-inline:14px; }
+  .landing .mobile-nav-trigger { width:44px; height:44px; }
+  .landing .hero-section { padding-top:36px; }
+  .landing .hero-clouds,.landing .feature-clouds { opacity:.45; }
+  .landing .hero-copy { padding-inline:20px; }
+  .landing .hero-copy .section-label { font-size:14px; margin-bottom:20px; }
+  .landing .hero-copy h1 { font-size:clamp(34px,10.5vw,52px); letter-spacing:-.05em; }
+  .landing .hero-description { font-size:17px; max-width:32ch; margin-top:22px; }
+  .landing .hero-actions { margin-top:24px; gap:6px; }
+  .landing .hero-actions .pill-button { min-height:48px; }
+  .landing .hero-note { margin-top:12px; }
+  .landing .hero-stage { width:calc(100% - 32px); margin-top:32px; }
+  .landing .home-section-heading h2,
+  .landing .home-story h2 { font-size:clamp(30px,8.3vw,40px); }
+  .landing .home-highlight-copy { padding:20px; }
+  .landing .home-highlight-copy h3 { font-size:24px; }
+  .landing .home-story { padding-top:56px; }
+  .landing .home-story-wide .integrated-demo { margin-top:28px; }
+  .landing .quiet-section,.landing .install-section,.landing .agent-section { padding-block:56px; }
+  .landing .text-link { min-height:44px; display:inline-flex; align-items:center; }
+  .landing .study-controls button { width:44px; height:44px; }
+  .landing footer > div > .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 20px; }
+  .landing footer nav { gap:0; }
+  .landing footer nav a { display:flex; align-items:center; min-height:44px; }
+  .landing-menu { max-height:calc(100dvh - 32px); overflow-y:auto; }
+  .landing.feature-page .feature-heading { padding-block:48px 40px; }
+  .landing.feature-page .feature-heading h1 { font-size:clamp(34px,9.5vw,48px); margin-bottom:22px; }
+  .landing.feature-page .feature-heading p { font-size:16px; }
+  .landing.feature-page .feature-heading > p:first-child { font-size:13px; margin-bottom:20px; }
+  .landing.feature-page .feature-shortcuts { gap:0 16px; margin-top:20px; font-size:14px; }
+  .landing.feature-page .feature-shortcuts a { display:flex; align-items:center; min-height:44px; }
+  .landing.feature-page .feature-heading > a { margin-top:12px; min-height:44px; align-content:center; }
+  .landing.feature-page .feature-index { gap:4px; padding-bottom:12px; margin:0; }
+  .landing.feature-page .feature-index a { display:flex; align-items:center; min-height:44px; }
+  .landing.feature-page .feature-layout { gap:24px; }
+  .landing.feature-page .feature-group h2 { font-size:30px; }
+  .landing.feature-page .feature-intro { font-size:16px; line-height:1.55; }
+  .landing.feature-page .feature-cards { margin-block:28px; }
+  .landing.feature-page .feature-explainer h3 { font-size:22px; }
+  .landing.feature-page .feature-explainer p { font-size:15px; }
+  .landing.feature-page .feature-guide { min-height:44px; align-content:center; }
+  .landing.feature-page .feature-end { padding-bottom:64px; }
+}

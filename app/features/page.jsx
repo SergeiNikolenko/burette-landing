@@ -1,6 +1,7 @@
 import "../landing.css";
 import "../editorial.css";
 import "./features.css";
+import "../mobile.css";
 import SiteNav from "@/components/landing/site-nav";
 import SiteFooter from "@/components/landing/site-footer";
 import SkyCanvas from "@/components/landing/sky-canvas";
