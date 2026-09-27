@@ -143,18 +143,18 @@
       {
         "title": "Ligand pockets",
         "description": "Show a pocket surface from protein residues within 5 Å of a ligand to inspect how their shapes fit together.",
-        "screenshot": "/assets/features/shot-ligand-pockets.jpg",
-        "screenshotHeight": 852,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "screenshot": "/assets/features/capture-pocket-detail.png",
+        "screenshotHeight": 600,
+        "screenshotWidth": 690,
+        "captureStatus": "approved"
       },
       {
         "title": "Lasso selection",
-        "description": "Draw around atoms to make a selection directly in the viewer.",
-        "screenshot": "/assets/features/shot-lasso-selection.jpg",
-        "screenshotHeight": 852,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "description": "Draw around atoms to select part of a structure in 3D.",
+        "screenshot": "/assets/features/capture-lasso-detail.png",
+        "screenshotHeight": 500,
+        "screenshotWidth": 540,
+        "captureStatus": "approved"
       },
       {
         "title": "Measurements",
@@ -263,10 +263,10 @@
       {
         "title": "Substructure search",
         "description": "Use SMARTS to filter molecules and highlight matching atoms.",
-        "screenshot": "/assets/features/shot-substructure-search.jpg",
-        "screenshotHeight": 660,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "screenshot": "/assets/features/capture-smarts.png",
+        "screenshotHeight": 500,
+        "screenshotWidth": 838,
+        "captureStatus": "approved"
       },
       {
         "title": "3D inside a collection",
@@ -468,10 +468,11 @@
     "features": [
       {
         "title": "Ketcher sketches",
-        "description": "Draw and edit small molecules in the integrated Ketcher editor.",
-        "screenshot": "/assets/features/card-ketcher.jpg",
-        "screenshotHeight": 880,
-        "captureStatus": "approved"
+        "description": "Work on molecular drawings in the integrated Ketcher editor.",
+        "screenshot": "/assets/features/capture-ketcher.png",
+        "screenshotHeight": 600,
+        "captureStatus": "approved",
+        "screenshotWidth": 880
       },
       {
         "title": "Edit collection molecules",

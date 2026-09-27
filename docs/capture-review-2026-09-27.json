@@ -1,0 +1,34 @@
+[
+  {
+    "feature": "Ligand pockets",
+    "source": "29-pocket-detail-v2.png",
+    "asset": "capture-pocket-detail.png",
+    "surface": "installed packaged browser-agent-shell",
+    "sha256": "d6aefbee14bf0de54fceb8a0a7f245d3f3ce10486710fedc0f68fa4e31b3ca8f",
+    "review": "Independent capture critic accepted this exact crop and its desktop/mobile placement in the dark theme. No synthetic structure or retouching."
+  },
+  {
+    "feature": "Lasso selection",
+    "source": "28-lasso-detail.png",
+    "asset": "capture-lasso-detail.png",
+    "surface": "installed packaged browser-agent-shell",
+    "sha256": "8bc323f11a30caec4bf441828080f74604584bf355ca7c68df192712c588d763",
+    "review": "Independent capture critic accepted this exact crop and its desktop/mobile placement in the dark theme. No synthetic structure or retouching."
+  },
+  {
+    "feature": "Substructure search",
+    "source": "14-smarts-detail-v2.png",
+    "asset": "capture-smarts.png",
+    "surface": "installed packaged browser-agent-shell",
+    "sha256": "af3046244c09eea2a50960d171eac3ec2a8c67ad1dcc4cd04cc9b181f72ed8ab",
+    "review": "Independent capture critic accepted this exact crop and its desktop/mobile placement in the dark theme. No synthetic structure or retouching."
+  },
+  {
+    "feature": "Ketcher sketches",
+    "source": "25-ketcher-detail.png",
+    "asset": "capture-ketcher.png",
+    "surface": "installed packaged browser-agent-shell",
+    "sha256": "a524247cd8837ce11ea90317491348e003d26d0391de78e20fa18db181a6a94f",
+    "review": "Independent capture critic accepted this exact crop and its desktop/mobile placement in the dark theme. No synthetic structure or retouching."
+  }
+]
