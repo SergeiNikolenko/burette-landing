@@ -32,6 +32,9 @@ for (const group of catalog) {
   if (!(await anyExists(docsFilesForRoute(group.docs)))) failures.push(`catalog ${group.id}: missing guide`);
   if (group.media) mediaIds.add(group.media);
   for (const card of group.features) {
+    if (card.captureStatus !== "approved" || (!card.video && !card.screenshot)) {
+      failures.push(`card ${card.title}: public gallery requires reviewed media`);
+    }
     if (card.video) mediaIds.add(card.video);
     for (const src of [card.screenshot, card.screenshotDark].filter(Boolean)) {
       if (!(await exists(path.join(root, "public", src)))) failures.push(`card ${card.title}: missing screenshot ${src}`);

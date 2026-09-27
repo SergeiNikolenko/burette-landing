@@ -74,3 +74,10 @@
 html[data-theme="dark"] .feature-heading {
   text-shadow:0 2px 8px #000,0 0 24px #000;
 }
+
+/* Ready videos stay in the page flow, never behind carousel navigation. */
+.feature-video-grid,.feature-still-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-block:40px; align-items:start; }
+.feature-video-grid > :only-child,.feature-still-grid > :only-child { grid-column:1 / -1; }
+@media(max-width:650px), (min-width:901px) and (max-width:1100px) {
+  .feature-video-grid,.feature-still-grid { grid-template-columns:1fr; }
+}
