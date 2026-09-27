@@ -53,3 +53,5 @@ Light xyzrender0–5s still needs shorter full-window opening because later sour
 Final follow-up: light xyzrender0–2s sheet now shows complete window and molecule in all12 sampled frames; accepted as short figure rotation. Remote-light actual near-end frame at2.45s was inspected independently and shows the full protein/window: grey sheet cell was unused padding, not an encoded blank scene. Revised remote-light accepted for sampled visual content.
 
 All15 final clips now have semantically relevant sampled content after the above revisions. This is not seamless-loop approval: light xyzrender is a partial rotation, and workflow clips naturally cut back to their starting state. Full-frame review, playback smoothness and rendered-site acceptance remain separate checks.
+
+Final Chemical Space dark recut (source18.5–25.5s,7s): independently inspected the regenerated12-frame sheet. All sampled frames retain the complete application window, table, point map and pIC50 legend; the oversized opening closeup is gone. Accepted for sampled semantic and framing review. Existing every-frame and playback/seam limits still apply.
