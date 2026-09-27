@@ -171,5 +171,15 @@
     "width": 1280,
     "height": 918,
     "poster": "/assets/features/new-20260927-remote-files-light.webp"
+  },
+  "finder-compact": {
+    "width": 960,
+    "height": 640,
+    "poster": "/assets/features/finder-compact.webp"
+  },
+  "card-rotate-compact": {
+    "width": 960,
+    "height": 850,
+    "poster": "/assets/features/card-rotate-compact.webp"
   }
 }

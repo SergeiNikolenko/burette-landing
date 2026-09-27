@@ -13,12 +13,12 @@
         "screenshotHeight": 640,
         "screenshotWidth": 960,
         "captureStatus": "approved",
-        "video": "finder"
+        "video": "finder-compact"
       },
       {
         "title": "Interactive 3D",
         "description": "Rotate and zoom to inspect a structure from any angle.",
-        "video": "card-rotate",
+        "video": "card-rotate-compact",
         "captureStatus": "approved"
       },
       {

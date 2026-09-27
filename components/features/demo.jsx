@@ -34,9 +34,9 @@ function VideoScene({ id, title, size }) {
       update();
     }, { rootMargin: "400px 0px" });
     const observer = new IntersectionObserver(([entry]) => {
-      visible = entry.intersectionRatio >= .5;
+      visible = entry.isIntersecting && entry.intersectionRatio >= .15;
       update();
-    }, { threshold: [0, .5] });
+    }, { threshold: [0, .15] });
     warmup.observe(element);
     observer.observe(element);
     document.addEventListener("visibilitychange", update);
