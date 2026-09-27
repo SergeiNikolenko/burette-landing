@@ -38,6 +38,7 @@ export function legalPage({ path, title, description, body }) {
   footer span { display: flex; gap: 18px; }
   @media (max-width: 560px) { main { padding-top: 48px; } footer div { align-items: flex-start; flex-direction: column; justify-content: center; } }
 </style>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <header><nav><a href="/"><strong>Burette</strong></a><a href="/docs">Documentation</a></nav></header>

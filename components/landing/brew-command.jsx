@@ -1,5 +1,7 @@
 "use client";
 
+import { track } from "@vercel/analytics";
+
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -28,6 +30,7 @@ export default function BrewCommand({
   const copy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(command);
+      track("Brew Copy", { location, target: "brew", path: window.location.pathname });
       setCopied(true);
       clearTimeout(timer.current);
       timer.current = setTimeout(() => setCopied(false), 1800);
@@ -35,7 +38,7 @@ export default function BrewCommand({
       // Clipboard access can be denied; leaving the label alone is the honest
       // outcome, since claiming "Copied" would be worse than saying nothing.
     }
-  }, [command]);
+  }, [command, location]);
 
   const accessibleLabel = copied
     ? "Copied to clipboard"
@@ -53,9 +56,6 @@ export default function BrewCommand({
           variant="ghost"
           size="icon-sm"
           onClick={copy}
-          data-analytics-event="Brew Copy"
-          data-analytics-location={location}
-          data-analytics-target="brew"
           aria-label={accessibleLabel}
         >
           {copied ? (
@@ -74,9 +74,6 @@ export default function BrewCommand({
       variant="secondary"
       size="lg"
       onClick={copy}
-      data-analytics-event="Brew Copy"
-      data-analytics-location={location}
-      data-analytics-target="brew"
       aria-label={accessibleLabel}
       className="max-w-full"
     >
