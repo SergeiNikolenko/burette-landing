@@ -8,7 +8,7 @@ export default function Features() {
     <div className="home-stories page-width">
       <article id="quick-look-story" className="home-story home-story-wide">
         <header className="home-section-heading"><div><p className="section-label">Start in Finder</p><h2>Preview a structure.<br />Right in Finder.</h2></div><div><p className="home-story-description">Select a molecular file and press Space. Rotate it, zoom in, and see what is inside before opening the workspace.</p><Link className="text-link" href="/features#preview">Explore Quick Look ↗</Link></div></header>
-        <Demo id="finder" title="Open and rotate a molecular structure in Finder Quick Look" />
+        <Demo id="finder-compact" title="Open and rotate a molecular structure in Finder Quick Look" />
       </article>
       <article id="structure-story" className="home-story home-story-split">
         <header><p className="section-label">Inspect the structure</p><h2>The whole protein.<br />The detail you need.</h2><p className="home-story-description">Find chains and ligands in the scene tree. Hide what gets in the way, select a component, and bring it into view.</p><Link className="text-link" href="/features#selection">Explore selection and analysis ↗</Link></header>

@@ -47,12 +47,9 @@ for (const id of mediaIds) {
   if (size?.poster && !(await exists(path.join(root, "public", size.poster)))) failures.push(`media ${id}: missing poster`);
   const sources = size?.light && size?.dark ? [size.light, size.dark] : [id];
   for (const source of sources) {
-    const poster = featureMedia[source]?.poster;
-    if (poster && !(await exists(path.join(root, "public", poster)))) failures.push(`media ${source}: missing optimized poster`);
-  }
-  for (const source of sources) for (const extension of ["mp4", "jpg"]) {
-    if (!(await exists(path.join(root, "public/assets/features", `${source}.${extension}`)))) {
-      failures.push(`media ${id}: missing ${source}.${extension}`);
+    const assets = [`/assets/features/${source}.mp4`, featureMedia[source]?.poster || `/assets/features/${source}.jpg`];
+    for (const asset of assets) {
+      if (!(await exists(path.join(root, "public", asset)))) failures.push(`media ${id}: missing ${asset}`);
     }
   }
 }
