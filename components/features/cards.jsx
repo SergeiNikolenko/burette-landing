@@ -1,6 +1,7 @@
 "use client";
 
 import Demo from "./demo";
+import ThemedImage from "../landing/themed-image";
 import { useEffect, useMemo, useState } from "react";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -22,7 +23,7 @@ export default function FeatureCards({ group }) {
       {group.features.map(feature => <CarouselItem key={feature.title} className="feature-card-item">
         <article className="feature-explainer">
           <div className="feature-explainer-copy"><h3>{feature.title}</h3><p>{feature.description}</p></div>
-          {feature.video ? <div className="feature-capture" data-review={feature.captureStatus !== "approved" ? "true" : undefined}><div className="feature-capture-media"><Demo id={feature.video} title={feature.title} /></div>{feature.captureStatus !== "approved" && <span>{feature.captureStatus === "replace" ? "Replace capture" : "Review capture"}</span>}</div> : feature.screenshot ? <div className="feature-capture" data-review={feature.captureStatus !== "approved" ? "true" : undefined}><div className="feature-capture-media"><img src={feature.screenshot} alt="" width={feature.screenshotWidth || 1280} height={feature.screenshotHeight} loading="lazy" decoding="async" /></div>{feature.captureStatus !== "approved" && <span>{feature.captureStatus === "replace" ? "Replace capture" : "Review capture"}</span>}</div>
+          {feature.video ? <div className="feature-capture" data-review={feature.captureStatus !== "approved" ? "true" : undefined}><div className="feature-capture-media"><Demo id={feature.video} title={feature.title} /></div>{feature.captureStatus !== "approved" && <span>{feature.captureStatus === "replace" ? "Replace capture" : "Review capture"}</span>}</div> : feature.screenshot ? <div className="feature-capture" data-review={feature.captureStatus !== "approved" ? "true" : undefined}><div className="feature-capture-media">{feature.screenshotDark ? <ThemedImage light={feature.screenshot} dark={feature.screenshotDark} alt="" width={feature.screenshotWidth || 1280} height={feature.screenshotHeight} /> : <img src={feature.screenshot} alt="" width={feature.screenshotWidth || 1280} height={feature.screenshotHeight} loading="lazy" decoding="async" />}</div>{feature.captureStatus !== "approved" && <span>{feature.captureStatus === "replace" ? "Replace capture" : "Review capture"}</span>}</div>
             : <div className="feature-capture-pending" role="img" aria-label={`Screenshot needed: ${feature.title}`}><span className="capture-skeleton-window" aria-hidden="true"><i /><i /><i /></span><span>Screenshot needed</span></div>}
         </article>
       </CarouselItem>)}

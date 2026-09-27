@@ -26,10 +26,26 @@ for (const story of featureStories) {
 }
 
 const catalog = JSON.parse(await readFile(path.join(root, "components/features/catalog.json"), "utf8"));
+const featureMedia = JSON.parse(await readFile(path.join(root, "components/features/media-sizes.json"), "utf8"));
+const mediaIds = new Set();
 for (const group of catalog) {
   if (!(await anyExists(docsFilesForRoute(group.docs)))) failures.push(`catalog ${group.id}: missing guide`);
-  if (group.media) for (const extension of ["mp4", "jpg"]) {
-    if (!(await exists(path.join(root, "public/assets/features", `${group.media}.${extension}`)))) failures.push(`catalog ${group.id}: missing ${extension}`);
+  if (group.media) mediaIds.add(group.media);
+  for (const card of group.features) {
+    if (card.video) mediaIds.add(card.video);
+    for (const src of [card.screenshot, card.screenshotDark].filter(Boolean)) {
+      if (!(await exists(path.join(root, "public", src)))) failures.push(`card ${card.title}: missing screenshot ${src}`);
+    }
+  }
+}
+for (const id of mediaIds) {
+  const size = featureMedia[id];
+  if (!size?.width || !size?.height) failures.push(`media ${id}: missing dimensions`);
+  const sources = size?.light && size?.dark ? [size.light, size.dark] : [id];
+  for (const source of sources) for (const extension of ["mp4", "jpg"]) {
+    if (!(await exists(path.join(root, "public/assets/features", `${source}.${extension}`)))) {
+      failures.push(`media ${id}: missing ${source}.${extension}`);
+    }
   }
 }
 

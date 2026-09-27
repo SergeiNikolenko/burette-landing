@@ -1,11 +1,22 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./demo.css";
 import media from "./media-sizes.json";
 
 export default function Demo({ id, title }) {
   const video = useRef(null);
+  const [theme, setTheme] = useState("light");
+  const size = media[id];
+  const sourceId = size?.[theme] || id;
+  const sourceSize = media[sourceId] || size;
+  useEffect(() => {
+    const sync = () => setTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
+    sync();
+    const observer = new MutationObserver(sync);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => observer.disconnect();
+  }, []);
   useEffect(() => {
     const element = video.current;
     if (!element) return;
@@ -14,7 +25,7 @@ export default function Demo({ id, title }) {
     const automatic = () => !motion.matches && !connection?.saveData && !/2g/.test(connection?.effectiveType || "");
     let visible = false;
     const play = () => {
-      if (!element.getAttribute("src")) element.src = `/assets/features/${id}.mp4`;
+      if (!element.getAttribute("src")) element.src = `/assets/features/${sourceId}.mp4`;
       element.defaultPlaybackRate = 0.8;
       element.playbackRate = 0.8;
       element.play().catch(() => {});
@@ -31,11 +42,10 @@ export default function Demo({ id, title }) {
     document.addEventListener("visibilitychange", update);
     motion.addEventListener("change", update);
     return () => { observer.disconnect(); document.removeEventListener("visibilitychange", update); motion.removeEventListener("change", update); element.pause(); };
-  }, [id]);
+  }, [sourceId]);
   if (!id) return <p className="feature-media-pending">Video walkthrough coming soon.</p>;
-  const size = media[id];
   return <figure className="integrated-demo">
-    <video ref={video} data-feature-demo width={size.width} height={size.height} poster={`/assets/features/${id}.jpg`} muted loop playsInline preload="none" aria-label={title}
+    <video key={sourceId} ref={video} data-feature-demo width={sourceSize.width} height={sourceSize.height} poster={`/assets/features/${sourceId}.jpg`} muted loop playsInline preload="none" aria-label={title}
       onPlay={() => { document.querySelectorAll("video[data-feature-demo]").forEach(other => { if (other !== video.current) other.pause(); }); }} />
   </figure>;
 }

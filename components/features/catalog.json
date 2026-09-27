@@ -100,14 +100,6 @@
         "captureStatus": "approved"
       },
       {
-        "title": "Density maps",
-        "description": "View supported electron-density and volume files alongside structures.",
-        "screenshot": "/assets/features/shot-density-maps.jpg",
-        "screenshotHeight": 852,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
-      },
-      {
         "title": "Crystal structures",
         "description": "Inspect supported CIF structures, unit cells, and symmetry.",
         "screenshot": "/assets/features/shot-crystal-structures.jpg",
@@ -137,7 +129,7 @@
         "description": "Select a residue or range in the Sequence panel to highlight it in 3D.",
         "screenshot": "/assets/features/capture-sequence-20260927.png",
         "screenshotHeight": 1220,
-        "captureStatus": "review",
+        "captureStatus": "approved",
         "screenshotWidth": 1000
       },
       {
@@ -146,7 +138,8 @@
         "screenshot": "/assets/features/capture-pocket-detail.png",
         "screenshotHeight": 600,
         "screenshotWidth": 690,
-        "captureStatus": "approved"
+        "captureStatus": "approved",
+        "video": "new-20260927-pocket"
       },
       {
         "title": "Lasso selection",
@@ -162,15 +155,16 @@
         "screenshot": "/assets/features/shot-measurements.jpg",
         "screenshotHeight": 852,
         "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "captureStatus": "approved",
+        "video": "new-20260927-measurements"
       },
       {
         "title": "Surfaces for your selection",
         "description": "Create a surface for a residue, chain, protein, or ligand without covering the entire scene.",
-        "screenshot": "/assets/features/shot-surfaces-for-your-selection.jpg",
-        "screenshotHeight": 852,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "screenshot": "/assets/features/new-20260927-surface-opacity.jpg",
+        "screenshotHeight": 900,
+        "screenshotWidth": 1280,
+        "captureStatus": "approved"
       },
       {
         "title": "Extract a subset",
@@ -218,7 +212,8 @@
         "screenshot": "/assets/features/closeup-poses.png",
         "screenshotHeight": 720,
         "screenshotWidth": 1280,
-        "captureStatus": "approved"
+        "captureStatus": "approved",
+        "video": "new-20260927-poses"
       },
       {
         "title": "Topology and trajectory",
@@ -266,7 +261,8 @@
         "screenshot": "/assets/features/capture-smarts.png",
         "screenshotHeight": 500,
         "screenshotWidth": 838,
-        "captureStatus": "approved"
+        "captureStatus": "approved",
+        "video": "new-20260927-substructure"
       },
       {
         "title": "3D inside a collection",
@@ -335,22 +331,25 @@
     "id": "chemical-space",
     "title": "Find neighbours in chemical space.",
     "intro": "Map a collection by molecular similarity and bring selected compounds back to the table. Native calculations run on Apple Silicon in the Mac app.",
-    "media": "space",
+    "media": "new-20260927-chemical-space",
     "docs": "/docs/workflows/native-compute",
     "features": [
       {
         "title": "A map of your molecules",
         "description": "Explore molecular similarity in a 2D or 3D map, with each point representing a compound.",
-        "video": "card-space-inspect",
-        "captureStatus": "replace"
+        "captureStatus": "approved",
+        "screenshot": "/assets/features/new-20260927-chemical-space-light.jpg",
+        "screenshotDark": "/assets/features/new-20260927-chemical-space-dark.jpg",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 876
       },
       {
         "title": "Linked selection",
         "description": "Select a region of the map and continue with those molecules in the grid.",
-        "screenshot": "/assets/features/shot-linked-selection.jpg",
-        "screenshotHeight": 640,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "screenshot": "/assets/features/new-20260927-linked-selection.jpg",
+        "screenshotHeight": 876,
+        "screenshotWidth": 1280,
+        "captureStatus": "approved"
       },
       {
         "title": "Similarity search",
@@ -379,18 +378,18 @@
       {
         "title": "Activity colouring",
         "description": "Colour a map by a numeric property to see how values vary.",
-        "screenshot": "/assets/features/shot-activity-colouring.jpg",
-        "screenshotHeight": 640,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "screenshot": "/assets/features/new-20260927-activity-colouring.jpg",
+        "screenshotHeight": 876,
+        "screenshotWidth": 1280,
+        "captureStatus": "approved"
       },
       {
         "title": "Activity cliffs",
         "description": "Look for similar molecules with markedly different activity.",
-        "screenshot": "/assets/features/shot-activity-cliffs.jpg",
-        "screenshotHeight": 640,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "screenshot": "/assets/features/new-20260927-activity-cliffs.jpg",
+        "screenshotHeight": 876,
+        "screenshotWidth": 1280,
+        "captureStatus": "approved"
       }
     ]
   },
@@ -404,10 +403,10 @@
       {
         "title": "Conformer generation",
         "description": "Generate 3D conformers from selected molecules or a Ketcher sketch.",
-        "screenshot": "/assets/features/shot-conformer-generation.jpg",
-        "screenshotHeight": 660,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "screenshot": "/assets/features/new-20260927-conformers.jpg",
+        "screenshotHeight": 1084,
+        "screenshotWidth": 1280,
+        "captureStatus": "approved"
       },
       {
         "title": "MMFF refinement",
@@ -482,27 +481,30 @@
       },
       {
         "title": "Sketch to 3D",
-        "description": "Send a sketch to Mol* or a collection for the next step.",
+        "description": "Open a Ketcher sketch as a 3D structure, then rotate it to inspect the geometry.",
         "screenshot": "/assets/features/shot-sketch-to-3d.jpg",
         "screenshotHeight": 660,
         "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "captureStatus": "approved",
+        "video": "new-20260927-sketch-3d"
       },
       {
         "title": "Text editing",
         "description": "Inspect and edit supported molecular source files in place.",
-        "screenshot": "/assets/features/shot-text-editing.jpg",
-        "screenshotHeight": 852,
-        "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "screenshot": "/assets/text-pic-light.png",
+        "captureStatus": "approved",
+        "screenshotDark": "/assets/text-pic-dark.png",
+        "screenshotWidth": 1804,
+        "screenshotHeight": 1262
       },
       {
         "title": "Project folders",
-        "description": "Browse nested project files from the workspace sidebar.",
+        "description": "Browse local project folders and files on a connected SSH host from the workspace sidebar.",
         "screenshot": "/assets/features/shot-project-folders.jpg",
         "screenshotHeight": 640,
         "screenshotWidth": 960,
-        "captureStatus": "replace"
+        "captureStatus": "approved",
+        "video": "new-20260927-remote-files"
       },
       {
         "title": "Tabs and docks",
@@ -550,7 +552,8 @@
         "description": "Create molecular illustrations with the optional xyzrender engine. Export SVG artwork that stays sharp when resized for a paper or slide.",
         "screenshot": "/assets/features/detail-xyzrender.jpg",
         "screenshotHeight": 880,
-        "captureStatus": "replace"
+        "captureStatus": "approved",
+        "video": "new-20260927-xyzrender"
       },
       {
         "title": "Continue in your preferred chemistry app",
