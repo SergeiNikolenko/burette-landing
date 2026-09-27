@@ -24,10 +24,10 @@
       {
         "title": "Light and dark",
         "description": "Choose the background that makes your structure easiest to read.",
-        "screenshot": "/assets/features/shot-light-and-dark.webp",
         "screenshotHeight": 640,
         "screenshotWidth": 960,
-        "captureStatus": "approved"
+        "captureStatus": "approved",
+        "video": "light-and-dark"
       },
       {
         "title": "Molecular thumbnails",

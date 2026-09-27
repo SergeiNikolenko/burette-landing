@@ -1,3 +1,4 @@
+import Analytics from "@/components/landing/analytics";
 import { Head } from "nextra/components";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SITE_URL } from "./site-url.js";
@@ -53,7 +54,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </Head>
-      <body>{children}</body>
+      <body>{children}<Analytics /></body>
     </html>
   );
 }

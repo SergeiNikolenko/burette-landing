@@ -1,21 +1,20 @@
 "use client";
 
-import Script from "next/script";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
+import { track as trackEvent } from "@vercel/analytics";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const CAMPAIGN_PARAMS = ["ref"];
-const SECTIONS = ["faq", "docs", "install", "codex", "features", "formats", "top"];
+const SECTIONS = ["preview", "structures", "selection", "motion", "collections", "chemical-space", "compute", "editing", "integrations", "highlights", "faq", "docs", "install", "codex", "features", "formats", "top"];
 const DEPTHS = [25, 50, 75, 100];
 
-// Every landing component carries data-analytics-event / -location / -target
-// attributes, but the code that read them lived in the old index.html and did
-// not survive the port. The attributes were still there, so nothing looked
-// broken while downloads, outbound clicks, brew copies and scroll depth all
-// silently stopped being recorded. This is that listener, moved into React.
+// Shared across client routes; reset per-page depth and video deduplication on navigation.
 export default function Analytics() {
+  const pathname = usePathname();
   useEffect(() => {
     const track = (name, payload = {}) => {
-      if (typeof window.va === "function") window.va("event", name, payload);
+      trackEvent(name, { ...payload, path: pathname });
     };
 
     const campaignQuery = () => {
@@ -70,35 +69,47 @@ export default function Analytics() {
     };
 
     const onClick = (event) => {
-      const link = event.target.closest?.("a[href], button[data-analytics-event]");
+      const link = event.target.closest?.("a[href], button[data-analytics-event], button[aria-label], button[data-slot=carousel-next], button[data-slot=carousel-previous]");
       if (!link) return;
       if (link.tagName === "A") preserveCampaign(link);
-      const eventName = link.dataset.analyticsEvent;
+      const url = link.tagName === "A" ? new URL(link.href, location.href) : null;
+      const controlLabel = link.getAttribute("aria-label") || link.textContent?.trim() || "";
+      const carouselAction = /^(Next|Previous) (slide|features)$/.test(controlLabel);
+      let eventName = link.dataset.analyticsEvent;
+      if (!eventName && carouselAction) eventName = "Carousel Navigation";
+      if (!eventName && url?.origin === location.origin) {
+        if (url.pathname === "/download") eventName = "Download";
+        else if (url.pathname === "/demo") eventName = "Online Demo";
+        else if (url.pathname.startsWith("/docs")) eventName = "Docs Link";
+        else if (url.pathname.startsWith("/features") || url.hash) eventName = "Feature Link";
+      }
       if (!eventName) return;
       track(eventName, {
-        location: link.dataset.analyticsLocation || "unknown",
-        target: link.dataset.analyticsTarget || "unknown",
+        location: link.dataset.analyticsLocation || currentSection(),
+        target: link.dataset.analyticsTarget || (url ? url.pathname + url.hash : controlLabel || "unknown"),
       });
     };
 
+    const watched = new Set();
+    const onPlaying = (event) => {
+      const video = event.target;
+      if (!video.matches?.("video[data-feature-demo]")) return;
+      const label = video.getAttribute("aria-label") || "demo";
+      if (watched.has(label)) return;
+      watched.add(label);
+      track("Video Started", { video: label, section: currentSection() });
+    };
+    document.addEventListener("playing", onPlaying, true);
     document.addEventListener("click", onClick, { capture: true });
     window.addEventListener("scroll", checkScrollDepth, { passive: true });
     checkScrollDepth();
 
     return () => {
+      document.removeEventListener("playing", onPlaying, true);
       document.removeEventListener("click", onClick, { capture: true });
       window.removeEventListener("scroll", checkScrollDepth);
     };
-  }, []);
+  }, [pathname]);
 
-  return (
-    <>
-      <Script id="va-queue" strategy="beforeInteractive">
-        {`window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };`}
-      </Script>
-      <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />
-      <Script src="/_vercel/speed-insights/script.js" strategy="afterInteractive" />
-    </>
-  );
+  return <VercelAnalytics />;
 }

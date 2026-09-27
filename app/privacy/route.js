@@ -24,7 +24,7 @@ export function GET() {
         <p>Burette does not intentionally configure application logs to record raw molecular content or temporary signed download URLs. Technical logs and security metadata are retained according to the applicable OpenAI and Vercel account settings and policies.</p>
 
         <h2>Website analytics</h2>
-        <p>The Burette website uses Vercel Web Analytics and Speed Insights to measure page views, download referrals, outbound-link activity, and site performance. These services may process technical request data such as browser type, approximate region, referring page, and network information under Vercel's privacy terms. Burette does not use advertising trackers or sell website visitor data.</p>
+        <p>The Burette website uses Vercel Web Analytics to measure page views, download referrals, outbound-link activity, and feature-video starts. These services may process technical request data such as browser type, approximate region, referring page, and network information under Vercel's privacy terms. Burette does not use advertising trackers or sell website visitor data.</p>
 
         <h2>Network access</h2>
         <p>Burette may make network requests when the user asks it to retrieve an authorized attachment, fetch a public structure, check for software updates, or download an update. Those requests are sent to the selected service, such as OpenAI's attachment host, GitHub, or RCSB, and are governed by that service's privacy terms.</p>

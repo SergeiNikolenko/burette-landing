@@ -181,5 +181,10 @@
     "width": 960,
     "height": 850,
     "poster": "/assets/features/card-rotate-compact.webp"
+  },
+  "light-and-dark": {
+    "width": 960,
+    "height": 770,
+    "poster": "/assets/features/light-and-dark.webp"
   }
 }
