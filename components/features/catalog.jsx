@@ -23,7 +23,7 @@ export default function Catalog() {
     <div className="feature-sections">{groups.map((group, index) => <section id={group.id} className="feature-group" key={group.id}>
       <p className="feature-number">{String(index + 1).padStart(2, "0")} / {String(groups.length).padStart(2, "0")}</p>
       <h2>{group.title}</h2><p className="feature-intro">{group.intro}</p>
-      <Demo id={group.media} title={group.title} />
+      {group.media && <Demo id={group.media} title={group.title} />}
       <FeatureCards group={group} />
       {group.id === "collections" && <Demo id="collection-3d" title="From collection to molecular view" />}
       <a className="feature-guide" href={group.docs}>Read the guide <span aria-hidden="true">↗</span></a>

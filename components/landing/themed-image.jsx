@@ -96,16 +96,17 @@ export default function ThemedImage({
   // .png here must have a sibling .avif on disk - scripts/check-site.mjs enforces
   // that, because a missing one is a broken image rather than a slow one.
   const avif = (src) => src.replace(/\.png$/, ".avif");
+  const optimized = light.endsWith(".png") && dark.endsWith(".png");
 
   return (
     <picture>
-      <source
+      {optimized && <source
         srcSet={avif(dark)}
         type="image/avif"
         media="(prefers-color-scheme: dark)"
-      />
+      />}
       <source srcSet={dark} media="(prefers-color-scheme: dark)" />
-      <source srcSet={avif(light)} type="image/avif" />
+      {optimized && <source srcSet={avif(light)} type="image/avif" />}
       <img
         ref={ref}
         src={light}

@@ -1,0 +1,439 @@
+{
+  "scope": "Baseline actual stills and video posters; not full video-motion certification. Density maps excluded per user request.",
+  "cards": [
+    {
+      "section": "preview",
+      "title": "Finder Quick Look",
+      "status": "accurate",
+      "reason": "Real Quick Look title bar and molecule clearly visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "preview",
+      "title": "Interactive 3D",
+      "status": "partial",
+      "reason": "Poster is a real viewer, but a still cannot establish smooth rotation; review full clip.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "preview",
+      "title": "Light and dark",
+      "status": "accurate",
+      "reason": "Clear light-theme viewer; add corresponding dark frame or theme pairing to demonstrate both.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "preview",
+      "title": "Molecular thumbnails",
+      "status": "accurate",
+      "reason": "Finder/Desktop files include recognisable rendered structure thumbnails; some other files remain generic icons.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "preview",
+      "title": "Open in Burette",
+      "status": "partial",
+      "reason": "Quick Look Open with Burette control is visible; does not demonstrate completed handoff.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "preview",
+      "title": "Spectrum previews",
+      "status": "accurate",
+      "reason": "Actual spectrum plot and summary visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "structures",
+      "title": "Illustrative appearance",
+      "status": "accurate",
+      "reason": "Illustrative setting and outlined molecule visible, though hover preview competes for attention.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "structures",
+      "title": "Representation styles",
+      "status": "accurate",
+      "reason": "Tree and rendered cartoon/stick combination visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "structures",
+      "title": "Scene tree",
+      "status": "accurate",
+      "reason": "Real hierarchy and contextual controls clearly visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "structures",
+      "title": "Show, hide, isolate",
+      "status": "partial",
+      "reason": "Real tree and simplified protein visible; exact hide/isolate action needs sequential comparison.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "structures",
+      "title": "Colour controls",
+      "status": "accurate",
+      "reason": "Real colour palette and opacity control visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "structures",
+      "title": "Crystal structures",
+      "status": "wrong",
+      "reason": "Ordinary 1HTB protein cartoon; no unit cell, lattice or symmetry depiction.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "structures",
+      "title": "Mesoscale scenes",
+      "status": "wrong",
+      "reason": "Single 7RPZ protein, not a mesoscale assembly.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "selection",
+      "title": "Sequence selection",
+      "status": "accurate",
+      "reason": "Highlighted sequence range and selected 3D region are both visible; final card-scale readability still needs rendered QA.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "selection",
+      "title": "Ligand pockets",
+      "status": "accurate",
+      "reason": "Ligand with actual surrounding translucent pocket surface.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "selection",
+      "title": "Lasso selection",
+      "status": "accurate",
+      "reason": "A subset of fullerene atoms is highlighted; still demonstrates result, not lasso gesture.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "selection",
+      "title": "Measurements",
+      "status": "wrong",
+      "reason": "Selection view has no distance/angle/dihedral annotation or numeric result. Use new Measurements recording.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "selection",
+      "title": "Surfaces for your selection",
+      "status": "wrong",
+      "reason": "Shows Ghost Surface preset hover preview, not a surface scoped to the selection.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "selection",
+      "title": "Extract a subset",
+      "status": "partial",
+      "reason": "Contextual molecule actions visible but no saved subset/result demonstrated; inspect full-size export action before approval.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "selection",
+      "title": "Structure superposition",
+      "status": "wrong",
+      "reason": "Single protein/tree screenshot; no second structure, alignment or comparison.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "motion",
+      "title": "Trajectory playback",
+      "status": "accurate",
+      "reason": "Multi-frame XYZ with frame controls clearly visible. Do not describe this as MD or smoothing evidence.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "motion",
+      "title": "Trajectory smoothing",
+      "status": "partial",
+      "reason": "Smooth control visible but static capture does not demonstrate smoothing. Need distinct before/after motion.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "motion",
+      "title": "Pose alignment",
+      "status": "partial",
+      "reason": "Multiple poses and Align control visible, but screenshot alone cannot establish before/after alignment.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "motion",
+      "title": "Topology and trajectory",
+      "status": "wrong",
+      "reason": "Same BIMP XYZ as playback; no paired topology/trajectory loading.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "motion",
+      "title": "SDF poses",
+      "status": "accurate",
+      "reason": "Molecular pose navigator and single pose visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "motion",
+      "title": "Molecular Stories",
+      "status": "wrong",
+      "reason": "Spin/Rock/Wiggle menu is camera/motion control, not a demonstrated multi-step story.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "collections",
+      "title": "Cards and tables",
+      "status": "accurate",
+      "reason": "Real collection table with molecular thumbnails and properties.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "collections",
+      "title": "Substructure search",
+      "status": "accurate",
+      "reason": "SMARTS query and matching highlighted rings visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "collections",
+      "title": "3D inside a collection",
+      "status": "partial",
+      "reason": "Ball-and-stick thumbnails visible, but still cannot establish interactive embedded 3D rather than static renders.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "collections",
+      "title": "Structures and properties",
+      "status": "accurate",
+      "reason": "Selected molecule and molecular property summary visible together.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "collections",
+      "title": "Search, sort, and filter",
+      "status": "accurate",
+      "reason": "Actual histogram/range filter and collection shown.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "collections",
+      "title": "Open a molecule in its own tab",
+      "status": "accurate",
+      "reason": "Selected-molecule document tab and standalone viewer visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "collections",
+      "title": "Combine collections",
+      "status": "wrong",
+      "reason": "Context menu opens a molecule in New Tab; no combining workflow/result.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "collections",
+      "title": "Selection and export",
+      "status": "accurate",
+      "reason": "Selected card and export actions visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "collections",
+      "title": "Browse large collections",
+      "status": "accurate",
+      "reason": "Collection grid and search controls visible; numerical scale claims require source evidence.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "collections",
+      "title": "DataWarrior files",
+      "status": "wrong",
+      "reason": "Ketcher sketch with CSV/SMI tabs, no DWAR document.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "chemical-space",
+      "title": "A map of your molecules",
+      "status": "accurate",
+      "reason": "Real chemical-space point cloud and molecular grid; poster does match general map claim.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "chemical-space",
+      "title": "Linked selection",
+      "status": "wrong",
+      "reason": "Point cloud/grid are present but no clear selected points and linked selected cards.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "chemical-space",
+      "title": "Similarity search",
+      "status": "wrong",
+      "reason": "Chemical Space not calculated placeholder; no query or ranked similarity results.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "chemical-space",
+      "title": "Clustering",
+      "status": "wrong",
+      "reason": "Chemical Space not calculated placeholder; no coloured clusters or memberships.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "chemical-space",
+      "title": "Choose a diverse subset",
+      "status": "wrong",
+      "reason": "Unselected map with no diversity selection/output.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "chemical-space",
+      "title": "Activity colouring",
+      "status": "wrong",
+      "reason": "Activity field is None and map is building; no activity colouring shown.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "chemical-space",
+      "title": "Activity cliffs",
+      "status": "wrong",
+      "reason": "Single hovered molecule in uncoloured map; no cliff pair or activity comparison.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "compute",
+      "title": "Conformer generation",
+      "status": "wrong",
+      "reason": "Existing pose viewer and tool buttons, no generated conformer workflow/result.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "compute",
+      "title": "MMFF refinement",
+      "status": "wrong",
+      "reason": "Pose view has xTB/CREST/PRISM controls; no MMFF result shown.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "compute",
+      "title": "Pose scoring",
+      "status": "wrong",
+      "reason": "Multi-pose viewer without scores or ranked table.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "compute",
+      "title": "Semiempirical energies",
+      "status": "wrong",
+      "reason": "Protein composition/tools panel, no computed energy value.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "compute",
+      "title": "xTB calculations",
+      "status": "partial",
+      "reason": "Real xTB tool control visible; no calculation result. Approve only as setup UI, not result.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "compute",
+      "title": "CREST and PRISM",
+      "status": "partial",
+      "reason": "Real CREST/PRISM buttons visible; no sampling or pruning output.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "compute",
+      "title": "Keep working during calculations",
+      "status": "partial",
+      "reason": "Actual chemical-space progress with collection present; unrelated to native compute if copy promises that workflow.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "editing",
+      "title": "Ketcher sketches",
+      "status": "accurate",
+      "reason": "Actual molecular sketch and editor tools visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "editing",
+      "title": "Edit collection molecules",
+      "status": "accurate",
+      "reason": "Ketcher and Save to collection visible; full clip needed to establish save-back.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "editing",
+      "title": "Sketch to 3D",
+      "status": "wrong",
+      "reason": "Only 2D collection and property panel, no sketch-to-3D result. Use new supplied recording.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "editing",
+      "title": "Text editing",
+      "status": "wrong",
+      "reason": "Composition panel, no text editor.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "editing",
+      "title": "Project folders",
+      "status": "partial",
+      "reason": "Sidebar present but minimal hierarchy and empty viewer; use fuller actual project tree.",
+      "recommendedAction": "Retain truthful screenshot; verify only the unproven action before claiming completion."
+    },
+    {
+      "section": "editing",
+      "title": "Tabs and docks",
+      "status": "accurate",
+      "reason": "Document tab plus left and right panes visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "editing",
+      "title": "Command palette",
+      "status": "wrong",
+      "reason": "Right-click context menu, not command palette.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "editing",
+      "title": "Drag files into your workspace",
+      "status": "accurate",
+      "reason": "Actual file drag and drop target visible.",
+      "recommendedAction": "Retain unless a better matched-theme new capture is available."
+    },
+    {
+      "section": "integrations",
+      "title": "Ask your agent to open a structure",
+      "status": "wrong",
+      "reason": "Protein alone; no agent conversation/action evidence.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "integrations",
+      "title": "Make a figure for your paper",
+      "status": "wrong",
+      "reason": "Collection thumbnails, not standalone figure/render/export. Use new xyzrender recording.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "integrations",
+      "title": "Continue in your preferred chemistry app",
+      "status": "wrong",
+      "reason": "Protein hover label, no external app chooser or handoff.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    },
+    {
+      "section": "integrations",
+      "title": "Automate repeatable steps",
+      "status": "wrong",
+      "reason": "Collection grid with no automation/script/agent evidence.",
+      "recommendedAction": "Replace with matching new recording or explicit capture-needed placeholder."
+    }
+  ]
+}

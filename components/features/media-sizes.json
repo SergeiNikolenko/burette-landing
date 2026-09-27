@@ -38,5 +38,113 @@
   "card-space-inspect": {
     "width": 1280,
     "height": 852
+  },
+  "new-20260927-pocket-light": {
+    "width": 1280,
+    "height": 900
+  },
+  "new-20260927-pocket": {
+    "width": 1280,
+    "height": 900,
+    "light": "new-20260927-pocket-light",
+    "dark": "new-20260927-pocket-dark"
+  },
+  "new-20260927-pocket-dark": {
+    "width": 1280,
+    "height": 900
+  },
+  "new-20260927-measurements-light": {
+    "width": 1280,
+    "height": 1050
+  },
+  "new-20260927-measurements": {
+    "width": 1280,
+    "height": 1050,
+    "light": "new-20260927-measurements-light",
+    "dark": "new-20260927-measurements-light"
+  },
+  "new-20260927-substructure-dark": {
+    "width": 1280,
+    "height": 906
+  },
+  "new-20260927-substructure": {
+    "width": 1280,
+    "height": 906,
+    "dark": "new-20260927-substructure-dark",
+    "light": "new-20260927-substructure-light"
+  },
+  "new-20260927-substructure-light": {
+    "width": 1280,
+    "height": 876
+  },
+  "new-20260927-chemical-space-light": {
+    "width": 1280,
+    "height": 876
+  },
+  "new-20260927-chemical-space": {
+    "width": 1280,
+    "height": 876,
+    "light": "new-20260927-chemical-space-light",
+    "dark": "new-20260927-chemical-space-dark"
+  },
+  "new-20260927-chemical-space-dark": {
+    "width": 1280,
+    "height": 876
+  },
+  "new-20260927-sketch-3d-dark": {
+    "width": 1280,
+    "height": 1080
+  },
+  "new-20260927-sketch-3d": {
+    "width": 1280,
+    "height": 1080,
+    "dark": "new-20260927-sketch-3d-dark",
+    "light": "new-20260927-sketch-3d-light"
+  },
+  "new-20260927-sketch-3d-light": {
+    "width": 1280,
+    "height": 1084
+  },
+  "new-20260927-xyzrender-dark": {
+    "width": 1280,
+    "height": 928
+  },
+  "new-20260927-xyzrender": {
+    "width": 1280,
+    "height": 928,
+    "dark": "new-20260927-xyzrender-dark",
+    "light": "new-20260927-xyzrender-light"
+  },
+  "new-20260927-xyzrender-light": {
+    "width": 1280,
+    "height": 934
+  },
+  "new-20260927-poses-light": {
+    "width": 1280,
+    "height": 916
+  },
+  "new-20260927-poses": {
+    "width": 1280,
+    "height": 916,
+    "light": "new-20260927-poses-light",
+    "dark": "new-20260927-poses-dark"
+  },
+  "new-20260927-poses-dark": {
+    "width": 1280,
+    "height": 928
+  },
+  "new-20260927-remote-files-dark": {
+    "width": 1280,
+    "height": 928
+  },
+  "new-20260927-remote-files": {
+    "width": 1280,
+    "height": 928,
+    "dark": "new-20260927-remote-files-dark",
+    "light": "new-20260927-remote-files-light"
+  },
+  "new-20260927-remote-files-light": {
+    "width": 1280,
+    "height": 918
   }
 }
