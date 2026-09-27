@@ -135,10 +135,10 @@
       {
         "title": "Sequence selection",
         "description": "Select a residue or range in the Sequence panel to highlight it in 3D.",
-        "screenshot": "/assets/features/closeup-sequence.png",
-        "screenshotHeight": 720,
-        "captureStatus": "approved",
-        "screenshotWidth": 1280
+        "screenshot": "/assets/features/capture-sequence-20260927.png",
+        "screenshotHeight": 1220,
+        "captureStatus": "review",
+        "screenshotWidth": 1000
       },
       {
         "title": "Ligand pockets",

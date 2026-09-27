@@ -30,5 +30,13 @@
     "surface": "installed packaged browser-agent-shell",
     "sha256": "a524247cd8837ce11ea90317491348e003d26d0391de78e20fa18db181a6a94f",
     "review": "Independent capture critic accepted this exact crop and its desktop/mobile placement in the dark theme. No synthetic structure or retouching."
+  },
+  {
+    "feature": "Sequence selection",
+    "source": "31-sequence-detail.png",
+    "asset": "capture-sequence-20260927.png",
+    "surface": "installed packaged browser-agent-shell",
+    "sha256": "671401989f05c37bee406a491747d4b425acd698cc23eec8fa303748f29ba01e",
+    "review": "Source and crop accepted; rendered placement pending."
   }
 ]
