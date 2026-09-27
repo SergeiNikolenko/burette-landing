@@ -1,47 +1,58 @@
 {
   "collections": {
     "width": 1280,
-    "height": 880
+    "height": 880,
+    "poster": "/assets/features/collections.webp"
   },
   "collection-3d": {
     "width": 1280,
-    "height": 880
+    "height": 880,
+    "poster": "/assets/features/collection-3d.webp"
   },
   "motion": {
     "width": 1280,
-    "height": 854
+    "height": 854,
+    "poster": "/assets/features/motion.webp"
   },
   "protein": {
     "width": 1280,
-    "height": 1134
+    "height": 1134,
+    "poster": "/assets/features/protein.webp"
   },
   "finder": {
     "width": 1280,
-    "height": 854
+    "height": 854,
+    "poster": "/assets/features/finder.webp"
   },
   "space": {
     "width": 1280,
-    "height": 852
+    "height": 852,
+    "poster": "/assets/features/space.webp"
   },
   "selection": {
     "width": 1280,
-    "height": 1134
+    "height": 1134,
+    "poster": "/assets/features/selection.webp"
   },
   "card-rotate": {
     "width": 1280,
-    "height": 1134
+    "height": 1134,
+    "poster": "/assets/features/card-rotate.webp"
   },
   "card-edit": {
     "width": 1280,
-    "height": 880
+    "height": 880,
+    "poster": "/assets/features/card-edit.webp"
   },
   "card-space-inspect": {
     "width": 1280,
-    "height": 852
+    "height": 852,
+    "poster": "/assets/features/card-space-inspect.webp"
   },
   "new-20260927-pocket-light": {
     "width": 1280,
-    "height": 900
+    "height": 900,
+    "poster": "/assets/features/new-20260927-pocket-light.webp"
   },
   "new-20260927-pocket": {
     "width": 1280,
@@ -51,11 +62,13 @@
   },
   "new-20260927-pocket-dark": {
     "width": 1280,
-    "height": 900
+    "height": 900,
+    "poster": "/assets/features/new-20260927-pocket-dark.webp"
   },
   "new-20260927-measurements-light": {
     "width": 1280,
-    "height": 1050
+    "height": 1050,
+    "poster": "/assets/features/new-20260927-measurements-light.webp"
   },
   "new-20260927-measurements": {
     "width": 1280,
@@ -65,7 +78,8 @@
   },
   "new-20260927-substructure-dark": {
     "width": 1280,
-    "height": 906
+    "height": 906,
+    "poster": "/assets/features/new-20260927-substructure-dark.webp"
   },
   "new-20260927-substructure": {
     "width": 1280,
@@ -75,11 +89,13 @@
   },
   "new-20260927-substructure-light": {
     "width": 1280,
-    "height": 876
+    "height": 876,
+    "poster": "/assets/features/new-20260927-substructure-light.webp"
   },
   "new-20260927-chemical-space-light": {
     "width": 1280,
-    "height": 876
+    "height": 876,
+    "poster": "/assets/features/new-20260927-chemical-space-light.webp"
   },
   "new-20260927-chemical-space": {
     "width": 1280,
@@ -89,11 +105,13 @@
   },
   "new-20260927-chemical-space-dark": {
     "width": 1280,
-    "height": 876
+    "height": 876,
+    "poster": "/assets/features/new-20260927-chemical-space-dark.webp"
   },
   "new-20260927-sketch-3d-dark": {
     "width": 1280,
-    "height": 1080
+    "height": 1080,
+    "poster": "/assets/features/new-20260927-sketch-3d-dark.webp"
   },
   "new-20260927-sketch-3d": {
     "width": 1280,
@@ -103,11 +121,13 @@
   },
   "new-20260927-sketch-3d-light": {
     "width": 1280,
-    "height": 1084
+    "height": 1084,
+    "poster": "/assets/features/new-20260927-sketch-3d-light.webp"
   },
   "new-20260927-xyzrender-dark": {
     "width": 1280,
-    "height": 928
+    "height": 928,
+    "poster": "/assets/features/new-20260927-xyzrender-dark.webp"
   },
   "new-20260927-xyzrender": {
     "width": 1280,
@@ -117,11 +137,13 @@
   },
   "new-20260927-xyzrender-light": {
     "width": 1280,
-    "height": 934
+    "height": 934,
+    "poster": "/assets/features/new-20260927-xyzrender-light.webp"
   },
   "new-20260927-poses-light": {
     "width": 1280,
-    "height": 916
+    "height": 916,
+    "poster": "/assets/features/new-20260927-poses-light.webp"
   },
   "new-20260927-poses": {
     "width": 1280,
@@ -131,11 +153,13 @@
   },
   "new-20260927-poses-dark": {
     "width": 1280,
-    "height": 928
+    "height": 928,
+    "poster": "/assets/features/new-20260927-poses-dark.webp"
   },
   "new-20260927-remote-files-dark": {
     "width": 1280,
-    "height": 928
+    "height": 928,
+    "poster": "/assets/features/new-20260927-remote-files-dark.webp"
   },
   "new-20260927-remote-files": {
     "width": 1280,
@@ -145,6 +169,7 @@
   },
   "new-20260927-remote-files-light": {
     "width": 1280,
-    "height": 918
+    "height": 918,
+    "poster": "/assets/features/new-20260927-remote-files-light.webp"
   }
 }
