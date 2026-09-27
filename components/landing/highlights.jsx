@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import Demo from "@/components/features/demo";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures";
 
 const highlights = [
-  { title: "Quick Look", image: "finder.jpg", href: "#quick-look-story", alt: "A fullerene open in Finder Quick Look" },
-  { title: "Binding sites", image: "selection.jpg", href: "#structure-story", alt: "A ligand inside a protein binding site" },
-  { title: "Molecular poses", image: "closeup-poses.png", href: "/features#motion", alt: "Eight molecular poses overlaid with All and Align" },
-  { title: "Molecular motion", image: "shot-trajectory-playback.jpg", href: "/features#motion", alt: "A molecular trajectory in Burette" },
-  { title: "Chemical Space", image: "space.jpg", href: "/features#chemical-space", alt: "Molecular similarity map and linked structures" },
+  { title: "Inspect a binding pocket.", video: "new-20260927-pocket", href: "/features#selection" },
+  { title: "Compare molecular poses.", video: "new-20260927-poses", href: "/features#motion" },
+  { title: "Explore Chemical Space.", video: "new-20260927-chemical-space", href: "/features#chemical-space" },
+  { title: "Create molecular illustrations.", video: "new-20260927-xyzrender", href: "/features#integrations" },
 ];
 
 export default function Highlights() {
@@ -19,7 +19,7 @@ export default function Highlights() {
       <CarouselContent>
         {highlights.map(item => <CarouselItem key={item.title} className="home-highlight-slide"><Link href={item.href} className="home-highlight-card">
           <div className="home-highlight-copy"><h3>{item.title}</h3></div>
-          <img src={`/assets/features/${item.image}`} alt={item.alt} width="1280" height="880" loading="lazy" />
+          <Demo id={item.video} title={item.title} />
         </Link></CarouselItem>)}
       </CarouselContent>
       <div className="study-controls"><CarouselPrevious /><CarouselNext /></div>
