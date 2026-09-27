@@ -32,7 +32,7 @@ for (const group of catalog) {
   if (!(await anyExists(docsFilesForRoute(group.docs)))) failures.push(`catalog ${group.id}: missing guide`);
   if (group.media) mediaIds.add(group.media);
   for (const card of group.features) {
-    if (card.captureStatus !== "approved" || (!card.video && !card.screenshot)) {
+    if (!card.mediaPending && (card.captureStatus !== "approved" || (!card.video && !card.screenshot))) {
       failures.push(`card ${card.title}: public gallery requires reviewed media`);
     }
     if (card.video) mediaIds.add(card.video);
@@ -44,7 +44,12 @@ for (const group of catalog) {
 for (const id of mediaIds) {
   const size = featureMedia[id];
   if (!size?.width || !size?.height) failures.push(`media ${id}: missing dimensions`);
+  if (size?.poster && !(await exists(path.join(root, "public", size.poster)))) failures.push(`media ${id}: missing poster`);
   const sources = size?.light && size?.dark ? [size.light, size.dark] : [id];
+  for (const source of sources) {
+    const poster = featureMedia[source]?.poster;
+    if (poster && !(await exists(path.join(root, "public", poster)))) failures.push(`media ${source}: missing optimized poster`);
+  }
   for (const source of sources) for (const extension of ["mp4", "jpg"]) {
     if (!(await exists(path.join(root, "public/assets/features", `${source}.${extension}`)))) {
       failures.push(`media ${id}: missing ${source}.${extension}`);

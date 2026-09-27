@@ -81,3 +81,5 @@ html[data-theme="dark"] .feature-heading {
 @media(max-width:650px), (min-width:901px) and (max-width:1100px) {
   .feature-video-grid,.feature-still-grid { grid-template-columns:1fr; }
 }
+.feature-recording-pending { padding:24px 20px; border-top:1px solid var(--border); }
+.feature-recording-pending a { display:inline-block; margin-top:12px; color:var(--molecular-ink); font-size:15px; }
