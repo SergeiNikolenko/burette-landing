@@ -15,6 +15,13 @@ when the project plan supports custom events.
 The public site also serves `/support`, `/privacy`, `/terms`, `/robots.txt`, and
 `/sitemap.xml`. Keep their canonical URLs aligned with the production domain.
 
+The `/demo` redirect and the embedded `/web-demo/*` and `/burette-viewer/*`
+rewrites share the production origin in `lib/burette-runtime.mjs`. Keep it on
+`https://burette-plugin.vercel.app`, never a preview or branch deployment. The
+`ligandpro/burette-plugin` Vercel project builds `apps/burette-public-plugin`
+from `SergeiNikolenko/Burette` on pushes to `main`, including the browser demo
+and viewer assets, so runtime updates do not require republishing this site.
+
 ## Local development
 
 ```sh

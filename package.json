@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node scripts/check-site.mjs && node scripts/check-live-scenes.mjs"
+    "test": "node scripts/check-site.mjs && node scripts/check-live-scenes.mjs && node scripts/check-demo-routing.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
