@@ -1,10 +1,14 @@
 import { workspaceScenes } from "./workspace-scenes";
 export { workspaceScenes } from "./workspace-scenes";
 
+// The workspace tab bar was labelled "Open structures" before Burette named it
+// "Workspace tabs"; the shared runtime may serve either.
+const TABS = '[role="tablist"]:is([aria-label="Workspace tabs"], [aria-label="Open structures"])';
+
 export function activeWorkspaceViewer(doc) {
   const active = doc?.querySelector('.page-surface[data-active="true"] iframe.viewer-iframe:not([data-read-only="true"])');
   if (active) return active;
-  const title = doc?.querySelector('[role="tablist"][aria-label="Open structures"] [aria-selected="true"]')?.textContent.trim();
+  const title = doc?.querySelector(`${TABS} [aria-selected="true"]`)?.textContent.trim();
   const viewers = [...(doc?.querySelectorAll("iframe.viewer-iframe") || [])];
   return viewers.find(viewer => viewer.title === title) || (viewers.length === 1 ? viewers[0] : null);
 }
@@ -18,7 +22,7 @@ export async function openWorkspaceScene(frame, scene, cancelled = () => false, 
   button(doc, "Hide bottom dock")?.click();
   button(doc, "Hide right dock")?.click();
   const name = scene.title || scene.path.split("/").pop();
-  const existing = [...doc.querySelectorAll('[role="tablist"][aria-label="Open structures"] [role="tab"]')].find(tab => tab.textContent.trim() === name);
+  const existing = [...doc.querySelectorAll(`${TABS} [role="tab"]`)].find(tab => tab.textContent.trim() === name);
   if (existing) { await indicate(existing); if (cancelled()) return false; existing.click(); return true; }
   if (scene.asset) {
     const win = sceneWindow(frame);
@@ -50,7 +54,7 @@ export async function prepareWorkspaceScene(frame, scene, cancelled = () => fals
   for (let attempt = 0; attempt < 100 && !cancelled(); attempt++) {
     const viewer = activeWorkspaceViewer(frame?.contentDocument);
     const win = viewer?.contentWindow;
-    const title = frame?.contentDocument?.querySelector('[role="tablist"][aria-label="Open structures"] [aria-selected="true"]')?.textContent.trim();
+    const title = frame?.contentDocument?.querySelector(`${TABS} [aria-selected="true"]`)?.textContent.trim();
     if (title === name && (win?.BuretteViewer?.plugin?.managers?.structure?.hierarchy?.current?.structures?.length || (scene.label === "Library" && win?.document.querySelector('.grid-card, .mol-card, [role="searchbox"], input[type="search"]')))) {
       return true;
     }
