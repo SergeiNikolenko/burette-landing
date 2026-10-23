@@ -48,15 +48,38 @@ Standalone screenshot captions and explanatory modal headers are omitted.
 The footer wordmark uses gentle positive tracking without kerning and stays fully visible.
 Demo, documentation, plugin setup, downloads, and installation remain reachable.
 
+## Launch film
+
+The 84-second launch film plays muted on the MacBook display before the live
+workspace, and in place of the screenshot on narrow screens. Pause/Play, Unmute/Mute
+and Skip film replace the presentation controls while it plays. The initial
+HTML includes the video and its poster; preferences and layout are resolved before the first
+client paint. Muted autoplay starts as soon as any part of the film is visible,
+without waiting for a minimum visible fraction or the first observer callback.
+The workspace starts loading after eight seconds of successful film playback; its loading state remains
+visible after the film if it is not ready yet. The presentation does not run
+underneath. Reduced motion and Data Saver retain the poster and Play film control
+without preloading the video. Reported connection speed never removes the film.
+Refused autoplay retains Play film; media failures retain Retry film and Skip film.
+Replay film remains available after ending or skipping. The film pauses off
+screen and in background tabs; a manual pause persists on return. An associated
+screen-reader description explains the visuals of this music-only film. Film
+progress and controls survive responsive layout changes. Enabling reduced motion
+or Data Saver pauses the film while keeping the player available.
+`burette-film.mp4` (1080p) and `burette-film-720.mp4` (screens up to 900 CSS
+pixels) are two-pass H.264 encodes of the master from the `burette-promo-video`
+project, lightly denoised to stay within the 8 MB video budget per encode. Pause,
+Play, Unmute, Mute and Skip film are tracked as Launch Film events.
+
 ## Live demonstrations
 
-At widths of 640 CSS pixels and above, the hero loads the complete published Burette browser workspace, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. The live display covers the camera cutout without an extra black band; the original bezel image remains unchanged.
+At widths of 960 CSS pixels and above, the hero loads the complete published Burette browser workspace, including its file tree, tabs, Ketcher entry point, and viewer tools. An unmodified official Apple MacBook Pro product bezel surrounds the app; its provenance and license exception are recorded in `public/assets/devices/README.md`. The live display covers the camera cutout without an extra black band; the original bezel image remains unchanged.
 
-Presentation cycles through six real files: 7RPZ.pdb, caffeine.cif, 1HTB.pdb, bimp.v000.xyz, buckyball.xyz, and caffeine_cell.xyz. Each runs a 32-second camera sequence with gentle rotation, direction changes, and a bounded 12% zoom. It does not open menus, select atoms, change representations, or change the selected trajectory frame. BIMP starts its native frame loop during presentation and stops it when presentation pauses or leaves the scene. Presentation starts enabled unless reduced motion is requested. Pointer or keyboard input pauses it; visitors can resume or choose any of the six progress indicators. Theme changes reload the workspace after synchronizing its stored preferences.
+Presentation cycles through six real files: 7RPZ.pdb, caffeine.cif, 1HTB.pdb, bimp.v000.xyz, buckyball.xyz, and caffeine_cell.xyz. Each runs a 32-second camera sequence with gentle rotation, direction changes, and a bounded 12% zoom. Camera choreography does not open menus, select atoms, or change representations. BIMP advances frames through its native frame loop during presentation and stops it when presentation pauses or leaves the scene. Presentation starts enabled unless reduced motion is requested. Pointer or keyboard input pauses it; visitors can resume or choose any of the six progress indicators. Theme changes reload the workspace after synchronizing its stored preferences.
 The introductory workspace illustration remains non-interactive.
 
-Motion, SDF poses, and Library are excluded from the hero presentation. Their standalone feature sections remain available. The Chemical Space section shows the real similarity workflow screenshot.
-The motion scene uses a real 20-frame BIMP vibrational-mode file. Playback starts on opening, with the native toolbar and playback panel collapsed. Visitors can expand these controls. There are no surrounding file-name bars or extra frame/smoothing action rows. The SDF collection in the hero demonstrates All instead.
+SDF poses and Library are excluded from the six-scene hero presentation. Their standalone feature sections remain available. The Chemical Space section shows the real similarity workflow screenshot.
+The standalone motion example uses a real 20-frame BIMP vibrational-mode file. Playback starts on opening, with the native toolbar and playback panel collapsed. Visitors can expand these controls. There are no surrounding file-name bars or extra frame/smoothing action rows.
 The scene mounts on approach, without a screenshot poster. It is not presented as a molecular-dynamics run.
 Data provenance is recorded in `public/live-data/README.md`.
 
@@ -90,11 +113,11 @@ The footer wordmark uses cap-height alignment to meet the lower page edge.
 
 Headlines and descriptions name concrete actions. FAQ copy distinguishes local desktop files from hosted plugin processing and avoids claiming that Burette only supports a short preview workflow. On 2026-09-13 the public landing copy, feature descriptions, and FAQ were submitted to Pangram 4.0: 1,025 words scanned, 96% AI / 4% human. This is the detector result, not an authorship or copy-quality guarantee. No third-party humanizer was used.
 
-The hero SDF example uses the published `openSdfMolstarDocument` host message and eight recorded MATCHA imatinib poses. It waits for that document, shows two individual poses, then selects All. Viewing these poses does not run docking or calculate affinity. Trajectory preparation waits for its own viewer, selects individual frames, and starts the native frame loop.
+The six-scene hero waits for the selected file's own viewer before starting its camera sequence. The BIMP scene uses the native frame loop; viewing this example does not run a simulation.
 
 The agent section reserves an empty, neutral 16:9 space for a future video, with no poster, caption, or inactive play control. The existing recorded agent demo remains available in the feature gallery.
 
-Below 640 CSS pixels, the hero uses an uncropped, enlargable real-app screenshot and does not mount the desktop runtime. Desktop canvas resolution follows the visible screen width with a 960 CSS-pixel minimum, preserving readable controls. Camera turns follow animation frames; tab transitions briefly fade the viewport while waiting for the next document. Reduced-motion preferences disable automatic presentation.
+Below 960 CSS pixels, the hero shows an uncropped, enlargable real-app screenshot after the film and does not mount the desktop runtime. Desktop canvas resolution follows the visible screen width with a 960 CSS-pixel minimum, preserving readable controls. Camera turns follow animation frames; tab transitions briefly fade the viewport while waiting for the next document. Reduced-motion preferences disable automatic presentation.
 
 A small presentation pointer targets file tabs or sidebar files only. Coordinates account for nested scaled frames, and real input cancels pending actions.
 
@@ -110,19 +133,19 @@ The next editorial pass rewrote feature descriptions, gallery copy and FAQ in or
 
 ## Loading budget
 
-The desktop workspace mounts when approaching the hero viewport. On reported Data Saver or 2G/3G connections, the hero uses the same real screenshot as mobile, with the workspace still available on request. Backgrounding the page pauses the guided story and frame/pose loops. The cloud shader is capped at 650,000 pixels on desktop, 300,000 below 700 px, and 24 fps; Data Saver keeps a static frame. The MacBook bezel uses responsive Next image optimization. In a local 1,200 px WebP request, the dark bezel measured 6,638 bytes versus 1,003,800 bytes for the original PNG; this is an asset-size measurement, not a whole-page loading-time guarantee.
+The desktop workspace mounts near the hero viewport after eight seconds of film playback, or after the film is skipped. Desktop layout depends on viewport width, not reported connection speed; Data Saver retains the film poster until explicitly played or skipped. Backgrounding the page pauses the guided story and frame/pose loops. The cloud shader is capped at 650,000 pixels on desktop, 300,000 below 700 px, and 24 fps; Data Saver keeps a static frame. The MacBook bezel uses responsive Next image optimization. In a local 1,200 px WebP request, the dark bezel measured 6,638 bytes versus 1,003,800 bytes for the original PNG; this is an asset-size measurement, not a whole-page loading-time guarantee.
 
-The presentation initializes the workspace in Illustrative and preserves its appearance throughout both camera sequences.
+The presentation initializes the workspace in Illustrative and preserves its appearance throughout all six camera sequences.
 
 The active presentation dot expands to a 44 px capsule. Its fill follows completed viewing/rotation steps, stays still during preparation and on pause, and reaches the end before the next scene. Other dots retain their compact shape, labels, focus rings and click targets. Progress writes one CSS variable without rerendering the workspace; reduced motion disables capsule transitions. Resuming an interrupted story restarts that story and its progress.
 
 ## Runtime and media refresh (2026-09-23)
 
-The hero, standalone examples, and Open workspace link share the immutable hosted
-runtime in `lib/burette-runtime.mjs`, built from Burette main commit
-`25e7a7e0838b6fdbd7e72a535e9c390fa33765f1`. Update the shell and viewer together;
-do not point either at the retired presentation preview branch. The public MCP
-production deployment is independent of this landing runtime pin.
+The hero, standalone examples, and Open workspace link share the production
+runtime at `https://burette-plugin.vercel.app`, configured in
+`lib/burette-runtime.mjs`. Both the workspace and viewer rewrites use this origin
+so they follow published Burette updates together. Do not point either at a
+retired preview deployment.
 
 Feature and home gallery images retain their intrinsic proportions and fill the
 card width with an 8 px inset and 18 px image corners. No forced 4:3 image box or

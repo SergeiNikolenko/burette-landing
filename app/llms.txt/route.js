@@ -11,7 +11,7 @@ const LLMS = `# Burette
 > When a preview is not enough, the same file opens in a workspace with tabs,
 > Mol* 3D, RDKit grids, Ketcher sketching, and local xTB or CREST runs.
 
-Burette is MIT-licensed, signed and notarized, and requires macOS 12 or later on
+Burette is MIT-licensed and requires macOS 12 or later on
 Apple Silicon or Intel. It has no account, no telemetry and no server component:
 files are parsed and rendered on the machine, and it needs no network access to
 open a file. Mol*, RDKit and Ketcher are bundled; \`xyzrender\`, \`xtb\` and

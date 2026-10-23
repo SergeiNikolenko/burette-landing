@@ -6,24 +6,39 @@ import { Button } from "@/components/ui/button";
 import WorkspaceDemo from "./workspace-demo";
 import WorkspaceLoading from "./workspace-loading";
 import ProductShot from "./product-shot";
+import { FilmControls, HeroFilm, useHeroFilm } from "./hero-film";
 import { pointAtControl } from "./presentation-pointer";
 import { playWorkspaceStory } from "./workspace-choreography";
 import { activeWorkspaceViewer, openWorkspaceScene, prepareWorkspaceScene, workspaceScenes } from "./workspace-presentation";
 
 export default function MacbookWorkspace() {
   const [desktop, setDesktop] = useState(false);
-  useEffect(() => {
+  const film = useHeroFilm();
+  useLayoutEffect(() => {
     const query = matchMedia("(min-width: 960px)");
-    const sync = () => setDesktop(query.matches && !navigator.connection?.saveData && !/(^|-)2g$|3g/.test(navigator.connection?.effectiveType || ""));
+    const sync = () => setDesktop(query.matches);
     sync(); query.addEventListener("change", sync);
-    return () => query.removeEventListener("change", sync);
+    return () => {
+      query.removeEventListener("change", sync);
+    };
   }, []);
-  return <div id="live-demo">{desktop ? <DesktopPresentation /> : <div className="mobile-workspace-preview">
-    <ProductShot light="/assets/main-light.png" dark="/assets/main-dark.png" alt="Burette molecular workspace" width={1804} height={1262} ratio="1804 / 1262" priority />
-  </div>}</div>;
+  return <div id="live-demo">{desktop ? <DesktopPresentation film={film} /> : <MobilePreview film={film} />}</div>;
 }
 
-function DesktopPresentation() {
+// Narrow screens play the film, then show the workspace screenshot.
+function MobilePreview({ film }) {
+  return <div className="mobile-workspace-preview">
+    {film.playing ? <>
+      <div className="mobile-film"><HeroFilm film={film} /></div>
+      <div className="presentation-controls"><FilmControls film={film} /><WorkspaceDemo label="Open workspace" /></div>
+    </> : <>
+      <ProductShot light="/assets/main-light.png" dark="/assets/main-dark.png" alt="Burette molecular workspace" width={1804} height={1262} ratio="1804 / 1262" priority />
+      <div className="presentation-controls"><Button variant="ghost" size="sm" onClick={film.replay}>Replay film</Button><WorkspaceDemo label="Open workspace" /></div>
+    </>}
+  </div>;
+}
+
+function DesktopPresentation({ film }) {
   const root = useRef(null);
   const screen = useRef(null);
   const frame = useRef(null);
@@ -44,6 +59,8 @@ function DesktopPresentation() {
   const changing = useRef(false);
   const story = useRef(null);
   const resumeTimer = useRef(null);
+  // Start the film first, then warm the workspace underneath it.
+  const live = mounted && film.ending;
   useEffect(() => () => clearTimeout(resumeTimer.current), []);
   useLayoutEffect(() => {
     indicators.current?.style.setProperty("--scene-progress", "0");
@@ -65,7 +82,7 @@ function DesktopPresentation() {
     let onScreen = false;
     const syncVisibility = () => setVisible(onScreen && !document.hidden);
     document.addEventListener("visibilitychange", syncVisibility);
-    const observer = new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; syncVisibility(); }, { threshold: 0.2 });
+    const observer = new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting && entry.intersectionRatio >= 0.2; syncVisibility(); }, { threshold: 0.2 });
     observer.observe(root.current);
     const load = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) { setMounted(true); load.disconnect(); }
@@ -80,7 +97,7 @@ function DesktopPresentation() {
     return () => { themes.disconnect(); observer.disconnect(); load.disconnect(); resize.disconnect(); document.removeEventListener("visibilitychange", syncVisibility); };
   }, []);
   useEffect(() => {
-    if (!mounted) return;
+    if (!live) return;
     transition.current++;
     setReady(false); readyRef.current = false; setFailed(false); setScene(0);
     const attached = new Set();
@@ -123,7 +140,7 @@ function DesktopPresentation() {
       alive = false; clearInterval(timer); clearTimeout(deadline); clearTimeout(resumeTimer.current);
       for (const doc of attached) for (const type of ["pointerdown", "pointermove", "keydown", "wheel"]) doc.removeEventListener(type, onInput, true);
     };
-  }, [mounted, theme]);
+  }, [live, theme]);
   useEffect(() => {
     if (!visible) {
       for (const viewer of frame.current?.contentDocument?.querySelectorAll("iframe.viewer-iframe") || []) {
@@ -132,7 +149,7 @@ function DesktopPresentation() {
     }
   }, [visible]);
   useEffect(() => {
-    if (!playing || !visible || !ready || changing.current) return;
+    if (!playing || !visible || !ready || film.playing || changing.current) return;
     const controller = new AbortController();
     story.current = controller;
     const token = ++transition.current;
@@ -163,7 +180,7 @@ function DesktopPresentation() {
       }
     })();
     return () => { controller.abort(); if (pointer.current) pointer.current.dataset.visible = "false"; setSwitching(false); };
-  }, [playing, visible, ready, scene]);
+  }, [playing, visible, ready, scene, film.playing]);
   const choose = async index => {
     paused();
     const token = transition.current;
@@ -183,17 +200,21 @@ function DesktopPresentation() {
   return <div ref={root} className="macbook-workspace">
     <div className="macbook-product">
       <div ref={screen} className="macbook-screen" data-switching={switching}>
-        {mounted && <iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=${theme}`} title="Burette complete interactive workspace" style={{ width: viewport.width, height: viewport.height, transform: `scale(${viewport.scale})` }} />}
+        {live && <iframe key={theme} ref={frame} src={`/web-demo/index.html?presentation=${theme}`} title="Burette complete interactive workspace" style={{ width: viewport.width, height: viewport.height, transform: `scale(${viewport.scale})` }} />}
         <div ref={pointer} className="presentation-pointer" aria-hidden="true"><span className="presentation-click-ring" /><svg viewBox="0 0 26 28" width="26" height="28"><path d="M3 3C2.2 2.6 1.6 3.4 2 4.5L9.2 24C9.8 25.6 11.5 25.4 12 23.9L14.2 16.6 21.8 14.2C23.4 13.7 23.5 12.1 21.9 11.4Z" fill="#17191d" stroke="#fff" strokeWidth="2" strokeLinejoin="round" /></svg></div>
         <WorkspaceLoading ready={ready} failed={failed}>Open the workspace to try Burette.</WorkspaceLoading>
+        <HeroFilm film={film} />
       </div>
       <Image className="macbook-product-bezel" src={`/assets/devices/macbook-pro-${theme === "dark" ? "space-black" : "silver"}.png`} alt="MacBook Pro showing Burette" width={4260} height={2840} sizes="(min-width: 1280px) 1200px, 96vw" quality={75} />
     </div>
     <div className="presentation-controls">
-      <div ref={indicators} role="group" aria-label="Workspace examples">
-        {workspaceScenes.map((item, index) => <button key={item.label} disabled={!ready} onClick={() => choose(index)} aria-label={`Show ${item.label.toLowerCase()}`} aria-pressed={scene === index} title={item.label}><span aria-hidden="true"><i /></span></button>)}
-      </div>
-      <Button variant="ghost" size="sm" disabled={!ready} onClick={() => { clearTimeout(resumeTimer.current); userActive.current = false; setPlaying(!playing); }}>{playing ? "Pause presentation" : "Play presentation"}</Button>
+      {film.playing ? <FilmControls film={film} /> : <>
+        <div ref={indicators} role="group" aria-label="Workspace examples">
+          {workspaceScenes.map((item, index) => <button key={item.label} disabled={!ready} onClick={() => choose(index)} aria-label={`Show ${item.label.toLowerCase()}`} aria-pressed={scene === index} title={item.label}><span aria-hidden="true"><i /></span></button>)}
+        </div>
+        <Button variant="ghost" size="sm" disabled={!ready} onClick={() => { clearTimeout(resumeTimer.current); userActive.current = false; setPlaying(!playing); }}>{playing ? "Pause presentation" : "Play presentation"}</Button>
+        <Button variant="ghost" size="sm" onClick={film.replay}>Replay film</Button>
+      </>}
       <WorkspaceDemo label="Open workspace" />
     </div>
   </div>;
