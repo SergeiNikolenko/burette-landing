@@ -7,7 +7,7 @@ export default function WorkspaceLoading({ ready, failed, children }) {
       <span className="workspace-loading-name">Burette</span>
       <div className="workspace-loading-message">
         {!failed && <span className="workspace-loading-spinner" aria-hidden="true" />}
-        {failed ? children : <span>Opening workspace</span>}
+        {failed ? children : <span>Opening workspace…</span>}
       </div>
     </div>
   </div>;
