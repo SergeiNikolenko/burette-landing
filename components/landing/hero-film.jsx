@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 // The launch film plays muted in the hero, then hands over to the workspace.
 // Reduced motion and Data Saver keep the poster until the visitor presses Play.
 // It pauses while it is off screen or the tab is in the background.
+// Clicking the film replays it full screen with sound and native controls.
 export function useHeroFilm() {
   const [video, setVideo] = useState(null);
   const position = useRef(0);
@@ -71,6 +72,16 @@ export function useHeroFilm() {
     };
   }, [film, video, paused]);
 
+  useEffect(() => {
+    if (!video) return;
+    const sync = () => {
+      video.controls = document.fullscreenElement === video;
+      setMuted(video.muted);
+    };
+    document.addEventListener("fullscreenchange", sync);
+    return () => document.removeEventListener("fullscreenchange", sync);
+  }, [video]);
+
   return {
     playing: film,
     // Give the film a head start before warming the workspace underneath it.
@@ -90,6 +101,22 @@ export function useHeroFilm() {
       });
     },
     toggleSound: () => setMuted((value) => !value),
+    watch: () => {
+      if (!video) return;
+      if (failed || video.error) video.load();
+      position.current = 0;
+      video.currentTime = 0;
+      // Unmute, play and enter full screen inside the click gesture.
+      video.muted = false;
+      setMuted(false);
+      setFailed(false);
+      setPaused(false);
+      video.play().catch((error) => {
+        if (error.name !== "AbortError") setPaused(true);
+      });
+      if (video.requestFullscreen) video.requestFullscreen().catch(() => {});
+      else video.webkitEnterFullscreen?.();
+    },
     finish: () => { setEnding(true); setFilm(false); },
     replay: () => {
       position.current = 0;
@@ -132,6 +159,8 @@ export function HeroFilm({ film }) {
       preload={film.paused ? "none" : "auto"}
       aria-label="Burette launch film"
       aria-describedby={description}
+      // Native controls handle clicks while the film is full screen.
+      onClick={() => { if (!document.fullscreenElement) film.watch(); }}
       onEnded={film.finish}
       onError={(event) => {
         // A source whose media query does not match also emits an error.
