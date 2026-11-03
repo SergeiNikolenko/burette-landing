@@ -186,5 +186,10 @@
     "width": 960,
     "height": 770,
     "poster": "/assets/features/light-and-dark.webp"
+  },
+  "trajectory-aligned": {
+    "width": 960,
+    "height": 540,
+    "poster": "/assets/features/trajectory-aligned.webp"
   }
 }

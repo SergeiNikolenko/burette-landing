@@ -10,7 +10,7 @@ import { SITE_URL } from "../site-url";
 
 export const metadata = {
   title: { absolute: "Features | Burette" },
-  description: "Explore Burette: Finder previews, molecular structures, collections, Chemical Space, editing, and local calculations. See the real workspace in short demos.",
+  description: "Explore Burette: compare proteins and docking poses, analyze molecular series, optimize 3D structures, and browse FEP networks. See the workspace in short demos.",
   alternates: { canonical: `${SITE_URL}/features` },
 };
 

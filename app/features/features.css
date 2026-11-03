@@ -12,9 +12,10 @@
 .feature-number { color:var(--molecular-ink); font-size:12px; font-variant-numeric:tabular-nums; letter-spacing:.1em; margin-bottom:20px; }
 .feature-group h2 { font-size:clamp(30px,3.8vw,46px); font-weight:550; line-height:1.12; letter-spacing:-.04em; margin:0 0 22px; }
 .feature-intro { max-width:65ch; font-size:18px; line-height:1.65; color:var(--body); margin:0 0 30px; }
-.feature-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 38px; margin-block:36px; }
-.feature-list h3 { font-size:17px; font-weight:550; line-height:1.4; margin-bottom:8px; }
+.feature-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px 32px; margin-block:28px; padding:0; list-style:none; }
+.feature-list h3 { font-size:17px; font-weight:550; line-height:1.4; margin:0 0 4px; }
 .feature-list p { font-size:15px; line-height:1.65; color:var(--body); margin:0; }
+.feature-list a { display:inline-block; margin-top:6px; color:var(--molecular-ink); font-size:15px; }
 .feature-guide { display:inline-block; margin-top:5px; color:var(--molecular-ink); font-size:15px; }
 .feature-end { text-align:center; padding-block:20px 120px; }
 .feature-end h2 { font-size:clamp(30px,4vw,46px); letter-spacing:-.04em; margin-bottom:20px; }
@@ -81,5 +82,3 @@ html[data-theme="dark"] .feature-heading {
 @media(max-width:650px), (min-width:901px) and (max-width:1100px) {
   .feature-video-grid,.feature-still-grid { grid-template-columns:1fr; }
 }
-.feature-recording-pending { padding:24px 20px; border-top:1px solid var(--border); }
-.feature-recording-pending a { display:inline-block; margin-top:12px; color:var(--molecular-ink); font-size:15px; }

@@ -32,7 +32,17 @@ for (const group of catalog) {
   if (!(await anyExists(docsFilesForRoute(group.docs)))) failures.push(`catalog ${group.id}: missing guide`);
   if (group.media) mediaIds.add(group.media);
   for (const card of group.features) {
-    if (!card.mediaPending && (card.captureStatus !== "approved" || (!card.video && !card.screenshot))) {
+    if (typeof card.title !== "string" || !card.title.trim() || typeof card.description !== "string" || !card.description.trim()) {
+      failures.push(`catalog ${group.id}: card requires a title and description`);
+    }
+    if (card.textOnly === true) {
+      if (["video", "screenshot", "screenshotDark", "mediaPending"].some(key => Object.hasOwn(card, key))) {
+        failures.push(`card ${card.title}: text-only card cannot declare media`);
+      }
+      continue;
+    }
+    const hasMedia = card.video || card.screenshot || card.screenshotDark;
+    if ((!card.mediaPending || hasMedia) && (card.captureStatus !== "approved" || (!card.video && !card.screenshot))) {
       failures.push(`card ${card.title}: public gallery requires reviewed media`);
     }
     if (card.video) mediaIds.add(card.video);

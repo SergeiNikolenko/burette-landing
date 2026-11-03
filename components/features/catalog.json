@@ -91,6 +91,16 @@
         "screenshotHeight": 852,
         "screenshotWidth": 960,
         "captureStatus": "approved"
+      },
+      {
+        "title": "Protein superposition",
+        "description": "Align related protein structures in one scene to compare folds and see where they differ.",
+        "textOnly": true
+      },
+      {
+        "title": "Molecular stories",
+        "description": "Open a MolViewSpec Story and step through its annotated molecular scenes in 3D.",
+        "textOnly": true
       }
     ]
   },
@@ -162,12 +172,9 @@
     "features": [
       {
         "title": "Trajectory playback",
-        "description": "Play, pause, or step through individual frames while rotating the structure. The demo shows a 20-frame molecular vibration.",
-        "screenshot": "/assets/features/shot-trajectory-playback.webp",
-        "screenshotHeight": 640,
-        "screenshotWidth": 960,
+        "description": "Play, pause, and step through a protein trajectory. Align frames to keep internal motion in view.",
         "captureStatus": "approved",
-        "video": "motion"
+        "video": "trajectory-aligned"
       },
       {
         "title": "Pose alignment",
@@ -185,13 +192,21 @@
         "screenshotHeight": 720,
         "screenshotWidth": 1280,
         "captureStatus": "approved"
+      },
+      {
+        "title": "Docking pose review",
+        "description": "Open a receptor and its docked ligands together. Switch between poses to inspect how each fits in the binding site.",
+        "screenshot": "/assets/features/pose-1.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 720,
+        "captureStatus": "approved"
       }
     ]
   },
   {
     "id": "collections",
     "title": "Find the compounds worth a closer look.",
-    "intro": "Browse structures and their properties together. Find a subset, inspect it, and export the result.",
+    "intro": "Browse structures and their properties together. Use the Mac app to compare series, find analogues, and build a shortlist.",
     "media": null,
     "docs": "/docs/workflows/collections",
     "features": [
@@ -247,6 +262,26 @@
         "screenshotHeight": 660,
         "screenshotWidth": 960,
         "captureStatus": "approved"
+      },
+      {
+        "title": "Clustering and diverse selection",
+        "description": "Group compounds by similarity, rank analogues of a selected molecule, and export representatives from the clusters.",
+        "textOnly": true
+      },
+      {
+        "title": "Scaffolds and R-groups",
+        "description": "Find the common scaffold in a selection. Break a series into R-groups to compare substituents in the table.",
+        "textOnly": true
+      },
+      {
+        "title": "Edit a collection row",
+        "description": "Open a molecule in Ketcher, edit it, and apply the updated structure to the original row.",
+        "textOnly": true
+      },
+      {
+        "title": "Combine collections",
+        "description": "Append molecules to an open collection or merge collections into a new table.",
+        "textOnly": true
       }
     ]
   },
@@ -295,8 +330,8 @@
   },
   {
     "id": "compute",
-    "title": "Explore different conformations.",
-    "intro": "Generate a set of 3D conformers and compare their shapes in the viewer.",
+    "title": "Generate, optimize, and compare in 3D.",
+    "intro": "Run molecular calculations in the Mac app on Apple Silicon and inspect the results alongside your structures.",
     "media": null,
     "docs": "/docs/workflows/native-compute",
     "features": [
@@ -307,6 +342,16 @@
         "screenshotHeight": 1084,
         "screenshotWidth": 1280,
         "captureStatus": "approved"
+      },
+      {
+        "title": "Geometry optimization",
+        "description": "Refine existing 3D coordinates with MMFF and inspect the optimized structure.",
+        "textOnly": true
+      },
+      {
+        "title": "Quantitative pose comparison",
+        "description": "Align selected 3D structures, inspect their overlap, and compare RMSD and shape scores in the table.",
+        "textOnly": true
       }
     ]
   },
@@ -367,6 +412,19 @@
         "screenshotHeight": 660,
         "screenshotWidth": 960,
         "captureStatus": "approved"
+      },
+      {
+        "title": "Watch a results folder",
+        "description": "Open a local folder as one scene and automatically add new structure files as they appear.",
+        "textOnly": true
+      },
+      {
+        "title": "FEP network preview",
+        "description": "Open a ligand network, select an edge to compare the changing atoms, and review ligands in the grid or in 3D when coordinates are available.",
+        "screenshot": "/assets/features/fep-graph.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 720,
+        "captureStatus": "approved"
       }
     ]
   },
@@ -387,7 +445,7 @@
       },
       {
         "title": "Work with your agent",
-        "description": "Ask your agent to open a molecular file, inspect a structure, and use Burette workspace tools through MCP.",
+        "description": "Ask your agent to open a structure, focus on a ligand, hide water, and capture the view through Burette workspace tools.",
         "captureStatus": "pending",
         "mediaPending": true,
         "docs": "/docs/plugin"

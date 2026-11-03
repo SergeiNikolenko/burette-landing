@@ -9,17 +9,18 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 function FeatureCard({ feature }) {
   return <article className="feature-explainer">
     <div className="feature-explainer-copy"><h3>{feature.title}</h3><p>{feature.description}</p></div>
-    {feature.mediaPending ? <div className="feature-recording-pending"><p>Video walkthrough coming soon.</p><a href={feature.docs}>Explore the agent tools ↗</a></div> : <div className="feature-capture"><div className="feature-capture-media">
+    <div className="feature-capture"><div className="feature-capture-media">
       {feature.video ? <Demo id={feature.video} title={feature.title} /> : feature.screenshotDark
         ? <ThemedImage light={feature.screenshot} dark={feature.screenshotDark} alt="" width={feature.screenshotWidth || 1280} height={feature.screenshotHeight} />
         : <img src={feature.screenshot} alt="" width={feature.screenshotWidth || 1280} height={feature.screenshotHeight} loading="lazy" decoding="async" />}
-    </div></div>}
+    </div></div>
   </article>;
 }
 
 export default function FeatureCards({ group }) {
-  const videos = group.features.filter(feature => feature.video || feature.mediaPending);
-  const screenshots = group.features.filter(feature => !feature.video && !feature.mediaPending);
+  const videos = group.features.filter(feature => feature.video);
+  const screenshots = group.features.filter(feature => !feature.video && feature.screenshot);
+  const textFeatures = group.features.filter(feature => feature.textOnly === true || (feature.mediaPending && !feature.video && !feature.screenshot));
   const plugins = useMemo(() => [WheelGesturesPlugin({ forceWheelAxis: "x" })], []);
   const [api, setApi] = useState(null);
   const [position, setPosition] = useState(1);
@@ -43,5 +44,12 @@ export default function FeatureCards({ group }) {
         </CarouselContent>
         <div className="feature-cards-controls"><span className="feature-cards-position" aria-live="polite">{position} / {pages}</span><CarouselPrevious aria-label="Previous features" /><CarouselNext aria-label="Next features" /></div>
       </Carousel>)}
+    {textFeatures.length > 0 && <ul className="feature-list" role="list">
+      {textFeatures.map(feature => <li key={feature.title}>
+        <h3>{feature.title}</h3>
+        <p>{feature.description}</p>
+        {feature.mediaPending && feature.docs && <a href={feature.docs}>Explore the agent tools ↗</a>}
+      </li>)}
+    </ul>}
   </>;
 }
