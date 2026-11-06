@@ -93,6 +93,15 @@
         "captureStatus": "approved"
       },
       {
+        "title": "Crystal cells",
+        "description": "Build a supercell, save the scene, and reopen it ready to edit the cell.",
+        "screenshot": "/assets/features/avogadro-crystal-scene-light.webp",
+        "screenshotDark": "/assets/features/avogadro-crystal-scene-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Protein superposition",
         "description": "Align related protein structures in one scene to compare folds and see where they differ.",
         "textOnly": true
@@ -175,6 +184,15 @@
         "description": "Play, pause, and step through a protein trajectory. Align frames to keep internal motion in view.",
         "captureStatus": "approved",
         "video": "trajectory-aligned"
+      },
+      {
+        "title": "Trajectory plots",
+        "description": "Plot a distance across every frame and save it as CSV.",
+        "screenshot": "/assets/features/avogadro-trajectory-plots-light.webp",
+        "screenshotDark": "/assets/features/avogadro-trajectory-plots-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
       },
       {
         "title": "Pose alignment",
@@ -344,14 +362,106 @@
         "captureStatus": "approved"
       },
       {
+        "title": "Automatic force field",
+        "description": "Burette picks a force field that covers your elements and names the one it used.",
+        "screenshot": "/assets/features/avogadro-force-field.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Geometry optimization",
-        "description": "Refine existing 3D coordinates with MMFF and inspect the optimized structure.",
+        "description": "Refine 3D coordinates with a force field Burette picks for your elements, or with xTB in the Mac app.",
         "textOnly": true
       },
       {
         "title": "Quantitative pose comparison",
         "description": "Align selected 3D structures, inspect their overlap, and compare RMSD and shape scores in the table.",
         "textOnly": true
+      }
+    ]
+  },
+  {
+    "id": "geometry",
+    "title": "Shape the molecule. Let it relax.",
+    "intro": "Type a bond length, angle, or torsion, hold what must stay, and optimize the rest. One Undo returns to where you started.",
+    "media": null,
+    "docs": "/docs/workflows/geometry",
+    "features": [
+      {
+        "title": "Edit the geometry",
+        "description": "Type a bond length, angle, or torsion and the molecule follows.",
+        "screenshot": "/assets/features/avogadro-geometry-edit.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 750,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Z-matrix",
+        "description": "Switch to a Z-matrix at any time and copy or save it.",
+        "screenshot": "/assets/features/avogadro-zmatrix.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 750,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Optimize with constraints",
+        "description": "Freeze atoms or hold a distance while the rest relaxes.",
+        "screenshot": "/assets/features/avogadro-constraints.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
+      }
+    ]
+  },
+  {
+    "id": "quantum",
+    "title": "From a calculation to its orbitals.",
+    "intro": "Open the output of a quantum chemistry calculation, play its vibrations, show its orbitals, and write the input for the next run.",
+    "media": null,
+    "docs": "/docs/workflows/calculations",
+    "features": [
+      {
+        "title": "Vibrations",
+        "description": "Open a calculation and play its vibrations.",
+        "screenshot": "/assets/features/avogadro-vibrations.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Orbital surfaces",
+        "description": "Show an orbital surface from a calculation file.",
+        "screenshot": "/assets/features/avogadro-orbital-light.webp",
+        "screenshotDark": "/assets/features/avogadro-orbital-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Coordinate sets",
+        "description": "Pick any geometry stored in the file.",
+        "screenshot": "/assets/features/avogadro-coordinate-sets.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Cube fields",
+        "description": "Switch between orbitals in one cube file and choose the lobe colours.",
+        "screenshot": "/assets/features/avogadro-cube-fields-light.webp",
+        "screenshotDark": "/assets/features/avogadro-cube-fields-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Input files",
+        "description": "Write a ready input file for your quantum chemistry program.",
+        "screenshot": "/assets/features/avogadro-input-export.webp",
+        "screenshotWidth": 1200,
+        "screenshotHeight": 1204,
+        "captureStatus": "approved"
       }
     ]
   },
@@ -378,6 +488,23 @@
         "screenshotWidth": 960,
         "captureStatus": "approved",
         "video": "new-20260927-sketch-3d"
+      },
+      {
+        "title": "Builders",
+        "description": "Build a peptide, a DNA strand, or a metal complex and add it to your file.",
+        "screenshot": "/assets/features/avogadro-builders.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Export to other formats",
+        "description": "Save a structure as MOL, XYZ, or CJSON, or as a compressed copy.",
+        "screenshot": "/assets/features/avogadro-export-light.webp",
+        "screenshotDark": "/assets/features/avogadro-export-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
       },
       {
         "title": "Text editing",
