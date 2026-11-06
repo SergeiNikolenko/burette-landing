@@ -86,6 +86,58 @@ The pinned package supports up to eight files and 16 MiB in one inline session. 
 
 Desktop and browser-session tools use their own handles and contracts. Let the installed plugin’s tool schema determine the correct arguments rather than copying a handle between modes. The repository also contains the desktop automation facade for observation, viewer control, Ketcher, and MolViewSpec Stories.
 
+### Script a molecule from Python
+
+The Python client in the plugin (`plugins/burette-agent/python/burette_workbench.py`) drives the same workbench jobs as the CLI and MCP tools. It needs only the Python standard library and Node.js, and talks to a session started with `burette-agent.mjs open`, in the browser agent shell or the desktop app. Jobs never change the open document; export a result and open it to continue on it.
+
+This script builds ethanol from SMILES, replaces the oxygen with sulfur, exports the result in three formats, writes ORCA and Gaussian inputs, and reopens the XYZ file:
+
+```python
+from burette_workbench import Workbench
+
+wb = Workbench(session_dir)
+
+built = wb.build("smiles", {"smiles": "CCO"})
+wb.open(wb.export(built.job_id, "structure", output="ethanol.sdf")["path"])
+
+edited = wb.run("graph_edit", {"edits": [{"kind": "update_atom", "index": 2, "element": "S"}]})
+wb.open(wb.export(edited.job_id, "structure", output="ethanethiol.sdf")["path"])
+
+for fmt in ("xyz", "mol", "cjson"):
+    job = wb.run("structure_export", {"format": fmt})
+    wb.export(job.job_id, "structure", output=f"ethanethiol.{fmt}")
+
+orca = wb.run("quantum_input", {"program": "orca", "task": "optimize"})
+wb.export(orca.job_id, "input", output="ethanethiol.inp")
+gaussian = wb.run("quantum_input", {"program": "gaussian", "coordinates": "zmatrix"})
+wb.export(gaussian.job_id, "input", output="ethanethiol.gjf")
+
+wb.open("ethanethiol.xyz")
+wb.observe()["structure"]["formula"]  # 'C2H6S'
+```
+
+| Job | What it does |
+| --- | --- |
+| `build` with `smiles`, `peptide`, `nucleic_acid` or `metal_complex` | Builds a new structure without an open document. |
+| `graph_edit` | Applies 1–16 Edit-tab changes in order, all or none: add, update or delete atoms, and set bonds, including dative bonds. |
+| `structure_export` | Writes XYZ, MOL or CJSON, as **Export → Structure** does. |
+| `quantum_input` | Writes the **Export input file** text for ORCA, Gaussian, Psi4 or CP2K, with Cartesian or Z-matrix coordinates and the dialog's defaults. Nothing runs. |
+
+Builder insertion, biological assemblies, Z-matrix value edits and 3D model export already have their own jobs and commands; the plugin's tool schema lists them all.
+
+### Camera projection and axis views
+
+Agents can switch the 3D view between perspective and orthographic projection and look down a coordinate axis, as the viewer toolbar does:
+
+```bash
+bun scripts/burette-agent.mjs act --session-dir "$SESSION" '{"type":"set_camera_projection","mode":"orthographic"}'
+bun scripts/burette-agent.mjs act --session-dir "$SESSION" '{"type":"view_axis","axis":"+x"}'
+```
+
+`axis` is one of `+x`, `-x`, `+y`, `-y`, `+z`, or `-z`. `observe` reports the current camera mode.
+
+![Ethanethiol after the script above, shown in orthographic projection looking down the x axis.](/assets/docs/avogadro/automation-orthographic-x-view.webp)
+
 ### Install the local plugin
 
 Install Git, Bun, and Codex first. Clone the main repository and run its plugin installer:

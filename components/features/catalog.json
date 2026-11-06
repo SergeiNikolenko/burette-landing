@@ -571,6 +571,11 @@
         "video": "new-20260927-xyzrender"
       },
       {
+        "title": "Automate repeatable steps",
+        "description": "Script the same builds, edits, exports, and input files from Python, and continue on the results.",
+        "textOnly": true
+      },
+      {
         "title": "Work with your agent",
         "description": "Ask your agent to open a structure, focus on a ligand, hide water, and capture the view through Burette workspace tools.",
         "captureStatus": "pending",
