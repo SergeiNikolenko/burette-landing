@@ -85,3 +85,17 @@ Notes on the generated files:
 - A CP2K file of a crystal keeps its cell. An isolated molecule is centred in a box with 6 Å of padding on each side.
 
 The generated settings are a starting point. Check that the method, basis, and calculation type suit your program and system before you run it.
+
+## Programs and readers from Avogadro packages (Mac app)
+
+Avogadro Python packages installed and set up in **Settings › Extensions** add more programs and file readers.
+
+**More programs** in Export input file lists the input generators of your packages. The *avogadro-generators* package, for example, adds Dalton, GAMESS-UK, Gaussian, MOLPRO, MOPAC, NWChem, ORCA, Psi, PySCF, Q-Chem, and TeraChem.
+
+1. Choose a program under **More programs**. The form shows that program's own options, grouped as the package groups them.
+2. Change an option. The preview of each generated file updates a moment later.
+3. **Copy** the text, or **Save** the file. When the program writes several files, pick one to preview, or use **Save all**.
+
+The base file name starts as the document's name.
+
+A package that reads calculation outputs adds **Open › With …** to the file menu in the sidebar for the extensions it declares. *avogadro-cclib*, for example, adds **With cclib** for Gaussian, ORCA, and other program logs. The molecule it reads opens as a new document named after the file, and the original file stays as it was.

@@ -170,3 +170,46 @@ Agents get the same jobs, plus orthographic projection and views down the x, y o
 
 - Attach: `stage-11-automation/light-ortho-x-window.png`
 - Link: `/docs/plugin#script-a-molecule-from-python`
+
+---
+
+## 11. Right-click an atom to edit it
+
+You can now open the right tool straight from an atom in the 3D view.
+
+Right-click an atom in an XYZ file and choose Edit geometry: the Geometry panel opens on that atom's row, ready for a new bond length or angle. In a MOL or SDF file, Edit atoms and bonds opens the editor on the same atom. Properties… shows the formula, masses, charge, polar surface area, cLogP and MMFF94 energy of the molecule you clicked.
+
+#ComputationalChemistry #MolecularModeling
+
+- Attach: `stage-12-context-menu/light-xyz-menu.png`, `stage-12-context-menu/light-xyz-tool.png`, `stage-12-context-menu/light-props-tool.png`
+- Link: `/docs/workflows/geometry`
+
+---
+
+## 12. Ferrocene, terpyridine and edta in a few clicks
+
+You can now build a metal complex from 76 ligands, haptic rings and multidentate chelates included.
+
+Choose a metal, its oxidation state and one of eleven geometries, from linear to square antiprismatic. Pick a ligand for one site, and a chelate fills every site it reaches, keeping its own bite angles. For terpyridine in an octahedron you choose between the meridional sets; tacn and Tp go facial. Ferrocene takes two cyclopentadienyl rings at 1.67 Å from the iron to each ring centre. The total charge follows every change, and RDKit and Open Babel read each result back with the charge we show.
+
+The ligands come from Avogadro's library. We added the hydrogens and formal charges that several of its files were missing, so a built complex is a valid molecule from the start.
+
+#Chemistry #InorganicChemistry #ComputationalChemistry
+
+- Attach: `stage-12-metal-complexes/light-ru-terpy2.png`, `stage-12-metal-complexes/light-ferrocene.png`, `stage-12-metal-complexes/dark-fe-edta.png`
+- Link: `/docs/workflows/builders#metal-complexes`
+
+---
+
+## 13. Your Avogadro packages work in Burette
+
+You can now use the input generators and file readers of Avogadro Python packages in the Burette Mac app.
+
+Install a package from Settings › Extensions and set it up once. Export input file then lists its programs under More programs: avogadro-generators alone adds Dalton, GAMESS-UK, MOLPRO, MOPAC, NWChem, PySCF, Q-Chem, TeraChem and others, each with its own option pages and a live preview of every generated file. avogadro-cclib adds Open › With cclib, which turns a Gaussian or ORCA log into a molecule you can view and edit.
+
+Packages run only after you set them up, and their results open as new documents next to your files.
+
+#ComputationalChemistry #OpenSource
+
+- Attach: screenshots of More programs (ORCA options) and Open › With cclib from the packaged Mac app, still to capture
+- Link: `/docs/workflows/calculations#programs-and-readers-from-avogadro-packages-mac-app`

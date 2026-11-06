@@ -15,7 +15,7 @@ The **Compute** menu in the bottom corner of the 3D view lists the builders for 
 | --- | --- |
 | **Build peptide…** | Sequence in one-letter or three-letter codes, L or D residues, backbone conformation (φ and ψ), N- and C-terminus, and chain. |
 | **Build DNA or RNA…** | Sequence, nucleic acid type, helix form, and strands. |
-| **Build metal complex…** | Metal, oxidation state, coordination geometry, and the ligand and bond length at each site. The total charge is shown as you edit. |
+| **Build metal complex…** | Metal, oxidation state, coordination geometry, and the ligand at each site, with the bond length for one- and two-site ligands. The total charge is shown as you edit. |
 
 **Preview** shows the result in the dialog. **Create** opens it as a new document.
 
@@ -32,6 +32,23 @@ When the active document is an editable MOL or SDF file, the peptide, DNA or RNA
 Each insertion is one Undo step in the document's edit history, so **Undo** removes it and **Redo** brings it back. Use **Save copy** to write the combined file without replacing the original. Editing is limited to 256 atoms in total, including the inserted molecule.
 
 PDB and mmCIF files do not receive inserted residues. For those, the builders open the result as a new document that you can combine with the original in a scene. **Build polymer…** has no Insert because it works on the open document itself.
+
+## Metal complexes
+
+The ligand list holds 76 ligands in six groups: **Monodentate**, **Haptic**, **Bidentate**, **Tridentate**, **Tetradentate**, and **Hexadentate**. Among them are cyclopentadienyl, benzene and other η-rings, bipyridine and phenanthroline, terpyridine, tacn and Tp, porphyrin, salen and cyclam, edta, and 18-crown-6.
+
+Coordination geometries run from linear (2 sites) to square antiprismatic (8 sites), including trigonal prismatic, pentagonal bipyramidal, and hexagonal bipyramidal.
+
+- A ligand that binds through several atoms takes as many sites. Pick it for one site, and Burette fills the others it fits.
+- **Other sites** next to the ligand lists every set of sites the ligand can reach, so you can choose between arrangements such as *mer* and *fac*, or cis positions. It is hidden when a ligand fits the geometry only one way, as edta does in an octahedron.
+- Ligands that cannot reach a site from the current choice are disabled in the list.
+- Chelates of three or more donors keep their own shape and bite angles. For one- and two-site ligands you can type the metal–donor distance; for a haptic ring it is the distance from the metal to the ring centre.
+
+![Ru(II) with two terpyridine ligands in an octahedron. Each terpyridine fills three meridional sites, and the Other sites lists show With 2, 3 and With 5, 6. The total charge is +2.](/assets/docs/avogadro/builder-metal-terpy.webp)
+
+![Ferrocene built from Fe(II), a linear geometry, and two cyclopentadienyl rings at 1.67 Å from the metal to each ring centre. The total charge is 0.](/assets/docs/avogadro/builder-metal-ferrocene.webp)
+
+If a ligand does not fit the chosen sites, the message names the sites and asks for other sites or another geometry.
 
 ## Dative bonds
 

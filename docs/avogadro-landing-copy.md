@@ -43,6 +43,8 @@ Burette showcase plan.
 | Geometry editing | Measure, Edit value, Undo/Redo, Z-matrix | `s-1-phenylethanol.xyz` | `geometry` group media |
 | Calculation results | Vibration, Orbital, Switch field, Recolour | Formaldehyde CJSON and a HOMO/LUMO Cube | `#calculation-story`; `quantum` group media |
 | Builders and insertion | Build peptide, Insert, Metal complex, Undo | `caffeine.sdf` | `editing` Builders card; Highlights card |
+| Metal complexes | Pick terpyridine, switch Other sites mer → another set, Preview, Create | `caffeine.sdf` | `editing` Metal complexes card |
+| Right-click an atom | Right-click, Edit geometry, row focused, type a value | `s-1-phenylethanol.xyz` | `editing` Right-click an atom card |
 
 ## Cards not yet on the Features page
 
@@ -54,3 +56,4 @@ They have copy but no reviewed screenshot or clip:
 | `geometry` | Optimize Geometry | Press ⌥⌘O and watch the structure relax. One Undo takes it back. |
 | `motion` | Compare frames | Show every frame at once and superimpose them on the current one. |
 | `compute` | External energy models | Use semiempirical methods or your own energy plugin from the same menu. |
+| `quantum` | Programs from Avogadro packages | Needs Mac app screenshots of More programs and Open › With cclib; the card is text only until then. |

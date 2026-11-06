@@ -462,6 +462,11 @@
         "screenshotWidth": 1200,
         "screenshotHeight": 1204,
         "captureStatus": "approved"
+      },
+      {
+        "title": "Programs from Avogadro packages",
+        "description": "Write inputs for Dalton, MOLPRO, NWChem, PySCF and more, and open program logs with installed Avogadro packages in the Mac app.",
+        "textOnly": true
       }
     ]
   },
@@ -493,6 +498,24 @@
         "title": "Builders",
         "description": "Build a peptide, a DNA strand, or a metal complex and add it to your file.",
         "screenshot": "/assets/features/avogadro-builders.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 823,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Metal complexes",
+        "description": "Pick from 76 ligands, from cyclopentadienyl to edta, and choose how each chelate wraps the metal.",
+        "screenshot": "/assets/features/avogadro-metal-complexes-light.webp",
+        "screenshotDark": "/assets/features/avogadro-metal-complexes-dark.webp",
+        "screenshotWidth": 1296,
+        "screenshotHeight": 1462,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Right-click an atom",
+        "description": "Open the editor, the geometry table or the properties of a molecule from its atom in 3D.",
+        "screenshot": "/assets/features/avogadro-context-menu-light.webp",
+        "screenshotDark": "/assets/features/avogadro-context-menu-dark.webp",
         "screenshotWidth": 1280,
         "screenshotHeight": 823,
         "captureStatus": "approved"
