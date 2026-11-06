@@ -40,6 +40,27 @@ A file with several geometries opens on its active set. Choose another one in **
 
 A Gaussian log from a geometry optimization opens on its final geometry. When the job printed the basis and orbital coefficients for that geometry (`pop=full` with `gfinput`), its orbitals are available in **Orbitals**. Otherwise you get orbital energies and occupations without surfaces.
 
+## Charges, dipole, and thermochemistry
+
+When a calculation printed atomic charges, a dipole moment, or the thermochemistry of a frequency job, the **Info** dock shows them for the geometry in the 3D view. Charges and the dipole come from Gaussian, ORCA, Psi4, NWChem, Q-Chem, GAMESS, Molpro, and xTB outputs; thermochemistry from Gaussian, ORCA, Psi4, NWChem, Q-Chem, and xTB (`--ohess`).
+
+In the **Charges** card:
+
+1. Choose the charge model, such as **Mulliken** or **Löwdin**, when the file has several.
+2. Turn on **Color atoms** to colour each atom by its charge: negative charges are blue, positive orange, and neutral atoms white.
+3. Turn on **Labels** to write each charge next to its atom.
+4. Turn on **Dipole arrow** to draw the dipole moment from the centre of the molecule, one ångström per debye, pointing from the negative to the positive end.
+
+Turn an option off to return the scene to its own colours.
+
+![p-Nitroaniline from an xTB frequency job: atoms coloured and labelled by charge, the 8.91 D dipole arrow pointing from the nitro group to the amino group, and the Charges and Thermochemistry cards in the Info dock.](/assets/docs/avogadro/calc-charges-dipole.webp)
+
+The **Thermochemistry** card lists the temperature, the zero-point energy, the enthalpy and Gibbs energy (electronic energy included), and the entropy. The values are the ones the program printed. NWChem and Q-Chem print no Gibbs energy; Burette shows G = H − T·S from their enthalpy and entropy.
+
+![The Charges and Thermochemistry cards for a Psi4 water optimization and frequency job.](/assets/docs/avogadro/calc-thermochemistry.webp)
+
+In an optimization log that opens on its final geometry, the cards show that geometry. In a trajectory, they follow the current frame; the thermochemistry stays on the geometry the frequency job was run on.
+
 ## Cube files with several fields
 
 A Cube file can store several orbitals or fields on one grid. Burette lists them in the **Field** select of **Orbitals**, named with the orbital numbers from the file.

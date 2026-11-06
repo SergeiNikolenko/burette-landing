@@ -213,3 +213,18 @@ Packages run only after you set them up, and their results open as new documents
 
 - Attach: screenshots of More programs (ORCA options) and Open › With cclib from the packaged Mac app, still to capture
 - Link: `/docs/workflows/calculations#programs-and-readers-from-avogadro-packages-mac-app`
+
+---
+
+## 14. Charges, dipole and thermochemistry from your logs
+
+You can now see the charges and the dipole your calculation printed, right on the molecule.
+
+Open a Gaussian, ORCA, Psi4, NWChem, Q-Chem or xTB output and the Info dock lists its charge models. Colour the atoms by charge, label each atom with its value, or draw the dipole arrow, one ångström per debye. For p-nitroaniline the 8.9 D arrow runs from the nitro group to the amino group, as it should. A frequency job adds the zero-point energy, enthalpy, Gibbs energy and entropy, the same numbers the program printed.
+
+Building this also turned up two older bugs: Gaussian logs written with freq=hpmodes did not open, and colouring atoms by xTB charges painted only one atom of each colour. Both are fixed.
+
+#ComputationalChemistry #QuantumChemistry
+
+- Attach: `stage-14-charges-thermochemistry/light-p-nitroaniline-charges-dipole.png`, `stage-14-charges-thermochemistry/dark-p-nitroaniline-charges-dipole.png`
+- Link: `/docs/workflows/calculations#charges-dipole-and-thermochemistry`

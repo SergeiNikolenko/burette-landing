@@ -456,6 +456,15 @@
         "captureStatus": "approved"
       },
       {
+        "title": "Charges and dipole",
+        "description": "Colour and label atoms by their calculated charges, draw the dipole, and read ZPE, H, G and S.",
+        "screenshot": "/assets/features/avogadro-charges-light.webp",
+        "screenshotDark": "/assets/features/avogadro-charges-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Input files",
         "description": "Write a ready input file for your quantum chemistry program.",
         "screenshot": "/assets/features/avogadro-input-export.webp",
