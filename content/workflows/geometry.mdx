@@ -43,6 +43,16 @@ The **Internal** tab lists every atom with its bond length, angle, and dihedral 
 
 ![The Z-matrix view of ethanol with rows C1 to H9 and the Copy Z-matrix tooltip in the toolbar.](/assets/docs/avogadro/geometry-zmatrix-copy.webp)
 
+## Find the point group and symmetrize
+
+**Show molecular symmetry** in the command palette opens the **Symmetry** panel for an XYZ, MOL, or SDF molecule of up to 256 atoms.
+
+1. Choose a **Tolerance**: **Tight**, **Normal**, **Loose**, or **Very loose**. A looser tolerance finds the symmetry of a slightly distorted structure.
+2. The panel shows the point group, its order, and its classes. **Operations** lists each operation with its axis or plane normal. **Equivalent atoms** lists the sets of atoms that the operations map onto each other; select a set to highlight it in the 3D view.
+3. **Symmetrize** moves the atoms to the exact symmetric positions of that group. It is one Undo step.
+
+![The Symmetry panel for caffeine at Normal tolerance: point group Cs of order 2 with classes E and σh, and the Operations list with the σh plane normal.](/assets/docs/avogadro/symmetry-panel.webp)
+
 ## Freeze atoms and hold distances
 
 Constraints keep part of the structure fixed while the optimizer moves the rest.
