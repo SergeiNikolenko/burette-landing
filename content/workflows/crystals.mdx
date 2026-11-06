@@ -1,0 +1,44 @@
+---
+title: Crystal Structures
+description: Edit a crystal cell, build a supercell, save it as a scene that reopens ready to edit, and export the cell as CIF, POSCAR, extended XYZ, or CJSON.
+---
+
+# Crystal Structures
+
+CIF and POSCAR crystals open with their unit cell and a **Crystal** panel in the right dock. Edit the cell, build a supercell, save the result as a scene, and pick up where you left off when you reopen it.
+
+## Edit the cell
+
+The **Crystal** panel shows the cell volume and atom count, and groups its tools into sections:
+
+- **Cell**: lattice **Parameters** (a, b, c, α, β, γ) or **Vectors**. **Keep** chooses whether atoms keep their **Fractional** or **Cartesian** coordinates when you **Apply** a new cell.
+- **Transform**: **Wrap atoms**, **Standard orientation**, **Niggli reduce**, **Scale** to a target volume, and **Build supercell** from the a ×, b ×, and c × repeats.
+- **Space group**: the detected space group and crystal system at the chosen tolerance, with the symmetry-unique sites.
+
+Each change is one Undo step in the panel.
+
+## Save a crystal scene and reopen it
+
+1. Open a CIF or POSCAR file and make your changes, for example **Build supercell** with a × 2.
+2. Save the scene with **Export → Scene…** (or **Save scene…**). The scene keeps the crystal as its source.
+3. Reopen the `.molx` scene. The **Crystal** panel opens with the saved cell, ready for the next edit.
+4. Keep editing. The edits are Undo steps, and the next **Save scene** stores them.
+
+The **Text** tab of a reopened crystal scene shows the crystal source saved in the scene.
+
+![A reopened rutile scene with a 2 × 2 × 2 supercell: the Crystal panel shows a = 9.188 Å, 24 atoms, and space group P 4₂/m n m (136).](/assets/docs/avogadro/crystal-scene-reopened.webp)
+
+## Export the cell
+
+**Export** at the top of the **Crystal** panel writes the current cell, including unsaved edits:
+
+| Format | Use |
+| --- | --- |
+| **CIF** | Crystallographic programs and databases |
+| **POSCAR** | VASP and other plane-wave codes |
+| **Extended XYZ** | Atom lists with a `Lattice` line, read by many simulation tools |
+| **CJSON** | Avogadro and other Chemical JSON readers |
+
+![The Crystal panel's Export menu for rutile with CIF, POSCAR, Extended XYZ, and CJSON.](/assets/docs/avogadro/crystal-export-menu.webp)
+
+The cell's fractional coordinates are written to 12 decimal places, so a supercell reopens with the same lattice. To write an input file for a periodic CP2K calculation, use **Export input file…**; see [Calculation results](/docs/workflows/calculations#export-an-input-file).

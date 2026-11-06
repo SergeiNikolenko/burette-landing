@@ -1,0 +1,87 @@
+---
+title: Calculation Results
+description: Open quantum chemistry results with vibrations, orbitals, and coordinate sets, show orbital fields from Cube files, and write input files for ORCA, Gaussian, Psi4, and CP2K.
+---
+
+# Calculation Results
+
+Open the output of a quantum chemistry calculation and look at what it computed: play a vibrational mode, show an orbital surface, or switch between the fields stored in a Cube file. When you are ready for the next run, write an input file for your program from any structure.
+
+The tools for a calculation file open from the **Info** dock and the right dock tabs: **Vibrations**, **Orbitals**, **Crystal**, and **Plots** appear when the file contains that data.
+
+## Chemical JSON files
+
+Chemical JSON (`.cjson`) files written by Avogadro open with their scientific content:
+
+| Section in the file | What you get |
+| --- | --- |
+| Vibrations | **Vibrations**: frequency, IR intensity, and Raman activity for each mode, a spectrum, and a live animation of the selected mode. |
+| Orbitals and basis set | **Orbitals**: orbital energies and occupations with HOMO and LUMO marked, and an orbital surface for the selected orbital. |
+| Unit cell | The structure opens with its lattice, and the **Crystal** panel shows the cell. |
+| Several coordinate sets | A **Coordinate set** selector in the **Info** dock. |
+
+![The Vibrations panel for formaldehyde with an IR spectrum, the mode table, and the 1527 cm⁻¹ mode animating in the 3D view.](/assets/docs/avogadro/calc-vibrations.webp)
+
+In **Vibrations**, select a mode in the table, set the **Amplitude**, and click **Animate**; **Stop** ends the animation. **Open → Trajectory** opens the mode as a multi-frame structure, and **Export** saves the spectrum as CSV or JSON, or the modes as JSON.
+
+In **Orbitals**, select an orbital in the table, set the isovalue and grid spacing, and click **Show surface**. **Export Cube** saves the displayed field as a Cube file.
+
+![The Orbitals panel for formaldehyde with the LUMO selected and its two lobes shown around the molecule.](/assets/docs/avogadro/calc-orbital-surface.webp)
+
+Vibrations and orbitals are kept when you save the scene and reopen it.
+
+### Coordinate sets
+
+A file with several geometries opens on its active set. Choose another one in **Coordinate set** in the **Info** dock; each choice is one Undo step, and choosing a set you showed before returns to it. Vibrational modes travel with their own set. Orbitals belong to the geometry they were computed for, so they are available only on the file's own set. The chosen set is kept when you save the scene.
+
+![The Coordinate set list in the Info dock of a formaldehyde file, open on Set 1 of thirteen.](/assets/docs/avogadro/calc-coordinate-sets.webp)
+
+## Gaussian optimization logs
+
+A Gaussian log from a geometry optimization opens on its final geometry. When the job printed the basis and orbital coefficients for that geometry (`pop=full` with `gfinput`), its orbitals are available in **Orbitals**. Otherwise you get orbital energies and occupations without surfaces.
+
+## Cube files with several fields
+
+A Cube file can store several orbitals or fields on one grid. Burette lists them in the **Field** select of **Orbitals**, named with the orbital numbers from the file.
+
+1. Open the Cube file and the **Orbitals** tab.
+2. Choose a field in **Field** and set the **Isovalue**.
+3. Pick the **Positive** and **Negative** lobe colours. Blue and red are the defaults; changing a colour does not recompute the surface.
+4. Click **Export Cube** to save the displayed field. The file is named after the field.
+
+![A formaldehyde Cube file showing Orbital 9 with the positive lobe in green and the negative lobe in purple.](/assets/docs/avogadro/cube-field-colours.webp)
+
+A field belongs to the exact geometry it was computed on. In a trajectory, it does not show on another frame.
+
+## Export an input file
+
+**Export input file…** writes a ready input for ORCA, Gaussian, Psi4, or CP2K. Open it from:
+
+- the command palette, for SDF, MOL, PDB, CIF, POSCAR, XYZ, and other supported coordinate files;
+- **More actions** (`⋯`) in the **Edit** panel, which includes unsaved edits and held constraints;
+- the **Geometry** and **Z-matrix** toolbars.
+
+![The Edit panel's More actions menu for ethanol with Export input file… at the bottom.](/assets/docs/avogadro/input-export-edit-menu.webp)
+
+In the dialog, choose the program, then:
+
+| Field | Choices |
+| --- | --- |
+| **Calculation** | **Single-point energy**, **Geometry optimization**, or **Frequencies** |
+| **Method**, **Basis set** | Passed to the program as you type them |
+| **Charge, e**, **Multiplicity** | Checked against the electron count before the file is written |
+| **Coordinates** | **Cartesian** or **Z-matrix** (ORCA, Gaussian, and Psi4) |
+
+Review the text, then **Copy** it or **Save** it as a file.
+
+![The Export input file dialog for ethanol with Gaussian, Single-point energy, B3LYP/6-31G(d), and Z-matrix coordinates.](/assets/docs/avogadro/input-export-gaussian-zmatrix.webp)
+
+Notes on the generated files:
+
+- Atoms keep their order, and coordinates are in ångströms. A PDB file contributes the atoms of its first model.
+- A Z-matrix has one row per atom, so constraint numbers stay those of the atoms. Opened from the Z-matrix panel, the file keeps that Z-matrix's references and shared variables.
+- When the first atoms lie on one line, the Z-matrix gets one dummy point. That shifts the row numbers, so use Cartesian coordinates if you need constraints.
+- Frozen atoms and held distances, angles, and dihedrals go into geometry optimizations. CP2K supports frozen atoms and Cartesian coordinates only.
+- A CP2K file of a crystal keeps its cell. An isolated molecule is centred in a box with 6 Å of padding on each side.
+
+The generated settings are a starting point. Check that the method, basis, and calculation type suit your program and system before you run it.

@@ -1,0 +1,40 @@
+---
+title: Builders
+description: Build a peptide, a DNA or RNA strand, or a metal complex from the Compute menu and insert it into an open MOL or SDF file.
+---
+
+# Builders
+
+Build a peptide, a DNA or RNA strand, or a metal complex, then open it as a new document or add it to the molecule you are editing.
+
+## Open a builder
+
+The **Compute** menu in the bottom corner of the 3D view lists the builders for a single-file scene, including plain MOL and SDF files. They are also in the command palette.
+
+| Builder | What you set |
+| --- | --- |
+| **Build peptide…** | Sequence in one-letter or three-letter codes, L or D residues, backbone conformation (φ and ψ), N- and C-terminus, and chain. |
+| **Build DNA or RNA…** | Sequence, nucleic acid type, helix form, and strands. |
+| **Build metal complex…** | Metal, oxidation state, coordination geometry, and the ligand and bond length at each site. The total charge is shown as you edit. |
+
+**Preview** shows the result in the dialog. **Create** opens it as a new document.
+
+## Insert into an open file
+
+When the active document is an editable MOL or SDF file, the peptide, DNA or RNA, and metal-complex builders show **Insert** next to **Preview**.
+
+1. Open the MOL or SDF file and choose a builder from **Compute**.
+2. Set up the structure and click **Insert**. **Inserted** confirms the change.
+3. The new molecule is placed beside the existing structure, and the view widens to show both.
+
+![The Build metal complex dialog over a caffeine SDF: Pt(II), square planar, two chlorido and two ammine ligands, with Inserted next to the Insert button.](/assets/docs/avogadro/builder-metal-complex.webp)
+
+Each insertion is one Undo step in the document's edit history, so **Undo** removes it and **Redo** brings it back. Use **Save copy** to write the combined file without replacing the original. Editing is limited to 256 atoms in total, including the inserted molecule.
+
+PDB and mmCIF files do not receive inserted residues. For those, the builders open the result as a new document that you can combine with the original in a scene. **Build polymer…** has no Insert because it works on the open document itself.
+
+## Dative bonds
+
+Metal–donor bonds of a built complex are inserted as dative bonds. The **Edit** panel lists them with the order **Dative**, and offers **Dative** as a bond order when you select a bond to a metal. They are saved as dative bonds in the MOL or SDF file.
+
+![The Edit panel after inserting cisplatin into caffeine: the N52–Pt45 bond is selected with the order set to Dative, and the bond list shows the dative metal–nitrogen bonds.](/assets/docs/avogadro/builder-dative-bonds.webp)

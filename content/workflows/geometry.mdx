@@ -1,0 +1,120 @@
+---
+title: Geometry Editing & Optimization
+description: Edit bond lengths, angles, and torsions, freeze atoms and hold distances, optimize with a force field, and let a molecule relax while you drag atoms.
+---
+
+# Geometry Editing and Optimization
+
+Change a bond length, an angle, or a torsion and the molecule follows. Freeze the part that must stay where it is, hold a distance at a target value, and let the rest of the structure relax with a force field. Every edit and every optimization run is one Undo step.
+
+Two panels in the right dock edit the active structure:
+
+| File | Panel | Open it with |
+| --- | --- | --- |
+| XYZ | **Geometry** | **Edit geometry** in the command palette (`Cmd+P`) |
+| MOL, SDF | **Edit** | **Edit atoms and bonds** in the command palette |
+
+## Edit bonds, angles, and torsions (XYZ)
+
+1. Open an XYZ file and measure a distance, angle, or dihedral in the 3D view.
+2. Open the measurement's menu in the **Scene** tree and choose **Set distance…**, **Set angle…**, or **Set dihedral…**. The **Geometry** panel opens on the row that holds that value.
+3. Type the new value. The atoms move to it, and the 3D label updates.
+4. Use **Undo** and **Redo** in the panel toolbar to step through your edits. A new edit after Undo clears the Redo history.
+
+![The Scene tree's measurement menu for a C–C distance in ethanol, with Set distance… above the measurement style controls.](/assets/docs/avogadro/geometry-measurement-menu.webp)
+
+The **Internal** tab lists every atom with its bond length, angle, and dihedral and the atoms they refer to. The **Cartesian** tab lists X, Y, and Z coordinates.
+
+![The Geometry panel after the C1–C2 bond of ethanol was typed as 1.8000 Å; the 3D label reads 1.80 Å.](/assets/docs/avogadro/geometry-bond-edited.webp)
+
+## Work with a Z-matrix
+
+**Convert to Z-matrix** turns the current geometry into a Z-matrix at any time. The Z-matrix view keeps one row per atom, with its reference atoms and values, and a **Variables** list when values are shared.
+
+| Action | Where | Result |
+| --- | --- | --- |
+| **Copy Z-matrix** | Z-matrix toolbar | Copies the Z-matrix text to the clipboard. |
+| **Export Z-matrix** | Cartesian and Z-matrix toolbars | Saves a `.zmat` file. Reopening it in Burette restores the same geometry. |
+| **Export input file** | Geometry and Z-matrix toolbars | Writes an ORCA, Gaussian, Psi4, or CP2K input. See [Calculation results](/docs/workflows/calculations#export-an-input-file). |
+
+![The Z-matrix view of ethanol with rows C1 to H9 and the Copy Z-matrix tooltip in the toolbar.](/assets/docs/avogadro/geometry-zmatrix-copy.webp)
+
+## Freeze atoms and hold distances
+
+Constraints keep part of the structure fixed while the optimizer moves the rest.
+
+**MOL and SDF, in Edit.** Select atoms in the 3D view, then:
+
+- **Freeze** keeps the selected atoms in place. **Unfreeze** releases them.
+- **Hold distance**, **Hold angle**, or **Hold dihedral** appears for two, three, or four selected atoms. The target starts at the current value; type a new one in the constraint row.
+
+**XYZ, in Geometry.** Use the pin next to an atom to freeze it, or the pin next to a bond, angle, or dihedral field to keep that value fixed. A held value is the one its field shows, so type the target first and then optimize.
+
+![The Edit panel for butanol with C1 and C2 frozen and the C3–O5 distance held at 2.645 Å.](/assets/docs/avogadro/optimize-constraints.webp)
+
+Constraints follow their atoms through edits and optimizations. Undo, Redo, and operations that renumber atoms start without them. A constraint that cannot be defined on the current geometry is refused before the run starts.
+
+## Optimize
+
+Click **Optimize** in the Edit or Geometry toolbar, or use the arrow beside it to choose the settings:
+
+| Setting | Choices |
+| --- | --- |
+| **Force field** | **Automatic** (default), MMFF94, MMFF94s, UFF, Lennard-Jones |
+| **Minimizer** | BFGS, L-BFGS, FIRE, ABC-FIRE, FIRE, then L-BFGS |
+| **Step limit** | 100, 250 (default), 500, or 1000 steps |
+
+While the run is going, the status shows the latest step and its energy. When it ends, the result line names the force field and minimizer, the start and final energy, the number of steps, and whether the run **Converged**. Each held distance, angle, or dihedral is listed with its value and how far it ended from the target.
+
+**Open steps** opens every step of the run as a multi-frame XYZ with its energy, so you can play the optimization back.
+
+![After optimization, the Edit panel shows the UFF, L-BFGS result line, Converged, Open steps, and the held C3–O5 distance with its deviation.](/assets/docs/avogadro/optimize-result-open-steps.webp)
+
+Optimization is available for structures of up to 256 atoms with up to 64 constraints. When an option is unavailable, it is disabled with the reason.
+
+### Choosing a force field
+
+**Automatic** picks the first force field that has parameters for every element in the structure: MMFF94, then UFF. A structure without bonds, such as a noble-gas cluster, gets Lennard-Jones. The result line always names the force field that was used.
+
+A force field that lacks parameters for one of your elements is disabled in the menu, and its tooltip names the element. For a tetramethyltin molecule, MMFF94 and MMFF94s are disabled because they have no tin parameters, and Automatic uses UFF.
+
+![The Optimize menu for tetramethyltin: Automatic is checked, MMFF94 and MMFF94s are disabled, UFF and Lennard-Jones are available.](/assets/docs/avogadro/optimize-force-field-menu.webp)
+
+Lennard-Jones treats every atom pair alike, with its minimum at the sum of the two atoms' van der Waals radii. It suits clusters and noble gases, not covalent geometry. For a periodic structure (an extended XYZ file with a `Lattice`), Lennard-Jones is the built-in force field that accounts for the cell; MMFF94 and UFF refuse it.
+
+## Optimize Geometry and related commands
+
+The same optimization is available as commands in the **Structure** menu and the command palette. They act on the Edit or Geometry panel of the active structure.
+
+| Command | Shortcut | What it does |
+| --- | --- | --- |
+| **Optimize Geometry** | `⌥⌘O` | Optimizes with the saved settings. The 3D view follows the steps as they run. **Cancel** returns to the starting geometry; a finished run is one Undo step. |
+| **Calculate Energy** | | Reports the single-point energy with the chosen force field, or the one Automatic picks. |
+| **Configure Optimization…** | | Sets the force field, minimizer, any step limit from 1 to 1000, and the energy and gradient convergence thresholds. Also the last item of the Optimize menu. |
+| **Freeze Selected Atoms** / **Unfreeze Selected Atoms** | | Adds or removes the frozen atoms of the current 3D selection. |
+| **Auto Optimize** | | Starts or stops continuous relaxation (below). |
+
+By default, a run converges when the energy change per step, averaged over ten steps, falls below 10⁻⁵ kcal/mol and the largest gradient component falls below 10⁻³ kcal/(mol·Å).
+
+The xTB job in the **Compute** menu keeps its own name, **Optimize with xTB**. See [xTB calculations](/docs/workflows/xtb).
+
+## Auto Optimize
+
+**Auto Optimize** relaxes the structure continuously while you work. Start it from the **Structure** menu, the command palette, or the Optimize menu.
+
+1. Start **Auto Optimize**. The toolbar shows the force field and the energy change, **ΔE**, since the start.
+2. Drag an atom in the 3D view. It stays under the pointer while the rest of the molecule follows.
+3. Click **Stop**, or run the command again, to keep the relaxed geometry as one Undo step.
+
+Any other edit ends the session without a change. Auto Optimize uses MMFF94, MMFF94s, UFF, or Lennard-Jones.
+
+## External energy models (Mac app)
+
+In the Mac app, the Optimize menu and **Configure Optimization…** also list external energy models:
+
+- **GFN2-xTB**, **GFN1-xTB**, and **GFN-FF**, through the xTB program that Burette uses for its [xTB jobs](/docs/workflows/xtb).
+- Energy models declared by installed Avogadro Python packages, named after the package.
+
+They run optimizations with the same minimizers, constraints, live steps, Cancel, and Undo, and **Calculate Energy** reports their energy. A model is disabled with the reason when its package is not set up, it cannot read the structure, it lacks an element, or it does not accept the structure's charge or unpaired electrons. Models that give energies without gradients work for structures of up to 64 atoms. A periodic structure reaches only models that declare unit-cell support.
+
+These energies are absolute (an xTB water molecule is about −3182 kcal/mol), so compare only energy differences with the force-field results. External models do not run Auto Optimize, and the website demo does not list them.

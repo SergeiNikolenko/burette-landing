@@ -25,6 +25,25 @@ The checked-in source of truth for format routing is `config/preview-formats.jso
 | Pharmacophore | PH4 | Converts the pharmacophore model into a previewable Mol* representation. |
 | Spectra | MS, MAGMA, MGF, MSP, MZML, MZXML | Opens the dedicated spectrum surface. |
 
+## Export a structure
+
+The **Export** menu of a file (right-click it in the sidebar) saves the current structure in another format, including unsaved edits:
+
+| Item | What it writes |
+| --- | --- |
+| **Structure → MOL…**, **XYZ…**, **CJSON…** | The structure in that format. MOL and CJSON are not offered for PDB and mmCIF proteins. |
+| **Compressed Copy…** | A gzip copy of the current text, named after the format inside, such as `caffeine.sdf.gz`. Burette opens it like the uncompressed file. |
+
+The **Structure** submenu also lists the file's own format (for example SDF) and, where available, mmCIF.
+
+- MOL of an SDF file writes its first record.
+- XYZ and CJSON of a crystal keep the unit cell.
+- A multi-record SDF collection cannot be written as one XYZ or CJSON structure; open one record first.
+
+![The file menu of formaldehyde.sdf with Export → Structure open, listing SDF, MOL, XYZ, CJSON, and mmCIF, below Compressed Copy… and Scene….](/assets/docs/avogadro/export-structure-menu.webp)
+
+To export a crystal cell as CIF, POSCAR, extended XYZ, or CJSON, use **Export** in the Crystal panel; see [Crystal structures](/docs/workflows/crystals#export-the-cell). For an ORCA, Gaussian, Psi4, or CP2K input file, see [Calculation results](/docs/workflows/calculations#export-an-input-file).
+
 ## Size limits
 
 Quick Look has per-format size limits in the format registry. The desktop workspace can expose richer surfaces for larger or more complex files, but very large files may still require format-specific handling. Binary trajectories and paired topology/coordinate inputs need surface-specific testing; a registered document type alone is not proof of successful decoding on every platform.
