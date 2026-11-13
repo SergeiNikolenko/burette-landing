@@ -58,18 +58,26 @@ Convergence comes from Gaussian, ORCA, Psi4, Q-Chem, and NWChem outputs. Forces 
 
 ![Plots for a Gaussian optimization of divinylbenzene: the energy by step and the maximum force on a log axis crossing the dashed threshold at step 4.](/assets/docs/avogadro/calc-convergence.webp)
 
+## The Calculation card
+
+Open the output of Gaussian, ORCA, Psi4, NWChem, Q-Chem, GAMESS, Molpro, or xTB, a QCSchema result, or an Avogadro Chemical JSON file, and the **Info** dock gets a **Calculation** card. It shows the energy of the geometry in the 3D view and, as the program printed them, the keywords or route, the basis set, the charge and multiplicity, the program and its version, and the run time. An unrestricted calculation also shows ⟨S²⟩. A job that stopped with an error says so at the top of the card.
+
+![The Calculation card for a Gaussian 16 TD-DFT job on divinylbenzene: energy, route, basis, charge, multiplicity, program, and run time.](/assets/docs/avogadro/calc-calculation-card.webp)
+
 ## Charges, dipole, and thermochemistry
 
 When a calculation printed atomic charges, a dipole moment, or the thermochemistry of a frequency job, the **Info** dock shows them for the geometry in the 3D view. Charges and the dipole come from Gaussian, ORCA, Psi4, NWChem, Q-Chem, GAMESS, Molpro, and xTB outputs; thermochemistry from Gaussian, ORCA, Psi4, NWChem, Q-Chem, and xTB (`--ohess`).
 
 In the **Charges** card:
 
-1. Choose the charge model, such as **Mulliken** or **Löwdin**, when the file has several.
+1. Choose the charge model, such as **Mulliken** or **Löwdin**, when the file has several. An open-shell calculation also lists its spin densities, such as **Mulliken spin** or **Hirshfeld spin**, and the card is called **Charges and spins**.
 2. Turn on **Color atoms** to colour each atom by its charge: negative charges are blue, positive orange, and neutral atoms white.
 3. Turn on **Labels** to write each charge next to its atom.
 4. Turn on **Dipole arrow** to draw the dipole moment from the centre of the molecule, one ångström per debye, pointing from the negative to the positive end.
 
 Turn an option off to return the scene to its own colours.
+
+![The divinylbenzene radical cation from an ORCA UKS job, atoms coloured by their Hirshfeld spin density: the unpaired electron sits on the vinyl carbons and the ring.](/assets/docs/avogadro/calc-spin-densities.webp)
 
 ![p-Nitroaniline from an xTB frequency job: atoms coloured and labelled by charge, the 8.91 D dipole arrow pointing from the nitro group to the amino group, and the Charges and Thermochemistry cards in the Info dock.](/assets/docs/avogadro/calc-charges-dipole.webp)
 
@@ -78,6 +86,18 @@ The **Thermochemistry** card lists the temperature, the zero-point energy, the e
 ![The Charges and Thermochemistry cards for a Psi4 water optimization and frequency job.](/assets/docs/avogadro/calc-thermochemistry.webp)
 
 In an optimization log that opens on its final geometry, the cards show that geometry. In a trajectory, they follow the current frame; the thermochemistry stays on the geometry the frequency job was run on.
+
+## Excited states and NMR shieldings
+
+When a calculation printed excited states, choose **Compute → Show spectra** to see them as an absorption spectrum of the geometry they were computed at. The table lists every state with its label, energy, oscillator strength, and transition dipole, so you can check which transitions are bright. The spectrum's energy axis covers all the states when it opens; change the line width or the range in the fields above the chart.
+
+Excited states come from Gaussian (TD-DFT, CIS, and EOM-CC), ORCA, Q-Chem, GAMESS, and NWChem TDDFT outputs. When a Gaussian job printed nonzero rotatory strengths for a chiral molecule, **Circular dichroism** appears as well.
+
+![A Gaussian TD-DFT job on divinylbenzene: the absorption spectrum between 8 and 1 eV and the five states with their oscillator strengths and transition dipoles.](/assets/docs/avogadro/calc-excited-states.webp)
+
+A Gaussian NMR job (`NMR`) gives the GIAO shielding of every atom. In **Show spectra**, choose **NMR** and the element; Burette turns shieldings into chemical shifts with a reference you can change.
+
+![Proton shifts of divinylbenzene from a Gaussian GIAO job, with each hydrogen's shielding and anisotropy in the table.](/assets/docs/avogadro/calc-nmr-shieldings.webp)
 
 ## Cube files with several fields
 

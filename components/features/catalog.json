@@ -474,6 +474,15 @@
         "captureStatus": "approved"
       },
       {
+        "title": "Everything the job printed",
+        "description": "See the method, basis, charge and run time of any output, its spin densities, and its excited states as a spectrum.",
+        "screenshot": "/assets/features/avogadro-excited-states-light.webp",
+        "screenshotDark": "/assets/features/avogadro-excited-states-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Input files",
         "description": "Write a ready input file for your quantum chemistry program.",
         "screenshot": "/assets/features/avogadro-input-export.webp",

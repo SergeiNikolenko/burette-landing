@@ -243,3 +243,20 @@ Optimization logs from Gaussian, ORCA, Psi4, Q-Chem and NWChem now also plot eac
 
 - Attach: `stage-15-orbital-diagram-convergence/light-ch2-uhf-orbital-diagram.png`, `stage-15-orbital-diagram-convergence/dark-dvb-gopt-convergence.png`
 - Link: `/docs/workflows/calculations#orbital-level-diagram`
+
+---
+
+## 16. Everything your calculation printed
+
+Burette now reads much more of what your quantum chemistry program wrote.
+
+Open any output from Gaussian, ORCA, Psi4, NWChem, Q-Chem, GAMESS, Molpro or xTB and the Info dock tells you how the job was run: the method or route, the basis, the charge and multiplicity, the program version and the run time, and whether it ended normally.
+
+Open-shell jobs bring their spin densities and ⟨S²⟩, so you can colour a radical by where its unpaired electron sits. TD-DFT, CIS and EOM-CC states from Gaussian, ORCA, Q-Chem, GAMESS and NWChem open as an absorption spectrum with every transition dipole in the table, and a Gaussian NMR job gives the shielding of every atom.
+
+To get there we compared every reader against reference outputs and fixed what they missed, including geometries that were not real steps of a job.
+
+#ComputationalChemistry #QuantumChemistry
+
+- Attach: `stage-16-extraction-audit/gaussian-dvb_td-window-light.png`, `stage-16-extraction-audit/uks2-spin-colors-light.png`
+- Link: `/docs/workflows/calculations#the-calculation-card`
