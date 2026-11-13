@@ -99,6 +99,20 @@ A Gaussian NMR job (`NMR`) gives the GIAO shielding of every atom. In **Show spe
 
 ![Proton shifts of divinylbenzene from a Gaussian GIAO job, with each hydrogen's shielding and anisotropy in the table.](/assets/docs/avogadro/calc-nmr-shieldings.webp)
 
+## Electrostatic potential surfaces
+
+Choose **Compute → Show electrostatic potential** to colour a surface around the molecule by the electrostatic potential: red where it is negative, white near zero, and blue where it is positive. In **Potential**, pick where the potential comes from:
+
+- **A charge model of the calculation**, such as Mulliken or Löwdin, for the frame the scene shows.
+- **Gasteiger charges** for a MOL or SDF file, whose bonds and formal charges Burette reads from the file. An XYZ file has no bond orders, so it needs charges of its own.
+- **A potential cube.** Open the density cube, then **Open potential cube** with the potential written on the same grid, for example by Gaussian's `cubegen density=scf` and `cubegen potential=scf`.
+
+Charges give the Coulomb potential on a smooth van der Waals surface. A cube pair draws the density at 0.0004 e/bohr³, the surface cubegen and GaussView use; change it in **Isovalue**. The colour range starts at the potential's spread on the surface and is in hartree per elementary charge (atomic units). Type or drag either end to compare molecules on one scale.
+
+![p-nitroaniline coloured by the potential of its Gasteiger charges: the nitro group red and the ring and amino group blue.](/assets/docs/avogadro/calc-potential-gasteiger.webp)
+
+![The same molecule from a B3LYP density and potential cube pair, on the 0.0004 e/bohr³ density surface.](/assets/docs/avogadro/calc-potential-cube-pair.webp)
+
 ## Cube files with several fields
 
 A Cube file can store several orbitals or fields on one grid. Burette lists them in the **Field** select of **Orbitals**, named with the orbital numbers from the file.

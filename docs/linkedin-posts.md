@@ -246,7 +246,7 @@ Optimization logs from Gaussian, ORCA, Psi4, Q-Chem and NWChem now also plot eac
 
 ---
 
-## 16. Everything your calculation printed
+## 16a. Everything your calculation printed
 
 Burette now reads much more of what your quantum chemistry program wrote.
 
@@ -260,3 +260,18 @@ To get there we compared every reader against reference outputs and fixed what t
 
 - Attach: `stage-16-extraction-audit/gaussian-dvb_td-window-light.png`, `stage-16-extraction-audit/uks2-spin-colors-light.png`
 - Link: `/docs/workflows/calculations#the-calculation-card`
+
+---
+
+## 16b. Electrostatic potential surfaces
+
+Burette now shows where a molecule is electron-rich and where it is electron-poor.
+
+Choose Compute → Show electrostatic potential and a surface around the molecule turns red where the potential is negative and blue where it is positive. The potential can come from the charges your calculation printed, from Gasteiger charges for any MOL or SDF file, or from a density and potential cube pair written by Gaussian's cubegen. In that case Burette draws the 0.0004 e/bohr³ density surface, as GaussView does.
+
+On p-nitroaniline the picture is the textbook one: the nitro oxygens are red, the amino hydrogens blue, and the colour range is yours to set so you can compare molecules on one scale.
+
+#ComputationalChemistry #DrugDesign
+
+- Attach: `stage-16-electrostatic-potential/light-pna-cube-pair-window.png`, `stage-16-electrostatic-potential/dark-pna-gasteiger-window.png`
+- Link: `/docs/workflows/calculations#electrostatic-potential-surfaces`
