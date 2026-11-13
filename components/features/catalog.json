@@ -465,6 +465,15 @@
         "captureStatus": "approved"
       },
       {
+        "title": "Orbital diagram",
+        "description": "Pick orbitals on an α and β level diagram, and follow an optimization's forces against its thresholds.",
+        "screenshot": "/assets/features/avogadro-orbital-diagram-light.webp",
+        "screenshotDark": "/assets/features/avogadro-orbital-diagram-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Input files",
         "description": "Write a ready input file for your quantum chemistry program.",
         "screenshot": "/assets/features/avogadro-input-export.webp",

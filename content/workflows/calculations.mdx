@@ -16,7 +16,7 @@ Chemical JSON (`.cjson`) files written by Avogadro open with their scientific co
 | Section in the file | What you get |
 | --- | --- |
 | Vibrations | **Vibrations**: frequency, IR intensity, and Raman activity for each mode, a spectrum, and a live animation of the selected mode. |
-| Orbitals and basis set | **Orbitals**: orbital energies and occupations with HOMO and LUMO marked, and an orbital surface for the selected orbital. |
+| Orbitals and basis set | **Orbitals**: an energy level diagram and table with HOMO and LUMO marked, and an orbital surface for the selected orbital. |
 | Unit cell | The structure opens with its lattice, and the **Crystal** panel shows the cell. |
 | Several coordinate sets | A **Coordinate set** selector in the **Info** dock. |
 
@@ -39,6 +39,24 @@ A file with several geometries opens on its active set. Choose another one in **
 ## Gaussian optimization logs
 
 A Gaussian log from a geometry optimization opens on its final geometry. When the job printed the basis and orbital coefficients for that geometry (`pop=full` with `gfinput`), its orbitals are available in **Orbitals**. Otherwise you get orbital energies and occupations without surfaces.
+
+## Orbital level diagram
+
+Above the orbital table, **Orbitals** draws the energy levels around the HOMO–LUMO gap. Occupied levels carry their electrons as arrows, and HOMO and LUMO are labelled. An unrestricted calculation gets two columns, α and β, on one energy axis, so you can compare the two spin channels at a glance.
+
+Click a level to show its orbital surface right away, without pressing **Show surface**. With the diagram focused, the Up and Down arrow keys step through the levels of one column, Left and Right move to the nearest level of the other spin, and Home and End jump to the lowest and highest level. Levels closer than the line spacing sit side by side, as degenerate orbitals do.
+
+The diagram shows the valence region, up to 20 eV beyond the frontier levels. Deep core levels stay in the table below.
+
+![The Orbitals panel for triplet CH₂ from an unrestricted calculation: α and β level columns with arrows and HOMO/LUMO labels, and the surface of the selected β orbital in the 3D view.](/assets/docs/avogadro/calc-orbital-diagram.webp)
+
+## Optimization convergence
+
+When an optimization log printed its convergence table for each step, **Plots** adds a **Convergence** chart under the energy. Choose **Max force**, **RMS force**, **Max step**, or **RMS step**. The values are drawn on a log axis, with the program's threshold as a dashed line, so you can see which criterion held the optimization back and on which step it was met. Click the chart or use the arrow keys to show that step in the 3D view.
+
+Convergence comes from Gaussian, ORCA, Psi4, Q-Chem, and NWChem outputs. Forces are gradients in hartree per bohr; steps are in the program's own units, bohr or a mix of internal coordinates. Q-Chem prints only the maximum force and step.
+
+![Plots for a Gaussian optimization of divinylbenzene: the energy by step and the maximum force on a log axis crossing the dashed threshold at step 4.](/assets/docs/avogadro/calc-convergence.webp)
 
 ## Charges, dipole, and thermochemistry
 

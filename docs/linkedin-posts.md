@@ -228,3 +228,18 @@ Building this also turned up two older bugs: Gaussian logs written with freq=hpm
 
 - Attach: `stage-14-charges-thermochemistry/light-p-nitroaniline-charges-dipole.png`, `stage-14-charges-thermochemistry/dark-p-nitroaniline-charges-dipole.png`
 - Link: `/docs/workflows/calculations#charges-dipole-and-thermochemistry`
+
+---
+
+## 15. Orbital diagrams and convergence plots
+
+Burette now draws the molecular orbital diagram of your calculation.
+
+Open an output with orbitals and the Orbitals panel shows the levels around the HOMO–LUMO gap, with the electrons as arrows. For an unrestricted job the α and β channels stand side by side on one energy axis. Click a level and its surface appears in 3D; the arrow keys walk through the levels.
+
+Optimization logs from Gaussian, ORCA, Psi4, Q-Chem and NWChem now also plot each step's maximum and RMS force and step on a log scale, with the program's threshold as a dashed line. You see at once which criterion held the job back.
+
+#ComputationalChemistry #QuantumChemistry
+
+- Attach: `stage-15-orbital-diagram-convergence/light-ch2-uhf-orbital-diagram.png`, `stage-15-orbital-diagram-convergence/dark-dvb-gopt-convergence.png`
+- Link: `/docs/workflows/calculations#orbital-level-diagram`
