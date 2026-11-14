@@ -65,6 +65,23 @@ A CSV or TSV without a molecular column remains a data table. RXN and RDF use re
 
 The inspector can calculate collection-level 2D descriptors. Large Mordred runs are deliberately manual because the full descriptor set may take time. xTB does not batch a whole collection as one geometry: open the intended molecule in Mol* first, then follow [xTB calculations](/docs/workflows/xtb).
 
+## Enumerate a library
+
+**Collection → Reaction → Enumerate Library…** (also **Enumerate library…** in the command palette) builds every combination of your building blocks and opens the result as a new collection.
+
+| Library from | You give | Example |
+| --- | --- | --- |
+| **Reaction** | One of the built-in reactions or a reaction SMARTS, and one list per reactant | Amidation with 3 acids and 4 amines gives 12 amides |
+| **Core** | A core with numbered attachment points and one list per R position; each building block marks its own attachment point with `*` | `[*:1]c1ccc([*:2])cc1` with `*C`, `*Cl` and `*O`, `*N`, `*C(F)(F)F` gives 6 products |
+
+Each list is an open collection or SMILES pasted one per line; text after a SMILES names the building block. The dialog shows the number of products before you start. A library holds up to 2,000 products.
+
+The new collection has one row per product with its SMILES, the reaction or core, and every part with its source, such as `acids.smi #2`. Identical products are kept once, and building blocks that do not fit the reaction are skipped.
+
+![The Enumerate library dialog: Amidation, Reactant 1 from the open collection acids.smi with 3 molecules, Reactant 2 as four pasted amines, 12 products.](/assets/docs/avogadro/enumerate-library-dialog.webp)
+
+![The Amidation library as a table of 12 products with the columns SMILES, Reaction, Reactant 1, Reactant 1 source, Reactant 2, and Reactant 2 source.](/assets/docs/avogadro/enumerate-library-table.webp)
+
 ## Troubleshooting
 
 - If CSV or TSV has more than one plausible structure column, choose the intended column instead of relying on a guess.

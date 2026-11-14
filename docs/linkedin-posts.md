@@ -342,3 +342,16 @@ On formaldehyde, the SVG has four circles and three bonds, and a 5-second vibrat
 
 - Attach: `stage-21-vector-movies/light-vibration-formaldehyde.mp4`, `stage-21-vector-movies/light-svg-render.png`
 - Link: `/docs/formats#export-a-vector-image-or-a-movie`
+
+## 25. Enumerate a combinatorial library
+
+Burette now builds combinatorial libraries.
+
+Enumerate Library takes a reaction and one list of building blocks per reactant, or a core with R positions and one list per position. The lists are open collections or pasted SMILES. The result opens as a new collection where every product keeps the source of each part, so you can trace a hit back to its acid and its amine.
+
+Three acids and four amines through an amidation give 12 amides, identical to RDKit's EnumerateLibrary output.
+
+#Cheminformatics #DrugDiscovery
+
+- Attach: `stage-25-library-enumeration/light-dialog-reaction.png`, `stage-25-library-enumeration/light-library-table.png`
+- Link: `/docs/workflows/collections#enumerate-a-library`
