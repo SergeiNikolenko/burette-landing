@@ -492,6 +492,15 @@
         "captureStatus": "approved"
       },
       {
+        "title": "Cube slices and difference fields",
+        "description": "Slice a Cube field with contours, integrate it, and build A − B, A + B or k × A fields.",
+        "screenshot": "/assets/features/avogadro-cube-fields-light.webp",
+        "screenshotDark": "/assets/features/avogadro-cube-fields-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Input files",
         "description": "Write a ready input file for your quantum chemistry program.",
         "screenshot": "/assets/features/avogadro-input-export.webp",

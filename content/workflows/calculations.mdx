@@ -126,6 +126,20 @@ A Cube file can store several orbitals or fields on one grid. Burette lists them
 
 A field belongs to the exact geometry it was computed on. In a trajectory, it does not show on another frame.
 
+## Slices, integrals and new fields
+
+Choose **Compute → Slice and combine fields** on a Cube file to open **Fields**.
+
+**Integral** sums the field over the grid, multiplied by the volume of one grid cell in bohr³. For an electron density this is a number of electrons. Grid points sample the density poorly at the nuclei, so a total density comes out low, while a smooth difference density comes out close to the true count.
+
+To look inside the field, pick a **Plane** (XY, XZ or YZ) and drag **Position** through the grid. The panel draws the slice as a colour map with contour lines: red below zero, white at zero and blue above, with dashed contours for negative values and the atoms that lie in the plane. **Show slice** draws the same plane in the scene. **Contours** sets the number of lines; **Colour range** sets the values at the two ends of the scale.
+
+![A slice through the water density in the plane of the molecule, in the scene and as a contour map.](/assets/docs/avogadro/calc-fields-slice.webp)
+
+**New field** makes A − B, A + B or k × A from the file's fields. To use a field from another file, click **Open Cube** and pick a Cube on the same grid. **Create** opens the result as a new Cube document, so it can be sliced, integrated, shown as a surface in **Orbitals** and downloaded.
+
+![The water density minus its cation's density: the electron removed from the lone pair, in blue, integrates to 0.98.](/assets/docs/avogadro/calc-fields-difference.webp)
+
 ## Export an input file
 
 **Export input file…** writes a ready input for ORCA, Gaussian, Psi4, or CP2K. Open it from:

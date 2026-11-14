@@ -275,3 +275,18 @@ On p-nitroaniline the picture is the textbook one: the nitro oxygens are red, th
 
 - Attach: `stage-16-electrostatic-potential/light-pna-cube-pair-window.png`, `stage-16-electrostatic-potential/dark-pna-gasteiger-window.png`
 - Link: `/docs/workflows/calculations#electrostatic-potential-surfaces`
+
+---
+
+## 17. Slice a Cube and subtract another one
+
+Burette can now look inside a Cube file and do arithmetic with it.
+
+Choose Compute → Slice and combine fields and drag a plane through the grid: the panel draws it as a colour map with contour lines and the atoms that sit in the plane, and the scene shows the same plane in 3D. The panel also integrates the field, so a density gives you its number of electrons.
+
+New field subtracts, adds or scales Cubes on the same grid and opens the result as a new document. Water's density minus the density of its cation shows the electron that ionization takes out of the oxygen lone pair, and it integrates to 0.98 electrons on a coarse 24-point grid.
+
+#ComputationalChemistry #QuantumChemistry
+
+- Attach: `stage-17-cube-fields/light-difference-window.png`, `stage-17-cube-fields/dark-density-yz-window.png`
+- Link: `/docs/workflows/calculations#slices-integrals-and-new-fields`
