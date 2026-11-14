@@ -302,6 +302,24 @@
         "textOnly": true
       },
       {
+        "title": "Linked charts",
+        "description": "Scatter, histogram, bar and box charts of any columns. Select in the chart or in the grid, and the other follows.",
+        "screenshot": "/assets/features/avogadro-chart-light.webp",
+        "screenshotDark": "/assets/features/avogadro-chart-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Matched pairs and SAR tables",
+        "description": "See what each substituent change does to activity, and lay an R-group series out as a matrix of two positions.",
+        "screenshot": "/assets/features/avogadro-matched-pairs-light.webp",
+        "screenshotDark": "/assets/features/avogadro-matched-pairs-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Predict a column",
         "description": "Build a model of a column from the structures and fill its missing values. Every prediction shows its nearest training rows.",
         "screenshot": "/assets/features/avogadro-build-model-light.webp",
@@ -315,6 +333,24 @@
         "description": "Combine building blocks through a reaction or on the R positions of a core. Every product keeps the source of each part.",
         "screenshot": "/assets/features/avogadro-enumerate-light.webp",
         "screenshotDark": "/assets/features/avogadro-enumerate-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Pivot and merge by key",
+        "description": "Turn assay rows into columns and back, or add the columns of another file to the rows with the same ChEMBL ID.",
+        "screenshot": "/assets/features/avogadro-reshape-light.webp",
+        "screenshotDark": "/assets/features/avogadro-reshape-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Category filters and row lists",
+        "description": "Filter by the values of a column with their counts, and keep named selections to show or export.",
+        "screenshot": "/assets/features/avogadro-row-lists-light.webp",
+        "screenshotDark": "/assets/features/avogadro-row-lists-dark.webp",
         "screenshotWidth": 1280,
         "screenshotHeight": 800,
         "captureStatus": "approved"

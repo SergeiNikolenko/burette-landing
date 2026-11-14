@@ -65,6 +65,40 @@ A CSV or TSV without a molecular column remains a data table. RXN and RDF use re
 
 The inspector can calculate collection-level 2D descriptors. Large Mordred runs are deliberately manual because the full descriptor set may take time. xTB does not batch a whole collection as one geometry: open the intended molecule in Mol* first, then follow [xTB calculations](/docs/workflows/xtb).
 
+## Chart columns
+
+**Analyze → Chart Columns…** (also **Chart columns** in the command palette) opens the **Chart** tab in the bottom dock for the collection in front.
+
+| Chart | Shows |
+| --- | --- |
+| **Scatter** | Two number columns, with colour from any column and size from a number column |
+| **Histogram** | How the values of one number column are spread |
+| **Bar** | The rows, or the mean of a number column, per category |
+| **Box** | A number column per category, with its outliers |
+
+The chart and the grid share one selection. Click a point, bar, bin or box, drag across bars, or draw with **Lasso** to select those rows in the grid; Shift adds to the selection. Rows you select in the grid are highlighted in the chart, and clicking a category in the legend selects its rows. Rows hidden by the search or the filters are left out of the chart.
+
+Scroll to zoom and drag to pan a scatter chart; **Fit** shows every point again. With the keyboard, the arrow keys walk the bars or boxes, Enter selects one and Escape clears the selection. A chart reads up to 100,000 rows.
+
+![A scatter chart of SLogP against MolWt coloured by halogen, with the seven fluorinated molecules selected from the legend and highlighted in the grid above.](/assets/docs/avogadro/chart-scatter.webp)
+
+![A box chart of SLogP for each halogen class.](/assets/docs/avogadro/chart-box.webp)
+
+## Matched pairs and the SAR table
+
+**Analyze → Matched Pairs…** (also **Matched pairs** in the command palette) finds the molecules of a collection that differ in one substituent. Each transformation, such as Cl to F, is listed with the number of pairs and the mean and standard deviation of the change in a column you choose. Select a transformation to see its pairs side by side, and **Select in grid** to select their molecules.
+
+**Analyze → SAR Table…** lays the R-group columns of a collection out as a matrix: one R position down, another across. Each cell shows the value of a column for the molecules with that pair of substituents, or their mean, and its tint follows the value. Hover a cell to see its molecules; click it and choose **Select in grid** to select them. The table needs the `RGroup_*` columns that **Decompose R-Groups…** writes, or that came with the file.
+
+| Sort | Shows first |
+| --- | --- |
+| **Most pairs** | The transformations seen most often |
+| **Largest increase** or **Largest decrease** | The largest mean change in the chosen column |
+
+![The Matched pairs dialog on a factor Xa series: Cl to F leads with 13 pairs and a mean change in pKi of −0.31, and its first two pairs are shown below.](/assets/docs/avogadro/matched-pairs-dialog.webp)
+
+![The SAR table of the same series: R4 down, R1 across, cells tinted by pKi, and the two molecules of the selected cell below.](/assets/docs/avogadro/sar-table-dialog.webp)
+
 ## Predict a column
 
 **Analyze → Build Model…** (also **Build model** in the command palette) learns a column of the open collection from the structures and predicts it for the rows that have no value.
@@ -98,6 +132,26 @@ The new collection has one row per product with its SMILES, the reaction or core
 ![The Enumerate library dialog: Amidation, Reactant 1 from the open collection acids.smi with 3 molecules, Reactant 2 as four pasted amines, 12 products.](/assets/docs/avogadro/enumerate-library-dialog.webp)
 
 ![The Amidation library as a table of 12 products with the columns SMILES, Reaction, Reactant 1, Reactant 1 source, Reactant 2, and Reactant 2 source.](/assets/docs/avogadro/enumerate-library-table.webp)
+
+## Reshape a table
+
+**Collection → Pivot…** turns a long table into a wide one: one row per value of a key column, such as ChEMBL ID, and one new column per value of a category column, such as the assay. **Unpivot…** turns chosen columns back into rows. **Merge File by Key…** reads a CSV, TSV or SD file and adds its columns to the rows with the same key.
+
+Each dialog shows what will happen before you apply it: rows before and after, the new columns, rows without a key, keys without a match, repeated keys and renamed columns. When a cell would get several values, Pivot keeps them all or takes the first, the last or their mean. When a key repeats in the merged file, Merge uses its first row or adds a row for each. Every change can be undone.
+
+![The Pivot dialog: one row per ChEMBL ID, new columns from Assay, values from pChEMBL, turning 9 rows into 5 with two new columns.](/assets/docs/avogadro/pivot-dialog.webp)
+
+![The Merge file by key dialog with chembl-activities.csv: 7 of 11 rows matched, with the keys that did not match listed.](/assets/docs/avogadro/merge-by-key-dialog.webp)
+
+## Filter by category and keep row lists
+
+In the **Info** panel, **Filters** lists the values of a text column with their counts. Tick values to keep only those rows.
+
+**Row lists** keeps a selection under a name. **Save selection** stores the selected rows; from a list you can select its rows again, show only those rows, export them as CSV or SMILES, rename or delete it.
+
+**Collection → Record View** shows one row at a time, with its structure and every value. Use the arrows to go to the previous or next row.
+
+![A collection filtered to the NSAID class, with the Class values and their counts in Filters and the saved row list NSAIDs below.](/assets/docs/avogadro/category-filter-row-list.webp)
 
 ## Troubleshooting
 

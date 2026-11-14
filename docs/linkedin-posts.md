@@ -343,6 +343,32 @@ On formaldehyde, the SVG has four circles and three bonds, and a 5-second vibrat
 - Attach: `stage-21-vector-movies/light-vibration-formaldehyde.mp4`, `stage-21-vector-movies/light-svg-render.png`
 - Link: `/docs/formats#export-a-vector-image-or-a-movie`
 
+## 22. Charts that share the grid's selection
+
+Burette now charts the columns of a collection next to the molecules.
+
+The Chart tab draws scatter, histogram, bar and box charts of any columns, including computed descriptors. Draw a lasso around a cluster and those molecules are selected in the grid; select rows in the grid and they light up in the chart. Search or filter the grid and the chart follows.
+
+On 10,000 molecules the scatter chart pans and zooms at 60 fps, and a lasso, a search or Select all reaches the other side at once.
+
+#Cheminformatics #DataVisualization
+
+- Attach: `stage-22-linked-charts/light-scatter-colour-selected.png`, `stage-22-linked-charts/dark-scatter-lasso-10k.png`
+- Link: `/docs/workflows/collections#chart-columns`
+
+## 23. Matched pairs and SAR tables
+
+Burette now answers the medicinal chemist's oldest question: what did this change do?
+
+Matched Pairs finds every pair of molecules in a collection that differ in one substituent and lists the transformations, such as Cl to F, with how often they occur and the mean change in activity. Open one to see the pairs behind the number. The SAR table lays an R-group series out as a matrix of two positions, tinted by activity.
+
+On a ChEMBL factor Xa series, swapping Cl for F appears 13 times and costs 0.31 pKi on average. Every pair and every mean matches mmpdb on the same data.
+
+#MedicinalChemistry #Cheminformatics
+
+- Attach: `stage-23-matched-pairs-sar/light-pairs-selected.png`, `stage-23-matched-pairs-sar/light-sar-table-cell.png`
+- Link: `/docs/workflows/collections#matched-pairs-and-the-sar-table`
+
 ## 24. Predict a column and fill its gaps
 
 Burette now builds property models inside a collection.
@@ -368,3 +394,16 @@ Three acids and four amines through an amidation give 12 amides, identical to RD
 
 - Attach: `stage-25-library-enumeration/light-dialog-reaction.png`, `stage-25-library-enumeration/light-library-table.png`
 - Link: `/docs/workflows/collections#enumerate-a-library`
+
+## 26. Pivot, merge by key, category filters and row lists
+
+Burette now reshapes tables the way assay data needs.
+
+Pivot turns one row per measurement into one row per compound with a column per assay, and Unpivot turns it back. Merge File by Key adds the columns of a CSV or SD file to the rows with the same ChEMBL ID. Before anything changes, the dialog tells you how many rows matched, which keys did not and which repeat. Filters now list the values of a column with their counts, and Row lists keep a selection under a name.
+
+In the tests, a pivot followed by an unpivot gives back the original table, and the merge matches pandas cell by cell.
+
+#Cheminformatics #DataScience
+
+- Attach: `stage-26-data-shaping/light-merge-dialog.png`, `stage-26-data-shaping/light-row-list.png`
+- Link: `/docs/workflows/collections#reshape-a-table`
