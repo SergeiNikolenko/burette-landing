@@ -36,6 +36,25 @@ Click **Draw** in the **Edit** panel to build a molecule right in the 3D view. T
 
 ![Acetaldehyde drawn from methane in three strokes: a carbon, an oxygen, and a click on the C–O bond to make it double.](/assets/docs/avogadro/edit-draw-carbonyl.webp)
 
+## Move atoms, turn bonds, and select (MOL, SDF)
+
+Click **Move** in the **Edit** panel to reshape the molecule with the pointer.
+
+| In the 3D view | Result |
+| --- | --- |
+| Drag an atom | The atom moves, or the whole selection when the atom is selected |
+| Drag a bond | The smaller side turns about the bond; only that torsion changes |
+| ⌥-drag a bond | The bond stretches or shortens along its axis |
+| ⌥-drag a selected atom | The selection rotates as a rigid body about its centre |
+
+Every drag is one Undo step. A bond in a ring has no smaller side to turn, so dragging it rotates the view.
+
+The **Select** section of the 3D view's right-click menu and the command palette pick atoms for these tools: **Select all atoms**, **Select none**, **Invert selection**, one element at a time, **Select whole residues**, **Enlarge selection** (adds the bonded neighbours), and **Select by SMARTS…**, which matches a pattern against the structure with its hydrogens.
+
+![Turning the C2–C3 bond of butane with Move: one methyl group rotates about the bond while the rest stays put.](/assets/docs/avogadro/edit-move-turning.webp)
+
+![Both methyl groups of butane selected with SMARTS [CH3], then Enlarge selection: ten atoms selected in the 3D view and in the atom table.](/assets/docs/avogadro/edit-select-enlarge.webp)
+
 ## Edit bonds, angles, and torsions (XYZ)
 
 1. Open an XYZ file and measure a distance, angle, or dihedral in the 3D view.

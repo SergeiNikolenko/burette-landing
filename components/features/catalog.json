@@ -406,6 +406,15 @@
         "captureStatus": "approved"
       },
       {
+        "title": "Turn and stretch bonds",
+        "description": "Drag a bond to turn one side or stretch it, and pick atoms by element, neighbours, or SMARTS.",
+        "screenshot": "/assets/features/avogadro-move-light.webp",
+        "screenshotDark": "/assets/features/avogadro-move-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Z-matrix",
         "description": "Switch to a Z-matrix at any time and copy or save it.",
         "screenshot": "/assets/features/avogadro-zmatrix.webp",

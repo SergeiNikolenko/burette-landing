@@ -316,3 +316,16 @@ Three strokes turn methane into acetaldehyde: a carbon, an oxygen, and a click o
 
 - Attach: `stage-19-draw-tool/light-carbonyl-window.png`, `stage-19-draw-tool/dark-dragging.png`
 - Link: `/docs/workflows/geometry#draw-atoms-and-bonds-mol-sdf`
+
+## 20. Turn a bond, select by SMARTS
+
+Burette now moves molecules the way chemists think about them.
+
+Turn on Move in the Edit panel and drag a bond: the smaller side turns about it and only that torsion changes. Hold ⌥ and drag to stretch the bond, or to rotate a selected group as a rigid body. A new Select menu picks atoms by element, adds bonded neighbours, inverts the selection, or matches a SMARTS pattern. Every drag is one Undo step.
+
+On butane, one drag takes the C–C–C–C torsion from 180° to 90°, and Undo brings it back.
+
+#ComputationalChemistry #Cheminformatics
+
+- Attach: `stage-20-manipulate-select/light-turning.png`, `stage-20-manipulate-select/dark-enlarged-window.png`
+- Link: `/docs/workflows/geometry#move-atoms-turn-bonds-and-select-mol-sdf`
