@@ -18,6 +18,24 @@ Right-clicking an atom in the 3D view opens the panel on that atom's row. The sa
 
 ![The 3D context menu of an atom in an XYZ file, with Edit geometry and Properties… above the selection and appearance items.](/assets/docs/avogadro/context-menu-edit-geometry.webp)
 
+## Draw atoms and bonds (MOL, SDF)
+
+Click **Draw** in the **Edit** panel to build a molecule right in the 3D view. The pointer becomes a crosshair, and the element field next to **Add** sets the element you draw.
+
+| In the 3D view | Result |
+| --- | --- |
+| Click empty space | A new atom |
+| Drag from an atom into empty space | A new atom bonded to it, in the direction of the drag |
+| Drag from one atom onto another | A bond between them |
+| Click a bond | Single → double → triple → single |
+| Click an atom | The atom becomes the chosen element |
+
+**Single**, **Double**, and **Triple** under the toolbar set the order of new bonds. With **Adjust hydrogens** on, hydrogens follow every stroke: the hydrogen nearest a new bond makes room for it, and the atoms you touched get hydrogens for their free valence. Every stroke is one Undo step. Dragging empty space still rotates the view.
+
+![Drawing in the 3D view: a drag from the carbon of methane, with a line to the pointer where the new atom will go.](/assets/docs/avogadro/edit-draw-drag.webp)
+
+![Acetaldehyde drawn from methane in three strokes: a carbon, an oxygen, and a click on the C–O bond to make it double.](/assets/docs/avogadro/edit-draw-carbonyl.webp)
+
 ## Edit bonds, angles, and torsions (XYZ)
 
 1. Open an XYZ file and measure a distance, angle, or dihedral in the 3D view.

@@ -303,3 +303,16 @@ In the HCN to HNC isomerization below, one click on the way up the barrier shows
 
 - Attach: `stage-18-scans-irc/light-hcn-irc-window.png`, `stage-18-scans-irc/light-co2-scan-window.png`
 - Link: `/docs/workflows/calculations#scans-and-reaction-paths`
+
+## 19. Draw a molecule in 3D
+
+Burette can now build a molecule where you look at it.
+
+Turn on Draw in the Edit panel and the 3D view becomes a drawing surface. Click empty space for an atom, drag from an atom to grow a bonded one, drag onto another atom to close a bond, click a bond to make it double or triple. Hydrogens follow every stroke, so the structure stays chemically complete, and each stroke is one Undo step.
+
+Three strokes turn methane into acetaldehyde: a carbon, an oxygen, and a click on the C–O bond.
+
+#ComputationalChemistry #Cheminformatics
+
+- Attach: `stage-19-draw-tool/light-carbonyl-window.png`, `stage-19-draw-tool/dark-dragging.png`
+- Link: `/docs/workflows/geometry#draw-atoms-and-bonds-mol-sdf`

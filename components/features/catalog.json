@@ -397,6 +397,15 @@
         "captureStatus": "approved"
       },
       {
+        "title": "Draw in 3D",
+        "description": "Click and drag in the 3D view to add atoms and bonds; hydrogens follow each stroke.",
+        "screenshot": "/assets/features/avogadro-draw-light.webp",
+        "screenshotDark": "/assets/features/avogadro-draw-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Z-matrix",
         "description": "Switch to a Z-matrix at any time and copy or save it.",
         "screenshot": "/assets/features/avogadro-zmatrix.webp",
