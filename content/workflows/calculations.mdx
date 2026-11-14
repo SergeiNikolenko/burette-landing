@@ -58,6 +58,16 @@ Convergence comes from Gaussian, ORCA, Psi4, Q-Chem, and NWChem outputs. Forces 
 
 ![Plots for a Gaussian optimization of divinylbenzene: the energy by step and the maximum force on a log axis crossing the dashed threshold at step 4.](/assets/docs/avogadro/calc-convergence.webp)
 
+## Scans and reaction paths
+
+When a Gaussian or ORCA output holds a relaxed scan or an IRC, **Plots** draws it as its first chart. A scan is plotted against the coordinate it scanned, a bond length, angle or dihedral named by its atoms, as the input defined it. An IRC is plotted against the reaction coordinate, with the transition state at zero. Energies are relative to the lowest point. Click a point or use the arrow keys to show that geometry in the 3D view; the other charts and the frame bar follow it. Scan points whose optimization stopped before converging are drawn as open circles.
+
+![A Gaussian relaxed scan of the C–O bond in CO₂: the energy against the bond length, with the selected point's geometry in the scene.](/assets/docs/avogadro/calc-scan.webp)
+
+Burette reads Gaussian ModRedundant scans and IRCs, and ORCA relaxed and unrelaxed surface scans. For an ORCA IRC, open the `_IRC_Full_trj.xyz` file it writes next to the output: it holds every geometry along the path, so each point opens its structure. The `.out` file alone gives the energy profile only. When a scan changes several coordinates at once, the chart uses the step number.
+
+![The HCN ⇌ HNC isomerization from a Gaussian IRC: the energy along the reaction coordinate, with the hydrogen halfway between carbon and nitrogen.](/assets/docs/avogadro/calc-irc.webp)
+
 ## The Calculation card
 
 Open the output of Gaussian, ORCA, Psi4, NWChem, Q-Chem, GAMESS, Molpro, or xTB, a QCSchema result, or an Avogadro Chemical JSON file, and the **Info** dock gets a **Calculation** card. It shows the energy of the geometry in the 3D view and, as the program printed them, the keywords or route, the basis set, the charge and multiplicity, the program and its version, and the run time. An unrestricted calculation also shows ⟨S²⟩. A job that stopped with an error says so at the top of the card.

@@ -290,3 +290,16 @@ New field subtracts, adds or scales Cubes on the same grid and opens the result 
 
 - Attach: `stage-17-cube-fields/light-difference-window.png`, `stage-17-cube-fields/dark-density-yz-window.png`
 - Link: `/docs/workflows/calculations#slices-integrals-and-new-fields`
+
+## 18. Click a point on a scan, see its geometry
+
+Burette now reads relaxed scans and IRC runs from Gaussian and ORCA.
+
+Open the output and Plots draws the energy against the coordinate that was scanned, the bond, angle or dihedral from your input, or against the reaction coordinate for an IRC. Click any point and the 3D view jumps to that geometry. Scan points that never converged are drawn hollow, so you can see where the optimizer gave up.
+
+In the HCN to HNC isomerization below, one click on the way up the barrier shows the hydrogen sliding from carbon to nitrogen.
+
+#ComputationalChemistry #QuantumChemistry
+
+- Attach: `stage-18-scans-irc/light-hcn-irc-window.png`, `stage-18-scans-irc/light-co2-scan-window.png`
+- Link: `/docs/workflows/calculations#scans-and-reaction-paths`
