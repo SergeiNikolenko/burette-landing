@@ -329,3 +329,16 @@ On butane, one drag takes the C–C–C–C torsion from 180° to 90°, and Undo
 
 - Attach: `stage-20-manipulate-select/light-turning.png`, `stage-20-manipulate-select/dark-enlarged-window.png`
 - Link: `/docs/workflows/geometry#move-atoms-turn-bonds-and-select-mol-sdf`
+
+## 21. Vector figures and movies from the 3D view
+
+Burette now turns the 3D view into a figure and a movie.
+
+Export → Vector Image saves an SVG with one circle per atom and one group of lines per bond, in the colours of the view, ready to restyle in a vector editor. Export → Movie records an MP4: a full spin of the molecule, or whatever is playing, such as a vibration or a trajectory. You choose the length and 24, 30, or 60 fps, and the file holds exactly that many frames.
+
+On formaldehyde, the SVG has four circles and three bonds, and a 5-second vibration at 24 fps is a 120-frame movie.
+
+#ComputationalChemistry #ScientificVisualization
+
+- Attach: `stage-21-vector-movies/light-vibration-formaldehyde.mp4`, `stage-21-vector-movies/light-svg-render.png`
+- Link: `/docs/formats#export-a-vector-image-or-a-movie`

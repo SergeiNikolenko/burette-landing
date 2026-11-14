@@ -602,6 +602,15 @@
         "captureStatus": "approved"
       },
       {
+        "title": "Vector images and movies",
+        "description": "Save the 3D view as an SVG with one shape per atom and bond, or record a spin or a vibration as an MP4.",
+        "screenshot": "/assets/features/avogadro-movie-light.webp",
+        "screenshotDark": "/assets/features/avogadro-movie-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Text editing",
         "description": "Inspect and edit supported molecular source files in place.",
         "screenshot": "/assets/text-pic-light.webp",

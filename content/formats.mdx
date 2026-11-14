@@ -44,6 +44,24 @@ The **Structure** submenu also lists the file's own format (for example SDF) and
 
 To export a crystal cell as CIF, POSCAR, extended XYZ, or CJSON, use **Export** in the Crystal panel; see [Crystal structures](/docs/workflows/crystals#export-the-cell). For an ORCA, Gaussian, Psi4, or CP2K input file, see [Calculation results](/docs/workflows/calculations#export-an-input-file).
 
+## Export a vector image or a movie
+
+**Export → Vector Image…** saves the 3D view as an SVG file. Every atom is one circle and every bond is one group of lines, in the colours and sizes of the view, so a vector editor can recolour, relabel, or remove any of them. It draws the ball-and-stick, licorice, and spacefill styles from the current camera, and leaves out hydrogens that the view hides.
+
+**Export → Movie…** records the 3D view as an MP4 file.
+
+| Setting | Choice |
+| --- | --- |
+| **Motion** | **Spin** turns the view once about its vertical axis. **As shown** records what is playing: a vibration, a trajectory, or an optimization. |
+| **Length, s** | 1 to 60 seconds |
+| **Frame rate** | 24, 30, or 60 fps |
+
+The movie holds exactly length × frame rate frames, at the size of the 3D view. Both commands are also in the command palette as **Export image as SVG** and **Record movie…**.
+
+![The Record movie dialog over formaldehyde with a vibration playing: Motion set to As shown, Length 5 s, Frame rate 24 fps.](/assets/docs/avogadro/export-movie-dialog.webp)
+
+![Formaldehyde exported as SVG: four atom circles and three bonds, the C=O bond drawn as two lines.](/assets/docs/avogadro/export-vector-image.webp)
+
 ## Size limits
 
 Quick Look has per-format size limits in the format registry. The desktop workspace can expose richer surfaces for larger or more complex files, but very large files may still require format-specific handling. Binary trajectories and paired topology/coordinate inputs need surface-specific testing; a registered document type alone is not proof of successful decoding on every platform.
