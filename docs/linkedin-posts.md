@@ -394,3 +394,33 @@ In the tests, a pivot followed by an unpivot gives back the original table, and 
 
 - Attach: `stage-26-data-shaping/light-merge-dialog.png`, `stage-26-data-shaping/light-row-list.png`
 - Link: `/docs/workflows/collections#reshape-a-table`
+
+## 27. Every molecule at one scale
+
+Burette now draws every 2D structure for the box that shows it, at one scale.
+
+A molecule used to be drawn once and squeezed into whatever held it: a 52-pixel table cell, a tooltip, an inspector panel. Labels shrank with the bonds, and a lone substituent was blown up until it looked bigger than the molecule it came from. Now cards, table cells, hover previews, the Info panel and the SAR, matched pair and R-group dialogs all use the same bond length and readable labels. Generated layouts lie along the box, attachment points are drawn as wavy lines, and bromine and iodine stay visible in the dark theme.
+
+On a ChEMBL factor Xa series, a card now fits a whole benzamide with labels at 10 px, and the R-group columns read as the substituents a chemist would draw.
+
+#Cheminformatics #MedicinalChemistry
+
+- Attach: `fix-molecule-scale/grid-zoom-before-after.png`, `fix-molecule-scale/table-zoom-before-after.png`
+- Link: `/docs/workflows/collections#structure-drawings`
+
+---
+
+# LigandPro platform
+
+Drafts for the LigandPro platform account. Screenshots are in
+`~/Documents/Projects/platform-media/molecule-scale/`.
+
+## Structures you can read in every list
+
+The LigandPro platform now draws molecules at one scale everywhere they appear.
+
+The molecule table, collection tables and global search used to show thumbnails of 56 by 40 pixels, too small to tell gefitinib from imatinib without hovering. Small fragments went the other way and filled their box, so ethanol looked larger than a kinase inhibitor. Each structure is now drawn at the size of its frame with a shared bond length, long molecules lie along the frame, table thumbnails are more than twice as large, and the hover preview shows the whole molecule at a readable size in both themes.
+
+#DrugDiscovery #Cheminformatics
+
+- Attach: `light-table-before-after.png`, `light-search-before-after.png`
