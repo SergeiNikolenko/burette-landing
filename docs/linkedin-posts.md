@@ -369,19 +369,6 @@ On a ChEMBL factor Xa series, swapping Cl for F appears 13 times and costs 0.31 
 - Attach: `stage-23-matched-pairs-sar/light-pairs-selected.png`, `stage-23-matched-pairs-sar/light-sar-table-cell.png`
 - Link: `/docs/workflows/collections#matched-pairs-and-the-sar-table`
 
-## 24. Predict a column and fill its gaps
-
-Burette now builds property models inside a collection.
-
-Build Model takes a column, such as measured solubility, and learns it from the structures with nearest neighbours, partial least squares, or a random forest. You get the cross-validated R² before you trust anything, the predictions for the rows that have no value, and for each prediction the training molecules it rests on.
-
-On the 1,128 molecules of the ESOL solubility set, the random forest reaches R² 0.92 in cross-validation, the same as scikit-learn on the same split.
-
-#Cheminformatics #QSAR
-
-- Attach: `stage-24-property-models/light-model.png`, `stage-24-property-models/light-grid.png`
-- Link: `/docs/workflows/collections#predict-a-column`
-
 ## 25. Enumerate a combinatorial library
 
 Burette now builds combinatorial libraries.

@@ -320,15 +320,6 @@
         "captureStatus": "approved"
       },
       {
-        "title": "Predict a column",
-        "description": "Build a model of a column from the structures and fill its missing values. Every prediction shows its nearest training rows.",
-        "screenshot": "/assets/features/avogadro-build-model-light.webp",
-        "screenshotDark": "/assets/features/avogadro-build-model-dark.webp",
-        "screenshotWidth": 1280,
-        "screenshotHeight": 800,
-        "captureStatus": "approved"
-      },
-      {
         "title": "Enumerate a library",
         "description": "Combine building blocks through a reaction or on the R positions of a core. Every product keeps the source of each part.",
         "screenshot": "/assets/features/avogadro-enumerate-light.webp",

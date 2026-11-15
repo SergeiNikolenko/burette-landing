@@ -99,23 +99,6 @@ Scroll to zoom and drag to pan a scatter chart; **Fit** shows every point again.
 
 ![The SAR table of the same series: R4 down, R1 across, cells tinted by pKi, and the two molecules of the selected cell below.](/assets/docs/avogadro/sar-table-dialog.webp)
 
-## Predict a column
-
-**Analyze → Build Model…** (also **Build model** in the command palette) learns a column of the open collection from the structures and predicts it for the rows that have no value.
-
-| Choice | Options |
-| --- | --- |
-| **Column** | A numeric column gives a regression; a text column, such as a class label, gives a classification |
-| **Method** | Nearest neighbours, partial least squares, or random forest |
-
-**Build model** reports the cross-validated R² and RMSE of a regression, or the accuracy of a classification, with the number of training rows. Below it are the rows without a value and their predictions. Select one to see its nearest training rows with their values and distances.
-
-**Fill missing values** writes the predictions into the empty cells. **Add column** writes a prediction for every row as a new column, such as `Predicted logS`.
-
-![The Build model dialog: logS from structure properties with a random forest, cross-validated R² 0.856, six predictions, and the nearest training rows to thiophene.](/assets/docs/avogadro/build-model-dialog.webp)
-
-![The collection as a table with the filled logS cells and the new Predicted logS column.](/assets/docs/avogadro/build-model-table.webp)
-
 ## Enumerate a library
 
 **Collection → Reaction → Enumerate Library…** (also **Enumerate library…** in the command palette) builds every combination of your building blocks and opens the result as a new collection.
