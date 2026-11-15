@@ -86,18 +86,18 @@ Scroll to zoom and drag to pan a scatter chart; **Fit** shows every point again.
 
 ## Matched pairs and the SAR table
 
-**Analyze → Matched Pairs…** (also **Matched pairs** in the command palette) finds the molecules of a collection that differ in one substituent. Each transformation, such as Cl to F, is listed with the number of pairs and the mean and standard deviation of the change in a column you choose. Select a transformation to see its pairs side by side, and **Select in grid** to select their molecules.
+**Analyze → Matched Pairs…** (also **Matched pairs** in the command palette) finds the molecules of a collection that differ in one substituent. Each transformation, such as Cl to F, is drawn as the substituent before and after, with the number of pairs and the mean and standard deviation of the change in a column you choose. A bar shows the size of the mean change, blue for an increase and orange for a decrease, on one scale for the rows on the page. Select a transformation to see its pairs side by side with the changed part highlighted, and **Select in grid** to select their molecules.
 
-**Analyze → SAR Table…** lays the R-group columns of a collection out as a matrix: one R position down, another across. Each cell shows the value of a column for the molecules with that pair of substituents, or their mean, and its tint follows the value. Hover a cell to see its molecules; click it and choose **Select in grid** to select them. The table needs the `RGroup_*` columns that **Decompose R-Groups…** writes, or that came with the file.
+**Analyze → SAR Table…** lays the R-group columns of a collection out as a matrix: one R position down, another across. The series core is drawn above the table with its R positions labelled. Each cell shows the value of a column for the molecules with that pair of substituents, or their mean, and its colour follows the value on the scale under the table, from light at the lowest to dark blue at the highest. Hover a cell to see its molecules; click it and choose **Select in grid** to select them. The table needs the `RGroup_*` columns that **Decompose R-Groups…** writes, or that came with the file.
 
 | Sort | Shows first |
 | --- | --- |
 | **Most pairs** | The transformations seen most often |
 | **Largest increase** or **Largest decrease** | The largest mean change in the chosen column |
 
-![The Matched pairs dialog on a factor Xa series: Cl to F leads with 13 pairs and a mean change in pKi of −0.31, and its first two pairs are shown below.](/assets/docs/avogadro/matched-pairs-dialog.webp)
+![The Matched pairs dialog on a factor Xa series: Cl to F leads with 13 pairs and a mean change in pKi of −0.31, shown by an orange bar, and its first two pairs are shown below.](/assets/docs/avogadro/matched-pairs-dialog.webp)
 
-![The SAR table of the same series: R4 down, R1 across, cells tinted by pKi, and the two molecules of the selected cell below.](/assets/docs/avogadro/sar-table-dialog.webp)
+![The SAR table of the same series: the core with R1 to R6, R4 down, R1 across, cells coloured by pKi from 5.34 to 7.76, and the two molecules of the selected cell below.](/assets/docs/avogadro/sar-table-dialog.webp)
 
 ## Enumerate a library
 

@@ -164,12 +164,20 @@ In the dialog, choose the program, then:
 
 | Field | Choices |
 | --- | --- |
-| **Calculation** | **Single-point energy**, **Geometry optimization**, or **Frequencies** |
-| **Method**, **Basis set** | Passed to the program as you type them |
+| **Calculation** | **Single-point energy**, **Geometry optimization**, **Frequencies**, **Optimization and frequencies**, or **Transition state** (a saddle-point search from a computed Hessian, followed by frequencies; ORCA, Gaussian, and Psi4) |
+| **Method**, **Basis set** | Passed to the program as you type them; the fields suggest common choices for the selected program |
 | **Charge, e**, **Multiplicity** | Checked against the electron count before the file is written |
 | **Coordinates** | **Cartesian** or **Z-matrix** (ORCA, Gaussian, and Psi4) |
+| **Solvation**, **Solvent** | Gas phase, **CPCM**, or **SMD** (ORCA and Gaussian; Psi4 offers CPCM) in water, methanol, ethanol, acetonitrile, acetone, DMSO, DMF, THF, dichloromethane, chloroform, toluene, benzene, or hexane, spelled the way each program expects |
+| **Dispersion** | None, **D3(BJ)**, or **D4** (D4 in ORCA and Psi4) |
+| **SCF convergence** | The program's default, **Tight**, or **Very tight** |
+| **Cores**, **Memory** | Parallel processes and total memory for ORCA, Gaussian, and Psi4. ORCA gets memory per core and keeps a quarter in reserve. |
+| **Title** | Gaussian's title line; a comment at the top of the other files |
+| **Checkpoint file** | Gaussian only: writes `%chk` named after the file |
 
-Review the text, then **Copy** it or **Save** it as a file.
+A setting the selected program cannot express is not shown. Review the text, then **Copy** it or **Save** it as a file.
+
+![The Export input file dialog for ibuprofen with Gaussian, Transition state, SMD in DMSO, D3(BJ) dispersion, tight SCF, 8 cores, 16 GB of memory, and a checkpoint file.](/assets/docs/avogadro/input-export-settings.webp)
 
 ![The Export input file dialog for ethanol with Gaussian, Single-point energy, B3LYP/6-31G(d), and Z-matrix coordinates.](/assets/docs/avogadro/input-export-gaussian-zmatrix.webp)
 

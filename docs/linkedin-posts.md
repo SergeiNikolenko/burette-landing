@@ -87,7 +87,7 @@ In the Mac app, the same menu also lists GFN2-xTB, GFN1-xTB and GFN-FF through y
 
 You can now export a ready input file for ORCA, Gaussian, Psi4 or CP2K from an SDF, MOL, PDB, CIF, POSCAR or XYZ file.
 
-Export input file… is in the command palette, the Edit panel's More actions, and the Geometry and Z-matrix panels. Choose the program, the calculation (single point, optimization or frequencies), method, basis, charge and multiplicity, and Cartesian or Z-matrix coordinates for ORCA, Gaussian and Psi4.
+Export input file… is in the command palette, the Edit panel's More actions, and the Geometry and Z-matrix panels. Choose the program, the calculation (single point, optimization, frequencies, optimization with frequencies, or a transition-state search), method and basis with suggestions for each program, charge and multiplicity, and Cartesian or Z-matrix coordinates for ORCA, Gaussian and Psi4. Add CPCM or SMD solvent, D3(BJ) or D4 dispersion, tighter SCF convergence, cores and memory, a title, and a Gaussian checkpoint file; each program gets them in its own syntax.
 
 Atoms keep their order, so constraint numbers match the structure. Frozen atoms and held distances from the Edit panel go into optimization inputs. Copy the text or save the file.
 

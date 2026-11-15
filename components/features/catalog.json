@@ -574,10 +574,10 @@
       },
       {
         "title": "Input files",
-        "description": "Write a ready input file for your quantum chemistry program.",
+        "description": "Write a ready input file for your quantum chemistry program, with solvent, dispersion, cores and memory.",
         "screenshot": "/assets/features/avogadro-input-export.webp",
         "screenshotWidth": 1200,
-        "screenshotHeight": 1220,
+        "screenshotHeight": 1303,
         "captureStatus": "approved"
       },
       {
