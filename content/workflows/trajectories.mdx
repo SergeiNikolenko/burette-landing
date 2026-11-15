@@ -1,0 +1,35 @@
+---
+title: Trajectories & Frames
+description: Plot distances across every frame of an XTC or DCD trajectory, export the values as CSV, and compare the frames of a saved scene with All and Align.
+---
+
+# Trajectories and Frames
+
+Step through a trajectory, measure how a distance changes across every frame, and compare frames by showing them all at once.
+
+## Open a trajectory
+
+Open a topology file, such as PDB, together with its XTC, DCD, or TRR trajectory. The frame controls appear above the 3D view: play, previous and next frame, and the current frame number. The atom order of the topology must match the trajectory.
+
+## Plot a value across frames
+
+1. Choose **Show plots** from the **Compute** menu or the command palette. The **Plots** tab opens with the current frame and its time.
+2. Type two, three, or four atom numbers, such as `1 10`, to measure a distance, an angle, or a dihedral. The value for the current frame appears next to the field.
+3. Click **Scan all frames**. Burette reads the trajectory in pages without moving the scene; **Cancel** stops the scan.
+4. The chart shows the value for every frame, with the current frame marked.
+5. Click **Export CSV** to save one row per frame with its time and value.
+
+![The Plots tab for a 30-frame XTC trajectory with the distance between atoms 1 and 10 plotted over all frames and the Export CSV button.](/assets/docs/avogadro/trajectory-plot-scan.webp)
+
+**Export frame** saves the atoms of the current frame as CSV. Times come from the trajectory file. If the trajectory changes while a scan is running, the scan stops instead of mixing frames.
+
+XTC and DCD trajectories of up to 75 MiB are read one frame at a time, so only the displayed frame is loaded, also in the browser. DCD files with fixed atoms or a fourth dimension are not supported.
+
+## Compare frames with All and Align
+
+A multi-frame structure, such as an optimization's **Open steps** result or a saved scene with a trajectory, shows **All** and **Align** next to the frame controls.
+
+- **All** shows every frame together.
+- **Align** superimposes the frames onto the current frame. When you move to another frame, the others are fitted to it again.
+
+Only the displayed copies move; the coordinates of the structure itself are unchanged. Both settings are kept when you save the scene and restored when you reopen it. Turn **Align** and then **All** off to return to a single frame.

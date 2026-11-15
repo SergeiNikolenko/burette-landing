@@ -9,12 +9,12 @@ const LLMS = `# Burette
 > Finder and a PDB, CIF, SDF, XYZ, trajectory or chemistry table opens as an
 > interactive 3D structure through Quick Look, with no app window and no upload.
 > When a preview is not enough, the same file opens in a workspace with tabs,
-> Mol* 3D, RDKit grids, Ketcher sketching, and local xTB or CREST runs.
+> Mol* 3D, RDKit grids, molecular sketching, and local xTB or CREST runs.
 
 Burette is MIT-licensed and requires macOS 12 or later on
 Apple Silicon or Intel. It has no account, no telemetry and no server component:
 files are parsed and rendered on the machine, and it needs no network access to
-open a file. Mol*, RDKit and Ketcher are bundled; \`xyzrender\`, \`xtb\` and
+open a file. Mol*, RDKit and the molecular editor are bundled; \`xyzrender\`, \`xtb\` and
 \`crest\` are optional external executables that Burette detects on PATH.
 
 Install with \`brew install --cask burette\` or the .dmg from GitHub Releases.
@@ -25,7 +25,7 @@ Install with \`brew install --cask burette\` or the .dmg from GitHub Releases.
 - [Install Burette](${SITE_URL}/docs/get-started/install): Homebrew cask, .dmg, first launch, and registering the Quick Look extension.
 - [Quick Start](${SITE_URL}/docs/get-started/quick-start): From install to a first preview in Finder.
 - [Supported Formats](${SITE_URL}/docs/formats): Every extension Burette reads and which engine renders it.
-- [Engines](${SITE_URL}/docs/engines): How Mol*, RDKit, Ketcher, xyzrender, xTB and CREST are wired together.
+- [Engines](${SITE_URL}/docs/engines): How Mol*, RDKit, the molecular editor, xyzrender, xTB and CREST are wired together.
 
 ## Surfaces
 
@@ -43,7 +43,7 @@ Install with \`brew install --cask burette\` or the .dmg from GitHub Releases.
 
 ## Agents
 
-- [Burette Plugin and MCP](${SITE_URL}/docs/plugin): A local MCP server exposing typed tools for structures, Mol* scenes, Ketcher edits, molecule collections, trajectories and workflow artifacts. It runs on the user's machine and talks to the running app, with no cloud round-trip.
+- [Burette Plugin and MCP](${SITE_URL}/docs/plugin): A local MCP server exposing typed tools for structures, Mol* scenes, editor sketches, molecule collections, trajectories and workflow artifacts. It runs on the user's machine and talks to the running app, with no cloud round-trip.
 
 ## Optional
 

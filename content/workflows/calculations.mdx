@@ -1,0 +1,206 @@
+---
+title: Calculation Results
+description: Open quantum chemistry results with vibrations, orbitals, and coordinate sets, show orbital fields from Cube files, and write input files for ORCA, Gaussian, Psi4, and CP2K.
+---
+
+# Calculation Results
+
+Open the output of a quantum chemistry calculation and look at what it computed: play a vibrational mode, show an orbital surface, or switch between the fields stored in a Cube file. When you are ready for the next run, write an input file for your program from any structure.
+
+The tools for a calculation file open from the **Info** dock and the right dock tabs: **Vibrations**, **Orbitals**, **Crystal**, and **Plots** appear when the file contains that data.
+
+## Chemical JSON files
+
+Chemical JSON (`.cjson`) files written by Avogadro open with their scientific content:
+
+| Section in the file | What you get |
+| --- | --- |
+| Vibrations | **Vibrations**: frequency, IR intensity, and Raman activity for each mode, a spectrum, and a live animation of the selected mode. |
+| Orbitals and basis set | **Orbitals**: an energy level diagram and table with HOMO and LUMO marked, and an orbital surface for the selected orbital. |
+| Unit cell | The structure opens with its lattice, and the **Crystal** panel shows the cell. |
+| Several coordinate sets | A **Coordinate set** selector in the **Info** dock. |
+
+![The Vibrations panel for formaldehyde with an IR spectrum, the mode table, and the 1527 cm⁻¹ mode animating in the 3D view.](/assets/docs/avogadro/calc-vibrations.webp)
+
+In **Vibrations**, select a mode in the table, set the **Amplitude**, and click **Animate**; **Stop** ends the animation. **Open → Trajectory** opens the mode as a multi-frame structure, and **Export** saves the spectrum as CSV or JSON, or the modes as JSON.
+
+In **Orbitals**, select an orbital in the table, set the isovalue and grid spacing, and click **Show surface**. **Export Cube** saves the displayed field as a Cube file.
+
+![The Orbitals panel for formaldehyde with the LUMO selected and its two lobes shown around the molecule.](/assets/docs/avogadro/calc-orbital-surface.webp)
+
+Vibrations and orbitals are kept when you save the scene and reopen it.
+
+### Coordinate sets
+
+A file with several geometries opens on its active set. Choose another one in **Coordinate set** in the **Info** dock; each choice is one Undo step, and choosing a set you showed before returns to it. Vibrational modes travel with their own set. Orbitals belong to the geometry they were computed for, so they are available only on the file's own set. The chosen set is kept when you save the scene.
+
+![The Coordinate set list in the Info dock of a formaldehyde file, open on Set 1 of thirteen.](/assets/docs/avogadro/calc-coordinate-sets.webp)
+
+## Gaussian optimization logs
+
+A Gaussian log from a geometry optimization opens on its final geometry. When the job printed the basis and orbital coefficients for that geometry (`pop=full` with `gfinput`), its orbitals are available in **Orbitals**. Otherwise you get orbital energies and occupations without surfaces.
+
+## Orbital level diagram
+
+Above the orbital table, **Orbitals** draws the energy levels around the HOMO–LUMO gap to scale. Every level is labelled with its energy in eV, occupied levels are drawn darker, HOMO and LUMO are named, and the gap between them is shaded. An unrestricted calculation gets two strips, α left and β right of one energy axis, and a dashed line joins the same orbital of both spins, so you can see how far the spin channels split. When you step through the frames of an optimization, the levels glide to their new energies.
+
+Click a level to show its orbital surface right away, without pressing **Show surface**. With the diagram focused, the Up and Down arrow keys step through the levels of one column, Left and Right move to the nearest level of the other spin, and Home and End jump to the lowest and highest level. Levels closer than the line spacing sit side by side, as degenerate orbitals do.
+
+The diagram shows the valence region, up to 20 eV beyond the frontier levels. Deep core levels stay in the table below.
+
+![The Orbitals panel for the divinylbenzene cation from an unrestricted ORCA calculation: α and β level strips with their energies, the shaded HOMO–LUMO gaps and dashed lines between the same orbital of both spins.](/assets/docs/avogadro/calc-orbital-diagram.webp)
+
+## Optimization convergence
+
+When an optimization log printed its convergence table for each step, **Plots** adds a **Convergence** chart under the energy. Choose **Max force**, **RMS force**, **Max step**, or **RMS step**. The values are drawn on a log axis, with the program's threshold as a dashed line, so you can see which criterion held the optimization back and on which step it was met. Click the chart or use the arrow keys to show that step in the 3D view.
+
+Convergence comes from Gaussian, ORCA, Psi4, Q-Chem, and NWChem outputs. Forces are gradients in hartree per bohr; steps are in the program's own units, bohr or a mix of internal coordinates. Q-Chem prints only the maximum force and step.
+
+![Plots for a Gaussian optimization of divinylbenzene: the energy by step and the maximum force on a log axis crossing the dashed threshold at step 4.](/assets/docs/avogadro/calc-convergence.webp)
+
+## Scans and reaction paths
+
+When a Gaussian or ORCA output holds a relaxed scan or an IRC, **Plots** draws it as its first chart. A scan is plotted against the coordinate it scanned, a bond length, angle or dihedral named by its atoms, as the input defined it. An IRC is plotted against the reaction coordinate, with the transition state at zero. Energies are relative to the lowest point. Click a point or use the arrow keys to show that geometry in the 3D view; the other charts and the frame bar follow it. Scan points whose optimization stopped before converging are drawn as open circles.
+
+![A Gaussian relaxed scan of the C–O bond in CO₂: the energy against the bond length, with the selected point's geometry in the scene.](/assets/docs/avogadro/calc-scan.webp)
+
+Burette reads Gaussian ModRedundant scans and IRCs, and ORCA relaxed and unrelaxed surface scans. For an ORCA IRC, open the `_IRC_Full_trj.xyz` file it writes next to the output: it holds every geometry along the path, so each point opens its structure. The `.out` file alone gives the energy profile only. When a scan changes several coordinates at once, the chart uses the step number.
+
+![The HCN ⇌ HNC isomerization from a Gaussian IRC: the energy along the reaction coordinate, with the hydrogen halfway between carbon and nitrogen.](/assets/docs/avogadro/calc-irc.webp)
+
+## The Calculation card
+
+Open the output of Gaussian, ORCA, Psi4, NWChem, Q-Chem, GAMESS, Molpro, or xTB, a QCSchema result, or an Avogadro Chemical JSON file, and the **Info** dock gets a **Calculation** card. It shows the energy of the geometry in the 3D view and, as the program printed them, the keywords or route, the basis set, the charge and multiplicity, the program and its version, and the run time. An unrestricted calculation also shows ⟨S²⟩. A job that stopped with an error says so at the top of the card.
+
+![The Calculation card for a Gaussian 16 TD-DFT job on divinylbenzene: energy, route, basis, charge, multiplicity, program, and run time.](/assets/docs/avogadro/calc-calculation-card.webp)
+
+## Charges, dipole, and thermochemistry
+
+When a calculation printed atomic charges, a dipole moment, or the thermochemistry of a frequency job, the **Info** dock shows them for the geometry in the 3D view. Charges and the dipole come from Gaussian, ORCA, Psi4, NWChem, Q-Chem, GAMESS, Molpro, and xTB outputs; thermochemistry from Gaussian, ORCA, Psi4, NWChem, Q-Chem, and xTB (`--ohess`).
+
+In the **Charges** card:
+
+1. Choose the charge model, such as **Mulliken** or **Löwdin**, when the file has several. An open-shell calculation also lists its spin densities, such as **Mulliken spin** or **Hirshfeld spin**, and the card is called **Charges and spins**.
+2. Turn on **Color atoms** to colour each atom by its charge: negative charges are blue, positive orange, and neutral atoms white.
+3. Turn on **Labels** to write each charge next to its atom.
+4. Turn on **Dipole arrow** to draw the dipole moment from the centre of the molecule, one ångström per debye, pointing from the negative to the positive end.
+
+Turn an option off to return the scene to its own colours.
+
+![The divinylbenzene radical cation from an ORCA UKS job, atoms coloured by their Hirshfeld spin density: the unpaired electron sits on the vinyl carbons and the ring.](/assets/docs/avogadro/calc-spin-densities.webp)
+
+![p-Nitroaniline from an xTB frequency job: atoms coloured and labelled by charge, the 8.91 D dipole arrow pointing from the nitro group to the amino group, and the Charges and Thermochemistry cards in the Info dock.](/assets/docs/avogadro/calc-charges-dipole.webp)
+
+The **Thermochemistry** card lists the temperature, the zero-point energy, the enthalpy and Gibbs energy (electronic energy included), and the entropy. The values are the ones the program printed. NWChem and Q-Chem print no Gibbs energy; Burette shows G = H − T·S from their enthalpy and entropy.
+
+![The Charges and Thermochemistry cards for a Psi4 water optimization and frequency job.](/assets/docs/avogadro/calc-thermochemistry.webp)
+
+In an optimization log that opens on its final geometry, the cards show that geometry. In a trajectory, they follow the current frame; the thermochemistry stays on the geometry the frequency job was run on.
+
+## Excited states and NMR shieldings
+
+When a calculation printed excited states, choose **Compute → Show spectra** to see them as an absorption spectrum of the geometry they were computed at. The table lists every state with its label, energy, oscillator strength, and transition dipole, so you can check which transitions are bright. The spectrum's energy axis covers all the states when it opens; change the line width or the range in the fields above the chart.
+
+Excited states come from Gaussian (TD-DFT, CIS, and EOM-CC), ORCA, Q-Chem, GAMESS, and NWChem TDDFT outputs. When a Gaussian job printed nonzero rotatory strengths for a chiral molecule, **Circular dichroism** appears as well.
+
+![A Gaussian TD-DFT job on divinylbenzene: the absorption spectrum between 8 and 1 eV and the five states with their oscillator strengths and transition dipoles.](/assets/docs/avogadro/calc-excited-states.webp)
+
+A Gaussian NMR job (`NMR`) gives the GIAO shielding of every atom. In **Show spectra**, choose **NMR** and the element; Burette turns shieldings into chemical shifts with a reference you can change.
+
+![Proton shifts of divinylbenzene from a Gaussian GIAO job, with each hydrogen's shielding and anisotropy in the table.](/assets/docs/avogadro/calc-nmr-shieldings.webp)
+
+## Electrostatic potential surfaces
+
+Choose **Compute → Show electrostatic potential** to colour a surface around the molecule by the electrostatic potential: red where it is negative, white near zero, and blue where it is positive. In **Potential**, pick where the potential comes from:
+
+- **A charge model of the calculation**, such as Mulliken or Löwdin, for the frame the scene shows.
+- **Gasteiger charges** for a MOL or SDF file, whose bonds and formal charges Burette reads from the file. An XYZ file has no bond orders, so it needs charges of its own.
+- **A potential cube.** Open the density cube, then **Open potential cube** with the potential written on the same grid, for example by Gaussian's `cubegen density=scf` and `cubegen potential=scf`.
+
+Charges give the Coulomb potential on a smooth van der Waals surface. A cube pair draws the density at 0.0004 e/bohr³, the surface cubegen and GaussView use; change it in **Isovalue**. The colour range starts at the potential's spread on the surface and is in hartree per elementary charge (atomic units). Type or drag either end to compare molecules on one scale.
+
+![p-nitroaniline coloured by the potential of its Gasteiger charges: the nitro group red and the ring and amino group blue.](/assets/docs/avogadro/calc-potential-gasteiger.webp)
+
+![The same molecule from a B3LYP density and potential cube pair, on the 0.0004 e/bohr³ density surface.](/assets/docs/avogadro/calc-potential-cube-pair.webp)
+
+## Cube files with several fields
+
+A Cube file can store several orbitals or fields on one grid. Burette lists them in the **Field** select of **Orbitals**, named with the orbital numbers from the file.
+
+1. Open the Cube file and the **Orbitals** tab.
+2. Choose a field in **Field** and set the **Isovalue**.
+3. Pick the **Positive** and **Negative** lobe colours. Blue and red are the defaults; changing a colour does not recompute the surface.
+4. Click **Export Cube** to save the displayed field. The file is named after the field.
+
+![A formaldehyde Cube file showing Orbital 9 with the positive lobe in green and the negative lobe in purple.](/assets/docs/avogadro/cube-field-colours.webp)
+
+A field belongs to the exact geometry it was computed on. In a trajectory, it does not show on another frame.
+
+## Slices, integrals and new fields
+
+Choose **Compute → Slice and combine fields** on a Cube file to open **Fields**.
+
+**Integral** sums the field over the grid, multiplied by the volume of one grid cell in bohr³. For an electron density this is a number of electrons. Grid points sample the density poorly at the nuclei, so a total density comes out low, while a smooth difference density comes out close to the true count.
+
+To look inside the field, pick a **Plane** (XY, XZ or YZ) and drag **Position** through the grid. The panel draws the slice as a colour map with contour lines: red below zero, white at zero and blue above, with dashed contours for negative values and the atoms that lie in the plane. **Show slice** draws the same plane in the scene. **Contours** sets the number of lines; **Colour range** sets the values at the two ends of the scale.
+
+![A slice through the water density in the plane of the molecule, in the scene and as a contour map.](/assets/docs/avogadro/calc-fields-slice.webp)
+
+**New field** makes A − B, A + B or k × A from the file's fields. To use a field from another file, click **Open Cube** and pick a Cube on the same grid. **Create** opens the result as a new Cube document, so it can be sliced, integrated, shown as a surface in **Orbitals** and downloaded.
+
+![The water density minus its cation's density: the electron removed from the lone pair, in blue, integrates to 0.98.](/assets/docs/avogadro/calc-fields-difference.webp)
+
+## Export an input file
+
+**Export input file…** writes a ready input for ORCA, Gaussian, Psi4, or CP2K. Open it from:
+
+- the command palette, for SDF, MOL, PDB, CIF, POSCAR, XYZ, and other supported coordinate files;
+- **More actions** (`⋯`) in the **Edit** panel, which includes unsaved edits and held constraints;
+- the **Geometry** and **Z-matrix** toolbars.
+
+![The Edit panel's More actions menu for ethanol with Export input file… at the bottom.](/assets/docs/avogadro/input-export-edit-menu.webp)
+
+In the dialog, choose the program, then:
+
+| Field | Choices |
+| --- | --- |
+| **Calculation** | **Single-point energy**, **Geometry optimization**, **Frequencies**, **Optimization and frequencies**, or **Transition state** (a saddle-point search from a computed Hessian, followed by frequencies; ORCA, Gaussian, and Psi4) |
+| **Method**, **Basis set** | Passed to the program as you type them; the fields suggest common choices for the selected program |
+| **Charge, e**, **Multiplicity** | Checked against the electron count before the file is written |
+| **Coordinates** | **Cartesian** or **Z-matrix** (ORCA, Gaussian, and Psi4) |
+| **Solvation**, **Solvent** | Gas phase, **CPCM**, or **SMD** (ORCA and Gaussian; Psi4 offers CPCM) in water, methanol, ethanol, acetonitrile, acetone, DMSO, DMF, THF, dichloromethane, chloroform, toluene, benzene, or hexane, spelled the way each program expects |
+| **Dispersion** | None, **D3(BJ)**, or **D4** (D4 in ORCA and Psi4) |
+| **SCF convergence** | The program's default, **Tight**, or **Very tight** |
+| **Cores**, **Memory** | Parallel processes and total memory for ORCA, Gaussian, and Psi4. ORCA gets memory per core and keeps a quarter in reserve. |
+| **Title** | Gaussian's title line; a comment at the top of the other files |
+| **Checkpoint file** | Gaussian only: writes `%chk` named after the file |
+
+A setting the selected program cannot express is not shown. Review the text, then **Copy** it or **Save** it as a file.
+
+![The Export input file dialog for ibuprofen with Gaussian, Transition state, SMD in DMSO, D3(BJ) dispersion, tight SCF, 8 cores, 16 GB of memory, and a checkpoint file.](/assets/docs/avogadro/input-export-settings.webp)
+
+![The Export input file dialog for ethanol with Gaussian, Single-point energy, B3LYP/6-31G(d), and Z-matrix coordinates.](/assets/docs/avogadro/input-export-gaussian-zmatrix.webp)
+
+Notes on the generated files:
+
+- Atoms keep their order, and coordinates are in ångströms. A PDB file contributes the atoms of its first model.
+- A Z-matrix has one row per atom, so constraint numbers stay those of the atoms. Opened from the Z-matrix panel, the file keeps that Z-matrix's references and shared variables.
+- When the first atoms lie on one line, the Z-matrix gets one dummy point. That shifts the row numbers, so use Cartesian coordinates if you need constraints.
+- Frozen atoms and held distances, angles, and dihedrals go into geometry optimizations. CP2K supports frozen atoms and Cartesian coordinates only.
+- A CP2K file of a crystal keeps its cell. An isolated molecule is centred in a box with 6 Å of padding on each side.
+
+The generated settings are a starting point. Check that the method, basis, and calculation type suit your program and system before you run it.
+
+## Programs and readers from Avogadro packages (Mac app)
+
+Avogadro Python packages installed and set up in **Settings › Extensions** add more programs and file readers.
+
+**More programs** in Export input file lists the input generators of your packages. The *avogadro-generators* package, for example, adds Dalton, GAMESS-UK, Gaussian, MOLPRO, MOPAC, NWChem, ORCA, Psi, PySCF, Q-Chem, and TeraChem.
+
+1. Choose a program under **More programs**. The form shows that program's own options, grouped as the package groups them.
+2. Change an option. The preview of each generated file updates a moment later.
+3. **Copy** the text, or **Save** the file. When the program writes several files, pick one to preview, or use **Save all**.
+
+The base file name starts as the document's name.
+
+A package that reads calculation outputs adds **Open › With …** to the file menu in the sidebar for the extensions it declares. *avogadro-cclib*, for example, adds **With cclib** for Gaussian, ORCA, and other program logs. The molecule it reads opens as a new document named after the file, and the original file stays as it was.

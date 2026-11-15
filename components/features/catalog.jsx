@@ -19,7 +19,7 @@ export default function Catalog() {
     return () => window.removeEventListener("scroll", update);
   }, []);
   return <div ref={root} className="feature-layout page-width">
-    <nav className="feature-index" aria-label="Feature categories">{groups.map((g) => <a href={`#${g.id}`} key={g.id} aria-current={current === g.id ? "location" : undefined}>{({preview:"Quick Look",structures:"3D viewer",selection:"Selection & analysis",motion:"Motion & poses",collections:"Collections","chemical-space":"Chemical Space",compute:"Calculations",editing:"Workspace & editing",integrations:"Integrations"})[g.id]}</a>)}</nav>
+    <nav className="feature-index" aria-label="Feature categories">{groups.map((g) => <a href={`#${g.id}`} key={g.id} aria-current={current === g.id ? "location" : undefined}>{({preview:"Quick Look",structures:"3D viewer",selection:"Selection & analysis",motion:"Motion & poses",collections:"Collections","chemical-space":"Chemical Space",compute:"Calculations",geometry:"Geometry",quantum:"Quantum chemistry",editing:"Workspace & editing",integrations:"Integrations"})[g.id]}</a>)}</nav>
     <div className="feature-sections">{groups.map((group, index) => <section id={group.id} className="feature-group" key={group.id}>
       <p className="feature-number">{String(index + 1).padStart(2, "0")} / {String(groups.length).padStart(2, "0")}</p>
       <h2>{group.title}</h2><p className="feature-intro">{group.intro}</p>

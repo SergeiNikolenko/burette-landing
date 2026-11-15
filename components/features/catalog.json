@@ -93,6 +93,15 @@
         "captureStatus": "approved"
       },
       {
+        "title": "Crystal cells",
+        "description": "Build a supercell, save the scene, and reopen it ready to edit the cell.",
+        "screenshot": "/assets/features/avogadro-crystal-scene-light.webp",
+        "screenshotDark": "/assets/features/avogadro-crystal-scene-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Protein superposition",
         "description": "Align related protein structures in one scene to compare folds and see where they differ.",
         "textOnly": true
@@ -175,6 +184,15 @@
         "description": "Play, pause, and step through a protein trajectory. Align frames to keep internal motion in view.",
         "captureStatus": "approved",
         "video": "trajectory-aligned"
+      },
+      {
+        "title": "Trajectory plots",
+        "description": "Plot a distance across every frame and save it as CSV.",
+        "screenshot": "/assets/features/avogadro-trajectory-plots-light.webp",
+        "screenshotDark": "/assets/features/avogadro-trajectory-plots-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
       },
       {
         "title": "Pose alignment",
@@ -275,13 +293,58 @@
       },
       {
         "title": "Edit a collection row",
-        "description": "Open a molecule in Ketcher, edit it, and apply the updated structure to the original row.",
+        "description": "Open a molecule in the molecular editor, edit it, and apply the updated structure to the original row.",
         "textOnly": true
       },
       {
         "title": "Combine collections",
         "description": "Append molecules to an open collection or merge collections into a new table.",
         "textOnly": true
+      },
+      {
+        "title": "Linked charts",
+        "description": "Scatter, histogram, bar and box charts of any columns. Select in the chart or in the grid, and the other follows.",
+        "screenshot": "/assets/features/avogadro-chart-light.webp",
+        "screenshotDark": "/assets/features/avogadro-chart-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Matched pairs and SAR tables",
+        "description": "See what each substituent change does to activity, and lay an R-group series out as a matrix of two positions.",
+        "screenshot": "/assets/features/avogadro-matched-pairs-light.webp",
+        "screenshotDark": "/assets/features/avogadro-matched-pairs-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Enumerate a library",
+        "description": "Combine building blocks through a reaction or on the R positions of a core. Every product keeps the source of each part.",
+        "screenshot": "/assets/features/avogadro-enumerate-light.webp",
+        "screenshotDark": "/assets/features/avogadro-enumerate-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Pivot and merge by key",
+        "description": "Turn assay rows into columns and back, or add the columns of another file to the rows with the same ChEMBL ID.",
+        "screenshot": "/assets/features/avogadro-reshape-light.webp",
+        "screenshotDark": "/assets/features/avogadro-reshape-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Category filters and row lists",
+        "description": "Filter by the values of a column with their counts, and keep named selections to show or export.",
+        "screenshot": "/assets/features/avogadro-row-lists-light.webp",
+        "screenshotDark": "/assets/features/avogadro-row-lists-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
       }
     ]
   },
@@ -337,15 +400,23 @@
     "features": [
       {
         "title": "Conformer generation",
-        "description": "Generate 3D conformers from selected molecules or a Ketcher sketch.",
+        "description": "Generate 3D conformers from selected molecules or an editor sketch.",
         "screenshot": "/assets/features/new-20260927-conformers.webp",
         "screenshotHeight": 1084,
         "screenshotWidth": 1280,
         "captureStatus": "approved"
       },
       {
+        "title": "Automatic force field",
+        "description": "Burette picks a force field that covers your elements and names the one it used.",
+        "screenshot": "/assets/features/avogadro-force-field.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Geometry optimization",
-        "description": "Refine existing 3D coordinates with MMFF and inspect the optimized structure.",
+        "description": "Refine 3D coordinates with a force field Burette picks for your elements, or with xTB in the Mac app.",
         "textOnly": true
       },
       {
@@ -356,28 +427,234 @@
     ]
   },
   {
+    "id": "geometry",
+    "title": "Shape the molecule. Let it relax.",
+    "intro": "Type a bond length, angle, or torsion, hold what must stay, and optimize the rest. One Undo returns to where you started.",
+    "media": null,
+    "docs": "/docs/workflows/geometry",
+    "features": [
+      {
+        "title": "Edit the geometry",
+        "description": "Type a bond length, angle, or torsion and the molecule follows.",
+        "screenshot": "/assets/features/avogadro-geometry-edit.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Draw in 3D",
+        "description": "Click and drag in the 3D view to add atoms and bonds; hydrogens follow each stroke.",
+        "screenshot": "/assets/features/avogadro-draw-light.webp",
+        "screenshotDark": "/assets/features/avogadro-draw-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Turn and stretch bonds",
+        "description": "Drag a bond to turn one side or stretch it, and pick atoms by element, neighbours, or SMARTS.",
+        "screenshot": "/assets/features/avogadro-move-light.webp",
+        "screenshotDark": "/assets/features/avogadro-move-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Z-matrix",
+        "description": "Switch to a Z-matrix at any time and copy or save it.",
+        "screenshot": "/assets/features/avogadro-zmatrix.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Optimize with constraints",
+        "description": "Freeze atoms or hold a distance while the rest relaxes.",
+        "screenshot": "/assets/features/avogadro-constraints.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      }
+    ]
+  },
+  {
+    "id": "quantum",
+    "title": "From a calculation to its orbitals.",
+    "intro": "Open the output of a quantum chemistry calculation, play its vibrations, show its orbitals, and write the input for the next run.",
+    "media": null,
+    "docs": "/docs/workflows/calculations",
+    "features": [
+      {
+        "title": "Vibrations",
+        "description": "Open a calculation and play its vibrations.",
+        "screenshot": "/assets/features/avogadro-vibrations.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Orbital surfaces",
+        "description": "Show an orbital surface from a calculation file.",
+        "screenshot": "/assets/features/avogadro-orbital-light.webp",
+        "screenshotDark": "/assets/features/avogadro-orbital-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Coordinate sets",
+        "description": "Pick any geometry stored in the file.",
+        "screenshot": "/assets/features/avogadro-coordinate-sets.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Cube fields",
+        "description": "Switch between orbitals in one cube file and choose the lobe colours.",
+        "screenshot": "/assets/features/avogadro-cube-fields-light.webp",
+        "screenshotDark": "/assets/features/avogadro-cube-fields-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Charges and dipole",
+        "description": "Colour and label atoms by their calculated charges, draw the dipole, and read ZPE, H, G and S.",
+        "screenshot": "/assets/features/avogadro-charges-light.webp",
+        "screenshotDark": "/assets/features/avogadro-charges-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Orbital diagram",
+        "description": "Pick orbitals on an α and β level diagram, and follow an optimization's forces against its thresholds.",
+        "screenshot": "/assets/features/avogadro-orbital-diagram-light.webp",
+        "screenshotDark": "/assets/features/avogadro-orbital-diagram-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Everything the job printed",
+        "description": "See the method, basis, charge and run time of any output, its spin densities, and its excited states as a spectrum.",
+        "screenshot": "/assets/features/avogadro-excited-states-light.webp",
+        "screenshotDark": "/assets/features/avogadro-excited-states-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Electrostatic potential surfaces",
+        "description": "Colour a surface by the potential of the file's charges, Gasteiger charges or a cubegen potential cube.",
+        "screenshot": "/assets/features/avogadro-electrostatic-potential-light.webp",
+        "screenshotDark": "/assets/features/avogadro-electrostatic-potential-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Cube slices and difference fields",
+        "description": "Slice a Cube field with contours, integrate it, and build A − B, A + B or k × A fields.",
+        "screenshot": "/assets/features/avogadro-cube-fields-light.webp",
+        "screenshotDark": "/assets/features/avogadro-cube-fields-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Scans and reaction paths",
+        "description": "Plot a relaxed scan or an IRC against its coordinate and click a point to see its geometry.",
+        "screenshot": "/assets/features/avogadro-scans-irc-light.webp",
+        "screenshotDark": "/assets/features/avogadro-scans-irc-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Input files",
+        "description": "Write a ready input file for your quantum chemistry program, with solvent, dispersion, cores and memory.",
+        "screenshot": "/assets/features/avogadro-input-export.webp",
+        "screenshotWidth": 1200,
+        "screenshotHeight": 1303,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Programs from Avogadro packages",
+        "description": "Write inputs for Dalton, MOLPRO, NWChem, PySCF and more, and open program logs with installed Avogadro packages in the Mac app.",
+        "textOnly": true
+      }
+    ]
+  },
+  {
     "id": "editing",
     "title": "Sketch, edit, and compare.",
-    "intro": "Edit a molecule in Ketcher, inspect its coordinates, and keep related files open in tabs and side panels.",
+    "intro": "Edit a molecule in the molecular editor, inspect its coordinates, and keep related files open in tabs and side panels.",
     "media": null,
     "docs": "/docs/surfaces/desktop",
     "features": [
       {
-        "title": "Ketcher sketches",
-        "description": "Work on molecular drawings in the integrated Ketcher editor.",
-        "screenshot": "/assets/features/capture-ketcher.webp",
-        "screenshotHeight": 600,
-        "captureStatus": "approved",
-        "screenshotWidth": 880
+        "title": "Molecular editor",
+        "description": "Sketch a molecule, import common formats, and send it to a grid or Mol*.",
+        "screenshot": "/assets/features/molecular-editor-2d-light.webp",
+        "screenshotDark": "/assets/features/molecular-editor-2d-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
       },
       {
         "title": "Sketch to 3D",
-        "description": "Open a Ketcher sketch as a 3D structure, then rotate it to inspect the geometry.",
-        "screenshot": "/assets/features/shot-sketch-to-3d.webp",
-        "screenshotHeight": 660,
-        "screenshotWidth": 960,
-        "captureStatus": "approved",
-        "video": "new-20260927-sketch-3d"
+        "description": "Open an editor sketch as a 3D structure, then rotate it to inspect the geometry.",
+        "screenshot": "/assets/features/molecular-editor-3d-light.webp",
+        "screenshotDark": "/assets/features/molecular-editor-3d-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Builders",
+        "description": "Build a peptide, a DNA strand, or a metal complex and add it to your file.",
+        "screenshot": "/assets/features/avogadro-builders.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Metal complexes",
+        "description": "Pick from 76 ligands, from cyclopentadienyl to edta, and choose how each chelate wraps the metal.",
+        "screenshot": "/assets/features/avogadro-metal-complexes-light.webp",
+        "screenshotDark": "/assets/features/avogadro-metal-complexes-dark.webp",
+        "screenshotWidth": 1296,
+        "screenshotHeight": 1462,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Right-click an atom",
+        "description": "Open the editor, the geometry table or the properties of a molecule from its atom in 3D.",
+        "screenshot": "/assets/features/avogadro-context-menu-light.webp",
+        "screenshotDark": "/assets/features/avogadro-context-menu-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Export to other formats",
+        "description": "Save a structure as MOL, XYZ, or CJSON, or as a compressed copy.",
+        "screenshot": "/assets/features/avogadro-export-light.webp",
+        "screenshotDark": "/assets/features/avogadro-export-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
+      },
+      {
+        "title": "Vector images and movies",
+        "description": "Save the 3D view as an SVG with one shape per atom and bond, or record a spin or a vibration as an MP4.",
+        "screenshot": "/assets/features/avogadro-movie-light.webp",
+        "screenshotDark": "/assets/features/avogadro-movie-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
       },
       {
         "title": "Text editing",
@@ -442,6 +719,11 @@
         "screenshotHeight": 880,
         "captureStatus": "approved",
         "video": "new-20260927-xyzrender"
+      },
+      {
+        "title": "Automate repeatable steps",
+        "description": "Script the same builds, edits, exports, and input files from Python, and continue on the results.",
+        "textOnly": true
       },
       {
         "title": "Work with your agent",

@@ -24,7 +24,7 @@ const QUESTIONS = [
   {
     id: "preview-vs-workspace",
     q: "What is the difference between the preview and the workspace?",
-    a: "Quick Look is handy for checking a file without leaving Finder. In the workspace you get tabs, views next to each other, and Ketcher for editing. Collection export and local calculation tools live there too.",
+    a: "Quick Look is handy for checking a file without leaving Finder. In the workspace you get tabs, views next to each other, and the molecular editor. Collection export and local calculation tools live there too.",
   },
   {
     id: "privacy",
@@ -34,7 +34,7 @@ const QUESTIONS = [
   {
     id: "dependencies",
     q: "Do I need Python, RDKit or Mol* installed first?",
-    a: "The usual viewing tools are bundled: Mol*, RDKit and Ketcher. You’ll need a separate install for extras such as xyzrender, xTB or CREST. Start with the app; add those tools when you need them.",
+    a: "The usual viewing tools are bundled: Mol*, RDKit and the molecular editor. You’ll need a separate install for extras such as xyzrender, xTB or CREST. Start with the app; add those tools when you need them.",
   },
   {
     id: "not",
@@ -44,7 +44,7 @@ const QUESTIONS = [
   {
     id: "agents",
     q: "Can Codex or another agent drive Burette?",
-    a: "Yes, through the Burette plugin. An agent can open a local file, change the view, or edit a molecule in Ketcher. There’s also a hosted version for browser use. Follow the plugin guide for the version you want.",
+    a: "Yes, through the Burette plugin. An agent can open a local file, change the view, or edit a molecule in the molecular editor. There’s also a hosted version for browser use. Follow the plugin guide for the version you want.",
   },
   {
     id: "requirements",
