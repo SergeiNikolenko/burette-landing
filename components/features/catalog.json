@@ -293,7 +293,7 @@
       },
       {
         "title": "Edit a collection row",
-        "description": "Open a molecule in Ketcher, edit it, and apply the updated structure to the original row.",
+        "description": "Open a molecule in the molecular editor, edit it, and apply the updated structure to the original row.",
         "textOnly": true
       },
       {
@@ -400,7 +400,7 @@
     "features": [
       {
         "title": "Conformer generation",
-        "description": "Generate 3D conformers from selected molecules or a Ketcher sketch.",
+        "description": "Generate 3D conformers from selected molecules or an editor sketch.",
         "screenshot": "/assets/features/new-20260927-conformers.webp",
         "screenshotHeight": 1084,
         "screenshotWidth": 1280,
@@ -590,26 +590,27 @@
   {
     "id": "editing",
     "title": "Sketch, edit, and compare.",
-    "intro": "Edit a molecule in Ketcher, inspect its coordinates, and keep related files open in tabs and side panels.",
+    "intro": "Edit a molecule in the molecular editor, inspect its coordinates, and keep related files open in tabs and side panels.",
     "media": null,
     "docs": "/docs/surfaces/desktop",
     "features": [
       {
-        "title": "Ketcher sketches",
-        "description": "Work on molecular drawings in the integrated Ketcher editor.",
-        "screenshot": "/assets/features/capture-ketcher.webp",
-        "screenshotHeight": 600,
-        "captureStatus": "approved",
-        "screenshotWidth": 880
+        "title": "Molecular editor",
+        "description": "Sketch a molecule, import common formats, and send it to a grid or Mol*.",
+        "screenshot": "/assets/features/molecular-editor-2d-light.webp",
+        "screenshotDark": "/assets/features/molecular-editor-2d-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
       },
       {
         "title": "Sketch to 3D",
-        "description": "Open a Ketcher sketch as a 3D structure, then rotate it to inspect the geometry.",
-        "screenshot": "/assets/features/shot-sketch-to-3d.webp",
-        "screenshotHeight": 660,
-        "screenshotWidth": 960,
-        "captureStatus": "approved",
-        "video": "new-20260927-sketch-3d"
+        "description": "Open an editor sketch as a 3D structure, then rotate it to inspect the geometry.",
+        "screenshot": "/assets/features/molecular-editor-3d-light.webp",
+        "screenshotDark": "/assets/features/molecular-editor-3d-dark.webp",
+        "screenshotWidth": 1280,
+        "screenshotHeight": 800,
+        "captureStatus": "approved"
       },
       {
         "title": "Builders",

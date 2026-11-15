@@ -18,7 +18,7 @@ Burette opens molecular libraries in an RDKit-backed grid. The collection surfac
 - Sort by the original index or available collection fields.
 - Switch between cards and a table, and choose visible table columns.
 - Select all visible molecules or clear the current selection.
-- Open selected molecules in Mol*; send a supported selected molecule to Ketcher.
+- Open selected molecules in Mol*; send a supported selected molecule to the molecular editor.
 - Open the molecule detail view to inspect source properties, calculated descriptors, or JSON data when available.
 
 Large collections use incremental loading and windowed rendering. Scrolling loads more records without requiring every card or table row to stay mounted at once.
@@ -42,7 +42,7 @@ The collection header exposes the actions supported by the current document:
 | **Export SMILES** | Exports the currently visible molecule set as SMILES. |
 | **Export CSV** | Exports the visible table data as CSV. |
 
-Ketcher can create a new collection record or update a compatible row. The grid can use RDKit cards and, when the optional executable is available for the records, xyzrender cards with a selected rendering preset.
+The molecular editor can create a new collection record or update a compatible row. The grid can use RDKit cards and, when the optional executable is available for the records, xyzrender cards with a selected rendering preset.
 
 ## Append versus merge
 

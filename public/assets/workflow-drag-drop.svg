@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
   <title id="title">Burette target-aware drag-and-drop workflow</title>
-  <desc id="desc">Files, records, tabs, sketches, and clipboard text pass through a target-aware action resolver and enter the workspace, collection grid, Ketcher, Molstar docking view, xyzrender sheet, or FEP setup.</desc>
+  <desc id="desc">Files, records, tabs, sketches, and clipboard text pass through a target-aware action resolver and enter the workspace, collection grid, molecular editor, Molstar docking view, xyzrender sheet, or FEP setup.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fbfa"/><stop offset="1" stop-color="#eef7f4"/></linearGradient>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#0f8f72"/></marker>
@@ -16,7 +16,7 @@
   <g transform="translate(60 172)">
     <rect class="card" width="250" height="66" rx="14"/><circle cx="30" cy="33" r="10" fill="#0f8f72"/><text x="52" y="29" class="label">Finder &amp; sidebar</text><text x="52" y="49" class="small">files and groups</text>
     <rect class="card" y="82" width="250" height="66" rx="14"/><circle cx="30" cy="115" r="10" fill="#0f8f72"/><text x="52" y="111" class="label">Tabs &amp; grid rows</text><text x="52" y="131" class="small">single or multi-selection</text>
-    <rect class="card" y="164" width="250" height="66" rx="14"/><circle cx="30" cy="197" r="10" fill="#0f8f72"/><text x="52" y="193" class="label">Ketcher sketch</text><text x="52" y="213" class="small">in-memory structure</text>
+    <rect class="card" y="164" width="250" height="66" rx="14"/><circle cx="30" cy="197" r="10" fill="#0f8f72"/><text x="52" y="193" class="label">Editor sketch</text><text x="52" y="213" class="small">in-memory structure</text>
     <rect class="card" y="246" width="250" height="66" rx="14"/><circle cx="30" cy="279" r="10" fill="#0f8f72"/><text x="52" y="275" class="label">Clipboard text</text><text x="52" y="295" class="small">PDB · CIF · XYZ · SDF · SMILES</text>
   </g>
 
@@ -36,7 +36,7 @@
   <g transform="translate(850 172)">
     <rect class="card" width="290" height="58" rx="14"/><text x="22" y="26" class="label">Workspace</text><text x="22" y="45" class="small">one view · grid · tabs</text>
     <rect class="card" y="70" width="290" height="58" rx="14"/><text x="22" y="96" class="label">Collection grid</text><text x="22" y="115" class="small">append · merge · review</text>
-    <rect class="card" y="140" width="290" height="58" rx="14"/><text x="22" y="166" class="label">Ketcher</text><text x="22" y="185" class="small">import small-molecule formats</text>
+    <rect class="card" y="140" width="290" height="58" rx="14"/><text x="22" y="166" class="label">Molecular editor</text><text x="22" y="185" class="small">import small-molecule formats</text>
     <rect class="card" y="210" width="290" height="58" rx="14"/><text x="22" y="236" class="label">Mol* / docking</text><text x="22" y="255" class="small">receptor + ligand context</text>
     <rect class="card" y="280" width="290" height="58" rx="14"/><text x="22" y="306" class="label">xyzrender / FEP</text><text x="22" y="325" class="small">sheet items or candidates</text>
   </g>

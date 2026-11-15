@@ -6,5 +6,5 @@ export const featureStories = [
   { id: "source", category: "Structure and source", title: "Keep the coordinates in sight.", description: "Open the source text beside the molecular view to inspect coordinates and other data in the file.", pending: true, docs: "/docs/surfaces/desktop" },
   { id: "figures", category: "Scientific figures", title: "Make a figure from your structure.", description: "Create vector molecular illustrations with the optional xyzrender engine. Export SVG artwork for papers and slides.", pending: true, docs: "/docs/engines" },
   { id: "agents", category: "Agents", title: "Open a molecule from a conversation.", description: "“Open this PDB and show me the ligand.” With the Burette plugin, your agent can carry out that request in the workspace.", pending: true, docs: "/docs/plugin" },
-  { id: "workspace", category: "Molecular workspace", title: "Keep several views open.", description: "Compare structures in tabs and side panels. Open a molecule in Ketcher to edit it and return to the workspace.", pending: true, docs: "/docs/surfaces/desktop" },
+  { id: "workspace", category: "Molecular workspace", title: "Keep several views open.", description: "Compare structures in tabs and side panels. Open a molecule in the molecular editor to edit it and return to the workspace.", pending: true, docs: "/docs/surfaces/desktop" },
 ];

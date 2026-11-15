@@ -5,9 +5,9 @@ description: Move files, structure records, sketches, and selected tabs through 
 
 # Drag and Drop
 
-Drag and drop in the desktop workspace is target-aware. The same molecule can open as a new document, join a grid, enter Ketcher, become a docking ligand, or be added to an xyzrender sheet depending on where you release it.
+Drag and drop in the desktop workspace is target-aware. The same molecule can open as a new document, join a grid, enter the molecular editor, become a docking ligand, or be added to an xyzrender sheet depending on where you release it.
 
-![Burette drag-and-drop routes files and structure records to the workspace, collection grid, Ketcher, Molstar, and xyzrender sheet.](/assets/workflow-drag-drop.svg)
+![Burette drag-and-drop routes files and structure records to the workspace, collection grid, molecular editor, Molstar, and xyzrender sheet.](/assets/workflow-drag-drop.svg)
 
 *The action is resolved from both the dragged payload and the drop target. When more than one interpretation is valid, Burette shows a choice menu at the drop position.*
 
@@ -17,7 +17,7 @@ Drag and drop in the desktop workspace is target-aware. The same molecule can op
 - Files and groups from the project sidebar.
 - One tab or a multi-selection of tabs.
 - Molecule rows and records from a collection grid.
-- A Ketcher sketch.
+- A molecular editor sketch.
 - Plain structure text or file paths from the clipboard.
 
 Inline text is recognized when it looks like PDB, CIF, XYZ, SDF/MOL, or a single SMILES record. File-path text can be a Unix path, a Windows path, a `file://` URL, or a recognized molecular filename.
@@ -28,7 +28,7 @@ Inline text is recognized when it looks like PDB, CIF, XYZ, SDF/MOL, or a single
 | --- | --- | --- |
 | Empty workspace | Open the document. Multiple files default to **Open in One Window**. | Multiple files can instead open **as a grid** or **as document tabs**. |
 | RDKit collection grid | Append compatible molecule records or collection data. | A whole collection can be merged, opened separately, or opened as text. |
-| Ketcher | Import MOL, SD/SDF, SMI, or SMILES structures into the editor. | Unsupported files fall back to normal document opening. |
+| Molecular editor | Import MOL, SD/SDF, SMI, or SMILES structures into the editor. | Unsupported files fall back to normal document opening. |
 | Mol* structure | Build a combined docking view when the target and dragged structures form a valid receptor/ligand combination. | You can still open the files separately or as text. |
 | Existing docking view | Add ligand paths or inline molecule records to the existing receptor context. | The receptor stays fixed while ligand inputs are combined. |
 | xyzrender document | Add paths or inline records to the current xyzrender sheet. | The sheet keeps the existing target document active. |
@@ -64,7 +64,7 @@ Paste or drop structure text when creating a temporary file would interrupt the 
 - The import routes described here copy or combine data; they do not remove the source molecule. Review destination paths before saving exported files.
 - Collection merge accepts one family at a time: SDF, SMILES, CSV, or TSV.
 - CSV/TSV merge requires identical headers in identical column order, and unsupported payload members reject the whole merge.
-- Ketcher import is limited to its small-molecule formats.
+- Editor import is limited to small-molecule formats.
 - Docking actions only appear when Burette can identify a valid structural anchor and compatible ligand input.
 - If the semantic action is not appropriate, choose **Open separately** or **Open as text file** from the drop menu.
 
