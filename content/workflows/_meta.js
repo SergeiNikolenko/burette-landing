@@ -1,5 +1,6 @@
 export default {
   "drag-and-drop": "Drag and Drop",
+  "interaction-maps": "Ligand Interaction Maps",
   collections: "SDF & Collections",
   "native-compute": "Native Compute & Chemical Space",
   xtb: "xTB Calculations",

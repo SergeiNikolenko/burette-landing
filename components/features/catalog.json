@@ -138,6 +138,15 @@
         "video": "new-20260927-pocket"
       },
       {
+        "title": "Interaction maps",
+        "description": "See every contact a ligand makes as a 2D map, then click one to show it in 3D.",
+        "screenshot": "/assets/features/interaction-map-light.webp",
+        "screenshotDark": "/assets/features/interaction-map-dark.webp",
+        "screenshotHeight": 720,
+        "screenshotWidth": 1280,
+        "captureStatus": "approved"
+      },
+      {
         "title": "Lasso selection",
         "description": "Draw around atoms to select part of a structure in 3D.",
         "screenshot": "/assets/features/capture-lasso-detail.webp",
