@@ -1,0 +1,57 @@
+---
+title: Ligand Interaction Maps
+description: See every contact a ligand makes as a 2D map, switch between five designs, and click a contact to show it in 3D.
+---
+
+# Ligand Interaction Maps
+
+An interaction map draws a ligand flat with its real bond orders and charges, the residues it touches around it, and one mark per contact: hydrogen bonds, salt bridges, π stacking, cation–π, halogen bonds, metal and water contacts, and hydrophobic contacts. Residues sit on the side of the ligand where they are in 3D, so the map reads like the pocket seen from above.
+
+Maps work for protein–ligand complexes in PDB and mmCIF files (`.pdb`, `.ent`, `.cif`, `.mmcif`) in the desktop app.
+
+![The Interactions tab beside the 3D view of imatinib in ABL kinase. Met318 is picked in the map, and the 3D view shows its hydrogen bond to the ligand at 2.98 Å.](/assets/docs/interaction-maps/panel-light.webp)
+
+## Open a map
+
+There are two places to see a map:
+
+- **Ligand card.** Point at a ligand in the 3D view. Its card opens in the corner with a compact map of the residues in contact. **Map** and **Molecule** at the bottom of the card switch to the plain molecule and back.
+- **Interactions tab.** Click **+** in the right dock and choose **Interactions**, or click free space in the card's map. The tab shows the full map at panel size, with a ligand picker when the structure has more than one ligand.
+
+While the **Interactions** tab is open, the card shows the molecule, so the same map is not drawn twice.
+
+![The ligand card with the Schrödinger-style map of imatinib and the design picker in its header, beside the contact picked in the map.](/assets/docs/interaction-maps/card-light.webp)
+
+## Read a contact in 3D
+
+Click a residue, a contact line, or a ligand atom in the map:
+
+| Click | The 3D view shows |
+| --- | --- |
+| A contact line | The residue and the ligand, turned side-on, with the contact drawn as a distance between its two atoms |
+| A residue | The residue with its surroundings |
+| A ligand atom | The atom marked and framed |
+
+The 3D selection stays on the ligand, so the card keeps showing it.
+
+## Designs
+
+The design picker in the card header and in the **Interactions** tab switches between five designs:
+
+| Design | Looks like |
+| --- | --- |
+| **Schrödinger** | Residue drops colored by type pointing at the ligand, a backbone line through neighbouring residues, and a pocket outline |
+| **MOE** | Pale residue discs, greasy or polar, with exposure halos, a proximity contour, and dashed arrows: green to side chains, blue to the backbone |
+| **PoseEdit** | Ligand and residues drawn as one structure, polar hydrogens shown at each hydrogen bond, and green arcs for hydrophobic contacts |
+| **Pocket wall** | A cross-section of the site: every pocket residue is a brick of the wall around the ligand, open where the ligand meets solvent |
+| **Burial map** | A shaded field of how exposed each ligand atom is, with arrows at open hydrogen-bearing atoms and short residue tags |
+
+The tab and the card remember the design you pick. **Settings → Structure rendering → Ligand card** sets what a new card shows (**Content**: **Interaction map** or **Molecule**), its **Map style**, and **Show card**: **On hover** or **Always**.
+
+## Fold the card
+
+Click the card header or **×** to fold the card into a chip in the corner. A folded card stays folded while you move over other ligands; click the chip to open it again.
+
+## Privacy
+
+The map is computed on your Mac from the open file. To draw a ligand with its correct bonds, Burette downloads the ligand's entry from the RCSB Chemical Component Dictionary the first time it maps that ligand code and keeps it for later. The structure itself is not uploaded.
