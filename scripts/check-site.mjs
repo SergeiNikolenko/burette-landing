@@ -103,6 +103,8 @@ for (const file of sourceFiles) {
     ...attributeValues(source, "light"),
     ...attributeValues(source, "dark"),
     ...attributeValues(source, "poster"),
+    ...attributeValues(source, "lightPoster"),
+    ...attributeValues(source, "darkPoster"),
     ...markdownImageSources(source),
   ];
   for (const src of assetRefs) {
