@@ -154,7 +154,7 @@ const hostedPluginSource = pluginSource.slice(
   pluginSource.indexOf("## Public hosted plugin"),
   pluginSource.indexOf("## Local Codex workspace plugin"),
 );
-for (const toolName of ["preview_molecular_file", "preview_pdb_structure", "render_molecular_scene", "open_ketcher", "control_ketcher"]) {
+for (const toolName of ["preview_molecular_file", "preview_pdb_structure", "render_molecular_scene", "open_molecular_editor", "control_molecular_editor"]) {
   if (!hostedPluginSource.includes(toolName)) failures.push(`content/plugin.mdx: missing hosted tool ${toolName}`);
 }
 
