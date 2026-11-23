@@ -26,13 +26,13 @@ It exposes five tools:
 preview_molecular_file
 preview_pdb_structure
 render_molecular_scene
-open_ketcher
-control_ketcher
+open_molecular_editor
+control_molecular_editor
 ```
 
 `preview_molecular_file` accepts one ChatGPT-authorized PDB, ENT, PDBQT, CIF, mmCIF, SDF, SD, XYZ, or extended XYZ attachment. `preview_pdb_structure` retrieves one public RCSB Protein Data Bank entry by its four-character PDB ID. `render_molecular_scene` applies up to eight bounded selection, focus, camera, or component-visibility actions to one of those sources. These three structure tools are read-only.
 
-`open_ketcher` creates an isolated editor and can seed one bounded KET, MOL, RXN, or SMILES structure. `control_ketcher` applies revision-checked edit or export actions. Hosted editor state is process-local and ephemeral; it does not write a local file or a shared public workspace.
+`open_molecular_editor` creates an isolated editor and can seed one bounded KET, MOL, RXN, or SMILES structure. `control_molecular_editor` applies revision-checked edit or export actions. Hosted editor state is process-local and ephemeral; it does not write a local file or a shared public workspace.
 
 The three structure tools return bounded composition data and open the real Burette viewer with its toolbar, sequence and selection controls, measurements, representations, camera controls, and molecular inspector. The editor tools return a bounded editor snapshot and editor widget. The deployment root redirects back to this documentation; it is not a separate viewer product.
 
@@ -41,6 +41,13 @@ The public domain hosts the MCP service and widget assets. After the MCP server 
 A working endpoint does not by itself mean the plugin is listed for one-click installation. Availability depends on the host and account. Use the installation options shown by your host; this endpoint is separate from the local Codex plugin installer below.
 
 ### Demo recordings
+
+The Codex walkthrough shows Burette Cloud opening an inline 2D/3D aspirin editor beside PDB 1HTB (with Ghost Surface, Scene Tree, NAD ligand preview, and sequence strip), followed by the local Burette workspace opening `1STP.pdb` with its Scene Tree, Info, and Text inspectors.
+
+<video controls playsInline preload="metadata" poster="/assets/burette-plugins-demo-poster.jpg" style={{ width: "100%", borderRadius: 12 }}>
+  <source src="/assets/burette-plugins-demo.mp4" type="video/mp4" />
+  Your browser does not support embedded MP4 video.
+</video>
 
 The desktop recording shows ChatGPT opening PDB 1CRN in the hosted Burette widget and interacting with the molecular camera and representation controls.
 
@@ -84,7 +91,7 @@ The packaged inline viewer opens with `burette.open_viewer`. Keep its `sessionId
 
 The pinned package supports up to eight files and 16 MiB in one inline session. Available controls include camera movement, representation and colour changes, and supported document actions. Selection context reports what is selected in the viewer; it is not a scientific analysis result.
 
-Desktop and browser-session tools use their own handles and contracts. Let the installed plugin’s tool schema determine the correct arguments rather than copying a handle between modes. The repository also contains the desktop automation facade for observation, viewer control, Ketcher, and MolViewSpec Stories.
+Desktop and browser-session tools use their own handles and contracts. Let the installed plugin’s tool schema determine the correct arguments rather than copying a handle between modes. The repository also contains the desktop automation facade for observation, viewer control, the molecular editor, and MolViewSpec Stories.
 
 ### Script a molecule from Python
 
