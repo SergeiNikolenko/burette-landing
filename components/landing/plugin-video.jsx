@@ -1,16 +1,29 @@
-export default function PluginVideo({ src, poster, caption }) {
+import ThemedVideo from "@/components/themed-video";
+
+export default function PluginVideo({
+  src,
+  poster,
+  light,
+  dark,
+  lightPoster,
+  darkPoster,
+  caption,
+}) {
+  const hasVideo = Boolean(src || light || dark);
+
   return (
     <figure className="plugin-video page-width">
-      {src ? (
-        <video
-          controls
-          playsInline
-          preload="metadata"
+      {hasVideo ? (
+        <ThemedVideo
+          src={src}
           poster={poster}
-          aria-label="Burette plugin walkthrough in Codex"
-        >
-          <source src={src} type="video/mp4" />
-        </video>
+          light={light}
+          dark={dark}
+          lightPoster={lightPoster}
+          darkPoster={darkPoster}
+          themeSource="data-theme"
+          ariaLabel="Burette plugin walkthrough in Codex"
+        />
       ) : (
         <div
           className="plugin-video-placeholder"

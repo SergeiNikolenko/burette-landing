@@ -37,8 +37,10 @@ export default function CodexMcp() {
         </div>
       </div>
       <PluginVideo
-        src="/assets/burette-plugins-demo.mp4"
-        poster="/assets/burette-plugins-demo-poster.jpg"
+        light="/assets/burette-plugins-demo-light.mp4"
+        dark="/assets/burette-plugins-demo.mp4"
+        lightPoster="/assets/burette-plugins-demo-light-poster.jpg"
+        darkPoster="/assets/burette-plugins-demo-poster.jpg"
         caption="Inline 2D/3D molecular editor and PDB 1HTB preview in Burette Cloud, followed by the local Burette Codex workspace opening 1STP.pdb with Scene Tree, Info, and PDB source."
       />
     </section>

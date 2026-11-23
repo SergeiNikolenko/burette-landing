@@ -548,5 +548,5 @@ html[data-theme="dark"] .landing .hero-copy :is(h1, p) {
 }
 
 .landing .plugin-video { margin-top: 36px; }
-.landing .plugin-video :is(video, .plugin-video-placeholder) { display: block; width: 100%; aspect-ratio: 160 / 87; object-fit: contain; border: 1px solid var(--border); border-radius: 20px; background: #171717; }
+.landing .plugin-video :is(video, .plugin-video-placeholder) { display: block; width: 100%; aspect-ratio: 160 / 87; object-fit: contain; border: 1px solid var(--border); border-radius: 20px; background: var(--surface); }
 .landing .plugin-video figcaption { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 12px; color: var(--body); font-size: 13px; }
