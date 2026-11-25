@@ -1,15 +1,15 @@
 ---
 title: Install Burette
-description: Install Burette with Homebrew or GitHub Releases, and optionally connect it to Codex through the local MCP plugin.
+description: Install Burette on macOS, Windows, or Linux from GitHub Releases or Homebrew, and optionally connect it to Codex through the local MCP plugin.
 ---
 
 # Install Burette
 
-Burette supports macOS 12 and later.
+Every Burette release ships desktop packages for **macOS**, **Windows**, and **Linux** on [GitHub Releases](https://github.com/SergeiNikolenko/Burette/releases/latest).
 
-## Homebrew
+## macOS (Apple Silicon, macOS 12+)
 
-Install from the Burette tap:
+Install from the Homebrew tap:
 
 ```bash
 brew tap SergeiNikolenko/burette
@@ -22,19 +22,13 @@ Check the installed cask version:
 brew info --cask SergeiNikolenko/burette/burette
 ```
 
-## GitHub Releases
-
-You can also install manually:
+Or install manually from GitHub Releases:
 
 1. Open the [latest release](https://github.com/SergeiNikolenko/Burette/releases/latest).
 2. Download the `Burette-<version>.dmg` or `Burette-<version>.zip` file.
 3. Open the DMG or unzip the archive.
 4. Move `Burette.app` to your `Applications` folder.
-5. Open Burette once from `Applications`.
-
-## First launch
-
-Open `Burette.app` once after installation. This gives macOS a chance to register the app bundle and Finder Quick Look extension.
+5. Open Burette once from `Applications` to register the app and Finder Quick Look extension.
 
 Signing and notarization depend on the release build. If macOS blocks the downloaded app, first confirm it came from the official release page. Follow the first-launch instructions for that release; macOS may offer approval in **System Settings → Privacy & Security**. Do not disable Gatekeeper globally.
 
@@ -42,16 +36,38 @@ If Finder previews do not appear after install, open Burette's command palette
 and run **Reset Quick Look**. **Open Logs Folder** and **Export Diagnostics**
 are available there as well.
 
+## Windows (Windows 10 and 11, x64)
+
+1. Open the [latest release](https://github.com/SergeiNikolenko/Burette/releases/latest) and download `Burette_<version>_x64-setup.exe`.
+2. Run the installer. It installs per user into `%LOCALAPPDATA%\Burette` without administrator rights, registers molecular file associations, and adds Start menu entries.
+3. Burette renders through Microsoft Edge WebView2, which is built into Windows 11 and current Windows 10 (and fetched automatically if missing).
+4. Release installers are not code-signed yet, so Windows SmartScreen asks for confirmation on first run (**More info → Run anyway**).
+
+Data paths: settings and workspaces live in `%APPDATA%\com.local.BuretteV10`; caches, logs, and optional managed runtimes live in `%LOCALAPPDATA%\com.local.BuretteV10`.
+
+## Linux (x86_64, WebKitGTK 4.1)
+
+Download the package for your distribution from the [latest release](https://github.com/SergeiNikolenko/Burette/releases/latest):
+
+```bash
+sudo apt install ./Burette_<version>_amd64.deb           # Debian 12+, Ubuntu 22.04+
+sudo dnf install ./Burette-<version>-1.x86_64.rpm       # Fedora 39+, RHEL, openSUSE
+chmod +x Burette_<version>_amd64.AppImage && ./Burette_<version>_amd64.AppImage
+```
+
+The `.deb` and `.rpm` packages declare WebKitGTK 4.1 as a dependency and install desktop entries plus molecular MIME associations (`/usr/share/mime/packages/burette.xml`). SHA-256 checksums are attached as `Burette-<version>-linux.sha256`.
+
 ## Updates
 
-For a Homebrew installation, run:
+- **macOS (Sparkle / DMG / ZIP):** Use **Check for Updates** in Burette to update in place, or install the latest archive.
+- **macOS (Homebrew):**
 
 ```bash
 brew update
 brew upgrade --cask burette
 ```
 
-For a manual installation, replace the app with the version from the latest release. Keep your project files; an app update does not require deleting them.
+- **Windows and Linux:** **Help → Check for Updates** checks GitHub Releases and opens the release page for the latest installer or package. Re-installing keeps your project files and settings.
 
 ## Codex plugin and local MCP
 

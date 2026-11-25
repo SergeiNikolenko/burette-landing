@@ -12,8 +12,14 @@ export async function GET() {
           sizeBytes: release.sizeBytes,
           publishedAt: release.publishedAt,
           releaseUrl: release.releaseUrl,
+          platforms: Object.fromEntries(
+            Object.entries(release.platforms || {}).map(([key, asset]) => [
+              key,
+              { assetName: asset.assetName, sizeBytes: asset.sizeBytes },
+            ]),
+          ),
         }
-      : { tag: null, assetName: null, sizeBytes: null, publishedAt: null, releaseUrl: BURETTE_RELEASES_URL },
+      : { tag: null, assetName: null, sizeBytes: null, publishedAt: null, releaseUrl: BURETTE_RELEASES_URL, platforms: {} },
     { headers: { "Cache-Control": "no-store, max-age=0" } },
   );
 }

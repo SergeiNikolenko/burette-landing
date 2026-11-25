@@ -19,7 +19,7 @@ const QUESTIONS = [
   {
     id: "first-launch",
     q: "Do I have to open the app for Quick Look to work?",
-    a: "Only once, after installing it. That registers the Finder extension. After that, Burette can stay closed while you use Quick Look.",
+    a: "On macOS, open Burette once after installing it to register the Finder extension. After that, Burette can stay closed while you use Quick Look.",
   },
   {
     id: "preview-vs-workspace",
@@ -28,8 +28,8 @@ const QUESTIONS = [
   },
   {
     id: "privacy",
-    q: "Does anything leave my Mac?",
-    a: "Opening a file in the Mac app doesn’t upload it. If you send a file to an AI service or the hosted plugin, that service receives it. The privacy policy covers those connections.",
+    q: "Does anything leave my computer?",
+    a: "Opening a file in the desktop app doesn’t upload it. If you send a file to an AI service or the hosted plugin, that service receives it. The privacy policy covers those connections.",
   },
   {
     id: "dependencies",
@@ -48,8 +48,8 @@ const QUESTIONS = [
   },
   {
     id: "requirements",
-    q: "Which macOS versions and chips are supported?",
-    a: "macOS 12 or later, on Apple Silicon and Intel. Chemical Space uses Metal on Apple Silicon and CPU calculations on Intel. The public build isn’t Apple-notarized yet: macOS may ask you to approve the first launch.",
+    q: "Which platforms and versions are supported?",
+    a: "macOS 12 or later on Apple Silicon, Windows 10 and 11 (x64), and 64-bit x86 Linux with WebKitGTK 4.1. Finder Quick Look and Metal acceleration are macOS features; Windows and Linux run the desktop workspace with CPU compute. Public builds aren’t Apple-notarized or Windows code-signed yet, so macOS Gatekeeper or Windows SmartScreen may ask you to confirm the first launch.",
   },
 ];
 

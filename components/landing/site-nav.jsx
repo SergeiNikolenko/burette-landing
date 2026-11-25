@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { PlatformDownloadButton } from "./platform-download";
 import ThemeToggle from "./theme-toggle";
 import MobileNav from "./mobile-nav";
 
@@ -19,16 +19,13 @@ export default function SiteNav() {
         <div className="nav-actions">
           <a className="nav-github" href="/out/github-repo?surface=nav">GitHub</a>
           <ThemeToggle />
-          <Button asChild size="sm" className="pill-button nav-download">
-            <Link
-              href="/download?source=nav"
-              data-analytics-event="Download"
-              data-analytics-location="nav"
-              data-analytics-target="dmg"
-            >
-              Download
-            </Link>
-          </Button>
+          <PlatformDownloadButton
+            source="nav"
+            location="nav"
+            size="sm"
+            label="Download"
+            className="pill-button nav-download"
+          />
           <MobileNav />
         </div>
       </div>

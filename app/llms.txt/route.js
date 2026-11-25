@@ -5,24 +5,23 @@ import { SITE_URL } from "../site-url.js";
 // small budget can stop after the sections above it.
 const LLMS = `# Burette
 
-> A free, open-source macOS app that renders molecular files. Press Space in
-> Finder and a PDB, CIF, SDF, XYZ, trajectory or chemistry table opens as an
-> interactive 3D structure through Quick Look, with no app window and no upload.
-> When a preview is not enough, the same file opens in a workspace with tabs,
-> Mol* 3D, RDKit grids, molecular sketching, and local xTB or CREST runs.
+> A free, open-source molecular workspace for macOS, Windows, and Linux.
+> Press Space in macOS Finder for interactive 3D Quick Look previews, or open
+> the desktop workspace on macOS, Windows, and Linux for tabs, Mol* 3D, RDKit
+> grids, ligand interaction maps, molecular sketching, and local xTB or CREST runs.
 
-Burette is MIT-licensed and requires macOS 12 or later on
-Apple Silicon or Intel. It has no account, no telemetry and no server component:
+Burette is MIT-licensed and runs on macOS 12+ (Apple Silicon), Windows 10/11 (x64),
+and 64-bit x86 Linux (WebKitGTK 4.1). It has no account, no telemetry and no server component:
 files are parsed and rendered on the machine, and it needs no network access to
 open a file. Mol*, RDKit and the molecular editor are bundled; \`xyzrender\`, \`xtb\` and
 \`crest\` are optional external executables that Burette detects on PATH.
 
-Install with \`brew install --cask burette\` or the .dmg from GitHub Releases.
+Install from GitHub Releases (.dmg/.zip for macOS, .exe for Windows, .deb/.rpm/.AppImage for Linux) or \`brew tap SergeiNikolenko/burette && brew install --cask burette\` on macOS.
 
 ## Docs
 
 - [Documentation home](${SITE_URL}/docs): Map of every guide, by surface and workflow.
-- [Install Burette](${SITE_URL}/docs/get-started/install): Homebrew cask, .dmg, first launch, and registering the Quick Look extension.
+- [Install Burette](${SITE_URL}/docs/get-started/install): macOS (Homebrew, .dmg/.zip), Windows (.exe), and Linux (.deb/.rpm/.AppImage) installation and updates.
 - [Quick Start](${SITE_URL}/docs/get-started/quick-start): From install to a first preview in Finder.
 - [Supported Formats](${SITE_URL}/docs/formats): Every extension Burette reads and which engine renders it.
 - [Engines](${SITE_URL}/docs/engines): How Mol*, RDKit, the molecular editor, xyzrender, xTB and CREST are wired together.
@@ -38,7 +37,7 @@ Install with \`brew install --cask burette\` or the .dmg from GitHub Releases.
 - [SDF and Molecule Collections](${SITE_URL}/docs/workflows/collections): Opening libraries as searchable, filterable grids.
 - [xTB Calculations](${SITE_URL}/docs/workflows/xtb): Running local semi-empirical jobs against an open structure.
 - [CREST and PRISM](${SITE_URL}/docs/workflows/crest-prism): Conformer ensembles and their result artifacts.
-- [Native Compute and Chemical Space](${SITE_URL}/docs/workflows/native-compute): Metal-accelerated neighbour graphs, UMAP and TMAP layouts, Butina clustering, activity cliffs.
+- [Native Compute and Chemical Space](${SITE_URL}/docs/workflows/native-compute): Metal-accelerated (Apple Silicon) and CPU (Windows/Linux) neighbour graphs, UMAP and TMAP layouts, Butina clustering, activity cliffs.
 - [Drag and Drop](${SITE_URL}/docs/workflows/drag-and-drop): Moving structures between Burette and other apps.
 
 ## Agents

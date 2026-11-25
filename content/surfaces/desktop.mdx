@@ -5,7 +5,7 @@ description: Use the Burette desktop app for tabbed previews, project navigation
 
 # Desktop Workspace
 
-The desktop app is the full Burette workspace. Use it when a one-off Finder preview is not enough.
+The desktop app is the full Burette workspace on **macOS**, **Windows**, and **Linux**. Use it when you need tabs, project navigation, editing, interaction maps, or local calculations.
 
 ![Burette desktop workspace with project navigation, tabs, a Molstar structure view, and inspector docks.](/assets/main-light.png)
 
@@ -15,9 +15,9 @@ The desktop app is the full Burette workspace. Use it when a one-off Finder prev
 
 - Keep previews alive in tabs while you switch files.
 - Browse project folders, nested structures, recent files, and search results from the sidebar.
-- Use the command palette (`Cmd+P` or `/`) for opening files, switching renderers, maintenance actions, exports, project navigation, the molecular editor, and FEP network previews; type a PDB ID, SMILES, or URL for query-driven commands.
+- Use the command palette (`Cmd+P` on macOS, `Ctrl+P` on Windows/Linux, or `/`) for opening files, switching renderers, maintenance actions, exports, project navigation, the molecular editor, and FEP network previews; type a PDB ID, SMILES, or URL for query-driven commands.
 - Compare structures, text files, the molecular editor, grids, and workflow panels in right and bottom docks; the Inspector presents document details as one scrollable section list.
-- Open files in Finder, the default app, or discovered chemistry editors.
+- Open files in Finder / File Explorer / your file manager, the default app, or discovered chemistry editors.
 - Edit text and molecular source files in place and save them back.
 - Drag files, tabs, grid rows, sketches, or recognized structure text into target-aware workspace actions.
 
@@ -47,3 +47,14 @@ The structure inspector also exposes local xTB calculations (installable as a ma
 - [Native compute and Chemical Space](/docs/workflows/native-compute)
 - [xTB calculations](/docs/workflows/xtb)
 - [CREST and PRISM](/docs/workflows/crest-prism)
+
+## Platform differences
+
+| Area | macOS | Windows | Linux |
+| --- | --- | --- | --- |
+| Shortcuts | `Cmd` (`⌘`) | `Ctrl` | `Ctrl` |
+| File previews | Finder Quick Look and thumbnails | Not available | Not available |
+| Native compute | Metal on Apple Silicon | CPU reference engine | CPU reference engine |
+| Updates | Sparkle in-place updates + Homebrew | Update check links to GitHub Releases | Update check links to GitHub Releases |
+| Credentials | macOS Login Keychain | Windows Credential Manager | Secret Service (GNOME Keyring / KWallet) |
+| Bundled `xyzrender` & RDKit | Bundled | Bundled | Bundled |

@@ -202,12 +202,16 @@ if (!(await exists(path.join(root, "app", "demo", "route.js")))) {
 }
 
 const downloadSource = await readFile(path.join(root, "download.html"), "utf8");
+if (/\bNotarized\b/u.test(downloadSource)) {
+  failures.push("download.html: claims notarization without release evidence");
+}
 for (const requiredCopy of [
   "Burette is downloading.",
   "Open the DMG",
   "Register Quick Look",
   "Press Space",
-  "Apple Silicon &amp; Intel",
+  "Run the installer",
+  "Install the package",
 ]) {
   if (!downloadSource.includes(requiredCopy)) failures.push(`download.html: missing ${requiredCopy}`);
 }
@@ -220,8 +224,9 @@ if (!(await exists(path.join(root, "app", "api", "release", "route.js")))) {
 const landingText = landingSource.replace(/\s+/gu, " ");
 for (const requiredLandingCopy of [
   "Free and open source",
-  "Apple Silicon and Intel",
   "macOS 12+",
+  "Windows",
+  "Linux",
 ]) {
   if (!landingText.includes(requiredLandingCopy)) failures.push(`landing: missing ${requiredLandingCopy}`);
 }

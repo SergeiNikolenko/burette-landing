@@ -233,7 +233,7 @@
   {
     "id": "collections",
     "title": "Find the compounds worth a closer look.",
-    "intro": "Browse structures and their properties together. Use the Mac app to compare series, find analogues, and build a shortlist.",
+    "intro": "Browse structures and their properties together. Use the desktop app to compare series, find analogues, and build a shortlist.",
     "media": null,
     "docs": "/docs/workflows/collections",
     "features": [
@@ -360,7 +360,7 @@
   {
     "id": "chemical-space",
     "title": "Find neighbours in chemical space.",
-    "intro": "Map a collection by molecular similarity and bring selected compounds back to the table. Native calculations run on Apple Silicon in the Mac app.",
+    "intro": "Map a collection by molecular similarity and bring selected compounds back to the table. Native calculations run with Metal on Apple Silicon and on the CPU on Windows and Linux.",
     "media": null,
     "docs": "/docs/workflows/native-compute",
     "features": [
@@ -403,7 +403,7 @@
   {
     "id": "compute",
     "title": "Generate, optimize, and compare in 3D.",
-    "intro": "Run molecular calculations in the Mac app on Apple Silicon and inspect the results alongside your structures.",
+    "intro": "Run molecular calculations in the desktop app (Metal on Apple Silicon, CPU on Windows and Linux) and inspect the results alongside your structures.",
     "media": null,
     "docs": "/docs/workflows/native-compute",
     "features": [
@@ -425,7 +425,7 @@
       },
       {
         "title": "Geometry optimization",
-        "description": "Refine 3D coordinates with a force field Burette picks for your elements, or with xTB in the Mac app.",
+        "description": "Refine 3D coordinates with a force field Burette picks for your elements, or with xTB in the desktop app.",
         "textOnly": true
       },
       {
@@ -591,7 +591,7 @@
       },
       {
         "title": "Programs from Avogadro packages",
-        "description": "Write inputs for Dalton, MOLPRO, NWChem, PySCF and more, and open program logs with installed Avogadro packages in the Mac app.",
+        "description": "Write inputs for Dalton, MOLPRO, NWChem, PySCF and more, and open program logs with installed Avogadro packages in the desktop app.",
         "textOnly": true
       }
     ]

@@ -180,6 +180,29 @@ html[data-theme="dark"] .landing .hero-copy :is(h1, p) {
   color: var(--body);
   font-size: 13px;
 }
+.landing .hero-platforms {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.landing .hero-platforms a {
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--text) 30%, transparent);
+  text-underline-offset: 4px;
+}
+.landing .hero-platforms a:hover {
+  text-decoration-color: currentColor;
+}
+.landing .hero-platforms a:focus-visible,
+.landing .install-tab:focus-visible {
+  outline: 2px solid var(--molecular-ink);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
 .landing .hero-stage {
   width: min(1260px, calc(100% - 64px));
   margin-top: 52px;
@@ -370,6 +393,51 @@ html[data-theme="dark"] .landing .hero-copy :is(h1, p) {
   align-items: start;
   margin-bottom: 0;
 }
+.landing .install-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 20px;
+  border-radius: 999px;
+  background: var(--surface-2);
+}
+.landing .install-tab {
+  min-height: 34px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--body);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.landing .install-tab:hover {
+  color: var(--text);
+}
+.landing .install-tab[aria-selected="true"] {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+}
+.landing .install-downloads {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.landing .install-downloads .pill-button {
+  height: 40px;
+  padding-inline: 18px;
+  font-size: 13.5px;
+}
+.landing .install-releases-link {
+  margin-top: 0;
+  min-height: 40px;
+  padding-inline: 6px;
+}
 .landing .install-commands {
   background: var(--surface-2);
   border-radius: 16px;
@@ -532,6 +600,9 @@ html[data-theme="dark"] .landing .hero-copy :is(h1, p) {
 @media (prefers-reduced-motion: reduce) {
   .landing-menu {
     animation: none;
+  }
+  .landing .install-tab {
+    transition: none;
   }
 }
 

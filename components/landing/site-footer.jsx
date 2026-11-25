@@ -121,12 +121,12 @@ export default function SiteFooter() {
               Burette
             </span>
             <p className="text-muted-foreground max-w-[26ch] text-[13px] leading-normal">
-              Molecular Quick Look and workspace for macOS.
+              Molecular Quick Look for Mac and desktop workspace for macOS, Windows, and Linux.
             </p>
             <p className="text-mono font-mono text-[11.5px] leading-relaxed">
               MIT License · macOS 12+
               <br />
-              Apple Silicon &amp; Intel
+              Windows 10/11 · Linux x86_64
             </p>
             <p className="text-mono font-mono text-[11.5px]">
               Published by Sergei A. Nikolenko

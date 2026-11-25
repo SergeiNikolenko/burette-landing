@@ -1,10 +1,11 @@
 # Burette Landing
 
-Static landing page for Burette, the molecular file workspace for macOS.
+Static landing page for Burette, the molecular file workspace for macOS, Windows, and Linux.
 
 The `/download` route records a lightweight Web Analytics page view, then
-redirects to the `.dmg` asset from the latest `SergeiNikolenko/Burette`
-GitHub release through `/api/download`.
+redirects to the requested platform asset (`.dmg`, Windows `-setup.exe`, or Linux
+`.deb` / `.rpm` / `.AppImage`) from the latest `SergeiNikolenko/Burette` GitHub
+release through `/api/download?platform=...`.
 
 Outbound links use `/out/:target` so clicks to GitHub, docs, releases, and
 engine websites are visible as first-party Web Analytics page views before
