@@ -20,6 +20,14 @@ export default withNextra({
         source: "/burette-viewer/:path*",
         destination: `${buretteRuntimeOrigin}/burette-viewer/:path*`,
       },
+      {
+        source: "/demo-scenes/:path*",
+        destination: `${buretteRuntimeOrigin}/demo-scenes/:path*`,
+      },
+      {
+        source: "/demo-library/:path*",
+        destination: `${buretteRuntimeOrigin}/demo-library/:path*`,
+      },
     ];
   },
   outputFileTracingIncludes: {

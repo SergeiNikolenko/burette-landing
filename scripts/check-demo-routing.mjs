@@ -17,5 +17,13 @@ assert.deepEqual(await nextConfig.rewrites(), [
     source: "/burette-viewer/:path*",
     destination: "https://burette-plugin.vercel.app/burette-viewer/:path*",
   },
+  {
+    source: "/demo-scenes/:path*",
+    destination: "https://burette-plugin.vercel.app/demo-scenes/:path*",
+  },
+  {
+    source: "/demo-library/:path*",
+    destination: "https://burette-plugin.vercel.app/demo-library/:path*",
+  },
 ]);
 console.log("Standalone and embedded demos follow the shared production runtime.");
