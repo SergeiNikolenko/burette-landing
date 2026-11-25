@@ -33,7 +33,7 @@ export const metadata = {
     template: "%s | Burette Docs",
   },
   description:
-    "Documentation for Burette across macOS, Finder Quick Look, iPhone, the public molecular plugin, and typed MCP tools.",
+    "Documentation for Burette across macOS, Windows, Linux, Finder Quick Look, iPhone, the public molecular plugin, and typed MCP tools.",
 };
 
 // The root layout deliberately holds nothing but the document shell. The nextra

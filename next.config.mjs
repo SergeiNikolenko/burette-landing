@@ -31,6 +31,6 @@ export default withNextra({
     ];
   },
   outputFileTracingIncludes: {
-    "/*": ["./download.html", "./out.html", "./public/live-data/**"],
+    "/*": ["./public/live-data/**"],
   },
 });

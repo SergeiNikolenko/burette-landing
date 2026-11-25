@@ -9,12 +9,22 @@ const contentFiles = await walk(contentRoot, (file) => file.endsWith(".mdx"));
 // The landing is React now, so the checks read its component sources. JSX keeps
 // href/src/alt as plain quoted attributes, which is all these regexes need.
 const landingRoot = path.join(root, "components", "landing");
+const subpageComponents = new Set(["download-page.jsx", "editorial-page.jsx", "outbound-redirect.jsx"]);
+const landingComponentFiles = await walk(landingRoot, (file) => file.endsWith(".jsx"));
 const landingFiles = [
   path.join(root, "app", "page.jsx"),
-  ...(await walk(landingRoot, (file) => file.endsWith(".jsx"))),
+  ...landingComponentFiles.filter((file) => !subpageComponents.has(path.basename(file))),
 ];
-const staticPages = [path.join(root, "download.html")];
-const sourceFiles = [...staticPages, ...landingFiles, ...contentFiles];
+const subpageFiles = [
+  path.join(root, "app", "download", "page.jsx"),
+  path.join(root, "app", "privacy", "page.jsx"),
+  path.join(root, "app", "terms", "page.jsx"),
+  path.join(root, "app", "support", "page.jsx"),
+  path.join(root, "app", "out", "[target]", "page.jsx"),
+  ...landingComponentFiles.filter((file) => subpageComponents.has(path.basename(file))),
+];
+const staticPages = [];
+const sourceFiles = [...staticPages, ...landingFiles, ...subpageFiles, ...contentFiles];
 
 // Feature cards carry their links and themed media in data rather than JSX.
 const { featureStories } = await import("../components/landing/feature-stories.js");
@@ -69,6 +79,7 @@ if (!(await exists(path.join(root, "public/__burette/app-icon/finder.png")))) {
 }
 
 const isLanding = (file) => landingFiles.includes(file);
+const isReactPage = (file) => landingFiles.includes(file) || subpageFiles.includes(file);
 // Fragment links resolve across the whole page, not within one component, so
 // anchors are validated against every landing source concatenated.
 const landingSource = (
@@ -113,7 +124,7 @@ for (const file of sourceFiles) {
     if (clean.startsWith("/_vercel/")) continue;
     // Published Burette runtimes are served through next.config.mjs rewrites.
     if (clean.startsWith("/web-demo/") || clean.startsWith("/burette-viewer/")) continue;
-    const target = staticPages.includes(file) || isLanding(file)
+    const target = staticPages.includes(file) || isReactPage(file)
       ? path.join(root, "public", clean.replace(/^\.\//u, "").replace(/^\//u, ""))
       : clean.startsWith("/assets/")
       ? path.join(root, "public", clean)
@@ -123,7 +134,7 @@ for (const file of sourceFiles) {
     if (!(await exists(target))) failures.push(`${label}: missing local asset ${src}`);
   }
 
-  if (isLanding(file)) {
+  if (isReactPage(file)) {
     // Comments routinely mention tags in prose ("bolted onto an <img> from JS"),
     // and matching those reports a missing alt on a tag that does not exist.
     const code = source
@@ -164,7 +175,7 @@ if (!(await exists(path.join(contentRoot, "workflows", "native-compute.mdx")))) 
   failures.push("content/workflows/native-compute.mdx: missing native compute guide");
 }
 const outboundLinks = attributeValues(landingSource, "href").filter((href) => href.startsWith("/out/"));
-const outboundRoute = path.join(root, "app", "out", "[target]", "route.js");
+const outboundRoute = path.join(root, "app", "out", "[target]", "page.jsx");
 if (outboundLinks.length > 0 && !(await exists(outboundRoute))) {
   failures.push("landing: outbound links have no /out/[target] route");
 }
@@ -201,9 +212,9 @@ if (!(await exists(path.join(root, "app", "demo", "route.js")))) {
   failures.push("demo.html: missing /demo route");
 }
 
-const downloadSource = await readFile(path.join(root, "download.html"), "utf8");
+const downloadSource = await readFile(path.join(landingRoot, "download-page.jsx"), "utf8");
 if (/\bNotarized\b/u.test(downloadSource)) {
-  failures.push("download.html: claims notarization without release evidence");
+  failures.push("download-page.jsx: claims notarization without release evidence");
 }
 for (const requiredCopy of [
   "Burette is downloading.",
@@ -213,10 +224,10 @@ for (const requiredCopy of [
   "Run the installer",
   "Install the package",
 ]) {
-  if (!downloadSource.includes(requiredCopy)) failures.push(`download.html: missing ${requiredCopy}`);
+  if (!downloadSource.includes(requiredCopy)) failures.push(`download-page.jsx: missing ${requiredCopy}`);
 }
 if (!(await exists(path.join(root, "app", "api", "release", "route.js")))) {
-  failures.push("download.html: missing /api/release metadata route");
+  failures.push("download-page.jsx: missing /api/release metadata route");
 }
 
 // Claims a visitor decides on. They have moved between components before and

@@ -15,7 +15,12 @@ export async function GET() {
           platforms: Object.fromEntries(
             Object.entries(release.platforms || {}).map(([key, asset]) => [
               key,
-              { assetName: asset.assetName, sizeBytes: asset.sizeBytes },
+              {
+                assetName: asset.assetName,
+                sizeBytes: asset.sizeBytes,
+                ...(asset.checksumName ? { checksumName: asset.checksumName } : {}),
+                ...(asset.checksumUrl ? { checksumUrl: asset.checksumUrl } : {}),
+              },
             ]),
           ),
         }

@@ -18,6 +18,14 @@ const PLATFORM_MATCHERS = {
   "linux-appimage": [(name) => name.endsWith(".appimage")],
 };
 
+const CHECKSUM_MATCHERS = {
+  macos: [(name) => name.endsWith(".dmg.sha256"), (name) => name.endsWith(".zip.sha256")],
+  windows: [(name) => name.endsWith("-windows.sha256")],
+  "linux-deb": [(name) => name.endsWith("-linux.sha256")],
+  "linux-rpm": [(name) => name.endsWith("-linux.sha256")],
+  "linux-appimage": [(name) => name.endsWith("-linux.sha256")],
+};
+
 export function normalizePlatformKey(value) {
   const raw = typeof value === "string" ? value.trim().toLowerCase() : "";
   if (raw === "mac" || raw === "macos" || raw === "darwin" || raw === "dmg") return "macos";
@@ -62,7 +70,12 @@ export async function fetchLatestBuretteRelease() {
     const platforms = {};
     for (const [key, matchers] of Object.entries(PLATFORM_MATCHERS)) {
       const asset = pickAsset(assets, matchers);
-      if (asset) platforms[key] = asset;
+      if (asset) {
+        const checksum = pickAsset(assets, CHECKSUM_MATCHERS[key] || []);
+        platforms[key] = checksum
+          ? { ...asset, checksumName: checksum.assetName, checksumUrl: checksum.downloadUrl }
+          : asset;
+      }
     }
     const macos = platforms.macos || null;
     if (!macos && Object.keys(platforms).length === 0) return null;

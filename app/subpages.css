@@ -1,0 +1,379 @@
+/* Shared styles for secondary pages (/download, /privacy, /terms, /support, /out)
+   so they inherit the editorial palette, typography, sky wash, and theme
+   switching of the main landing page without touching Nextra docs. */
+.landing.subpage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.landing.subpage main {
+  flex: 1;
+}
+
+.landing .subpage-hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.landing .subpage-sky {
+  position: absolute;
+  inset: 0 0 auto;
+  height: min(520px, 100%);
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(var(--sky-top), var(--sky-bottom));
+  mask-image: linear-gradient(#000 54%, transparent 100%);
+}
+
+.landing .subpage-sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 42%,
+    color-mix(in srgb, var(--bg) 42%, transparent) 20%,
+    color-mix(in srgb, var(--bg) 18%, transparent) 52%,
+    transparent 100%
+  );
+}
+
+.landing .subpage-clouds {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.72;
+}
+
+html[data-theme="dark"] .landing .subpage-hero-copy {
+  --body: #e4e7ec;
+}
+
+html[data-theme="dark"] .landing .subpage-hero-copy :is(h1, p) {
+  text-shadow: 0 1px 8px #000, 0 1px 3px #000;
+}
+
+/* Download page */
+.landing .download-heading {
+  padding-block: 68px 40px;
+  text-align: center;
+}
+
+.landing .download-heading h1 {
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.04;
+  letter-spacing: -0.058em;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+.landing .download-lede {
+  max-width: 48ch;
+  margin: 20px auto 0;
+  color: var(--body);
+  font-size: clamp(16px, 1.8vw, 19px);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.landing .download-tabs {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  margin: 28px auto 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.landing .download-asset-bar {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 14px;
+  margin: 18px auto 0;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(10px);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--body);
+}
+
+.landing .download-asset-name {
+  color: var(--text);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.landing .download-asset-sep {
+  width: 1px;
+  height: 12px;
+  background: var(--border);
+}
+
+.landing .download-checksum-link {
+  color: var(--molecular-ink);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--molecular-ink) 35%, transparent);
+  text-underline-offset: 3px;
+}
+
+.landing .download-checksum-link:hover {
+  text-decoration-color: currentColor;
+}
+
+.landing .download-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.landing .download-actions .pill-button {
+  height: 44px;
+  padding-inline: 22px;
+}
+
+.landing .download-actions .text-link {
+  margin-top: 0;
+  padding-inline: 8px;
+}
+
+.landing .download-content {
+  padding-block: 16px 96px;
+}
+
+.landing .download-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.landing .download-step {
+  padding: 28px 24px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.landing .download-step:last-child {
+  border-right: 0;
+}
+
+.landing .download-step-num {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: var(--molecular-ink);
+}
+
+.landing .download-step h2 {
+  margin-top: 10px;
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.landing .download-step p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--body);
+  text-wrap: pretty;
+}
+
+.landing .download-step code {
+  font-family: var(--font-mono);
+  font-size: 0.87em;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.landing .download-cli {
+  max-width: 720px;
+  margin: 28px auto 0;
+}
+
+.landing .download-cli-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--body);
+  margin-bottom: 10px;
+}
+
+/* Editorial legal & support pages */
+.landing .editorial-doc-header {
+  width: min(760px, calc(100% - 48px));
+  margin-inline: auto;
+  padding-block: 76px 36px;
+}
+
+.landing .editorial-doc-header h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+.landing .editorial-doc-meta {
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--body);
+}
+
+.landing .editorial-doc-body {
+  width: min(760px, calc(100% - 48px));
+  margin-inline: auto;
+  padding-block: 8px 104px;
+}
+
+.landing .editorial-doc-body > p:first-child {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--text);
+  margin-bottom: 28px;
+}
+
+.landing .editorial-doc-body h2 {
+  margin: 40px 0 14px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.landing .editorial-doc-body p,
+.landing .editorial-doc-body li {
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--body);
+  margin-bottom: 14px;
+  text-wrap: pretty;
+}
+
+.landing .editorial-doc-body a {
+  color: var(--molecular-ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--molecular-ink) 35%, transparent);
+  text-underline-offset: 4px;
+}
+
+.landing .editorial-doc-body a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Outbound redirect page */
+.landing .outbound-shell {
+  padding-block: 112px 128px;
+  text-align: center;
+}
+
+.landing .outbound-shell h1 {
+  font-size: clamp(32px, 4.5vw, 48px);
+  line-height: 1.06;
+  letter-spacing: -0.05em;
+  font-weight: 500;
+}
+
+.landing .outbound-shell p {
+  margin: 18px auto 0;
+  max-width: 44ch;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--body);
+}
+
+.landing .outbound-host {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--body);
+}
+
+.landing .outbound-actions {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+@media (max-width: 960px) {
+  .landing .download-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .landing .download-step {
+    border-bottom: 1px solid var(--border);
+  }
+  .landing .download-step:nth-child(2n) {
+    border-right: 0;
+  }
+  .landing .download-step:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .landing .download-heading {
+    padding-block: 44px 28px;
+  }
+  .landing .download-asset-bar {
+    border-radius: 16px;
+    padding: 12px 14px;
+  }
+  .landing .download-asset-sep {
+    display: none;
+  }
+  .landing .download-steps {
+    grid-template-columns: 1fr;
+  }
+  .landing .download-step {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 22px 20px;
+  }
+  .landing .download-step:last-child {
+    border-bottom: 0;
+  }
+  .landing .download-content {
+    padding-block: 8px 64px;
+  }
+  .landing .editorial-doc-header {
+    width: calc(100% - 32px);
+    padding-block: 48px 24px;
+  }
+  .landing .editorial-doc-body {
+    width: calc(100% - 32px);
+    padding-bottom: 72px;
+  }
+}
