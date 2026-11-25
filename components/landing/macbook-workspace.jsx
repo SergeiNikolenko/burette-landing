@@ -32,7 +32,7 @@ function MobilePreview({ film }) {
       <div className="mobile-film"><HeroFilm film={film} /></div>
       <div className="presentation-controls"><FilmControls film={film} /><WorkspaceDemo label="Open workspace" /></div>
     </> : <>
-      <ProductShot light="/assets/main-light.png" dark="/assets/main-dark.png" alt="Burette molecular workspace" width={1804} height={1262} ratio="1804 / 1262" priority />
+      <ProductShot light="/assets/main-light.png" dark="/assets/main-dark.png" alt="Burette molecular workspace" width={1280} height={720} ratio="1280 / 720" priority />
       <div className="presentation-controls"><Button variant="ghost" size="sm" onClick={film.replay}>Replay film</Button><WorkspaceDemo label="Open workspace" /></div>
     </>}
   </div>;
